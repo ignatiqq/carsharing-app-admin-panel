@@ -1,10 +1,12 @@
 export const validationPatterns = {
     emailPattern: {
-        value: "/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$",
+        //eslint-disable-next-line
+        value: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$",
         message: "Введите корректный Email адрес"
     },
     passwordPattern: {
-        value: "/^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/",
+        //eslint-disable-next-line
+        value: "^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$",
         message: "Пароль должен состоять минимум из 6 символов и содержать 1 заглавную букву!"
     }
 

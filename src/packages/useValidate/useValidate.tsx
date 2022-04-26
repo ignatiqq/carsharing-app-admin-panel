@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, FocusEvent } from 'react';
 
 import type { IUseValidateProps, IErrors } from './types';
 
@@ -17,7 +17,7 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
         })
     }
 
-    const handleBlur = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleBlur = (e: FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
         const key = e.target.name;
         if(fields.hasOwnProperty(key)) {
             const value = e.target.value;
@@ -39,7 +39,8 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
                 errors[key] = validations[key].required?.message;
                 return errors
             }
-            const patternValid = validations[key]?.pattern ? value.match(validations[key].pattern!.value) : true;
+            const regExpPattern = new RegExp(validations[key].pattern!.value);
+            const patternValid = validations[key]?.pattern ? regExpPattern.test(value) : true;
             if(!patternValid) {
                 errors[key] = validations[key].pattern?.message
                 return errors
@@ -72,7 +73,8 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
         isValid,
         handleBlur,
         errors,
-        handleSubmit
+        handleSubmit,
+        fields
     }
 }
 

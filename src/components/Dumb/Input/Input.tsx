@@ -1,14 +1,15 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, FocusEvent } from 'react'
 
 interface IInput {
-    type: string,
+    type?: string,
     name: string,
     value: string,
     autocomplete?: "on" | "off",
     disabled?: boolean,
     placeholder?: string,
     tabindex?: number,
-    onChange: (data: ChangeEvent<HTMLInputElement>) => void
+    onChange: (data: ChangeEvent<HTMLInputElement>) => void,
+    onBlur: (data: FocusEvent<HTMLInputElement>) => void
 }
 
 const Input: React.FC<IInput> = ({
@@ -19,7 +20,8 @@ const Input: React.FC<IInput> = ({
     disabled = false,
     placeholder,
     tabindex,
-    onChange
+    onChange,
+    onBlur
 }) => {
   return (
     <input 
@@ -31,6 +33,7 @@ const Input: React.FC<IInput> = ({
         placeholder={placeholder}
         tabIndex={tabindex}
         onChange={onChange}
+        onBlur={onBlur}
     />
   )
 }
