@@ -56,6 +56,13 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
         }
     }
 
+    const handleFocus = (e: FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const key = e.target.name;
+        const prevState = errors;
+        delete prevState[key as keyof T];
+        setErrors(prevState);
+    }
+
     const handleSubmit = (e: Event) => {
         e.preventDefault();
 
@@ -72,16 +79,20 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
             if(Object.keys(errors).length <= 0) {
                 setValid(true);
                 onSubmit(fields);
+            } else {
+                setValid(false);
+                setErrors(errors)
             }
         }
     }
 
     return {
         handleChange,
-        isValid,
+        handleFocus,
         handleBlur,
-        errors,
         handleSubmit,
+        isValid,
+        errors,
         fields
     }
 }

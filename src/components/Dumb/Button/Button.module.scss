@@ -40,5 +40,16 @@
         border: 0.5px solid var(--primary-E9ECEF);
         border-radius: 4px;
     }
+    
+    &Disabled {
+        background: #E9ECEF;
+        opacity: .7;
+        color: var(--gray-dark);
+        pointer-events: none;
+        text-align: center;
+        border: 0.5px solid var(#E9ECEF);
+        padding: 8px 10px;
+        border-radius: 4px;
+    }
 
 }

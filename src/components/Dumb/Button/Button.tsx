@@ -20,14 +20,16 @@ const Button: React.FC<IButton> = ({
     type = "button",
     onClick
 }) => {
+
   return (
     <button
         disabled={disabled} 
         type={type}
         className={classNames(styles.button, className, {
-            [styles.buttonDefault]: apperance === "default",
-            [styles.buttonDangerous]: apperance === "dangerous",
-            [styles.buttonCommon]: apperance === "common"
+            [styles.buttonDisabled]: disabled,
+            [styles.buttonDefault]: !disabled && (apperance === "default"),
+            [styles.buttonDangerous]: !disabled && apperance === "dangerous",
+            [styles.buttonCommon]: !disabled && apperance === "common"
         })}
         onClick={onClick}
     >

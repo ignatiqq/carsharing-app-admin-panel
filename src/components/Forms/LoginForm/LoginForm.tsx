@@ -26,17 +26,19 @@ const LoginForm: React.FC<ILoginForm> = ({ onSubmit }) => {
     const { 
         handleChange, 
         handleBlur, 
-        isValid, 
         errors,
-        fields
+        fields,
+        handleSubmit,
+        handleFocus
     } = useValidate({
         formFields, 
         validations: {email: validations.email, password: validations.password}, 
-        onSubmit: handleSubmit
+        onSubmit: loginHandler
     });
 
-    function handleSubmit(data:IUserLogin) {
-        onSubmit(data)
+    function loginHandler(data:IUserLogin) {
+        console.log(data)
+        // onSubmit(data)
     }
 
     return ( 
@@ -54,6 +56,7 @@ const LoginForm: React.FC<ILoginForm> = ({ onSubmit }) => {
                         value={fields.email}
                         onChange={handleChange}
                         onBlur={handleBlur}
+                        onFocus={handleFocus}
                     />
                 </Label>
                 <div className={classNames("error-text", styles.formError)}>{errors.email && errors.email}</div>
@@ -71,6 +74,7 @@ const LoginForm: React.FC<ILoginForm> = ({ onSubmit }) => {
                         value={fields.password}
                         onChange={handleChange} 
                         onBlur={handleBlur}
+                        onFocus={handleFocus}
                     />
                     <div className={classNames("error-text", styles.formError)}>{errors.password && errors.password}</div>
                 </Label>
@@ -82,7 +86,11 @@ const LoginForm: React.FC<ILoginForm> = ({ onSubmit }) => {
                     rel="noreferrer" 
                     target="_blank"
                 >Запросить доступ</a>
-                <Button className={styles.formFooterBtn} apperance="default" >Войти</Button>
+                <Button 
+                    onClick={handleSubmit}
+                    className={styles.formFooterBtn} 
+                    apperance={"default"}
+                >Войти</Button>
             </div>
         </form>
     )

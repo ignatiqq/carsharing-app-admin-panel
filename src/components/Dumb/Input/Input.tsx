@@ -10,8 +10,9 @@ interface IInput {
     disabled?: boolean,
     placeholder?: string,
     tabindex?: number,
-    onChange: (data: ChangeEvent<HTMLInputElement>) => void,
-    onBlur: (data: FocusEvent<HTMLInputElement>) => void,
+    onChange?: (data: ChangeEvent<HTMLInputElement>) => void,
+    onBlur?: (data: FocusEvent<HTMLInputElement>) => void,
+    onFocus?: (data: FocusEvent<HTMLInputElement>) => void
     className?: string
 }
 
@@ -24,6 +25,7 @@ const Input: React.FC<IInput> = ({
     tabindex,
     onChange,
     onBlur,
+    onFocus,
     className
 }) => {
   return (
@@ -37,6 +39,7 @@ const Input: React.FC<IInput> = ({
         tabIndex={tabindex}
         onChange={onChange}
         onBlur={onBlur}
+        onFocus={onFocus}
     />
   )
 }
