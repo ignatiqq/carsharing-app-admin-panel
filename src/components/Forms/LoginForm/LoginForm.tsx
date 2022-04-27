@@ -2,7 +2,7 @@ import React from 'react';
 
 import useValidate from 'packages/useValidate/useValidate';
 import { validations } from 'constants/Validations/validations';
-import { Input, Label } from "components";
+import { Input, Label, Button } from "components";
 
 import styles from "./LoginForm.module.scss";
 import classNames from 'classnames';
@@ -39,7 +39,7 @@ const LoginForm: React.FC<ILoginForm> = ({ onSubmit }) => {
         onSubmit(data)
     }
 
-    return (
+    return ( 
         <form className={styles.form}>
             <div className={styles.formItem}>
                 <Label className={styles.formLabel}>
@@ -58,21 +58,32 @@ const LoginForm: React.FC<ILoginForm> = ({ onSubmit }) => {
                 </Label>
                 <div className={classNames("error-text", styles.formError)}>{errors.email && errors.email}</div>
             </div>
-            <Label className={styles.formLabel}>
-                Пароль
-                <Input
-                    className={classNames(styles.formInput, {
-                        [styles.formInputInvalid]: errors.password
-                    })}
-                    placeholder='Пароль'
-                    type='password'
-                    name='password'
-                    value={fields.password}
-                    onChange={handleChange} 
-                    onBlur={handleBlur}
-                />
-                <div className={classNames("error-text", styles.formError)}>{errors.password && errors.password}</div>
-            </Label>
+            <div className={styles.formItem}>
+                <Label className={styles.formLabel}>
+                    Пароль
+                    <Input
+                        className={classNames(styles.formInput, {
+                            [styles.formInputInvalid]: errors.password
+                        })}
+                        placeholder='Пароль'
+                        type='password'
+                        name='password'
+                        value={fields.password}
+                        onChange={handleChange} 
+                        onBlur={handleBlur}
+                    />
+                    <div className={classNames("error-text", styles.formError)}>{errors.password && errors.password}</div>
+                </Label>
+            </div>
+            <div className={styles.formFooter}>
+                <a  
+                    className={styles.formFooterLink}
+                    href='https://github.com/ignatiqq' 
+                    rel="noreferrer" 
+                    target="_blank"
+                >Запросить доступ</a>
+                <Button className={styles.formFooterBtn} apperance="default" >Войти</Button>
+            </div>
         </form>
     )
 }

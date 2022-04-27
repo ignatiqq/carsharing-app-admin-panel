@@ -11,12 +11,29 @@
     }
 
     &Input {
-        min-width: 330px;
+        max-width: 330px;
         width: 100%;
         margin: 8.5px 0px;
 
         &Invalid {
             border-color: var(--primary-red) !important;
+        }
+    }
+
+    &Footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        &Btn {
+            min-width: 110px;
+        }
+
+        &Link {
+            color: var(--primary-blue);
+            font-size: 11px;
+            text-decoration: none;
         }
     }
 
