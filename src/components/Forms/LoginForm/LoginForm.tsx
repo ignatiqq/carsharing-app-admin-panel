@@ -3,8 +3,9 @@ import React from 'react';
 import useValidate from 'packages/useValidate/useValidate';
 import { validations } from 'constants/Validations/validations';
 import { Input, Label } from "components";
-import Logo from "assets/images/Logo.svg";
-import styles from "LoginForm.module.scss";
+
+import styles from "./LoginForm.module.scss";
+import classNames from 'classnames';
 
 const formFields = {
     email: "",
@@ -22,36 +23,55 @@ export interface IUserLogin {
 
 const LoginForm: React.FC<ILoginForm> = ({ onSubmit }) => {
 
-    const {
-        handleChange,
-        handleBlur,
-        isValid,
+    const { 
+        handleChange, 
+        handleBlur, 
+        isValid, 
         errors,
         fields
     } = useValidate({
-        formFields,
-        validations: { email: validations.email, password: validations.password },
+        formFields, 
+        validations: {email: validations.email, password: validations.password}, 
         onSubmit: handleSubmit
     });
 
-    function handleSubmit(data: IUserLogin) {
+    function handleSubmit(data:IUserLogin) {
         onSubmit(data)
     }
 
-    console.log(isValid, fields, errors, validations.email)
-
     return (
-        <form>
-            <Label>
-                Почта
+        <form className={styles.form}>
+            <div className={styles.formItem}>
+                <Label className={styles.formLabel}>
+                    Почта
+                    <Input
+                        className={classNames(styles.formInput, {
+                            [styles.formInputInvalid]: errors.email
+                        })} 
+                        placeholder='Ваш Email'
+                        type='email'
+                        name='email'
+                        value={fields.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                    />
+                </Label>
+                <div className={classNames("error-text", styles.formError)}>{errors.email && errors.email}</div>
+            </div>
+            <Label className={styles.formLabel}>
+                Пароль
                 <Input
-                    placeholder='Ваш Email'
-                    type='email'
-                    name='email'
-                    value={fields.email}
-                    onChange={handleChange}
+                    className={classNames(styles.formInput, {
+                        [styles.formInputInvalid]: errors.password
+                    })}
+                    placeholder='Пароль'
+                    type='password'
+                    name='password'
+                    value={fields.password}
+                    onChange={handleChange} 
                     onBlur={handleBlur}
                 />
+                <div className={classNames("error-text", styles.formError)}>{errors.password && errors.password}</div>
             </Label>
         </form>
     )

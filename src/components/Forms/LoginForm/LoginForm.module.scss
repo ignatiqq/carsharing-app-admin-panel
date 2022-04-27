@@ -1,0 +1,26 @@
+.form {
+
+    &Item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &Label {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &Input {
+        min-width: 330px;
+        width: 100%;
+        margin: 8.5px 0px;
+
+        &Invalid {
+            border-color: var(--primary-red) !important;
+        }
+    }
+
+    &Error {
+        margin-bottom: 4px;
+    }
+}

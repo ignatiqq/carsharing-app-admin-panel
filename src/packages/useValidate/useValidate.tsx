@@ -5,7 +5,7 @@ import type { IUseValidateProps, IErrors } from './types';
 const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validations, onSubmit }: IUseValidateProps<T>) => {
     const [isValid, setValid] = useState<boolean>(false);
     const [fields, setFields] = useState<T>(formFields || {} as T);
-    const [errors, setErrors] = useState<IErrors<T> | object>({});
+    const [errors, setErrors] = useState<IErrors<T>>({});
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const key = e.target.name;
@@ -38,12 +38,20 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
             if(!requiredValid) {
                 errors[key] = validations[key].required?.message;
                 return errors
+            } else if(errors[key]) {
+                const prevState = errors;
+                delete prevState[key];
+                setErrors(prevState);
             }
             const regExpPattern = new RegExp(validations[key].pattern!.value);
             const patternValid = validations[key]?.pattern ? regExpPattern.test(value) : true;
             if(!patternValid) {
                 errors[key] = validations[key].pattern?.message
                 return errors
+            } else {
+                const prevState = errors;
+                delete prevState[key];
+                setErrors(prevState);
             }
         }
     }

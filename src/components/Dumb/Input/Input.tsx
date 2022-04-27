@@ -1,34 +1,37 @@
-import React, { ChangeEvent, FocusEvent } from 'react'
+import React, { ChangeEvent, FocusEvent } from 'react';
+import classNames from "classnames";
+
+import styles from "./Input.module.scss";
 
 interface IInput {
     type?: string,
     name: string,
     value: string,
-    autocomplete?: "on" | "off",
     disabled?: boolean,
     placeholder?: string,
     tabindex?: number,
     onChange: (data: ChangeEvent<HTMLInputElement>) => void,
-    onBlur: (data: FocusEvent<HTMLInputElement>) => void
+    onBlur: (data: FocusEvent<HTMLInputElement>) => void,
+    className?: string
 }
 
 const Input: React.FC<IInput> = ({
     type = "text",
     name,
     value,
-    autocomplete = "on",
     disabled = false,
     placeholder,
     tabindex,
     onChange,
-    onBlur
+    onBlur,
+    className
 }) => {
   return (
     <input 
+        className={classNames(styles.input, className)}
         type={type} 
         name={name}
         value={value}
-        autoComplete={autocomplete}
         disabled={disabled}
         placeholder={placeholder}
         tabIndex={tabindex}

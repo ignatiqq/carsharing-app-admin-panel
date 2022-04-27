@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+
+import classNames from 'classnames';
+import styles from "./Label.module.scss";
 
 interface ILabel {
     children: React.ReactNode,
@@ -7,7 +10,7 @@ interface ILabel {
 
 const Label: React.FC<ILabel> = ({children, className}) => {
   return (
-    <label className={`${className ? className : ""}`}>
+    <label className={classNames(styles.label, className)}>
         {children}
     </label>
   )
