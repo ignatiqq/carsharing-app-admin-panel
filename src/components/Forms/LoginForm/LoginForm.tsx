@@ -8,7 +8,7 @@ import styles from "./LoginForm.module.scss";
 import classNames from 'classnames';
 
 const formFields = {
-    email: "",
+    username: "",
     password: ""
 }
 
@@ -17,7 +17,7 @@ interface ILoginForm {
 }
 
 export interface IUserLogin {
-    email: string,
+    username: string,
     password: string
 }
 
@@ -32,13 +32,12 @@ const LoginForm: React.FC<ILoginForm> = ({ onSubmit }) => {
         handleFocus
     } = useValidate({
         formFields, 
-        validations: {email: validations.email, password: validations.password}, 
+        validations: {username: validations.email, password: validations.password}, 
         onSubmit: loginHandler
     });
 
     function loginHandler(data:IUserLogin) {
-        console.log(data)
-        // onSubmit(data)
+        onSubmit(data)
     }
 
     return ( 
@@ -48,18 +47,18 @@ const LoginForm: React.FC<ILoginForm> = ({ onSubmit }) => {
                     Почта
                     <Input
                         className={classNames(styles.formInput, {
-                            [styles.formInputInvalid]: errors.email
+                            [styles.formInputInvalid]: errors.username
                         })} 
                         placeholder='Ваш Email'
                         type='email'
-                        name='email'
-                        value={fields.email}
+                        name='username'
+                        value={fields.username}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         onFocus={handleFocus}
                     />
                 </Label>
-                <div className={classNames("error-text", styles.formError)}>{errors.email && errors.email}</div>
+                <div className={classNames("error-text", styles.formError)}>{errors.username && errors.username}</div>
             </div>
             <div className={styles.formItem}>
                 <Label className={styles.formLabel}>

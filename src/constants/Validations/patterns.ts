@@ -6,8 +6,8 @@ export const validationPatterns = {
     },
     passwordPattern: {
         //eslint-disable-next-line
-        value: "^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$",
-        message: "Пароль должен состоять минимум из 6 символов!"
+        value: "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$",
+        message: "Пароль должен быть минимум из 6 символов, содержать заглавную букву и символ!"
     }
 
 }

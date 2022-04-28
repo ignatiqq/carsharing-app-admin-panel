@@ -1,15 +1,20 @@
-import api from "../config";
+import makeRequest from "../config";
 
 import type { IConfig } from "./types";
 
 export const getRequest = (url: string, config?: IConfig) => {
-    return api.get(url, {
-        ...config
+    return makeRequest({
+        url,
+        method: "GET",
+        headers: config?.headers
     });
 } 
 
-export const postRequest = (url: string, config?: IConfig) => {
-    return api.post(url, {
-        ...config
+export const postRequest = (url: string, body: string, config?: IConfig) => {
+    return makeRequest({
+        url,
+        method: "POST",
+        body,
+        headers: config?.headers
     })
 }
