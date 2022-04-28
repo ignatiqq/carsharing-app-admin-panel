@@ -1,6 +1,6 @@
 import { createReducer, PayloadAction } from "@reduxjs/toolkit";
 
-import type { IAuth, IUserInfo } from "./types";
+import type { IAuth, ITokenInfo } from "./types";
 import { 
     setUserLoginData, 
     setUserLoginLoading, 
@@ -8,15 +8,15 @@ import {
 } from "./actions";
 
 const initialState: IAuth = {
-    userInfo: null,
+    data: null,
     isLoading: false,
     error: null
 }
 
 const auth = createReducer(initialState, (builder) => {
     builder
-        .addCase(setUserLoginData, (state, action: PayloadAction<IUserInfo>) => {
-            state.userInfo = action.payload
+        .addCase(setUserLoginData, (state, action: PayloadAction<ITokenInfo>) => {
+            state.data = action.payload
         })
         .addCase(setUserLoginLoading, (state, action: PayloadAction<boolean>) => {
             state.isLoading = action.payload

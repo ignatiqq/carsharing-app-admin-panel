@@ -11,7 +11,7 @@ import {
     setUserLoginLoading
 } from "../actions";
 import { AxiosResponse } from "axios";
-import { IUserInfo } from "../types";
+import { ITokenInfo } from "../types";
 
 function *loginUserHandler(action: AnyAction) {
     try {
@@ -23,7 +23,7 @@ function *loginUserHandler(action: AnyAction) {
             secret: base64Helper.encode(`${uuidv4()}:${process.env.REACT_APP_CLIENT_SECRET}`)
         }
 
-        const response: AxiosResponse<IUserInfo> = yield call(authorization.login, loginData);
+        const response: AxiosResponse<ITokenInfo> = yield call(authorization.login, loginData);
 
         console.log(response);
 
