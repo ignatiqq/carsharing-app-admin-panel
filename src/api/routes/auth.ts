@@ -1,8 +1,11 @@
 import { postRequest } from "api/requests/requests";
 
-interface ILogin {
+export interface IUserLoginData {
     username: string,
-    password: string,
+    password: string
+}
+
+interface ILogin extends IUserLoginData {
     secret: string
 }
 
