@@ -1,11 +1,31 @@
 import { useState, ChangeEvent, FocusEvent } from 'react';
 
-import type { IUseValidateProps, IErrors } from './types';
+import type { IUseValidateProps, IErrors, IValidations, IValidationPattern} from './types';
+
 
 const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validations, onSubmit }: IUseValidateProps<T>) => {
     const [isValid, setValid] = useState<boolean>(false);
     const [fields, setFields] = useState<T>(formFields || {} as T);
     const [errors, setErrors] = useState<IErrors<T>>({});
+
+    const deleteError = (errors: IErrors<T>, key: keyof T) => {
+        const newErrors = {...errors};
+        delete newErrors[key];
+        setErrors(newErrors);
+    }
+
+    const requiredValid = (validationKey: IValidations<T>[keyof T], value: string) => {
+        return validationKey?.required?.value ? value.length > 0 : true;
+    }
+
+    const patternValidate = (validationKey: IValidations<T>[keyof T], pattern: IValidationPattern, value: string) => {
+        if(pattern.value instanceof Function) {
+            return pattern.value(value);
+        } else {
+            const regExpPattern = new RegExp(pattern?.value);
+            return validationKey?.pattern ? regExpPattern.test(value) : true;
+        }
+    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const key = e.target.name;
@@ -21,46 +41,50 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
         const key = e.target.name;
         if(fields.hasOwnProperty(key)) {
             const value = e.target.value;
-            const errors = validate(key as keyof T, value);
+            const validationErrors = handleValidate(key as keyof T, value);
             setErrors((prev) => {
                 return {
                     ...prev,
-                    ...errors
+                    ...validationErrors
                 }
             })
         }
     }
 
-    const validate = (key: keyof T, value: string) => {
-        if(validations[key]) {
-            const errors: IErrors<T> = {};
-            const requiredValid = validations[key]?.required?.value ? value.length > 0 : true;
-            if(!requiredValid) {
-                errors[key] = validations[key].required?.message;
-                return errors
-            } else if(errors[key]) {
-                const prevState = errors;
-                delete prevState[key];
-                setErrors(prevState);
+    const handleValidate = (key: keyof T, value: string) => {
+        const validationKey = validations[key];
+        const validateErrors: IErrors<T> = {...errors};
+
+        if(validationKey) {
+            if(!requiredValid(validationKey, value)) {
+                return {
+                    ...validateErrors,
+                    [key]: validationKey.required?.message
+                }
+            } else if(validateErrors[key]) {
+                deleteError(validateErrors, key)
             }
-            const regExpPattern = new RegExp(validations[key].pattern!.value);
-            const patternValid = validations[key]?.pattern ? regExpPattern.test(value) : true;
+            if(!validationKey?.pattern?.value) {
+                return validateErrors;
+            }
+            
+            const patternValid = patternValidate(validationKey, validationKey.pattern, value);
             if(!patternValid) {
-                errors[key] = validations[key].pattern?.message
-                return errors
+                return {
+                    ...validateErrors,
+                    [key]: validationKey.pattern.message
+                }
             } else {
-                const prevState = errors;
-                delete prevState[key];
-                setErrors(prevState);
+                deleteError(validateErrors, key)
             }
+                
         }
+
     }
 
     const handleFocus = (e: FocusEvent<HTMLInputElement | HTMLSelectElement>) => {
         const key = e.target.name;
-        const prevState = errors;
-        delete prevState[key as keyof T];
-        setErrors(prevState);
+        deleteError(errors, key as keyof T)
     }
 
     const handleSubmit = (e: Event) => {
@@ -72,7 +96,7 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
             for(const key in fields) {
                 const value = fields[key];
 
-                const elementErrors = validate(key, value);
+                const elementErrors = handleValidate(key, value);
                 errors = {...errors, ...elementErrors}
             }
 
