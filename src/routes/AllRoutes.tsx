@@ -1,9 +1,10 @@
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 
 import errorPages from "constants/errorPages";
 import { Login, ErrorPage } from "pages";
 
 const AppRoutes = () => useRoutes([
+    {path: "/", element: <Navigate to="/login" />},
     {path: "/login", element: <Login />},
     {path: "*", element: <ErrorPage 
         statusCode={errorPages.notFound.statusCode} 
