@@ -11,7 +11,7 @@ interface ILogin extends IUserLoginData {
 
 const authorization = {
     login: ({username, password, secret}: ILogin) => {
-        return postRequest("/db/auth", JSON.stringify({username, password}),
+        return postRequest("/auth/login", JSON.stringify({username, password}),
         {
             headers: {
                 'Content-type': 'application/json',

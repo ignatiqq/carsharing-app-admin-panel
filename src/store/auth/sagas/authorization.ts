@@ -10,12 +10,12 @@ import {
     setUserLoginError,
     setUserLoginLoading
 } from "../actions";
+import errorKeys from "constants/errorKeys";
 import { AxiosResponse } from "axios";
 import { ITokenInfo } from "../types";
 
 function *loginUserHandler(action: AnyAction) {
     try {
-        
         yield put(setUserLoginLoading(true));
 
         const loginData = {
@@ -25,10 +25,19 @@ function *loginUserHandler(action: AnyAction) {
 
         const response: AxiosResponse<ITokenInfo> = yield call(authorization.login, loginData);
 
-        console.log(response);
+        console.log(response)
+
+        if(response?.status < 300) {
+            yield put(setUserLoginData(response.data))
+        } else {
+            throw new Error(errorKeys.requestError);
+        }
 
     } catch (error: any) {
         console.error(error.message);
+        yield put(setUserLoginError(error.message))
+    } finally {
+        yield put(setUserLoginLoading(false))
     }
 }
 

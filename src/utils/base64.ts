@@ -1,9 +1,9 @@
 const base64Helper = {
-    encode: (str: String) => {
-        return Buffer.from(str).toString("base64");
+    encode: (str: string) => {
+        return btoa(str);
     },
     decode: (b64Str: string) => {
-        return Buffer.from(b64Str, "base64").toString("utf-8");
+        return atob(b64Str);
     }
 }
 

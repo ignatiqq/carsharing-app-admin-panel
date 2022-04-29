@@ -35,9 +35,18 @@
             font-size: 11px;
             text-decoration: none;
         }
+
+        &Loading {
+            display: flex;
+            justify-content: center;
+        }
     }
 
     &Error {
         margin-bottom: 4px;
     }
+}
+
+.loader {
+    width: 30px;
 }

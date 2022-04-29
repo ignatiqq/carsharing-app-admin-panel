@@ -3,6 +3,7 @@ import createSagaMiddleware from "@redux-saga/core";
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 import rootReducer from "./reducers";
+import rootSaga from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -11,6 +12,8 @@ const store = configureStore({
     middleware: [sagaMiddleware],
     devTools: process.env.NODE_ENV !== 'production',
 });
+
+sagaMiddleware.run(rootSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

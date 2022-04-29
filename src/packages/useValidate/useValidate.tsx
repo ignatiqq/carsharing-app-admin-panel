@@ -5,7 +5,7 @@ import type { IUseValidateProps, IErrors, IValidations, IValidationPattern} from
 
 const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validations, onSubmit }: IUseValidateProps<T>) => {
     const [isValid, setValid] = useState<boolean>(false);
-    const [fields, setFields] = useState<T>(formFields || {} as T);
+    const [fields, setFields] = useState<Record<keyof T, any>>(formFields || {} as T);
     const [errors, setErrors] = useState<IErrors<T>>({});
 
     const deleteError = (errors: IErrors<T>, key: keyof T) => {

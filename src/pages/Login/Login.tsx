@@ -1,20 +1,22 @@
-import { useCallback } from 'react';
+import {memo} from 'react';
 
-import { useAuthorization } from 'hooks';
 import type { IUserLogin } from 'components/Forms/LoginForm/LoginForm';
 import { LoginFrom } from 'components';
 import Logo from "assets/images/Logo.svg";
 import styles from "./Login.module.scss";
+import withLoginLogic from './withLoginLogic';
 
+export interface ILogin {
+  authorizationHandler: (data: IUserLogin) => void,
+  isUserLoginLoading: boolean,
+  userLoginError: string | null
+}
 
-const Login = () => {
-
-    const {loginHandler} = useAuthorization();
-
-    const authorizationHandler = useCallback((data: IUserLogin) => {
-      console.log(data)
-      loginHandler(data);
-    }, [])
+const Login: React.FC<ILogin> = ({ 
+  authorizationHandler, 
+  isUserLoginLoading,
+  userLoginError
+}) => {
 
     return (
       <div className={styles.wrapper}>
@@ -24,13 +26,12 @@ const Login = () => {
           </div>
           <div className={styles.contentWrapper}>
             <h2 className={styles.loginTitle}>Вход</h2>
-            <LoginFrom
-              onSubmit={authorizationHandler}
-            />
-          </div>             
+            {userLoginError && <div className={styles.loginError}>{userLoginError}</div>}
+            <LoginFrom onSubmit={authorizationHandler} isUserLoginLoading={isUserLoginLoading} />
+          </div>
         </div>
       </div>
-    )
+    );
 }
 
-export default Login
+export default withLoginLogic(memo(Login));

@@ -14,7 +14,7 @@ function makeRequest<T>({url, method, body, headers}: IMaketRequestParams<T>): A
     }
 
     return axios({
-        url,
+        url: `${process.env.REACT_APP_API_URL}${url}`,
         method,
         data: body,
         headers: {
