@@ -1,4 +1,5 @@
 export { default as LoginFrom } from "./Forms/LoginForm/LoginForm";
+export { default as ErrorComponent } from "./ErrorComponent/ErrorComponent";
 
 export { default as Input } from "./Dumb/Input/Input";
 export { default as Label } from "./Dumb/Label/Label";

@@ -1,3 +1,6 @@
+@import "./constants.scss";
+@import "./fonts.scss";
+
 :root {
   --primary-blue: #007BFF;
   --primary-green: #0ec261;
@@ -62,7 +65,3 @@ button {
   font-family: 'Helvetica';
 }
   
-.error-text {
-  color: var(--primary-red);
-  font-size: 10px;
-}
