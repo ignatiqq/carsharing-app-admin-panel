@@ -1,0 +1,38 @@
+.header {
+    & {
+        height: 75px;
+        background: #fff;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+    }
+
+    &__notificationsWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        border-left: 1px solid #CACEDB;
+        padding: 0 20px;
+    }
+
+    &__settingsmenuWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-left: 1px solid #CACEDB;
+        padding: 0 20px;
+        height: 100%;
+    }
+
+    &__options {
+        & {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+    }
+
+}

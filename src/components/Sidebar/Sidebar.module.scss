@@ -1,0 +1,72 @@
+.sidebar {
+    & {
+        height: 100vh;
+        z-index: 20;
+        background: #fff;
+        box-shadow: 0px 1px 75px rgba(90, 97, 105, 0.11), 
+        0px 2px 4px rgba(90, 97, 105, 0.12), 
+        0px 7.5px 11px rgba(90, 97, 105, 0.1), 
+        0px 3.5px 17.5px rgba(165, 182, 201, 0.1);
+    }
+
+    &__logo {
+        
+        &__item {
+            max-width: 140px;
+        }
+
+        &__wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 15px 70px 15px 0px;
+        }
+
+    }
+
+    &__link {
+        & {
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #E1E5EB;
+            font-family: "Helvetica";
+            position: relative;
+        }
+
+        &:last-child {
+            border-bottom: 1px solid #E1E5EB;
+        }
+
+        & div:first-child {
+            margin-right: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        & div:last-child {
+            color: var(--primary-dark-blue);
+            font-size: 15px;
+        }
+
+        &:hover div:last-child {
+            color: var(--primary-blue);
+        }
+
+        &:hover::before {
+            content: "";
+            background: var(--primary-blue);
+            width: 5px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: block;
+        }
+    }
+
+    @media(min-width: 640px) {
+        max-width: 285px;
+        width: 100%;
+    }
+}

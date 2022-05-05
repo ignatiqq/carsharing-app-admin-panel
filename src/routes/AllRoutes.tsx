@@ -1,14 +1,31 @@
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import errorPages from "constants/errorPages";
-import { Login, ErrorPage } from "pages";
+import { Login, ErrorPage, Dashboard, Orders } from "pages";
 
 const AppRoutes = () => useRoutes([
-    {path: "/", element: <div>/</div>},
-    {path: "/dashboard", 
-    element: 
-        <PrivateRoute>hello</PrivateRoute>
+    {path: "/", element: <Navigate to="/login" />},
+    {   
+        path: "/dashboard", 
+        element: 
+            <PrivateRoute>
+                <Dashboard />
+            </PrivateRoute>,
+        children: [
+            {
+                path: "/dashboard/orders", 
+                element: <Orders />
+            },
+            {
+                path: "*",
+                element: <ErrorPage 
+                    statusCode={errorPages.notFound.statusCode} 
+                    title={errorPages.notFound.title} 
+                    description={errorPages.notFound.description} 
+                />
+            }
+        ]
     },
     {path: "/login", element: <Login />},
     {path: "*", element: <ErrorPage 
