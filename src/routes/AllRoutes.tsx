@@ -1,10 +1,15 @@
-import { Navigate, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 
+import PrivateRoute from "./PrivateRoute";
 import errorPages from "constants/errorPages";
 import { Login, ErrorPage } from "pages";
 
 const AppRoutes = () => useRoutes([
-    {path: "/", element: <Navigate to="/login" />},
+    {path: "/", element: <div>/</div>},
+    {path: "/dashboard", 
+    element: 
+        <PrivateRoute>hello</PrivateRoute>
+    },
     {path: "/login", element: <Login />},
     {path: "*", element: <ErrorPage 
         statusCode={errorPages.notFound.statusCode} 

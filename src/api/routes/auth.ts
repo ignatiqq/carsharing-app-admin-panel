@@ -5,6 +5,11 @@ export interface IUserLoginData {
     password: string
 }
 
+export interface IUserRefreshData {
+    refreshToken: string,
+    secret: string
+}
+
 interface ILogin extends IUserLoginData {
     secret: string
 }
@@ -17,6 +22,15 @@ const authorization = {
                 'Content-type': 'application/json',
                 'Authorization': `Basic ${secret}`
             },
+        })
+    },
+    refresh: ({refreshToken, secret}: IUserRefreshData) => {
+        return postRequest("/auth/refresh", JSON.stringify({refresh_token: refreshToken}),
+        {
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': `Basic ${secret}`
+            }
         })
     }
 }
