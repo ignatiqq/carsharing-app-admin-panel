@@ -1,6 +1,6 @@
 import { useRoutes } from "react-router-dom";
 
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import errorPages from "constants/errorPages";
 import { Login, ErrorPage } from "pages";
 
