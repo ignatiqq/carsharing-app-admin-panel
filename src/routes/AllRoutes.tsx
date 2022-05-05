@@ -2,6 +2,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import errorPages from "constants/errorPages";
+import { ErrorComponent } from "components";
 import { Login, ErrorPage, Dashboard, Orders } from "pages";
 
 const AppRoutes = () => useRoutes([
@@ -19,7 +20,7 @@ const AppRoutes = () => useRoutes([
             },
             {
                 path: "*",
-                element: <ErrorPage 
+                element: <ErrorComponent
                     statusCode={errorPages.notFound.statusCode} 
                     title={errorPages.notFound.title} 
                     description={errorPages.notFound.description} 
