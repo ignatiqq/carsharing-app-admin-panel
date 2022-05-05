@@ -5,7 +5,8 @@ import {
     setUserLoginData, 
     setUserLoginLoading, 
     setUserLoginError,
-    authorizationUserRequestLoaded
+    authorizationUserRequestLoaded,
+    clearUserAuthData
 } from "./actions";
 
 const initialState: IAuth = {
@@ -28,6 +29,9 @@ const auth = createReducer(initialState, (builder) => {
         })
         .addCase(authorizationUserRequestLoaded, (state, action: PayloadAction<boolean>) => {
             state.requestLoaded = action.payload
+        })
+        .addCase(clearUserAuthData, (state, action) => {
+            state.data = null
         })
 })
 

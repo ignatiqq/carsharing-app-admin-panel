@@ -10,7 +10,7 @@ export const getRequest = (url: string, config?: IConfig) => {
     });
 } 
 
-export const postRequest = (url: string, body: string, config?: IConfig) => {
+export const postRequest = (url: string, config?: IConfig, body?: string) => {
     return makeRequest({
         url,
         method: "POST",

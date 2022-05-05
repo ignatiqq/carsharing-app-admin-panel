@@ -1,0 +1,17 @@
+.dashboard {
+
+    & {
+        display: flex;
+    }
+
+    &__outlet {
+        padding: 28px;
+    }
+
+    &__contentWrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+}

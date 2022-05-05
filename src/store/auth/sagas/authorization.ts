@@ -1,4 +1,4 @@
-import { takeLatest, put, call } from "redux-saga/effects";
+import { takeLatest, put, call, takeEvery } from "redux-saga/effects";
 import { AnyAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid';
 import Cookies from "js-cookie";
@@ -11,7 +11,9 @@ import {
     setUserLoginError,
     setUserLoginLoading,
     refreshUser,
-    authorizationUserRequestLoaded
+    authorizationUserRequestLoaded,
+    logoutUser,
+    clearUserAuthData
 } from "../actions";
 import errorKeys from "constants/errorKeys";
 import { AxiosResponse } from "axios";
@@ -71,4 +73,23 @@ function* refreshUserHandler(action: AnyAction) {
 
 export function* refreshUserWatcher() {
     yield takeLatest(refreshUser, refreshUserHandler)
+}
+
+function* logoutUserHandler() {
+    try {
+
+        yield call(authorization.logout);
+
+        Cookies.remove("access_token");
+        Cookies.remove("refresh_token");
+
+        yield put(clearUserAuthData());
+
+    } catch (error: any) {
+        console.error(error.message);
+    }
+}
+
+export function* logoutUserWatcher() {
+    yield takeEvery(logoutUser, logoutUserHandler);
 }

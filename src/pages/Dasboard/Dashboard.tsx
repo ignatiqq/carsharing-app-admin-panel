@@ -1,15 +1,18 @@
 import React from 'react';
-
-import { Sidebar, Header } from 'components'
 import { Outlet } from 'react-router-dom';
+
+import { Sidebar, Header } from 'components';
+import styles from "./Dashboard.module.scss";
 
 const Dashboard = () => {
   return (
-    <div style={{display: "flex"}}>
+    <div className={styles.dashboard}>
         <Sidebar />
-        <div style={{display: "flex", flexDirection: "column", width: "100%"}}>
+        <div className={styles.dashboard__contentWrapper}>
           <Header />
-          <Outlet />
+          <div className={styles.dashboard__outlet}>
+            <Outlet />
+          </div>
         </div>
     </div>
 

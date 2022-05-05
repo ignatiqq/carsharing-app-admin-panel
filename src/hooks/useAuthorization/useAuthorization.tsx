@@ -5,7 +5,7 @@ import timesHelper from 'utils/times';
 import cookieKeys from 'constants/storageKeys/cookies';
 import { useAppSelector, useAppDispatch } from 'store';
 import type { IUserLoginData } from 'api/routes/auth';
-import { loginUser, refreshUser } from 'store/auth/actions';
+import { loginUser, logoutUser, refreshUser } from 'store/auth/actions';
 
 const useAuthorization = () => {
     const dispatch = useAppDispatch();
@@ -46,9 +46,14 @@ const useAuthorization = () => {
         }));
     }
 
+    const logoutHandler = () => {
+        dispatch(logoutUser());
+    }
+
     return {
         loginHandler,
-        refreshHandler
+        refreshHandler,
+        logoutHandler
     }
 }
 

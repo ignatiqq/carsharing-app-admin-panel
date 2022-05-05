@@ -7,5 +7,5 @@ export interface IConfig {
 }
 
 interface IHeader {
-    [key: string]: string
+    [key: string]: string | boolean
 }

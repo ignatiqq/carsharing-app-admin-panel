@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import { ReactComponent as DropdownIcon } from "assets/icons/Dropdown.svg";
 import styles from "./SettingsMenu.module.scss";
+import { useAuthorization } from 'hooks';
 
 interface ISettingsMenu {
     avatar: string,
@@ -11,6 +12,8 @@ interface ISettingsMenu {
 
 const SettingsMenu: React.FC<ISettingsMenu> = ({ avatar, name }) => {
     const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+    const { logoutHandler } = useAuthorization();
 
     const menu = useRef<HTMLButtonElement | null>(null);
 
@@ -30,6 +33,10 @@ const SettingsMenu: React.FC<ISettingsMenu> = ({ avatar, name }) => {
         setMenuIsOpen(prev => !prev)
     }
 
+    const logoutUserHandler = () => {
+        logoutHandler();
+    }
+
     return (
         <div className={styles.wrapper}>
             <button ref={menu} onClick={toggleMenuHandler} className={styles.menu}>
@@ -42,7 +49,7 @@ const SettingsMenu: React.FC<ISettingsMenu> = ({ avatar, name }) => {
             <div className={classNames(styles.dropdownMenu, {
                 [styles.dropdownMenu__opened]: menuIsOpen
             })}>
-                <button className={styles.dropdownMenu__btn}>Выйти</button>
+                <button onClick={logoutUserHandler} className={styles.dropdownMenu__btn}>Выйти</button>
             </div>
         </div>
     )
