@@ -1,0 +1,2 @@
+export const SET_ORDER_DATA = "SET_ORDER_DATA";
+export const GET_ORDER_DATA = "GET_ORDER_DATA";

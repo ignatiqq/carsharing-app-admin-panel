@@ -82,6 +82,7 @@ function* logoutUserHandler() {
 
         Cookies.remove("access_token");
         Cookies.remove("refresh_token");
+        Cookies.remove("auth_token");
 
         yield put(clearUserAuthData());
 

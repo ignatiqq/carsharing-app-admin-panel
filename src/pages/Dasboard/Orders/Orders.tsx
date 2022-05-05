@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+
+import { Table, Loader } from 'components';
 
 const Orders = () => {
-  return (
-    <div>Orders Hello world!</div>
-  )
+
+    return (
+      <Table data={[]} Component={Loader}/>
+    )
 }
 
 export default Orders;
