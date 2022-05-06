@@ -1,0 +1,70 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 15px 22px;
+}
+
+.bold {
+    font-weight: 500;
+    color: var(--primary-black);
+}
+
+.car {
+    & {
+        font-family: "Roboto";
+    }
+
+    &__image {
+        max-width: 140px;
+
+        &_wrapper {
+            margin-right: 15px;
+        }
+    }
+
+    &__date {
+        color: #889098;
+        margin: 5px 0px;
+    }
+
+    &__color {
+        color: #889098;
+    }
+
+    &__info {
+        display: flex;
+    }
+}
+
+.rectangle {
+    width: 15px;
+    height: 15px;
+    border: 0.5px solid #BECAD6;
+    border-radius: 1px;
+    position: relative;
+    margin-right: 8px;
+
+    &__active {
+        & {
+            border-color: var(--primary-green);;
+        }
+        &::before {
+            content: url("../../../assets/icons/checkmark.svg");
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+.additionally {
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

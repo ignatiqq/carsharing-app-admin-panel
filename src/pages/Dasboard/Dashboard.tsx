@@ -4,18 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { Sidebar, Header } from 'components';
 import styles from "./Dashboard.module.scss";
 
-export const ComponentCheck = () => {
-  console.log("check");
-
-  React.useEffect(() => {
-    console.log("check Orders")
-  }, [])
-
-  return <div>123</div>
-}
-
-const Dashboard = React.memo(() => {
-
+const Dashboard = () => {
   return (
     <div className={styles.dashboard}>
         <Sidebar />
@@ -28,6 +17,6 @@ const Dashboard = React.memo(() => {
     </div>
 
   )
-});
+}
 
-export default Dashboard;
+export default Dashboard

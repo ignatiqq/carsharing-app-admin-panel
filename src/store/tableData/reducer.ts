@@ -5,7 +5,7 @@ import {
     setOrderDataLoading,
     setOrderDataError
 } from "./actions";
-import type { IOrderData, ITableData } from "./types";
+import type { IOrderDataInfo, ITableData } from "./types";
 
 const initialState: ITableData = {
     order: {
@@ -17,7 +17,7 @@ const initialState: ITableData = {
 
 const tableData = createReducer(initialState, (builder) => {
     builder
-        .addCase(setOrderData, (state, action: PayloadAction<Array<IOrderData>>) => {
+        .addCase(setOrderData, (state, action: PayloadAction<IOrderDataInfo>) => {
             state.order.data = action.payload
         })
         .addCase(setOrderDataLoading, (state, action: PayloadAction<boolean>) => {

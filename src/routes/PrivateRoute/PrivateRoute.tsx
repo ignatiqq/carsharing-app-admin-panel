@@ -30,14 +30,14 @@ const PrivateRoute: React.FC<IPrivateRoute> = ({ Component })=> {
         }
     }, [authData, requestLoaded, navigate])
 
-    if(isLoading) {
+    if(!requestLoaded || isLoading) {
         return (
             <div className={styles.loaderWrapper}>
                 <Loader className={styles.loader} />
             </div>
         )
     }
-
+        
     return <Component />
 }
 

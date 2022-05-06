@@ -10,16 +10,19 @@ import {
     setOrderDataError,
     setOrderDataLoading
 } from "../actions";
-import { IOrderData } from "../types";
+import { IOrderDataInfo } from "../types";
 
 function* getOrdersHandler(action: AnyAction) {
     try {
         yield put(setOrderDataLoading(true));
 
-        const response: AxiosResponse<Array<IOrderData>> = yield call(tableData.orders, {...action.payload})
+        const response: AxiosResponse<IOrderDataInfo> = yield call(tableData.orders, {...action.payload})
 
         if (response?.status < 300) {
-            yield put(setOrderData(response.data));
+            yield put(setOrderData({
+                data: response.data.data, 
+                count: response.data.count
+            }));
         } else {
             throw new Error(errorKeys.requestError);
         }

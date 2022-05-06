@@ -11,12 +11,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
       <Router basename='/carsharing-app-admin-panel'>
         <App />
       </Router>
     </Provider>
-  </React.StrictMode>
 );

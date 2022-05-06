@@ -1,4 +1,3 @@
-import Input from 'components/Dumb/Input/Input';
 import React from 'react';
 
 import { Select } from "components";
@@ -6,7 +5,7 @@ import styles from "./Table.module.scss";
 
 interface ITable {
     data: Array<{[key:string]: any}>
-    Component: React.FC,
+    Component: React.FC<any>,
     filters?: Array<IFilterItem>
 }
 
@@ -19,6 +18,7 @@ interface IFilterItem {
 
 
 const Table: React.FC<ITable> = ({ data, Component, filters }) => {
+
   return (
     <div className={styles.table}>
         <div>

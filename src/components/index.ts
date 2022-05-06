@@ -11,3 +11,5 @@ export { default as Header } from "./Header/Header";
 export { default as Notifications } from "./Notifications/Notifications";
 export { default as SettingsMenu } from "./SettingsMenu/SettingsMenu";
 export { default as Table } from "./Table/Table";
+export { CarComponent } from "./Orders";
+export { default as Checkbox } from "./Dumb/Checkbox/Checkbox";

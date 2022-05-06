@@ -65,9 +65,9 @@ function* refreshUserHandler(action: AnyAction) {
     } catch (error: any) {
         console.error(error.message);
         yield put(setUserLoginError(error.message));
-        yield put(authorizationUserRequestLoaded(true));
     } finally {
         yield put(setUserLoginLoading(false));
+        yield put(authorizationUserRequestLoaded(true));
     }
 }
 
