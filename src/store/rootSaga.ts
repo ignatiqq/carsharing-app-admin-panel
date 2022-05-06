@@ -5,11 +5,13 @@ import {
     refreshUserWatcher,
     logoutUserWatcher
 } from "./auth/sagas/authorization";
+import { getOrdersWatcher } from "./tableData/sagas/orders";
 
 export default function *rootSaga() {
     yield all([
         loginUserWatcher(),
         refreshUserWatcher(),
-        logoutUserWatcher()
+        logoutUserWatcher(),
+        getOrdersWatcher()
     ])
 }

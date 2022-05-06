@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { useAppDispatch, useAppSelector } from 'store';
 import { Table, Loader } from 'components';
+import { getOrderData } from 'store/tableData/actions';
 
 const Orders = () => {
 
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+    console.log("Orders")
+    }, [])
+
     return (
-      <Table data={[]} Component={Loader}/>
+      <div>123</div>
     )
 }
 

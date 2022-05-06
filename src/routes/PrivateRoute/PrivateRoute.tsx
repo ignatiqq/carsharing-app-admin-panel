@@ -4,28 +4,31 @@ import { useNavigate } from 'react-router-dom';
 
 import { Loader } from 'components';
 import CookiesKey from "constants/storageKeys/cookies";
-import { useAppSelector } from 'store';
+import { RootState, useAppSelector } from 'store';
 import styles from "./PrivateRoute.module.scss";
+import { createSelector } from 'reselect';
 
 interface IPrivateRoute {
-    children: React.ReactNode | any
+    Component: React.FC
 }
 
-const PrivateRoute: React.FC<IPrivateRoute> = ({ children })=> {
+const memoizedSelector = createSelector(
+    (state: RootState) => state.auth.data,
+    (state: RootState) => state.auth.requestLoaded,
+    (state: RootState) => state.auth.isLoading,
+    (authData, requestLoaded, isLoading) => ({authData, requestLoaded, isLoading})
+)
+
+const PrivateRoute: React.FC<IPrivateRoute> = ({ Component })=> {
 
     const navigate = useNavigate();
-
-    const { accessToken, requestLoaded, isLoading } = useAppSelector(({auth}) => ({
-        accessToken: auth.data?.access_token,
-        requestLoaded: auth.requestLoaded,
-        isLoading: auth.isLoading
-    }))
+    const { authData, requestLoaded, isLoading } = useAppSelector(memoizedSelector);
 
     useEffect(() => {
-        if((!accessToken && requestLoaded) || !Cookies.get(CookiesKey.access_token)) {
+        if((!authData?.access_token && requestLoaded) || !Cookies.get(CookiesKey.access_token)) {
             return navigate("/login");
         }
-    }, [accessToken, requestLoaded, navigate])
+    }, [authData, requestLoaded, navigate])
 
     if(isLoading) {
         return (
@@ -35,7 +38,7 @@ const PrivateRoute: React.FC<IPrivateRoute> = ({ children })=> {
         )
     }
 
-    return children
+    return <Component />
 }
 
 export default PrivateRoute;

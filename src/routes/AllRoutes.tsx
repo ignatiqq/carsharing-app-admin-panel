@@ -4,19 +4,18 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import errorPages from "constants/errorPages";
 import { ErrorComponent } from "components";
 import { Login, ErrorPage, Dashboard, Orders } from "pages";
+import { ComponentCheck } from "pages/Dasboard/Dashboard";
 
 const AppRoutes = () => useRoutes([
     {path: "/", element: <Navigate to="/login" />},
     {   
         path: "/dashboard", 
         element: 
-            <PrivateRoute>
-                <Dashboard />
-            </PrivateRoute>,
+            <PrivateRoute Component={Dashboard} />,
         children: [
             {
                 path: "/dashboard/orders", 
-                element: <Orders />
+                element: <ComponentCheck />
             },
             {
                 path: "*",
