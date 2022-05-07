@@ -1,6 +1,7 @@
 .wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-wrap: wrap;
     padding: 15px 22px;
 }
@@ -34,6 +35,42 @@
 
     &__info {
         display: flex;
+    }
+
+    &__price {
+        color: var(--primary-black);
+        font-size: 24px;
+    }
+
+    &__action {
+
+        & {
+            display: flex;
+        }
+
+        &_btn {
+            display: flex;
+            align-items: center;
+            height: 25px;
+            border: 1px solid #BECAD6;
+            transition: all .3s ease;
+
+            &:hover {
+                background: var(--gray-light);
+            }
+
+            &:first-child {
+                border-radius: 4px 0px 0px 4px;
+            }
+
+            &:last-child {
+                border-radius: 0px 4px 4px 0px;
+            }
+
+            span {
+                margin-left: 3px;
+            }
+        }
     }
 }
 

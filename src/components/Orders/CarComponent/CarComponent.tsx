@@ -1,11 +1,14 @@
 import React from 'react'
+import classNames from 'classnames';
 
+import { ReactComponent as CheckmarkBtn } from "assets/icons/checkmarkBtn.svg";
+import { ReactComponent as MenuBtn } from "assets/icons/menuBtn.svg";
+import { ReactComponent as CloseBtn } from "assets/icons/closeBtn.svg";
 import CarPlaceholder from "assets/images/CarPlaceholder.png";
-import { Checkbox } from "../..";
+import { Button } from "../..";
 import { formatDate } from 'utils/dateFormatter';
 import type { IOrderData } from "store/tableData/types";
 import styles from "./CarComponent.module.scss";
-import classNames from 'classnames';
 
 const CarComponent: React.FC<IOrderData> = ({
     carId,
@@ -76,6 +79,25 @@ const CarComponent: React.FC<IOrderData> = ({
                         </div>
                     </>
                 }
+            </div>
+
+            <div>
+                <div className={styles.car__price}>{price && price} ₽</div>
+            </div>
+
+            <div className={styles.car__action}>
+                <Button className={styles.car__action_btn}>
+                    <CheckmarkBtn />
+                    <span>Готово</span>
+                </Button>
+                <Button className={styles.car__action_btn}>
+                    <CloseBtn />
+                    <span>Отмена</span>
+                </Button>
+                <Button className={styles.car__action_btn}>
+                    <MenuBtn />
+                    <span>Изменить</span>
+                </Button>
             </div>
         </div>
     )
