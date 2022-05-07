@@ -8,12 +8,20 @@
     &Label {
         display: flex;
         flex-direction: column;
+        font-family: "Helvetica";
     }
 
     &Input {
         max-width: 330px;
         width: 100%;
         margin: 8.5px 0px;
+        font-family: "Helvetica";
+
+        &::placeholder {
+            & {
+                font-family: "Helvetica";
+            }
+        }
 
         &Invalid {
             border-color: var(--primary-red) !important;
@@ -44,6 +52,7 @@
 
     &Error {
         margin-bottom: 4px;
+        min-height: 13px;
     }
 }
 
