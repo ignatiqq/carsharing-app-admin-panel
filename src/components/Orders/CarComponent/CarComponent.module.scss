@@ -4,6 +4,18 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 15px 22px;
+
+
+    @media(max-width: 845px) {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #E0E2E8;
+
+        & > div {
+            margin: 10px 0px;
+        }
+    }
 }
 
 .bold {
@@ -35,6 +47,12 @@
 
     &__info {
         display: flex;
+
+        @media(max-width: 1243px) {
+            & {
+                margin-bottom: 20px;
+            }
+        }
     }
 
     &__price {
@@ -72,6 +90,7 @@
             }
         }
     }
+
 }
 
 .rectangle {
