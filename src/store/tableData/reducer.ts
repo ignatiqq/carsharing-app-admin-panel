@@ -13,7 +13,7 @@ const initialState: ITableData = {
         data: null,
         pagination: {
             page: 1,
-            limit: 5
+            limit: 3
         },
         isLoading: false,
         error: null

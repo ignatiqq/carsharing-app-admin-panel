@@ -6,6 +6,7 @@ import {Paginator} from 'components';
 import { IPagination } from 'store/tableData/types';
 import Loader from 'components/Dumb/Loader/Loader';
 import NothingFound from 'components/Phrases/NothingFound/NothingFound';
+import classNames from 'classnames';
 
 interface ITable {
     data: Array<{[key:string]: any}> | null | undefined
@@ -20,7 +21,6 @@ interface ITable {
 
 interface IFilterItem {
     data: Array<{[key:string]: any}>
-    label: string, 
     selected: string,
     placeholder: string
 }
@@ -39,14 +39,14 @@ const Table: React.FC<ITable> = ({
 
     return (
       <div className={styles.table}>
-        <div>
+        <div className={styles.table__filters}>
           {filters &&
             filters.length > 0 &&
             filters.map((item) => (
               <Select
-                key={item.label}
+                searchPlaceholder={item.placeholder}
+                key={item.placeholder}
                 options={item.data}
-                label={item.label}
                 selected={item.selected}
                 clickHandler={() => console.log(item)}
               />
@@ -64,7 +64,7 @@ const Table: React.FC<ITable> = ({
             : isLoading && !error ?
             <Loader className={styles.table__content} />
             : error &&
-            <div className="error-text">{error}</div>
+            <div className={classNames(styles.error__container, "error-text")}>{error}</div>
         }
         {pagination && count && setPagination && data && (
           <div className={styles.table__paginator__wrapper}>

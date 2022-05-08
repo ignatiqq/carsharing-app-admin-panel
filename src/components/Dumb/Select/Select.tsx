@@ -69,7 +69,9 @@ const Select: React.FC<ISelect> = (
   const inputValue = selectDropdownOpened ? optionSearch : selected ? selected[optionLabel] : optionSearch;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={classNames(styles.wrapper, {
+      [styles.selectWrapper__active]: selectDropdownOpened
+    })}>
       <label className={styles.inputLabel} htmlFor='search-input'>{label}</label>
       <div className={styles.selectWrapper}>
         <input

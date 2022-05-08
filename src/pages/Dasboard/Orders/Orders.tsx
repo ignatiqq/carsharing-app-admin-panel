@@ -5,6 +5,29 @@ import { CarComponent, Table } from 'components';
 import { getOrderData, setOrderPagination } from 'store/tableData/actions';
 import { IPagination } from 'store/tableData/types';
 
+const filters = [
+  {
+    data: [],
+    selected: "",
+    placeholder: "За неделю"
+  },
+  {
+    data: [],
+    selected: "",
+    placeholder: "Elantra"
+  },
+  {
+    data: [],
+    selected: "",
+    placeholder: "Ульяновск"
+  },
+  {
+    data: [],
+    selected: "",
+    placeholder: "В процессе"
+  }
+];
+
 const Orders = () => {
 
     const dispatch = useAppDispatch();
@@ -37,6 +60,7 @@ const Orders = () => {
               setPagination={setPagination}
               isLoading={ordersIsLoading}
               error={ordersRequestError}
+              filters={filters}
           />
         }
       </>
