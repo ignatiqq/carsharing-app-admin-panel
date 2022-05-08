@@ -65,6 +65,9 @@ function* refreshUserHandler(action: AnyAction) {
     } catch (error: any) {
         console.error(error.message);
         yield put(setUserLoginError(error.message));
+        Cookies.remove("access_token");
+        Cookies.remove("refresh_token");
+        Cookies.remove("auth_token");
     } finally {
         yield put(setUserLoginLoading(false));
         yield put(authorizationUserRequestLoaded(true));
