@@ -1,3 +1,5 @@
+import type { IPagination } from 'types/requests';
+
 export interface IOrderData {
     id: string,
     orderStatusId: string | null,
@@ -53,19 +55,26 @@ export interface ITableData {
     order: {
         data: IOrderDataInfo | null,
         pagination: IPagination,
+        filters: ITableFilters
         isLoading: boolean,
         error: string | null
     }
+}
+
+export interface ITableFilters {
+    city: string,
+    point: string,
+    car: string
 }
 
 export interface IQueryFilter {
     page?: number,
     offset?: number,
     limit?: number,
-    sort?: string
+    sort?: string,
+    additionally?: Array<IFilterAdditionally>
 }
 
-export interface IPagination {
-    page: number,
-    limit: number
+interface IFilterAdditionally {
+    [key: string]: string
 }

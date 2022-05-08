@@ -1,11 +1,8 @@
 import React from 'react'
 import classNames from 'classnames';
 
-import { ReactComponent as CheckmarkBtn } from "assets/icons/checkmarkBtn.svg";
-import { ReactComponent as MenuBtn } from "assets/icons/menuBtn.svg";
-import { ReactComponent as CloseBtn } from "assets/icons/closeBtn.svg";
+import CarComponentButtons from './Buttons/CarComponentButtons';
 import CarPlaceholder from "assets/images/CarPlaceholder.png";
-import { Button } from "../..";
 import { formatDate } from 'utils/dateFormatter';
 import type { IOrderData } from "store/tableData/types";
 import styles from "./CarComponent.module.scss";
@@ -85,20 +82,7 @@ const CarComponent: React.FC<IOrderData> = ({
                 <div className={styles.car__price}>{price && price} ₽</div>
             </div>
 
-            <div className={styles.car__action}>
-                <Button className={styles.car__action_btn}>
-                    <CheckmarkBtn />
-                    <span>Готово</span>
-                </Button>
-                <Button className={styles.car__action_btn}>
-                    <CloseBtn />
-                    <span>Отмена</span>
-                </Button>
-                <Button className={styles.car__action_btn}>
-                    <MenuBtn />
-                    <span>Изменить</span>
-                </Button>
-            </div>
+            <CarComponentButtons />
         </div>
     )
 }

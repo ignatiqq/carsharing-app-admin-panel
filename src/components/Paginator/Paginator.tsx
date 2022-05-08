@@ -1,15 +1,9 @@
 import React from 'react';
 
+import type { IPagination } from 'types/requests';
 import { usePagination } from "hooks";
-import nextIcon from "assets/icons/nextIcon.svg";
-import prevIcon from "assets/icons/prevIcon.svg";
 import styles from "./Paginator.module.scss";
 import classNames from 'classnames';
-
-interface IPagination {
-    page: number,
-    limit: number
-}
 
 interface IPaginator {
     count: number,

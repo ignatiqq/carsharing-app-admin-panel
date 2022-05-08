@@ -3,7 +3,7 @@ import React from 'react';
 import { Select } from "components";
 import styles from "./Table.module.scss";
 import {Paginator} from 'components';
-import { IPagination } from 'store/tableData/types';
+import type { IPagination } from 'types/requests';
 import Loader from 'components/Dumb/Loader/Loader';
 import NothingFound from 'components/Phrases/NothingFound/NothingFound';
 import classNames from 'classnames';

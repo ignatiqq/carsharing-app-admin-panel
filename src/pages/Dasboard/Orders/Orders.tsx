@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from 'store';
 
 import { CarComponent, Table } from 'components';
 import { getOrderData, setOrderPagination } from 'store/tableData/actions';
-import { IPagination } from 'store/tableData/types';
+import type { IPagination } from 'types/requests';
 
 const filters = [
   {

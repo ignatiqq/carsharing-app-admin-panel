@@ -6,7 +6,8 @@ import {
     setOrderDataError,
     setOrderPagination
 } from "./actions";
-import type { IOrderDataInfo, IPagination, ITableData } from "./types";
+import type { IPagination } from "types/requests";
+import type { IOrderDataInfo, ITableData } from "./types";
 
 const initialState: ITableData = {
     order: {
@@ -15,9 +16,14 @@ const initialState: ITableData = {
             page: 1,
             limit: 3
         },
+        filters: {
+            city: "",
+            point: "",
+            car: ""
+        },
         isLoading: false,
         error: null
-    }
+    },
 }
 
 const tableData = createReducer(initialState, (builder) => {

@@ -7,7 +7,8 @@ import {
     SET_ORDER_DATA_ERROR,
     SET_ORDER_PAGINATION
 } from "./constants";
-import type { IOrderDataInfo, IPagination, IQueryFilter } from "./types";
+import type { IPagination } from "types/requests";
+import type { IOrderDataInfo, IQueryFilter } from "./types";
 
 
 export const setOrderData = createAction<IOrderDataInfo>(SET_ORDER_DATA);
