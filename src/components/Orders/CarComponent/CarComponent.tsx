@@ -39,9 +39,9 @@ const CarComponent: React.FC<IOrderData> = ({
                 </div>
                 <div>
                     <div>
-                        <span className={styles.bold}>{carId?.name ? carId?.name : "Авто"}</span> в 
-                        <span className={styles.bold}>{cityId?.name ? cityId?.name : " Город"}</span>,
-                        <span className={styles.bold}>{pointId?.name}</span>
+                        <span className={styles.bold}>{carId?.name ? carId?.name : "Авто"}</span> <span> в </span> 
+                        <span className={styles.bold}>{cityId?.name ? cityId?.name : " Город"}</span><span>, </span>
+                        <span className={styles.bold}>{pointId?.name ? pointId?.name : "Место"}</span>
                     </div>
                     {
                         dateFrom && dateTo &&
@@ -56,7 +56,7 @@ const CarComponent: React.FC<IOrderData> = ({
                 </div>
             </div>
 
-            <div>
+            <div className={styles.car__additionally}>
                 {
                     <>
                         <div className={styles.additionally}>
@@ -81,7 +81,7 @@ const CarComponent: React.FC<IOrderData> = ({
                 }
             </div>
 
-            <div>
+            <div className={styles.car__price__wrapper}>
                 <div className={styles.car__price}>{price && price} ₽</div>
             </div>
 

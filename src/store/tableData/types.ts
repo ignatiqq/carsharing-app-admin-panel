@@ -52,6 +52,7 @@ export interface IOrderDataInfo {
 export interface ITableData {
     order: {
         data: IOrderDataInfo | null,
+        pagination: IPagination,
         isLoading: boolean,
         error: string | null
     }
@@ -62,4 +63,9 @@ export interface IQueryFilter {
     offset?: number,
     limit?: number,
     sort?: string
+}
+
+export interface IPagination {
+    page: number,
+    limit: number
 }

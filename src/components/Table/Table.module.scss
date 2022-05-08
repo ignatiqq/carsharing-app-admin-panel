@@ -10,8 +10,17 @@
     }
 
     &__content {
-        min-height: 260px;
+        min-height: 350px;
         max-height: 350px;
         overflow: auto;
     }
+
+    &__paginator__wrapper {
+        border-top: 1px solid #E0E2E8;
+        padding: 20px 10px;
+    }
+}
+
+.notfound__wrapper {
+    height: 100%;
 }

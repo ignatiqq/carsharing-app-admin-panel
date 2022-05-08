@@ -13,3 +13,5 @@ export { default as SettingsMenu } from "./SettingsMenu/SettingsMenu";
 export { default as Table } from "./Table/Table";
 export { CarComponent } from "./Orders";
 export { default as Checkbox } from "./Dumb/Checkbox/Checkbox";
+export { default as Paginator } from "./Paginator/Paginator";
+export { default as NothingFound } from "./Phrases/NothingFound/NothingFound";

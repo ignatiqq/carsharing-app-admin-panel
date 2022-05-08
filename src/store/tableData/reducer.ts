@@ -3,13 +3,18 @@ import { createReducer, PayloadAction } from "@reduxjs/toolkit";
 import { 
     setOrderData,
     setOrderDataLoading,
-    setOrderDataError
+    setOrderDataError,
+    setOrderPagination
 } from "./actions";
-import type { IOrderDataInfo, ITableData } from "./types";
+import type { IOrderDataInfo, IPagination, ITableData } from "./types";
 
 const initialState: ITableData = {
     order: {
         data: null,
+        pagination: {
+            page: 1,
+            limit: 5
+        },
         isLoading: false,
         error: null
     }
@@ -25,6 +30,9 @@ const tableData = createReducer(initialState, (builder) => {
         })
         .addCase(setOrderDataError, (state, action: PayloadAction<string>) => {
             state.order.error = action.payload
+        })
+        .addCase(setOrderPagination, (state, action: PayloadAction<IPagination>) => {
+            state.order.pagination = action.payload
         })
 })
 

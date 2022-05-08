@@ -47,6 +47,7 @@
 
     &__info {
         display: flex;
+        flex-basis: 35%;
 
         @media(max-width: 1243px) {
             & {
@@ -55,9 +56,19 @@
         }
     }
 
+    &__additionally {
+        flex-basis: 10%;
+    }
+
     &__price {
         color: var(--primary-black);
         font-size: 24px;
+        
+        &__wrapper {
+            max-width: 130px;
+            width: 100%;
+            text-align: right;
+        }
     }
 
     &__action {
