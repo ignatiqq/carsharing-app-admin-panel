@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import withDasboardLogic from './withDasboardLogic';
+import withDashboardLogic from './withDashboardLogic';
 import { Sidebar, Header } from 'components';
 import styles from "./Dashboard.module.scss";
 
@@ -20,4 +20,4 @@ const Dashboard = () => {
   )
 }
 
-export default withDasboardLogic(Dashboard);
+export default withDashboardLogic(Dashboard);

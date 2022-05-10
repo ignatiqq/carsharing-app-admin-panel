@@ -1,8 +1,6 @@
-import type { IPagination } from 'types/requests';
 
 export interface IAllCities {
     data: Array<ICurrentCity> | null,
-    pagination: IPagination,
     isLoading: boolean,
     error: string | null
 }

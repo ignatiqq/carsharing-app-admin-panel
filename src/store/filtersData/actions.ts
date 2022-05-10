@@ -27,8 +27,8 @@ export const getFiltersData = createAction<IQueryFilter>(GET_FILTERS_DATA);
 
 export const getCitiesData = createAction<IQueryFilter>(GET_CITIES_DATA);
 export const setCitiesData = createAction<Array<ICurrentCity>>(SET_CITIES_DATA);
-export const setCititesRequestLoading = createAction<boolean>(SET_CITIES_REQUEST_LOADING);
-export const setCititesRequestError = createAction<string>(SET_CITIES_REQUEST_ERROR);
+export const setCitiesRequestLoading = createAction<boolean>(SET_CITIES_REQUEST_LOADING);
+export const setCitiesRequestError = createAction<string>(SET_CITIES_REQUEST_ERROR);
 
 export const getPointsData = createAction<IQueryFilter>(GET_POINTS_DATA);
 export const setPointsData = createAction<Array<ICurrentPoint>>(SET_POINTS_DATA);

@@ -1,16 +1,14 @@
 import { getRequest } from "api/requests/requests"
 
-import { IQueryFilter } from "store/tableData/types";
-
 const filterData = {
-    getCities: ({page, limit}: IQueryFilter) => {
-        return getRequest(`/db/city?page=${page}&limit=${limit}`);
+    getCities: () => {
+        return getRequest(`/db/city`);
     },
-    getPoints: ({page, limit}: IQueryFilter) => {
-        return getRequest(`/db/point?page=${page}&limit=${limit}`);
+    getPoints: () => {
+        return getRequest(`/db/point`);
     },
-    getCars: ({page, limit}: IQueryFilter) => {
-        return getRequest(`/db/car?page=${page}&limit=${limit}`);
+    getCars: () => {
+        return getRequest(`/db/car`);
     }
 }   
 

@@ -8,8 +8,8 @@ import type {
 } from "./types";
 import {
     setCitiesData,
-    setCititesRequestLoading,
-    setCititesRequestError,
+    setCitiesRequestLoading,
+    setCitiesRequestError,
     setPointsData,
     setPointsRequestLoading,
     setPointsRequestError,
@@ -22,10 +22,6 @@ const initialState: IFiltersData = {
     city: {
         data: null,
         isLoading: false,
-        pagination: {
-            page: 1,
-            limit: 20
-        },
         error: null
     },
     point: {
@@ -45,10 +41,10 @@ const filtersData = createReducer(initialState, (builder) => {
         .addCase(setCitiesData, (state, action: PayloadAction<Array<ICurrentCity>>) => {
             state.city.data = action.payload
         })
-        .addCase(setCititesRequestLoading, (state, action: PayloadAction<boolean>) => {
+        .addCase(setCitiesRequestLoading, (state, action: PayloadAction<boolean>) => {
             state.city.isLoading = action.payload
         })
-        .addCase(setCititesRequestError, (state, action: PayloadAction<string>) => {
+        .addCase(setCitiesRequestError, (state, action: PayloadAction<string>) => {
             state.city.error = action.payload
         })
 
