@@ -7,11 +7,12 @@ import type { IPagination } from 'types/requests';
 import Loader from 'components/Dumb/Loader/Loader';
 import NothingFound from 'components/Phrases/NothingFound/NothingFound';
 import classNames from 'classnames';
+import type { ICurrentCity, ICurrentPoint, ICarData } from 'store/filtersData/types';
 
 interface ITable {
     data: Array<{[key:string]: any}> | null | undefined
     Component: React.FC<any>,
-    filters?: Array<IFilterItem>,
+    filters?: Array<ITableFilters> | null,
     pagination?: IPagination,
     count?: number | null,
     setPagination?: (pagination: IPagination) => void,
@@ -19,12 +20,11 @@ interface ITable {
     error: string | null
 }
 
-interface IFilterItem {
-    data: Array<{[key:string]: any}>
-    selected: string,
-    placeholder: string
+export interface ITableFilters {
+  data: ICurrentCity[] | ICurrentPoint[] | ICarData[],
+  onChange: (data: ICurrentCity | ICurrentPoint | ICarData) => void,
+  selected: ICurrentCity | ICurrentPoint | ICarData | undefined
 }
-
 
 const Table: React.FC<ITable> = ({ 
     data, 
@@ -42,13 +42,14 @@ const Table: React.FC<ITable> = ({
         <div className={styles.table__filters}>
           {filters &&
             filters.length > 0 &&
-            filters.map((item) => (
+            filters.map((item, i) => (
               <Select
-                searchPlaceholder={item.placeholder}
-                key={item.placeholder}
+                key={i}
                 options={item.data}
                 selected={item.selected}
-                clickHandler={() => console.log(item)}
+                customLabel="name"
+                customValue="id"
+                clickHandler={item.onChange}
               />
             ))}
         </div>

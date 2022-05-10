@@ -1,9 +1,9 @@
 import { createAction } from "@reduxjs/toolkit";
 
 import type { 
+    ICarData,
     ICurrentCity,
     ICurrentPoint,
-    IAllCarsData
 } from "./types";
 
 import {
@@ -23,7 +23,7 @@ import {
 } from "./constants";
 import { IQueryFilter } from "store/tableData/types";
 
-export const getFiltersData = createAction<IQueryFilter>(GET_FILTERS_DATA);
+export const getFiltersData = createAction<void>(GET_FILTERS_DATA);
 
 export const getCitiesData = createAction<IQueryFilter>(GET_CITIES_DATA);
 export const setCitiesData = createAction<Array<ICurrentCity>>(SET_CITIES_DATA);
@@ -36,6 +36,6 @@ export const setPointsRequestLoading = createAction<boolean>(SET_POINTS_REQUEST_
 export const setPointsRequestError = createAction<string>(SET_POINTS_REQUEST_ERROR);
 
 export const getCarsData = createAction<IQueryFilter>(GET_CARS_DATA);
-export const setCarsData = createAction<IAllCarsData>(SET_CARS_DATA);
+export const setCarsData = createAction<Array<ICarData>>(SET_CARS_DATA);
 export const setCarsRequestLoading = createAction<boolean>(SET_CARS_REQUEST_LOADING);
 export const setCarsRequestError = createAction<string>(SET_CARS_REQUEST_ERROR);

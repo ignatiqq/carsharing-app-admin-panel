@@ -6,13 +6,9 @@ const withDasboardLogic = (Component: React.FC) => () => {
 
     const dispatch = useAppDispatch();
 
-    const filtersDataPagination = {
-        page: 1,
-        limit: 20
-    }
 
     useEffect(() => {
-        dispatch(getFiltersData(filtersDataPagination));
+        dispatch(getFiltersData());
     }, [])
 
     return (

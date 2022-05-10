@@ -4,7 +4,10 @@ import {
     setOrderData,
     setOrderDataLoading,
     setOrderDataError,
-    setOrderPagination
+    setOrderPagination,
+    setOrderCityFilter,
+    setOrderCarFilter,
+    setOrderPointFilter
 } from "./actions";
 import type { IPagination } from "types/requests";
 import type { IOrderDataInfo, ITableData } from "./types";
@@ -39,6 +42,15 @@ const tableData = createReducer(initialState, (builder) => {
         })
         .addCase(setOrderPagination, (state, action: PayloadAction<IPagination>) => {
             state.order.pagination = action.payload
+        })
+        .addCase(setOrderCityFilter, (state, action: PayloadAction<string>) => {
+            state.order.filters.city = action.payload
+        })
+        .addCase(setOrderPointFilter, (state, action: PayloadAction<string>) => {
+            state.order.filters.point = action.payload
+        })
+        .addCase(setOrderCarFilter, (state, action: PayloadAction<string>) => {
+            state.order.filters.car = action.payload
         })
 })
 

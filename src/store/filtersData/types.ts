@@ -29,7 +29,7 @@ export interface IAllPoints {
 }
 
 export interface IAllCars {
-    data: IAllCarsData | null,
+    data: Array<ICarData> | null,
     isLoading: boolean,
     error: string | null
 }
@@ -56,11 +56,6 @@ export interface ICarData {
         mimetype: string
     },
     updatedAt: number
-}
-
-export interface IAllCarsData {
-    count: number,
-    data: Array<ICarData>,
 }
 
 export interface IFiltersData {

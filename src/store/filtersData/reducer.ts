@@ -2,7 +2,7 @@ import { createReducer, PayloadAction } from "@reduxjs/toolkit";
 
 import type { 
     IFiltersData,
-    IAllCarsData,
+    ICarData,
     ICurrentPoint,
     ICurrentCity
 } from "./types";
@@ -58,7 +58,7 @@ const filtersData = createReducer(initialState, (builder) => {
             state.point.error = action.payload
         })
 
-        .addCase(setCarsData, (state, action: PayloadAction<IAllCarsData>) => {
+        .addCase(setCarsData, (state, action: PayloadAction<Array<ICarData>>) => {
             state.car.data = action.payload
         })
         .addCase(setCarsRequestLoading, (state, action: PayloadAction<boolean>) => {
