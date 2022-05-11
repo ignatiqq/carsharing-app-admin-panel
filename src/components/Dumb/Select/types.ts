@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface IOption {
     [key: string]: string,
 }
@@ -11,5 +13,6 @@ export interface ISelect {
     customLabel?: string,
     customValue?: string,
     dropdownClassName?: number,
-    selectClassName?: string
+    selectClassName?: string,
+    dataHolder?: React.ReactElement | null
 }

@@ -15,7 +15,8 @@ const Select: React.FC<ISelect> = (
     customLabel = "label",
     customValue = "value",
     selectClassName,
-    dropdownClassName
+    dropdownClassName,
+    dataHolder
   }
   ) => {
 
@@ -68,8 +69,6 @@ const Select: React.FC<ISelect> = (
 
   const inputValue = selectDropdownOpened ? optionSearch : selected ? selected[optionLabel] : optionSearch;
 
-  console.log(optionsToShow)
-
   return (
     <div className={classNames(styles.wrapper, {
       [styles.selectWrapper__active]: selectDropdownOpened
@@ -90,6 +89,8 @@ const Select: React.FC<ISelect> = (
           [styles.optionWrapperOpen]: selectDropdownOpened
         })}>
           {
+            dataHolder ? 
+            dataHolder :
             optionsToShow && optionsToShow.length > 0 ?
             optionsToShow.map((item) => (  
               <button 

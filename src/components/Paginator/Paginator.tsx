@@ -62,7 +62,7 @@ const Paginator: React.FC<IPaginator> = React.memo(({count, limit, page, pageRan
         </button>
         <div className={styles.paginator__wrapper}>
           {paginationPages &&
-            paginationPages.length ?
+            paginationPages.length > 0 ?
             paginationPages.map((item, i) => (
               <button
                 onClick={() => paginateHandler(item)}

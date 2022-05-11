@@ -61,5 +61,5 @@ export interface ICarData {
 export interface IFiltersData {
     city: IAllCities,
     point: IAllPoints,
-    car: IAllCars
+    car: IAllCars,
 }

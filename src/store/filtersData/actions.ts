@@ -19,7 +19,7 @@ import {
     GET_CITIES_DATA,
     GET_POINTS_DATA,
     GET_CARS_DATA,
-    GET_FILTERS_DATA
+    GET_FILTERS_DATA,
 } from "./constants";
 import { IQueryFilter } from "store/tableData/types";
 

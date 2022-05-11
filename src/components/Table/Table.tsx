@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Select } from "components";
 import styles from "./Table.module.scss";
 import {Paginator} from 'components';
 import type { IPagination } from 'types/requests';
@@ -23,7 +22,9 @@ interface ITable {
 export interface ITableFilters {
   data: ICurrentCity[] | ICurrentPoint[] | ICarData[],
   onChange: (data: ICurrentCity | ICurrentPoint | ICarData) => void,
-  selected: ICurrentCity | ICurrentPoint | ICarData | undefined
+  selected: ICurrentCity | ICurrentPoint | ICarData | undefined,
+  error: string | null,
+  isLoading: boolean
 }
 
 const Table: React.FC<ITable> = ({ 
@@ -36,23 +37,8 @@ const Table: React.FC<ITable> = ({
     isLoading,
     error
 }) => {
-
     return (
       <div className={styles.table}>
-        <div className={styles.table__filters}>
-          {filters &&
-            filters.length > 0 &&
-            filters.map((item, i) => (
-              <Select
-                key={i}
-                options={item.data}
-                selected={item.selected}
-                customLabel="name"
-                customValue="id"
-                clickHandler={item.onChange}
-              />
-            ))}
-        </div>
         {
             !isLoading && !error ?
             <div className={styles.table__content}>

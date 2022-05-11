@@ -20,9 +20,9 @@ const initialState: ITableData = {
             limit: 3
         },
         filters: {
-            city: "",
-            point: "",
-            car: ""
+            cityId: "",
+            pointId: "",
+            carId: ""
         },
         isLoading: false,
         error: null
@@ -44,13 +44,13 @@ const tableData = createReducer(initialState, (builder) => {
             state.order.pagination = action.payload
         })
         .addCase(setOrderCityFilter, (state, action: PayloadAction<string>) => {
-            state.order.filters.city = action.payload
+            state.order.filters.cityId = action.payload
         })
         .addCase(setOrderPointFilter, (state, action: PayloadAction<string>) => {
-            state.order.filters.point = action.payload
+            state.order.filters.pointId = action.payload
         })
         .addCase(setOrderCarFilter, (state, action: PayloadAction<string>) => {
-            state.order.filters.car = action.payload
+            state.order.filters.carId = action.payload
         })
 })
 

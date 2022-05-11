@@ -15,7 +15,7 @@ import {
     setPointsRequestError,
     setCarsData,
     setCarsRequestLoading,
-    setCarsRequestError
+    setCarsRequestError,
 } from "./actions"
 
 const initialState: IFiltersData = {

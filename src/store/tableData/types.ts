@@ -52,19 +52,21 @@ export interface IOrderDataInfo {
 }
 
 export interface ITableData {
-    order: {
-        data: IOrderDataInfo | null,
-        pagination: IPagination,
-        filters: ITableFilters
-        isLoading: boolean,
-        error: string | null
-    }
+    order: IOrderTableData
 }
 
-export interface ITableFilters {
-    city: string,
-    point: string,
-    car: string
+export interface IOrderTableData {
+    data: IOrderDataInfo | null,
+    pagination: IPagination,
+    filters: IOrderTableFilters
+    isLoading: boolean,
+    error: string | null
+}
+
+export interface IOrderTableFilters {
+    cityId: string,
+    pointId: string,
+    carId: string
 }
 
 export interface IQueryFilter {
@@ -72,9 +74,5 @@ export interface IQueryFilter {
     offset?: number,
     limit?: number,
     sort?: string,
-    additionally?: Array<IFilterAdditionally>
-}
-
-interface IFilterAdditionally {
-    [key: string]: string
+    [key: string]: string | number | undefined
 }

@@ -12,11 +12,12 @@ import {
 } from "../actions";
 import { IOrderDataInfo } from "../types";
 
+
 function* getOrdersHandler(action: AnyAction) {
     try {
         yield put(setOrderDataLoading(true));
 
-        const response: AxiosResponse<IOrderDataInfo> = yield call(tableData.orders, {...action.payload})
+        const response: AxiosResponse<IOrderDataInfo> = yield call(tableData.orders, action.payload)
 
         if (response?.status < 300) {
             yield put(setOrderData({

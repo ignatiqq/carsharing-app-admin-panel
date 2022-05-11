@@ -1,11 +1,14 @@
 import { getRequest } from "api/requests/requests";
 
 import type { IQueryFilter } from "store/tableData/types";
+import { paramsToString } from "utils/requestHelper";
 
 const tableData = {
 
-    orders: ({page, limit, offset, sort}:IQueryFilter) => {
-        return getRequest(`/db/order?page=${page}&limit=${limit}`, {
+    orders: (params: IQueryFilter) => {
+        const getParams = paramsToString(params);
+
+        return getRequest(`/db/order?${getParams}`, {
             headers: {
                 authorization: true
             }
