@@ -27,10 +27,11 @@
             border-color: var(--primary-red) !important;
         }
 
-        &Error {
-            margin-bottom: 4px;
-            min-height: 13px;
-        }
+    }
+
+    &Error {
+        margin-bottom: 4px;
+        min-height: 13px;
     }
 
     &Footer {
