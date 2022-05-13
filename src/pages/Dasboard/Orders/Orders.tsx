@@ -6,7 +6,7 @@ import {
   SelectWrapper
 } from 'components';
 import type { IAllCars, IAllCities, IAllPoints, ICurrentCity, ICurrentPoint } from 'store/filtersData/types';
-import type { ICarData, IOrderTableData } from 'store/tableData/types';
+import type { ICarData, IOrderTableData, IOrderTableFilters } from 'store/tableData/types';
 import type { IPagination } from 'types/requests';
 import { getSelectedDataById } from 'utils/DataMapHelper';
 import { selectDataHolder } from '../Dashboard';
@@ -14,6 +14,7 @@ import styles from "./Orders.module.scss";
 import withOrderLogic from './withOrderLogic';
 
 export interface IOrderPageProps {
+  filters: IOrderTableFilters,
   applyOrderFilters: (data: any) => void,
   setPointsSelected: (data: ICurrentPoint) => void,
   points: IAllPoints,
@@ -27,6 +28,7 @@ export interface IOrderPageProps {
 }
 
 const Orders: React.FC<IOrderPageProps> = ({
+  filters,
   applyOrderFilters,
   points,
   setPointsSelected,
@@ -48,7 +50,7 @@ const Orders: React.FC<IOrderPageProps> = ({
         <div className={styles.filters__items}>
             <Select
               options={points.data}
-              selected={points.data && getSelectedDataById(points.data, orders.filters.pointId)}
+              selected={points.data && getSelectedDataById(points.data, filters.pointId)}
               customLabel="name"
               customValue="id"
               clickHandler={setPointsSelected}
@@ -57,7 +59,7 @@ const Orders: React.FC<IOrderPageProps> = ({
             />
             <Select
               options={cities.data}
-              selected={cities.data && getSelectedDataById(cities.data, orders.filters.cityId)}
+              selected={cities.data && getSelectedDataById(cities.data, filters.cityId)}
               customLabel="name"
               customValue="id"
               clickHandler={setCitiesSelected}
@@ -66,7 +68,7 @@ const Orders: React.FC<IOrderPageProps> = ({
             />
             <Select
               options={cars.data}
-              selected={cars.data && getSelectedDataById(cars.data, orders.filters.carId)}
+              selected={cars.data && getSelectedDataById(cars.data, filters.carId)}
               customLabel="name"
               customValue="id"
               clickHandler={setCarsSelected}

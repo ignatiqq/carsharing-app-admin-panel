@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'store';
 import { 
@@ -15,8 +15,14 @@ import type {
 import type { IPagination } from 'types/requests';
 import { getOrderData, setOrderPagination } from 'store/tableData/actions';
 import type { IOrderPageProps } from './Orders';
+import { IOrderTableFilters } from 'store/tableData/types';
 
 const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
+    const [preparedFilters, setPreparedFilters] = useState<IOrderTableFilters>({
+        pointId:  "",
+        cityId: "",
+        carId: ""
+    });
 
     const dispatch = useAppDispatch();
 
@@ -34,36 +40,58 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
           cars: filtersData.car,
           points: filtersData.point,
           cities: filtersData.city,
-          orderGetFilters: tableData.order.filters
       }))
+      
+    useEffect(() => { 
+        if(pagination.page && pagination.limit) {
+            const params = getRequestGetParams(orders.filters);
+            dispatch(getOrderData({page: pagination.page, limit: pagination.limit, ...params}))
+        }
+     }, [pagination, orders.filters,  dispatch]);
+
 
     const setPointsSelected = useCallback((data: ICurrentPoint) => {
-        dispatch(setOrderPointFilter(data.id));
+        setPreparedFilters((prev) => {
+            return {
+                ...prev,
+                pointId: data.id
+            }
+        })
     }, [dispatch])
   
     const setCitiesSelected = useCallback((data: ICurrentCity) => {
-        dispatch(setOrderCityFilter(data.id));
+        setPreparedFilters((prev) => {
+            return {
+                ...prev,
+                cityId: data.id
+            }
+        })
     }, [dispatch])
-  
+
     const setCarsSelected = useCallback((data: ICarData) => {
-        dispatch(setOrderCarFilter(data.id));
+        setPreparedFilters((prev) => {
+            return {
+                ...prev,
+                carId: data.id
+            }
+        })
     }, [dispatch])
+
   
     const applyOrderFilters = useCallback(() => {
-      const params = getRequestGetParams(orders.filters);
-      dispatch(getOrderData({page: pagination.page, limit: pagination.limit, ...params}))
-    }, [pagination.page, pagination.limit, orders.filters, dispatch])
-
-    useEffect(() => { 
-       if(pagination.page && pagination.limit) {
-         dispatch(getOrderData({page: pagination.page, limit: pagination.limit}))
-       }
-    }, [pagination, dispatch]);
+        if(preparedFilters.carId) {
+            dispatch(setOrderCarFilter(preparedFilters.carId));
+        } else if(preparedFilters.cityId) {
+            dispatch(setOrderCityFilter(preparedFilters.cityId));
+        } else if(preparedFilters.pointId) {
+            dispatch(setOrderPointFilter(preparedFilters.pointId));
+        }
+    }, [preparedFilters, dispatch])
 
     const setPagination = useCallback((pagination: IPagination) => {
       dispatch(setOrderPagination(pagination));
     }, [dispatch])
-     
+
     return (
        <Component
            applyOrderFilters={applyOrderFilters}
@@ -76,6 +104,7 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
            points={points}
            cars={cars}
            cities={cities}
+           filters={preparedFilters}
        />
     )
 }
