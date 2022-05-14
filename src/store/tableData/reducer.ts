@@ -27,6 +27,13 @@ const initialState: ITableData = {
         isLoading: false,
         error: null
     },
+    cars: {
+        data: null,
+        pagination: {
+            page: 1,
+            limit: 3
+        }
+    }
 }
 
 const tableData = createReducer(initialState, (builder) => {

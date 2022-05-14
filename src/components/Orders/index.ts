@@ -1,1 +1,1 @@
-export { default as CarComponent } from "./CarComponent/CarComponent";
+export { default as OrderCarComponent } from "./CarComponent/CarComponent";

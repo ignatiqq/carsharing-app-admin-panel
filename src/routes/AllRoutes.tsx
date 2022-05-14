@@ -3,7 +3,13 @@ import { Navigate, useRoutes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import errorPages from "constants/errorPages";
 import { ErrorComponent } from "components";
-import { Login, ErrorPage, Dashboard, Orders } from "pages";
+import { 
+    Login, 
+    ErrorPage, 
+    Dashboard, 
+    Orders,
+    CarModels
+} from "pages";
 
 const AppRoutes = () => useRoutes([
     {path: "/", element: <Navigate to="/login" />},
@@ -15,6 +21,10 @@ const AppRoutes = () => useRoutes([
             {
                 path: "/dashboard/orders", 
                 element: <Orders />
+            },
+            {
+                path: "/dashboard/cars",
+                element: <CarModels />  
             },
             {
                 path: "*",

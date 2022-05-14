@@ -1,4 +1,3 @@
-import type { AnyAction } from "@reduxjs/toolkit";
 import { all, call, takeLatest, put } from "redux-saga/effects";
 import { AxiosResponse } from "axios";
 

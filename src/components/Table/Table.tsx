@@ -15,8 +15,10 @@ interface ITable {
     pagination?: IPagination,
     count?: number | null,
     setPagination?: (pagination: IPagination) => void,
-    isLoading: boolean,
-    error: string | null
+    isLoading?: boolean,
+    error?: string | null,
+    tableContentStyles?: string,
+    Header?: React.ReactElement
 }
 
 export interface ITableFilters {
@@ -30,18 +32,21 @@ export interface ITableFilters {
 const Table: React.FC<ITable> = ({ 
     data, 
     Component, 
-    filters, 
     pagination, 
     count ,
     setPagination,
     isLoading,
-    error
+    error,
+    tableContentStyles,
+    Header
 }) => {
-    return (
-      <div className={styles.table}>
-        {
+
+    const tableData = (function(){
+      return (
+        <>
+          {
             !isLoading && !error ?
-            <div className={styles.table__content}>
+            <div className={classNames(styles.table__content, tableContentStyles)}>
                 {data && data.length > 0 ? 
                     data.map((item) => <Component key={item.id} {...item} />)
                     : 
@@ -52,7 +57,19 @@ const Table: React.FC<ITable> = ({
             <Loader className={styles.table__content} />
             : error &&
             <div className={classNames(styles.error__container, "error-text")}>{error}</div>
-        }
+          }
+        </>
+      )    
+    })();
+
+    return (
+      <div className={styles.table}>
+        <div className={styles.table__header}>
+          {Header}
+        </div>
+        <div>
+          {tableData}
+        </div>
         {pagination && count && setPagination && data && (
           <div className={styles.table__paginator__wrapper}>
             <Paginator

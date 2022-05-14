@@ -1,7 +1,7 @@
-import { Orders, Dashboard } from "./Dasboard";
+import { Orders, Dashboard, CarModels } from "./Dasboard";
 
 export { 
-    Orders, Dashboard
+    Orders, Dashboard, CarModels
 }
 
 export { default as Login } from "./Login/Login";

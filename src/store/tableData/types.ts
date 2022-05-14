@@ -1,4 +1,23 @@
 import type { IPagination } from 'types/requests';
+import type { ICarData } from "store/filtersData/types";
+
+export interface ITableData {
+    order: IOrderTableData,
+    cars: ICarsTableData
+}
+
+export interface IOrderTableData {
+    data: IOrderDataInfo | null,
+    pagination: IPagination,
+    filters: IOrderTableFilters
+    isLoading: boolean,
+    error: string | null
+}
+
+export interface ICarsTableData {
+    data: Array<ICarData> | null,
+    pagination: IPagination
+}
 
 export interface IOrderData {
     id: string,
@@ -16,31 +35,6 @@ export interface IOrderData {
     isRightWheel: boolean,
 }
 
-export interface ICarData {
-    categoryId: {
-        name: string,
-        description: string,
-        id: string
-    },
-    colors: Array<string>,
-    createdAt: number,
-    description: string,
-    id: string,
-    name: string,
-    number: string,
-    priceMax: number,
-    priceMin: number,
-    tank: 55,
-    thumbnail: {
-        size: number,
-        path: string,
-        originalname: string,
-        mimetype: string
-    },
-    updatedAt: number
-}
-
-
 export interface IOrderObject {
     id: string,
     name: string
@@ -49,18 +43,6 @@ export interface IOrderObject {
 export interface IOrderDataInfo {
     data: Array<IOrderData>,
     count: number
-}
-
-export interface ITableData {
-    order: IOrderTableData
-}
-
-export interface IOrderTableData {
-    data: IOrderDataInfo | null,
-    pagination: IPagination,
-    filters: IOrderTableFilters
-    isLoading: boolean,
-    error: string | null
 }
 
 export interface IOrderTableFilters {

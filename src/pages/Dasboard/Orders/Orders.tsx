@@ -2,11 +2,12 @@ import { memo } from 'react';
 import { 
   Select, 
   Table, 
-  CarComponent, 
+  OrderCarComponent, 
   SelectWrapper
 } from 'components';
 import type { IAllCars, IAllCities, IAllPoints, ICurrentCity, ICurrentPoint } from 'store/filtersData/types';
-import type { ICarData, IOrderTableData, IOrderTableFilters } from 'store/tableData/types';
+import type { ICarData } from 'store/filtersData/types';
+import type { IOrderTableData, IOrderTableFilters } from 'store/tableData/types';
 import type { IPagination } from 'types/requests';
 import { getSelectedDataById } from 'utils/DataMapHelper';
 import { selectDataHolder } from '../Dashboard';
@@ -41,9 +42,9 @@ const Orders: React.FC<IOrderPageProps> = ({
   setPagination
 }) => {
 
-    return (
-      <>
-      <SelectWrapper
+    const OrdersTableHeader = (function () {
+      return (
+        <SelectWrapper
         onApply={applyOrderFilters}
         wrapperClassname={styles.filters}
       >
@@ -77,9 +78,15 @@ const Orders: React.FC<IOrderPageProps> = ({
             />
           </div>
       </SelectWrapper>
+      )
+    })()
+    
+    return (
+      <>
         <Table 
             data={orders?.data?.data} 
-            Component={CarComponent} 
+            Header={OrdersTableHeader}
+            Component={OrderCarComponent} 
             pagination={pagination}
             count={orders?.data?.count}
             setPagination={setPagination}
