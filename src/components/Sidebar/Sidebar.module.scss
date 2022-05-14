@@ -7,6 +7,23 @@
         0px 2px 4px rgba(90, 97, 105, 0.12), 
         0px 7.5px 11px rgba(90, 97, 105, 0.1), 
         0px 3.5px 17.5px rgba(165, 182, 201, 0.1);
+        transition: all .3s ease;
+    }
+
+    &_opened {
+        left: 0 !important;
+    }
+
+    &__button_close {
+        display: none;
+        margin: 15px 0px 0px 15px;
+        background: transparent;
+        border: 1px solid transparent;
+        cursor: pointer;
+
+        @media(max-width: 740px) {
+            display: block;
+        }
     }
 
     &__logo {
@@ -18,7 +35,11 @@
         &__wrapper {
             display: flex;
             justify-content: center;
-            padding: 15px 70px 15px 0px;
+            padding: 15px 70px 15px 20px;
+
+            @media(max-width: 420px) {
+                padding: 10px 20px; 
+            }
         }
 
     }
@@ -65,7 +86,15 @@
         }
     }
 
-    @media(min-width: 640px) {
+    @media(max-width: 740px) {
+        & {
+            position: fixed;
+            left: -100%;
+            width: 100%;
+        }
+    }
+
+    @media(min-width: 740px) {
         max-width: 285px;
         width: 100%;
     }

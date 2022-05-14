@@ -62,4 +62,9 @@
             color: var(--primary-blue);
         }
     }
+
+    @media(max-width: 740px) {
+        top: 55px;
+        width: 110%;
+    }
 }

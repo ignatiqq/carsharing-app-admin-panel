@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import withDashboardLogic from './withDashboardLogic';
@@ -18,11 +18,27 @@ export function selectDataHolder<T>(data: {isLoading: boolean, error: string | n
 }
 
 const Dashboard = () => {
+  const [sidebarExtended, setSidebarExtended] = React.useState(false);
+
+  const openSidebarHanlder = useCallback(() => {
+    setSidebarExtended(true)
+  }, [])
+
+  const closeSidebarHanlder = useCallback(() => {
+    setSidebarExtended(false)
+  }, [])
+
   return (
     <div className={styles.dashboard}>
-        <Sidebar />
+        <Sidebar
+          closeSidebarHanlder={closeSidebarHanlder}
+          sidebarExtended={sidebarExtended}
+        />
         <div className={styles.dashboard__contentWrapper}>
-          <Header />
+          <Header
+            openSidebarHanlder={openSidebarHanlder}
+            sidebarExtended={sidebarExtended}
+          />
           <div className={styles.dashboard__outlet}>
             <Outlet />
           </div>

@@ -2,7 +2,7 @@ import {memo} from 'react';
 
 import type { IUserLogin } from 'components/Forms/LoginForm/LoginForm';
 import { LoginFrom } from 'components';
-import Logo from "assets/images/Logo.svg";
+import Logo from "assets/icons/Logo.svg";
 import styles from "./Login.module.scss";
 import withLoginLogic from './withLoginLogic';
 

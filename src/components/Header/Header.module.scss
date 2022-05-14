@@ -9,6 +9,13 @@
         padding: 0 30px;
     }
 
+    &__additionally {
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+    }
+
     &__notificationsWrapper {
         display: flex;
         align-items: center;
@@ -35,6 +42,15 @@
         }
     }
 
+    &__button {
+        &_sidebarOpen {
+            opacity: 0;
+            width: 0;
+            pointer-events: none;
+            margin-right: 0;
+        }
+    }
+
     &__input {
         border: transparent;
         font-size: 13px;
@@ -46,6 +62,48 @@
             display: flex;
             align-items: center;
             width: 100%;
+        }
+    }
+
+    @media(max-width: 740px) {
+        & {
+            padding: 0px 15px;
+        }
+
+        &__button {
+            &_sidebarOpen {
+                opacity: 1;
+                width: auto;
+                pointer-events: all;
+                background: transparent;
+                border: 1px solid transparent;
+                margin-right: 15px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    @media(max-width: 500px) {
+        & {
+            height: auto;
+            flex-direction: column;
+
+            &__additionally {
+                padding: 10px 0px;
+            }
+
+            &__options {
+                width: 100%;
+                justify-content: space-between;
+                padding: 10px 0px;
+                border-top: 1px solid #E0E2E8;
+            }
+
+            &__settingsmenuWrapper, &__notificationsWrapper {
+                border: none;
+                padding: 0;
+            }
+
         }
     }
 
