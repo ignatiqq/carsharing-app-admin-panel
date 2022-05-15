@@ -5,8 +5,8 @@ import {Paginator} from 'components';
 import type { IPagination } from 'types/requests';
 import Loader from 'components/Dumb/Loader/Loader';
 import NothingFound from 'components/Phrases/NothingFound/NothingFound';
-import classNames from 'classnames';
 import type { ICurrentCity, ICurrentPoint, ICarData } from 'store/filtersData/types';
+import classNames from 'classnames';
 
 interface ITable {
     data: Array<{[key:string]: any}> | null | undefined
@@ -18,6 +18,7 @@ interface ITable {
     isLoading?: boolean,
     error?: string | null,
     tableContentStyles?: string,
+    head?: ITableHead,
     Header?: React.FC<any>
 }
 
@@ -29,68 +30,71 @@ export interface ITableFilters {
   isLoading: boolean
 }
 
+export type ITableHead = Array<IHead>;
+
+interface IHead {
+  name: string
+}
+
+
 const Table: React.FC<ITable> = ({ 
     data, 
-    Component, 
     pagination, 
     count,
     setPagination,
     isLoading,
     error,
-    tableContentStyles,
-    Header
+    head
 }) => {
 
-    const tableData = useMemo(() => {
-      return (
-        <>
-          {
-            !isLoading && !error ?
-            <div className={classNames(tableContentStyles)}>
-                {data && data.length > 0 ? 
-                    data.map((item) => <Component key={item.id} {...item} />)
-                    : 
-                    <NothingFound className={styles.notfound__wrapper} />
-                }
-            </div>
-            : isLoading && !error ?
-            <Loader className={styles.table__content} />
-            : error &&
-            <div className={classNames(styles.error__container, "error-text")}>{error}</div>
-          }
-        </>
-      )    
-    }, [isLoading, error, data])
-
-    const Pagintation = () => {
-      return (
-        <div className={styles.table__paginator__wrapper}>
-          {
-            pagination &&
-            count &&
-            setPagination &&
-            data && (
-              <Paginator
-                page={pagination.page}
-                limit={pagination.limit}
-                count={count}
-                setPagination={setPagination}
-              />
-            )
-          }
-        </div>
-      );
-    };
-
     return (
-      <div className={styles.table}>
-        <div className={styles.table__header}>
-          {Header && <Header />}
-        </div>
-        <div className={styles.table__content}>
-          {tableData}
-        </div>
-        {<Pagintation />}
+      <div className={classNames(styles.table__wrapper, {
+        [styles.table__wrapper_fullheight]: isLoading || error
+      })}>
+        {
+          isLoading ?
+          <div className={styles.table__wrapper_loading}>
+            <Loader />
+          </div>
+          :
+          error ?
+          <div className={classNames(styles.talbe__wrapper_error, "error-text")}>
+            {error}
+          </div>
+          :
+          <table className={styles.table}>
+            <thead className={styles.table__header}>
+              <tr>
+                {
+                  head &&
+                  head.map(item => (
+                    <th key={item.name} className={styles.table__header_th}>
+                      {item.name}
+                    </th>
+                  ))
+                }
+              </tr>
+            </thead>
+            <tbody className={styles.table__content}>
+              {
+                data && 
+                data.map((item) => (
+                  <tr>
+                    {
+                      item && 
+                      Object.keys(item).map(key => (
+                        <th key={key} style={{width: `${head && Math.floor(100 / head?.length)}%`}}>
+                          {item[key]}
+                        </th>
+                      ))
+                    }
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        }
+        
       </div>
     );
 }

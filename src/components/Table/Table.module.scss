@@ -1,40 +1,97 @@
 .table {
 
+    &__wrapper {
+        overflow: auto;
+        border-radius: 9px;
+        min-height: 350px;
+        background: #fff;
+
+        &_fullheight {
+            height: 100%;
+        }
+
+        &_loading {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &_error {
+            height: 100%;
+            text-align: center;
+        }
+    }
+
     & {
+        width: 100%;
         box-shadow: 0px 2px 0px rgba(90, 97, 105, 0.11),
         0px 4px 8px rgba(90, 97, 105, 0.12),
         0px 10px 10px rgba(90, 97, 105, 0.06),
         0px 7px 7px rgba(90, 97, 105, 0.1);
         background: #fff;
-        border-radius: 9px;
+        border-collapse: collapse;
+        height: 350px;
+        min-width: 600px;
+        width: 100%;
+        overflow: auto;
+        display: table;
+
+        thead { 
+
+            tr {    
+                height: 50px;
+                position: sticky; 
+                top: 0;
+                background: #fff;
+                box-shadow: inset 0 -1px 0 #e0e2e8;
+            }
+
+            
+        }
+
+        tbody {
+
+            tr{
+
+                & {
+                    max-height: 140px;
+                    height: 140px;
+                    box-shadow: inset 0 -1px 0 #e0e2e8;
+                }
+
+                & {
+                    height: 10  0px;
+                }
+
+            }
+
+            @media(max-width: 600px) {
+                tr {
+                    th {
+                        font-size: 10px;
+                    }
+                }
+            }
+
+            @media(max-width: 1000px) {
+                tr {
+                    th {
+                        font-size: 14px;
+
+                    }
+                }
+            }
+        }
     }
 
     &__content {
         min-height: 350px;
         max-height: 350px;
         overflow: auto;
+        width: 100%;
     }
 
-    &__header {
-        border-radius: 9px 9px 0px 0px;
-        background: #fff;
-        border-bottom: 1px solid #E0E2E8;
-        padding: 15px 20px;
-    }
-
-    &__paginator {
-
-        &_loading {
-
-        }
-
-        &__wrapper {
-            border-top: 1px solid #E0E2E8;
-            padding: 20px 10px;
-            background: #fff;
-            border-radius: 0px 0px 9px 9px;
-        }
-    }
 }
 
 .notfound__wrapper {
