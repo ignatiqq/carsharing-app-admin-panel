@@ -1,6 +1,14 @@
 .table {
 
+    &__customHead {
+        padding: 10px 20px;
+        position: sticky;
+        left: 0;
+        top: 0;
+    }
+
     &__wrapper {
+        
         overflow: auto;
         border-radius: 9px;
         min-height: 350px;
@@ -21,6 +29,14 @@
             height: 100%;
             text-align: center;
         }
+
+        &_notfound {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
     }
 
     & {
@@ -32,7 +48,6 @@
         background: #fff;
         border-collapse: collapse;
         height: 350px;
-        min-width: 600px;
         width: 100%;
         overflow: auto;
         display: table;
@@ -45,9 +60,9 @@
                 top: 0;
                 background: #fff;
                 box-shadow: inset 0 -1px 0 #e0e2e8;
+
             }
 
-            
         }
 
         tbody {
@@ -56,12 +71,29 @@
 
                 & {
                     max-height: 140px;
-                    height: 140px;
                     box-shadow: inset 0 -1px 0 #e0e2e8;
                 }
 
+                th {
+                    text-align: left;
+                    padding: 0px 10px;
+                    
+                    &:first-child {
+                        padding-left: 20px;
+                    }
+    
+                    &:last-child {
+                        padding-right: 20px;
+                    }
+
+                }
+
+                span {
+                    font-size: 12px;
+                }
+
                 & {
-                    height: 10  0px;
+                    height: 10;
                 }
 
             }

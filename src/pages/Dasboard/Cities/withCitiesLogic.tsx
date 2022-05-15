@@ -1,10 +1,22 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useMemo } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'store';
 import { getTableCitiesData, setTableCitiesPagination } from 'store/tableData/actions';
-import { IQueryFilter } from 'store/tableData/types';
 import type { IPagination } from 'types/requests';
 import type { ICitiesTable } from "./CitiesTable";
+import styles from "./CitiesTable.module.scss";
+
+export type CitiesTableMappedData = Array<ICitiesTableMappedItem> | null;
+
+interface ICitiesTableMappedItem {
+    name: React.ReactElement
+}
+
+const сarModelsHeaders = [
+  {
+      name: "Город"
+  }
+];
 
 const withCitiesLogic = (Component: React.FC<ICitiesTable>) => () =>{
 
@@ -24,14 +36,26 @@ const withCitiesLogic = (Component: React.FC<ICitiesTable>) => () =>{
       dispatch(setTableCitiesPagination(pagination))
     }, [dispatch])
 
+    const mappedData = useMemo(() => {
+      if(citiesData?.data) {
+        return citiesData.data.data.map(item => {
+            return {
+                name: <div className={styles.tableData__name}>{item.name}</div>
+            }
+        })
+      }
+      return null;
+    }, [citiesData.data])
+
     return (
       <Component
         isLoading={citiesData.isLoading}
         error={citiesData.error}
-        data={citiesData?.data && citiesData.data.data}
+        data={mappedData}
         pagination={citiesData.pagination}
         setPagination={setPagination}
         count={citiesData?.data && citiesData.data.count}
+        head={сarModelsHeaders}
       />
     )
 }

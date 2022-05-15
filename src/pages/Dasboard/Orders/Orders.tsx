@@ -42,8 +42,7 @@ const Orders: React.FC<IOrderPageProps> = ({
   setPagination
 }) => {
 
-    const OrdersTableHeader = () => {
-      return (
+    const OrdersTableHeader = (
         <SelectWrapper
           onApply={applyOrderFilters}
           wrapperClassname={styles.filters}
@@ -78,20 +77,15 @@ const Orders: React.FC<IOrderPageProps> = ({
             />
           </div>
       </SelectWrapper>
-      )
-    };
+    );
     
     return (
       <>
         <Table 
             data={orders?.data?.data} 
-            Header={OrdersTableHeader}
-            Component={OrderCarComponent} 
-            pagination={pagination}
-            count={orders?.data?.count}
-            setPagination={setPagination}
             isLoading={orders.isLoading}
             error={orders.error}
+            customHead={OrdersTableHeader}
         />
       </>
     )

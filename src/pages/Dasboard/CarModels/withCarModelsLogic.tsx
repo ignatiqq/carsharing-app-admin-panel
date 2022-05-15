@@ -18,6 +18,24 @@ interface ICarTableMappedItem {
     description: React.ReactElement
 }
 
+const сarModelsHeaders = [
+    {
+        name: "Фотография"
+    },
+    {
+        name: "Номер"
+    },
+    {
+        name: "Категория"
+    },
+    {
+        name: "Цена"
+    },
+    {
+        name: "Описание"
+    }
+];
+
 const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
     const dispatch = useAppDispatch();
 
@@ -32,30 +50,11 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
                 (carsData.pagination.page - 1) * carsData.pagination.limit, carsData.pagination.page * carsData.pagination.limit)
             ));
         }
-    }, [cars, carsData.pagination])
+    }, [cars, carsData.pagination, dispatch])
 
     const setPagination = useCallback((data: IPagination) => {
         dispatch(setTableCarsPagination(data));
     }, [])
-
-    
-    const сarModelsHeaders = [
-        {
-            name: "Фотография"
-        },
-        {
-            name: "Номер"
-        },
-        {
-            name: "Категория"
-        },
-        {
-            name: "Цена"
-        },
-        {
-            name: "Описание"
-        }
-    ];
 
     const mappedData: CarsTableMappedData = useMemo(() => {
         if(carsData.data) {
@@ -69,7 +68,7 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
                     ,
                     number: 
                         <span className={styles.tableData__number}>
-                            { item.number ? carNumberFormatter(item.number) : "Номер не опознан"}
+                            { item.number ? carNumberFormatter(item.number) : "Номер"}
                         </span>,
                     category: item?.categoryId ? item.categoryId.name : "Категория",
                     price: `${item.priceMin}₽ - ${item.priceMax}₽`,

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import withCarModelsLogic from "./withCarModelsLogic";
-import { Table, CarModelComponent, Loader, Paginator } from "components";
+import { Table, Loader, Paginator } from "components";
 import styles from "./CarModels.module.scss";
 import { IPagination } from 'types/requests';
 import type { ITableHead } from 'components/Table/Table';
@@ -27,20 +27,18 @@ const CarModels: React.FC<ICars> = ({
   head
 }) => {
 
-  const CarModelsTableHeader = () => {
-    return (
+  const CarModelsTableHeader =
+    (
       <>
         <div className={styles.CarModelTable__header}>
           <div>Список моделей</div>
           <div className={styles.CarModelTable__header__countWrapper}><span>Всего: </span> {count ? count : <Loader />}</div>
         </div>
       </>
-    )
-  }
+    );
 
-  const Pagintation = () => {
-    return (
-      <div className={styles.CarModelTable__pagination}>
+  const Pagintation = (
+      <div className={styles.pagination}>
         {
           pagination &&
           count &&
@@ -55,24 +53,19 @@ const CarModels: React.FC<ICars> = ({
           )
         }
       </div>
-    );
-  };
+  );
 
   return (
     <>
       <Table 
         data={data}
-        Component={CarModelComponent}
         isLoading={isLoading}
         error={error}
-        tableContentStyles={styles.tableContentStyles}
-        Header={CarModelsTableHeader}
         head={head}
-        pagination={pagination}
-        setPagination={setPagination}
-        count={count}
+        customHead={CarModelsTableHeader}
+        className={styles.customTableStyles}
       />
-      {<Pagintation />}
+      {Pagintation}
     </>
   )
 }

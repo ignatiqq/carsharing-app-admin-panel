@@ -1,33 +1,17 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import styles from "./Table.module.scss";
-import {Paginator} from 'components';
-import type { IPagination } from 'types/requests';
 import Loader from 'components/Dumb/Loader/Loader';
 import NothingFound from 'components/Phrases/NothingFound/NothingFound';
-import type { ICurrentCity, ICurrentPoint, ICarData } from 'store/filtersData/types';
 import classNames from 'classnames';
 
 interface ITable {
     data: Array<{[key:string]: any}> | null | undefined
-    Component: React.FC<any>,
-    filters?: Array<ITableFilters> | null,
-    pagination?: IPagination,
-    count?: number | null,
-    setPagination?: (pagination: IPagination) => void,
     isLoading?: boolean,
     error?: string | null,
-    tableContentStyles?: string,
     head?: ITableHead,
-    Header?: React.FC<any>
-}
-
-export interface ITableFilters {
-  data: ICurrentCity[] | ICurrentPoint[] | ICarData[],
-  onChange: (data: ICurrentCity | ICurrentPoint | ICarData) => void,
-  selected: ICurrentCity | ICurrentPoint | ICarData | undefined,
-  error: string | null,
-  isLoading: boolean
+    customHead?: React.ReactElement,
+    className?: string
 }
 
 export type ITableHead = Array<IHead>;
@@ -36,21 +20,21 @@ interface IHead {
   name: string
 }
 
-
 const Table: React.FC<ITable> = ({ 
     data, 
-    pagination, 
-    count,
-    setPagination,
     isLoading,
     error,
-    head
+    head,
+    customHead,
+    className
 }) => {
-
     return (
       <div className={classNames(styles.table__wrapper, {
         [styles.table__wrapper_fullheight]: isLoading || error
       })}>
+        <div className={styles.table__customHead}>
+          {customHead && customHead}
+        </div>
         {
           isLoading ?
           <div className={styles.table__wrapper_loading}>
@@ -62,7 +46,12 @@ const Table: React.FC<ITable> = ({
             {error}
           </div>
           :
-          <table className={styles.table}>
+          data && data?.length <= 0 ?
+          <div className={styles.table__wrapper_notfound}>
+            <NothingFound />
+          </div>
+          :
+          <table className={classNames(styles.table, className)}>
             <thead className={styles.table__header}>
               <tr>
                 {
@@ -78,8 +67,8 @@ const Table: React.FC<ITable> = ({
             <tbody className={styles.table__content}>
               {
                 data && 
-                data.map((item) => (
-                  <tr>
+                data.map((item, i) => (
+                  <tr key={i}>
                     {
                       item && 
                       Object.keys(item).map(key => (
@@ -94,7 +83,6 @@ const Table: React.FC<ITable> = ({
             </tbody>
           </table>
         }
-        
       </div>
     );
 }

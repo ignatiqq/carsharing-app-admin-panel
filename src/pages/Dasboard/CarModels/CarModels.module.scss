@@ -25,13 +25,13 @@
         width: 12px;
     }
 
-    &__pagination {
-        border-top: 1px solid #E0E2E8;
-        padding: 20px 10px;
-        background: #fff;
-        border-radius: 0px 0px 9px 9px;
-    }
+}
 
+.pagination {
+    border-top: 1px solid #E0E2E8;
+    padding: 20px 10px;
+    background: #fff;
+    border-radius: 0px 0px 9px 9px;
 }
 
 .tableData {
@@ -62,6 +62,10 @@
         overflow: hidden;
         -webkit-box-orient: vertical;
     }
+}
+
+.customTableStyles {
+    min-width: 700px;
 }
 
 .tableWrapper {
