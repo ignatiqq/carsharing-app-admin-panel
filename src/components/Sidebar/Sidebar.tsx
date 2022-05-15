@@ -16,6 +16,9 @@ const Sidebar: React.FC<ISidebar> = ({
   closeSidebarHanlder,
   sidebarExtended
 }) => {
+
+  const locationPathnameLink = "/" + window.location.pathname.split("/").splice(2).join("/");
+
   return (
     <>
       <aside className={classNames(styles.sidebar, {
@@ -39,7 +42,9 @@ const Sidebar: React.FC<ISidebar> = ({
               <Link 
                 onClick={closeSidebarHanlder}
                 key={item.name} 
-                className={styles.sidebar__link} 
+                className={classNames(styles.sidebar__link, {
+                  [styles.sidebar__link_active]: locationPathnameLink === item.path
+                })} 
                 to={item.path}
               >
                 <div>

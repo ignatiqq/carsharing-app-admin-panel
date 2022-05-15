@@ -26,10 +26,13 @@ const CarModelComponent: React.FC<ICarData> = ({
         </span>
       </div>
       <div className={styles.carModel__category}>
-        {categoryId?.name}
+        {categoryId?.name ? categoryId.name : "Категория" }
+      </div>
+      <div className={styles.carModel__price}>
+          <span>{priceMin && priceMin}₽ - {priceMax && priceMax}₽</span>
       </div>
       <div className={styles.carModel__description}>
-        {categoryId?.description}
+        {categoryId?.description ? categoryId.description : "Описание"}
       </div>
     </div>
   )

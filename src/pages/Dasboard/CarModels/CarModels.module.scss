@@ -2,3 +2,18 @@
     max-height: 700px !important;
     height: 100%;
 }
+
+.CarModelTable {
+
+    &__header {
+        font-weight: bold;
+        display: flex;
+    }
+
+    &__loader {
+        margin-left: 10px;
+        align-items: flex-start;
+        width: 12px;
+    }
+
+}

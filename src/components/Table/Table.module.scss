@@ -13,19 +13,27 @@
         min-height: 350px;
         max-height: 350px;
         overflow: auto;
-        background: #fff;
     }
 
     &__header {
         border-radius: 9px 9px 0px 0px;
         background: #fff;
+        border-bottom: 1px solid #E0E2E8;
+        padding: 15px 20px;
     }
 
-    &__paginator__wrapper {
-        border-top: 1px solid #E0E2E8;
-        padding: 20px 10px;
-        background: #fff;
-        border-radius: 0px 0px 9px 9px;
+    &__paginator {
+
+        &_loading {
+
+        }
+
+        &__wrapper {
+            border-top: 1px solid #E0E2E8;
+            padding: 20px 10px;
+            background: #fff;
+            border-radius: 0px 0px 9px 9px;
+        }
     }
 }
 

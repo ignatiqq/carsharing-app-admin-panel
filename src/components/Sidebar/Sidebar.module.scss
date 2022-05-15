@@ -84,6 +84,25 @@
             top: 0;
             display: block;
         }
+
+        &_active {
+            color: var(--primary-blue) !important;
+
+            div {
+                color: var(--primary-blue) !important;
+            }
+
+            &::before {
+                content: "";
+                background: var(--primary-blue);
+                width: 5px;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                display: block;
+            }
+        }
     }
 
     @media(max-width: 740px) {

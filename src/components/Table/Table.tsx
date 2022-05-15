@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import styles from "./Table.module.scss";
 import {Paginator} from 'components';
@@ -18,7 +18,7 @@ interface ITable {
     isLoading?: boolean,
     error?: string | null,
     tableContentStyles?: string,
-    Header?: React.ReactElement
+    Header?: React.FC<any>
 }
 
 export interface ITableFilters {
@@ -41,7 +41,7 @@ const Table: React.FC<ITable> = ({
     Header
 }) => {
 
-    const tableData = (function(){
+    const tableData = useMemo(() => {
       return (
         <>
           {
@@ -60,26 +60,39 @@ const Table: React.FC<ITable> = ({
           }
         </>
       )    
-    })();
+    }, [isLoading, error, data])
+
+    const Pagintation = () => {
+      return (
+        <div className={styles.table__paginator__wrapper}>
+          {isLoading && pagination ? (
+            <Loader className={styles.table__paginator_loading} />
+          ) : (
+            pagination &&
+            count &&
+            setPagination &&
+            data && (
+              <Paginator
+                page={pagination.page}
+                limit={pagination.limit}
+                count={count}
+                setPagination={setPagination}
+              />
+            )
+          )}
+        </div>
+      );
+    };
 
     return (
       <div className={styles.table}>
         <div className={styles.table__header}>
-          {Header}
+          {Header && <Header />}
         </div>
         <div>
           {tableData}
         </div>
-        {pagination && count && setPagination && data && (
-          <div className={styles.table__paginator__wrapper}>
-            <Paginator
-              page={pagination.page}
-              limit={pagination.limit}
-              count={count}
-              setPagination={setPagination}
-            />
-          </div>
-        )}
+        {<Pagintation />}
       </div>
     );
 }

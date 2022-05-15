@@ -34,8 +34,6 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
         cities,
       } = useAppSelector(({tableData, filtersData}) => ({
           orders: tableData.order,
-          ordersIsLoading: tableData.order.isLoading,
-          ordersRequestError: tableData.order.error,
           pagination: tableData.order.pagination,
           cars: filtersData.car,
           points: filtersData.point,
@@ -48,6 +46,16 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
             dispatch(getOrderData({page: pagination.page, limit: pagination.limit, ...params}))
         }
      }, [pagination, orders.filters,  dispatch]);
+
+     useEffect(() => {
+        if(orders.filters) {
+            const filterValues: IOrderTableFilters = {pointId: "", cityId: "", carId: ""};
+            Object.entries(orders.filters).forEach(([key, value]) => {
+                filterValues[key as keyof IOrderTableFilters] = value
+            })
+            setPreparedFilters(filterValues);
+        }
+     }, [orders.filters])
 
 
     const setPointsSelected = useCallback((data: ICurrentPoint) => {
@@ -86,7 +94,7 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
         } else if(preparedFilters.pointId) {
             dispatch(setOrderPointFilter(preparedFilters.pointId));
         }
-    }, [preparedFilters, dispatch])
+    }, [preparedFilters, dispatch]);
 
     const setPagination = useCallback((pagination: IPagination) => {
       dispatch(setOrderPagination(pagination));

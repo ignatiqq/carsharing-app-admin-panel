@@ -42,12 +42,12 @@ const Orders: React.FC<IOrderPageProps> = ({
   setPagination
 }) => {
 
-    const OrdersTableHeader = (function () {
+    const OrdersTableHeader = () => {
       return (
         <SelectWrapper
-        onApply={applyOrderFilters}
-        wrapperClassname={styles.filters}
-      >
+          onApply={applyOrderFilters}
+          wrapperClassname={styles.filters}
+        >
         <div className={styles.filters__items}>
             <Select
               options={points.data}
@@ -79,7 +79,7 @@ const Orders: React.FC<IOrderPageProps> = ({
           </div>
       </SelectWrapper>
       )
-    })()
+    };
     
     return (
       <>
