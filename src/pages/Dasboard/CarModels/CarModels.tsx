@@ -2,7 +2,7 @@ import React from 'react';
 
 import withCarModelsLogic from "./withCarModelsLogic";
 import { ICarData } from 'store/filtersData/types';
-import { Table, CarModelComponent } from "components";
+import { Table, CarModelComponent, Loader } from "components";
 import styles from "./CarModels.module.scss";
 import { IPagination } from 'types/requests';
 
@@ -26,9 +26,12 @@ const CarModels: React.FC<ICars> = ({
 
   const CarModelsTableHeader = () => {
     return (
-      <div className={styles.CarModelTable__header}>
-        Список авто
-      </div>
+      <>
+        <div className={styles.CarModelTable__header}>
+          <div>Список моделей</div>
+          <div className={styles.CarModelTable__header__countWrapper}><span>Всего: </span> {count ? count : <Loader />}</div>
+        </div>
+      </>
     )
   }
 

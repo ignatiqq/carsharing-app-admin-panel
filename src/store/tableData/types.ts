@@ -1,17 +1,29 @@
 import type { IPagination } from 'types/requests';
-import type { ICarData } from "store/filtersData/types";
+import type { ICarData, ICurrentPoint } from "store/filtersData/types";
 import type { ICurrentCity } from 'store/filtersData/types';
 
 export interface ITableData {
     order: IOrderTableData,
     cars: ICarsTableData,
-    cities: ICityTableData
+    cities: ICityTableData,
+    points: IPointTableData
+}
+
+export interface IPointTableData {
+    data: IPointDataInfo | null,
+    pagination: IPagination,
+    isLoading: boolean,
+    error: string | null
+}
+
+export interface IPointDataInfo {
+    data: Array<ICurrentPoint>,
+    count: number
 }
 
 export interface ICityTableData {
     data: ICityDataInfo | null,
     pagination: IPagination,
-    filters?: IOrderTableFilters
     isLoading: boolean,
     error: string | null
 }

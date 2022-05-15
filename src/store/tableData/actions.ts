@@ -15,10 +15,15 @@ import {
     SET_TABLE_CITIES_DATA_LOADING,
     SET_TABLE_CITIES_REQUEST_ERROR,
     GET_TABLE_CITIES_DATA,
-    SET_TABLE_CITIES_PAGINATION
+    SET_TABLE_CITIES_PAGINATION,
+    SET_TABLE_POINT_DATA,
+    SET_TABLE_POINT_DATA_LOADING,
+    SET_TABLE_POINT_REQUEST_ERROR,
+    SET_TABLE_POINT_PAGINATION,
+    GET_TABLE_POINT_DATA
 } from "./constants";
 import type { IPagination } from "types/requests";
-import type { ICityDataInfo, IOrderDataInfo, IQueryFilter } from "./types";
+import type { ICityDataInfo, IOrderDataInfo, IPointDataInfo, IQueryFilter } from "./types";
 import { ICarData } from "store/filtersData/types";
 
 
@@ -38,5 +43,11 @@ export const setTableCarsPagination = createAction<IPagination>(SET_TABLE_CARS_P
 export const setTableCitiesData = createAction<ICityDataInfo>(SET_TABLE_CITIES_DATA);
 export const setTableCitiesDataLoading = createAction<boolean>(SET_TABLE_CITIES_DATA_LOADING);
 export const setTableCitiesRequestError = createAction<string>(SET_TABLE_CITIES_REQUEST_ERROR);
-export const getTableCitiesData = createAction<IQueryFilter>(GET_TABLE_CITIES_DATA);
+export const getTableCitiesData = createAction<IPagination>(GET_TABLE_CITIES_DATA);
 export const setTableCitiesPagination = createAction<IPagination>(SET_TABLE_CITIES_PAGINATION);
+
+export const setTablePointsData = createAction<IPointDataInfo>(SET_TABLE_POINT_DATA);
+export const setTablePointsDataLoading = createAction<boolean>(SET_TABLE_POINT_DATA_LOADING);
+export const setTablePointsRequestError = createAction<string>(SET_TABLE_POINT_REQUEST_ERROR);
+export const setTablePointsPagination = createAction<IPagination>(SET_TABLE_POINT_PAGINATION);
+export const getTablePointsData = createAction(GET_TABLE_POINT_DATA);

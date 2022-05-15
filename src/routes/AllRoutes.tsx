@@ -9,7 +9,8 @@ import {
     Dashboard, 
     Orders,
     CarModels,
-    Cities
+    Cities,
+    PointsTable
 } from "pages";
 
 const AppRoutes = () => useRoutes([
@@ -30,6 +31,10 @@ const AppRoutes = () => useRoutes([
             {
                 path: "/dashboard/cities",
                 element: <Cities />
+            },
+            {
+                path: "/dashboard/points",
+                element: <PointsTable />
             },
             {
                 path: "*",

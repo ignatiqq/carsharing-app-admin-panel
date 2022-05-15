@@ -19,6 +19,12 @@ const tableData = {
         const getParams = paramsToString(params);
 
         return getRequest(`/db/city?${getParams}`)
+    },
+
+    points: (params: IQueryFilter) => {
+        const getParams = params ? paramsToString(params) : "";
+
+        return getRequest(`/db/point?${getParams}`)
     }
 
 }

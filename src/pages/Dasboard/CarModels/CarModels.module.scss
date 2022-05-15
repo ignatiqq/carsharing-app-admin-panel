@@ -8,6 +8,15 @@
     &__header {
         font-weight: bold;
         display: flex;
+        justify-content: space-between;
+
+        &__countWrapper {
+            display: flex;
+
+            span {
+                margin-right: 5px;
+            }
+        }
     }
 
     &__loader {

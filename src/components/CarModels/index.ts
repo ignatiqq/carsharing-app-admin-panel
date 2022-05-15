@@ -1,1 +1,0 @@
-export { default as CarModelComponent } from "./CarModelComponent/CarModelComponent";

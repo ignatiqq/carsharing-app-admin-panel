@@ -13,10 +13,14 @@ import {
     setTableCitiesData,
     setTableCitiesDataLoading,
     setTableCitiesRequestError,
-    setTableCitiesPagination
+    setTableCitiesPagination,
+    setTablePointsData,
+    setTablePointsDataLoading,
+    setTablePointsRequestError,
+    setTablePointsPagination
 } from "./actions";
 import type { IPagination } from "types/requests";
-import type { ICityDataInfo, IOrderDataInfo, ITableData } from "./types";
+import type { ICityDataInfo, IOrderDataInfo, IPointDataInfo, ITableData } from "./types";
 import { ICarData } from "store/filtersData/types";
 
 const initialState: ITableData = {
@@ -42,6 +46,15 @@ const initialState: ITableData = {
         }
     },
     cities: {
+        data: null,
+        pagination: {
+            page: 1,
+            limit: 10
+        },
+        isLoading: false,
+        error: null
+    },
+    points: {
         data: null,
         pagination: {
             page: 1,
@@ -101,6 +114,19 @@ const tableData = createReducer(initialState, (builder) => {
         })
         .addCase(setTableCitiesPagination, (state, action: PayloadAction<IPagination>) => {
             state.cities.pagination = action.payload
+        })
+
+        .addCase(setTablePointsData, (state, action: PayloadAction<IPointDataInfo>) => {
+            state.points.data = action.payload
+        })
+        .addCase(setTablePointsDataLoading, (state, action: PayloadAction<boolean>) => {
+            state.points.isLoading = action.payload
+        })
+        .addCase(setTablePointsRequestError, (state, action: PayloadAction<string>) => {
+            state.points.error = action.payload
+        })
+        .addCase(setTablePointsPagination, (state, action: PayloadAction<IPagination>) => {
+            state.points.pagination = action.payload
         })
 })
 

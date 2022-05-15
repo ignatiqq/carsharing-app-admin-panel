@@ -7,7 +7,8 @@ import {
 } from "./auth/sagas/authorization";
 import { 
     getOrdersWatcher,
-    getTableCitiesDataWatcher
+    getTableCitiesDataWatcher,
+    getTablePointsDataWatcher
 } from "./tableData/sagas";
 import { 
     getFiltersDataWatcher 
@@ -20,6 +21,7 @@ export default function *rootSaga() {
         logoutUserWatcher(),
         getOrdersWatcher(),
         getFiltersDataWatcher(),
-        getTableCitiesDataWatcher()
+        getTableCitiesDataWatcher(),
+        getTablePointsDataWatcher()
     ])
 }

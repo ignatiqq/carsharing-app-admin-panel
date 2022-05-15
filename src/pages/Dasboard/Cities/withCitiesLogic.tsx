@@ -16,7 +16,7 @@ const withCitiesLogic = (Component: React.FC<ICitiesTable>) => () =>{
 
     useEffect(() => {
       if(citiesData.pagination) {
-        dispatch(getTableCitiesData(citiesData.pagination as IQueryFilter));
+        dispatch(getTableCitiesData(citiesData.pagination));
       }
     }, [citiesData.pagination, dispatch])
 

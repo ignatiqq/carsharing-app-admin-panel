@@ -13,14 +13,11 @@ const CarComponent: React.FC<IOrderData> = ({
     color,
     dateFrom,
     dateTo,
-    id,
     isFullTank,
     isNeedChildChair,
     isRightWheel,
-    orderStatusId,
     pointId,
     price,
-    rateId,
 }) => {
     const dateFormat = "dd.MM.yyyy hh:mm";
     return (

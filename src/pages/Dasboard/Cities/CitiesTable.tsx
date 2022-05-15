@@ -26,9 +26,9 @@ const CitiesTable: React.FC<ICitiesTable> = ({
 
   const CitiesTableHeader = () => {
     return (
-      <div className={styles.CarModelTable__header}>
+      <div className={styles.CitiesTable__header}>
         <div>Список городов</div>
-        <div className={styles.CarModelTable__header__countWrapper}><span>Всего: </span> {count ? count : <Loader />}</div>
+        <div className={styles.CitiesTable__header__countWrapper}><span>Всего: </span> {count ? count : <Loader />}</div>
       </div>
     )
   }
