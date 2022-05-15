@@ -1,0 +1,31 @@
+.headerCityCount_loading {
+    align-items: flex-start;
+}
+
+.CarModelTable {
+
+    & {
+        font-weight: bold;
+    }
+
+    &__header {
+        & {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-weight: bold;
+        }
+
+        &__countWrapper {
+            display: flex;
+    
+            span {
+                margin-right: 5px;
+            }
+        }
+    }   
+
+    
+
+}

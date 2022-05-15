@@ -1,6 +1,7 @@
 
 export interface IAllCities {
     data: Array<ICurrentCity> | null,
+    count: number | null,
     isLoading: boolean,
     error: string | null
 }
@@ -24,12 +25,14 @@ export type ICurrentPoint = {
 
 export interface IAllPoints {
     data: Array<ICurrentPoint> | null,
+    count: number | null,
     isLoading: boolean,
     error: string | null
 }
 
 export interface IAllCars {
     data: Array<ICarData> | null,
+    count: number | null,
     isLoading: boolean,
     error: string | null
 }

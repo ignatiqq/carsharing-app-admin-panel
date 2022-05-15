@@ -13,6 +13,7 @@ export { default as SettingsMenu } from "./SettingsMenu/SettingsMenu";
 export { default as Table } from "./Table/Table";
 export { OrderCarComponent } from "./Orders";
 export { CarModelComponent } from "./CarModels";
+export { CitiesTableComponent } from "./CitiesTable";
 export { default as Checkbox } from "./Dumb/Checkbox/Checkbox";
 export { default as Paginator } from "./Paginator/Paginator";
 export { default as NothingFound } from "./Phrases/NothingFound/NothingFound";

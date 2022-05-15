@@ -21,16 +21,19 @@ import {
 const initialState: IFiltersData = {
     city: {
         data: null,
+        count: null,
         isLoading: false,
         error: null
     },
     point: {
         data: null,
+        count: null,
         isLoading: false,
         error: null
     },
     car: {
         data: null,
+        count: null,
         isLoading: false,
         error: null
     }
@@ -39,7 +42,8 @@ const initialState: IFiltersData = {
 const filtersData = createReducer(initialState, (builder) => {
     builder
         .addCase(setCitiesData, (state, action: PayloadAction<Array<ICurrentCity>>) => {
-            state.city.data = action.payload
+            state.city.data = action.payload;
+            state.city.count = action.payload?.length
         })
         .addCase(setCitiesRequestLoading, (state, action: PayloadAction<boolean>) => {
             state.city.isLoading = action.payload
@@ -50,6 +54,7 @@ const filtersData = createReducer(initialState, (builder) => {
 
         .addCase(setPointsData, (state, action: PayloadAction<Array<ICurrentPoint>>) => {
             state.point.data = action.payload
+            state.point.count = action.payload?.length
         })
         .addCase(setPointsRequestLoading, (state, action: PayloadAction<boolean>) => {
             state.point.isLoading = action.payload
@@ -60,6 +65,7 @@ const filtersData = createReducer(initialState, (builder) => {
 
         .addCase(setCarsData, (state, action: PayloadAction<Array<ICarData>>) => {
             state.car.data = action.payload
+            state.car.count = action.payload?.length
         })
         .addCase(setCarsRequestLoading, (state, action: PayloadAction<boolean>) => {
             state.car.isLoading = action.payload

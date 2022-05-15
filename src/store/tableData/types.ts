@@ -1,9 +1,24 @@
 import type { IPagination } from 'types/requests';
 import type { ICarData } from "store/filtersData/types";
+import type { ICurrentCity } from 'store/filtersData/types';
 
 export interface ITableData {
     order: IOrderTableData,
-    cars: ICarsTableData
+    cars: ICarsTableData,
+    cities: ICityTableData
+}
+
+export interface ICityTableData {
+    data: ICityDataInfo | null,
+    pagination: IPagination,
+    filters?: IOrderTableFilters
+    isLoading: boolean,
+    error: string | null
+}
+
+export interface ICityDataInfo {
+    data: Array<ICurrentCity>,
+    count: number
 }
 
 export interface IOrderTableData {

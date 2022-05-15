@@ -2,25 +2,32 @@ import React from 'react';
 
 import withCarModelsLogic from "./withCarModelsLogic";
 import { ICarData } from 'store/filtersData/types';
-import { Table, CarModelComponent, Loader } from "components";
+import { Table, CarModelComponent } from "components";
 import styles from "./CarModels.module.scss";
+import { IPagination } from 'types/requests';
 
 export interface ICars {
   data: Array<ICarData> | null,
   isLoading: boolean,
-  error: string | null
+  error: string | null,
+  pagination: IPagination,
+  setPagination: (data: IPagination) => void,
+  count: number | null
 }
 
 const CarModels: React.FC<ICars> = ({
   data,
   isLoading,
-  error
+  error,
+  pagination,
+  setPagination,
+  count
 }) => {
 
   const CarModelsTableHeader = () => {
     return (
       <div className={styles.CarModelTable__header}>
-        Всего: {data?.length ? data.length : <Loader className={styles.CarModelTable__loader} />}
+        Список авто
       </div>
     )
   }
@@ -33,6 +40,9 @@ const CarModels: React.FC<ICars> = ({
       error={error}
       tableContentStyles={styles.tableContentStyles}
       Header={CarModelsTableHeader}
+      pagination={pagination}
+      setPagination={setPagination}
+      count={count}
     />
   )
 }

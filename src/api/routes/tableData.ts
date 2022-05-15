@@ -13,6 +13,12 @@ const tableData = {
                 authorization: true
             }
         })
+    },
+
+    cities: (params: IQueryFilter) => {
+        const getParams = paramsToString(params);
+
+        return getRequest(`/db/city?${getParams}`)
     }
 
 }

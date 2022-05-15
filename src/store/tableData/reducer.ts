@@ -7,10 +7,17 @@ import {
     setOrderPagination,
     setOrderCityFilter,
     setOrderCarFilter,
-    setOrderPointFilter
+    setOrderPointFilter,
+    setTableCarsData,
+    setTableCarsPagination,
+    setTableCitiesData,
+    setTableCitiesDataLoading,
+    setTableCitiesRequestError,
+    setTableCitiesPagination
 } from "./actions";
 import type { IPagination } from "types/requests";
-import type { IOrderDataInfo, ITableData } from "./types";
+import type { ICityDataInfo, IOrderDataInfo, ITableData } from "./types";
+import { ICarData } from "store/filtersData/types";
 
 const initialState: ITableData = {
     order: {
@@ -33,6 +40,15 @@ const initialState: ITableData = {
             page: 1,
             limit: 3
         }
+    },
+    cities: {
+        data: null,
+        pagination: {
+            page: 1,
+            limit: 10
+        },
+        isLoading: false,
+        error: null
     }
 }
 
@@ -50,6 +66,9 @@ const tableData = createReducer(initialState, (builder) => {
         .addCase(setOrderPagination, (state, action: PayloadAction<IPagination>) => {
             state.order.pagination = action.payload
         })
+
+        // Filter
+
         .addCase(setOrderCityFilter, (state, action: PayloadAction<string>) => {
             state.order.filters.cityId = action.payload
         })
@@ -58,6 +77,30 @@ const tableData = createReducer(initialState, (builder) => {
         })
         .addCase(setOrderCarFilter, (state, action: PayloadAction<string>) => {
             state.order.filters.carId = action.payload
+        })
+
+        // Cars
+
+        .addCase(setTableCarsData, (state, action: PayloadAction<Array<ICarData>>) => {
+            state.cars.data = action.payload;
+        })
+        .addCase(setTableCarsPagination, (state, action: PayloadAction<IPagination>) => {
+            state.cars.pagination = action.payload
+        })
+
+        // Cities
+
+        .addCase(setTableCitiesData, (state, action: PayloadAction<ICityDataInfo>) => {
+            state.cities.data = action.payload
+        })
+        .addCase(setTableCitiesDataLoading, (state, action: PayloadAction<boolean>) => {
+            state.cities.isLoading = action.payload
+        })
+        .addCase(setTableCitiesRequestError, (state, action: PayloadAction<string>) => {
+            state.cities.error = action.payload
+        })
+        .addCase(setTableCitiesPagination, (state, action: PayloadAction<IPagination>) => {
+            state.cities.pagination = action.payload
         })
 })
 

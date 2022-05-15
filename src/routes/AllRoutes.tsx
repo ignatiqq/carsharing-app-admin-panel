@@ -8,7 +8,8 @@ import {
     ErrorPage, 
     Dashboard, 
     Orders,
-    CarModels
+    CarModels,
+    Cities
 } from "pages";
 
 const AppRoutes = () => useRoutes([
@@ -25,6 +26,10 @@ const AppRoutes = () => useRoutes([
             {
                 path: "/dashboard/cars",
                 element: <CarModels />  
+            },
+            {
+                path: "/dashboard/cities",
+                element: <Cities />
             },
             {
                 path: "*",

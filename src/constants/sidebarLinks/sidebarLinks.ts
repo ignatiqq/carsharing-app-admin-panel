@@ -1,5 +1,6 @@
 import pen from "assets/icons/pen.svg";
 import List from "assets/icons/List.svg";
+import CityIcon from "assets/icons/cityIcon.svg";
 
 const sidebarLinks = [
     {
@@ -11,6 +12,11 @@ const sidebarLinks = [
         name: "Список Авто",
         icon: List,
         path: "/dashboard/cars"
+    },
+    {
+        name: "Список Городов",
+        icon: CityIcon,
+        path: "/dashboard/cities"
     }
 ]
 

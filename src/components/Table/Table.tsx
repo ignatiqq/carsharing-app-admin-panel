@@ -33,7 +33,7 @@ const Table: React.FC<ITable> = ({
     data, 
     Component, 
     pagination, 
-    count ,
+    count,
     setPagination,
     isLoading,
     error,
@@ -46,7 +46,7 @@ const Table: React.FC<ITable> = ({
         <>
           {
             !isLoading && !error ?
-            <div className={classNames(styles.table__content, tableContentStyles)}>
+            <div className={classNames(tableContentStyles)}>
                 {data && data.length > 0 ? 
                     data.map((item) => <Component key={item.id} {...item} />)
                     : 
@@ -65,9 +65,7 @@ const Table: React.FC<ITable> = ({
     const Pagintation = () => {
       return (
         <div className={styles.table__paginator__wrapper}>
-          {isLoading && pagination ? (
-            <Loader className={styles.table__paginator_loading} />
-          ) : (
+          {
             pagination &&
             count &&
             setPagination &&
@@ -79,7 +77,7 @@ const Table: React.FC<ITable> = ({
                 setPagination={setPagination}
               />
             )
-          )}
+          }
         </div>
       );
     };
@@ -89,7 +87,7 @@ const Table: React.FC<ITable> = ({
         <div className={styles.table__header}>
           {Header && <Header />}
         </div>
-        <div>
+        <div className={styles.table__content}>
           {tableData}
         </div>
         {<Pagintation />}
