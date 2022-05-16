@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/carsharing-app-admin-panel/static/css/main.1f665985.css",
-    "main.js": "/carsharing-app-admin-panel/static/js/main.25ac7166.js",
+    "main.css": "/carsharing-app-admin-panel/static/css/main.d413349d.css",
+    "main.js": "/carsharing-app-admin-panel/static/js/main.5301e7d8.js",
     "static/media/helvetica_bold.otf": "/carsharing-app-admin-panel/static/media/helvetica_bold.899889c95eb3c6b47ce3.otf",
     "static/media/helvetica_regular.otf": "/carsharing-app-admin-panel/static/media/helvetica_regular.da7db66db5a8e54a8308.otf",
     "static/media/Roboto-Medium.ttf": "/carsharing-app-admin-panel/static/media/Roboto-Medium.7429a63c09f79a1760b0.ttf",
@@ -13,6 +13,7 @@
     "static/media/UserAvatar.svg": "/carsharing-app-admin-panel/static/media/UserAvatar.922fe9aa0a6bf69c53dbfc0dcbb7e6d6.svg",
     "static/media/sadEmoji.webp": "/carsharing-app-admin-panel/static/media/sadEmoji.4e24d8f8a15076024903.webp",
     "static/media/Logo.svg": "/carsharing-app-admin-panel/static/media/Logo.8b3fa03fd35748590d3ec72e5df1ed14.svg",
+    "static/media/cityIcon.svg": "/carsharing-app-admin-panel/static/media/cityIcon.af1f8860de74f2682c8d23c2972dc370.svg",
     "static/media/loader.svg": "/carsharing-app-admin-panel/static/media/loader.1552bd60a14877b25f4538fbfa82afb4.svg",
     "index.html": "/carsharing-app-admin-panel/index.html",
     "static/media/Search.svg": "/carsharing-app-admin-panel/static/media/Search.49419f761fd5e46d3c1235f74a5b7360.svg",
@@ -26,13 +27,14 @@
     "static/media/XIcon.svg": "/carsharing-app-admin-panel/static/media/XIcon.ae7d1326756d2e9b1dd96754371850b5.svg",
     "static/media/checkmark.svg": "/carsharing-app-admin-panel/static/media/checkmark.68dbd1f09382f3e53c69.svg",
     "static/media/selectCloseIcon.svg": "/carsharing-app-admin-panel/static/media/selectCloseIcon.01609553fec431d0b9d6.svg",
+    "static/media/pointIcon.svg": "/carsharing-app-admin-panel/static/media/pointIcon.4fff5f9b13781981143bc54d9196cbf7.svg",
     "static/media/checkmarkBtn.svg": "/carsharing-app-admin-panel/static/media/checkmarkBtn.bc28cbc6a37768353813016993ca70f9.svg",
     "static/media/Dropdown.svg": "/carsharing-app-admin-panel/static/media/Dropdown.f0e6061911c7f7b7d84dc4f84e278219.svg",
-    "main.1f665985.css.map": "/carsharing-app-admin-panel/static/css/main.1f665985.css.map",
-    "main.25ac7166.js.map": "/carsharing-app-admin-panel/static/js/main.25ac7166.js.map"
+    "main.d413349d.css.map": "/carsharing-app-admin-panel/static/css/main.d413349d.css.map",
+    "main.5301e7d8.js.map": "/carsharing-app-admin-panel/static/js/main.5301e7d8.js.map"
   },
   "entrypoints": [
-    "static/css/main.1f665985.css",
-    "static/js/main.25ac7166.js"
+    "static/css/main.d413349d.css",
+    "static/js/main.5301e7d8.js"
   ]
 }
