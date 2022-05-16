@@ -32,13 +32,15 @@ export function orderMappedData(data :IOrderDataInfo | null): OrderTableMappedDa
         return data.data.map(item => {
             return {
               image: (
-                <img
+                <div className={styles.mappedData__carImage_wrapper}>
+                 <img
                   className={styles.mappedData__carImage}
                   src={
                     item?.carId?.thumbnail.path ? item?.carId?.thumbnail.path : CarPlaceholder
                   }
                   alt={item?.carId?.name}
-                />
+                /> 
+                </div>
               ),
               info: (
                 <div>

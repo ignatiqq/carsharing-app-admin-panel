@@ -24,6 +24,14 @@
 
     &__carImage {
         max-width: 140px;
+
+        &_wrapper {
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     &__date {

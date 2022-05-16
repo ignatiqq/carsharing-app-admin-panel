@@ -62,9 +62,13 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
                 return {
                     photo: item.thumbnail.path 
                     ? 
-                        <img className={styles.tableData__image} src={item.thumbnail.path} alt={item.name} /> 
+                        <div className={styles.tableData__image_wrapper}>
+                            <img className={styles.tableData__image} src={item.thumbnail.path} alt={item.name} /> 
+                        </div>
                     : 
-                        <img className={styles.tableData__image} src={CarPlaceholder} alt={item.name} />
+                        <div className={styles.tableData__image_wrapper}>
+                            <img className={styles.tableData__image} src={CarPlaceholder} alt={item.name} />
+                        </div>
                     ,
                     number: 
                         <span className={styles.tableData__number}>
