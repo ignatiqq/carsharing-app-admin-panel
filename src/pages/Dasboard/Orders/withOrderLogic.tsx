@@ -16,7 +16,7 @@ import type { IPagination } from 'types/requests';
 import { getOrderData, setOrderPagination } from 'store/tableData/actions';
 import type { IOrderPageProps } from './Orders';
 import { IOrderTableFilters } from 'store/tableData/types';
-import { head, orderMappedData } from './TableData';
+import { orderMappedData } from './TableData';
 
 export type OrderTableMappedData = Array<IOrderTableMappedItem> | null;
 
@@ -123,7 +123,6 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
            cities={cities}
            filters={preparedFilters}
            count={orders?.data && orders.data?.count}
-           head={head}
            isLoading={orders.isLoading}
            error={orders.error}
        />

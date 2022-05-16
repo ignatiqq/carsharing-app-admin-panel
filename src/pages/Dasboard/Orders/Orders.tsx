@@ -30,7 +30,6 @@ export interface IOrderPageProps {
   setPagination: (pagination: IPagination) => void,
   data: OrderTableMappedData,
   count: number | null,
-  head: ITableHead,
   isLoading: boolean,
   error: string | null
 }
@@ -48,7 +47,6 @@ const Orders: React.FC<IOrderPageProps> = ({
   data,
   count,
   setPagination,
-  head,
   isLoading,
   error
 }) => {
@@ -115,7 +113,7 @@ const Orders: React.FC<IOrderPageProps> = ({
             isLoading={isLoading}
             error={error}
             customHead={OrdersTableHeader}
-            head={head}
+            // head={head}
             className={styles.orderTable}
         />
         {Pagintation}
