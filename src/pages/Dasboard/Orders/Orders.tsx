@@ -1,14 +1,17 @@
 import { memo } from 'react';
+
 import { 
   Select, 
   Table, 
-  OrderCarComponent, 
+  Paginator, 
   SelectWrapper
 } from 'components';
 import type { IAllCars, IAllCities, IAllPoints, ICurrentCity, ICurrentPoint } from 'store/filtersData/types';
 import type { ICarData } from 'store/filtersData/types';
-import type { IOrderTableData, IOrderTableFilters } from 'store/tableData/types';
+import type { IOrderTableFilters } from 'store/tableData/types';
 import type { IPagination } from 'types/requests';
+import type { OrderTableMappedData } from '../Orders/withOrderLogic';
+import { ITableHead } from 'components/Table/Table';
 import { getSelectedDataById } from 'utils/DataMapHelper';
 import { selectDataHolder } from '../Dashboard';
 import styles from "./Orders.module.scss";
@@ -25,7 +28,11 @@ export interface IOrderPageProps {
   cities: IAllCities,
   pagination: IPagination,
   setPagination: (pagination: IPagination) => void,
-  orders: IOrderTableData
+  data: OrderTableMappedData,
+  count: number | null,
+  head: ITableHead,
+  isLoading: boolean,
+  error: string | null
 }
 
 const Orders: React.FC<IOrderPageProps> = ({
@@ -38,8 +45,12 @@ const Orders: React.FC<IOrderPageProps> = ({
   cars,
   setCarsSelected,
   pagination,
-  orders,
-  setPagination
+  data,
+  count,
+  setPagination,
+  head,
+  isLoading,
+  error
 }) => {
 
     const OrdersTableHeader = (
@@ -78,15 +89,36 @@ const Orders: React.FC<IOrderPageProps> = ({
           </div>
       </SelectWrapper>
     );
+
+    const Pagintation = (
+      <div className={styles.pagination}>
+        {
+          data &&
+          pagination &&
+          count &&
+          setPagination && (
+            <Paginator
+              page={pagination.page}
+              limit={pagination.limit}
+              count={count}
+              setPagination={setPagination}
+            />
+          )
+        }
+      </div>
+  );
     
     return (
       <>
         <Table 
-            data={orders?.data?.data} 
-            isLoading={orders.isLoading}
-            error={orders.error}
+            data={data} 
+            isLoading={isLoading}
+            error={error}
             customHead={OrdersTableHeader}
+            head={head}
+            className={styles.orderTable}
         />
+        {Pagintation}
       </>
     )
 }

@@ -18,7 +18,7 @@ interface ICarTableMappedItem {
     description: React.ReactElement
 }
 
-const сarModelsHeaders = [
+const head = [
     {
         name: "Фотография"
     },
@@ -90,7 +90,7 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
             pagination={carsData.pagination}
             setPagination={setPagination}
             count={cars?.count}
-            head={сarModelsHeaders}
+            head={head}
         />
     )
 }

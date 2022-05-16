@@ -1,17 +1,20 @@
 import React from 'react'
 
-import type { ICurrentPoint } from 'store/filtersData/types';
 import type { IPagination } from 'types/requests';
+import type { PointsTableMappedData } from './withPointsTableLogic';
 import withPointsTableLogic from './withPointsTableLogic';
-import { Table } from 'components';
+import { Table, Paginator, Loader } from 'components';
+import { ITableHead } from 'components/Table/Table';
+import styles from "./PointsTable.module.scss";
 
 export interface IPointsTable {
   isLoading: boolean,
   error: string | null,
-  data: Array<ICurrentPoint> | null,
+  data: PointsTableMappedData,
   pagination?: IPagination,
   setPagination?: (data: IPagination) => void
-  count: number | null
+  count: number | null,
+  head: ITableHead
 }
 
 const PointsTable: React.FC<IPointsTable> = ({
@@ -20,15 +23,49 @@ const PointsTable: React.FC<IPointsTable> = ({
   data,
   pagination,
   setPagination,
-  count
+  count,
+  head
 }) => {
+
+  const customHead = (
+    <div className={styles.customHead}>
+      <div>Список адресов</div>
+      <div className={styles.customHead__countWrapper}>
+        <span>Всего: </span> {count ? count : <Loader />}
+      </div>
+    </div>
+  );
+
+  const Pagintation = (
+    <div className={styles.pagination}>
+      {
+        data &&
+        pagination &&
+        count &&
+        setPagination && (
+          <Paginator
+            page={pagination.page}
+            limit={pagination.limit}
+            count={count}
+            setPagination={setPagination}
+          />
+        )
+      }
+    </div>
+);
+
   return (
-    <Table
-      data={data}
-      error={error}
-      isLoading={isLoading}
-    />
-  )
+    <>
+      <Table
+        data={data}
+        error={error}
+        isLoading={isLoading}
+        head={head}
+        customHead={customHead}
+      />
+      {Pagintation}
+    </>
+  );
 }
 
 export default withPointsTableLogic(PointsTable);

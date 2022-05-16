@@ -12,7 +12,7 @@ interface ICitiesTableMappedItem {
     name: React.ReactElement
 }
 
-const сarModelsHeaders = [
+const head = [
   {
       name: "Город"
   }
@@ -55,7 +55,7 @@ const withCitiesLogic = (Component: React.FC<ICitiesTable>) => () =>{
         pagination={citiesData.pagination}
         setPagination={setPagination}
         count={citiesData?.data && citiesData.data.count}
-        head={сarModelsHeaders}
+        head={head}
       />
     )
 }

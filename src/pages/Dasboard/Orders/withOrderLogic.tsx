@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'store';
 import { 
@@ -16,6 +16,13 @@ import type { IPagination } from 'types/requests';
 import { getOrderData, setOrderPagination } from 'store/tableData/actions';
 import type { IOrderPageProps } from './Orders';
 import { IOrderTableFilters } from 'store/tableData/types';
+import { head, orderMappedData } from './TableData';
+
+export type OrderTableMappedData = Array<IOrderTableMappedItem> | null;
+
+interface IOrderTableMappedItem {
+    image: React.ReactElement
+}
 
 const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
     const [preparedFilters, setPreparedFilters] = useState<IOrderTableFilters>({
@@ -100,6 +107,8 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
       dispatch(setOrderPagination(pagination));
     }, [dispatch])
 
+    const mappedData: OrderTableMappedData = useMemo(() => orderMappedData(orders.data), [orders.data])
+
     return (
        <Component
            applyOrderFilters={applyOrderFilters}
@@ -108,11 +117,15 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
            setCitiesSelected={setCitiesSelected}
            pagination={pagination}
            setPagination={setPagination}
-           orders={orders}
+           data={mappedData}
            points={points}
            cars={cars}
            cities={cities}
            filters={preparedFilters}
+           count={orders?.data && orders.data?.count}
+           head={head}
+           isLoading={orders.isLoading}
+           error={orders.error}
        />
     )
 }

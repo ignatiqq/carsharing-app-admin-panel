@@ -72,3 +72,13 @@
     max-height: 350px;
     overflow: auto;
 }
+
+.additionally {
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

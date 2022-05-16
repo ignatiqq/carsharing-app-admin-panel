@@ -39,10 +39,10 @@ const CitiesTable: React.FC<ICitiesTable> = ({
   const Pagintation = (
     <div className={styles.pagination}>
       {
+        data &&
         pagination &&
         count &&
-        setPagination &&
-        data && (
+        setPagination && (
           <Paginator
             page={pagination.page}
             limit={pagination.limit}
@@ -52,7 +52,7 @@ const CitiesTable: React.FC<ICitiesTable> = ({
         )
       }
     </div>
-);
+  );
 
   return (
     <>

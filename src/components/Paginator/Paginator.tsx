@@ -14,7 +14,14 @@ interface IPaginator {
     setPagination: (data: IPagination) => void
 }
 
-const Paginator: React.FC<IPaginator> = React.memo(({count, limit, page, pageRange, position = "center", setPagination }) => {
+const Paginator: React.FC<IPaginator> = React.memo(({
+  count,
+  limit, 
+  page,
+  pageRange, 
+  position = "center", 
+  setPagination 
+}) => {
     const [paginationPages] = usePagination(count, limit, page, pageRange);
     
     const paginateHandler = (page: number | string) => {
