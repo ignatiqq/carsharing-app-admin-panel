@@ -94,14 +94,21 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
 
   
     const applyOrderFilters = useCallback(() => {
-        if(preparedFilters.carId) {
-            dispatch(setOrderCarFilter(preparedFilters.carId));
-        } else if(preparedFilters.cityId) {
-            dispatch(setOrderCityFilter(preparedFilters.cityId));
-        } else if(preparedFilters.pointId) {
-            dispatch(setOrderPointFilter(preparedFilters.pointId));
-        }
-    }, [preparedFilters, dispatch]);
+        dispatch(setOrderCarFilter(preparedFilters.carId));
+        dispatch(setOrderCityFilter(preparedFilters.cityId));
+        dispatch(setOrderPointFilter(preparedFilters.pointId));
+    }, [preparedFilters, dispatch])
+
+    const resetOrderFilters = useCallback(() => {
+        setPreparedFilters({
+            pointId:  "",
+            cityId: "",
+            carId: ""
+        })
+        dispatch(setOrderCarFilter(""));
+        dispatch(setOrderCityFilter(""));
+        dispatch(setOrderPointFilter(""));
+    }, [dispatch])
 
     const setPagination = useCallback((pagination: IPagination) => {
       dispatch(setOrderPagination(pagination));
@@ -112,6 +119,7 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
     return (
        <Component
            applyOrderFilters={applyOrderFilters}
+           resetOrderFilters={resetOrderFilters}
            setPointsSelected={setPointsSelected}
            setCarsSelected={setCarsSelected}
            setCitiesSelected={setCitiesSelected}

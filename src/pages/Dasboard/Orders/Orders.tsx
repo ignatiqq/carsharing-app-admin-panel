@@ -11,7 +11,6 @@ import type { ICarData } from 'store/filtersData/types';
 import type { IOrderTableFilters } from 'store/tableData/types';
 import type { IPagination } from 'types/requests';
 import type { OrderTableMappedData } from '../Orders/withOrderLogic';
-import { ITableHead } from 'components/Table/Table';
 import { getSelectedDataById } from 'utils/DataMapHelper';
 import { selectDataHolder } from '../Dashboard';
 import styles from "./Orders.module.scss";
@@ -20,6 +19,7 @@ import withOrderLogic from './withOrderLogic';
 export interface IOrderPageProps {
   filters: IOrderTableFilters,
   applyOrderFilters: (data: any) => void,
+  resetOrderFilters: () => void
   setPointsSelected: (data: ICurrentPoint) => void,
   points: IAllPoints,
   setCarsSelected: (data: ICarData) => void,
@@ -37,6 +37,7 @@ export interface IOrderPageProps {
 const Orders: React.FC<IOrderPageProps> = ({
   filters,
   applyOrderFilters,
+  resetOrderFilters,
   points,
   setPointsSelected,
   cities,
@@ -53,6 +54,7 @@ const Orders: React.FC<IOrderPageProps> = ({
 
     const OrdersTableHeader = (
         <SelectWrapper
+          onReset={resetOrderFilters}
           onApply={applyOrderFilters}
           wrapperClassname={styles.filters}
         >
@@ -113,7 +115,6 @@ const Orders: React.FC<IOrderPageProps> = ({
             isLoading={isLoading}
             error={error}
             customHead={OrdersTableHeader}
-            // head={head}
             className={styles.orderTable}
         />
         {Pagintation}
