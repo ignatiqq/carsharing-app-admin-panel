@@ -96,7 +96,7 @@ const Orders: React.FC<IOrderPageProps> = ({
           data &&
           pagination &&
           count &&
-          setPagination && (
+          setPagination ? (
             <Paginator
               page={pagination.page}
               limit={pagination.limit}
@@ -104,6 +104,8 @@ const Orders: React.FC<IOrderPageProps> = ({
               setPagination={setPagination}
             />
           )
+          :
+          null
         }
       </div>
   );

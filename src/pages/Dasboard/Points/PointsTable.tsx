@@ -42,7 +42,7 @@ const PointsTable: React.FC<IPointsTable> = ({
         data &&
         pagination &&
         count &&
-        setPagination && (
+        setPagination ? (
           <Paginator
             page={pagination.page}
             limit={pagination.limit}
@@ -50,6 +50,8 @@ const PointsTable: React.FC<IPointsTable> = ({
             setPagination={setPagination}
           />
         )
+        :
+        null
       }
     </div>
 );

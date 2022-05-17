@@ -43,7 +43,7 @@ const CarModels: React.FC<ICars> = ({
           data &&
           pagination &&
           count &&
-          setPagination && (
+          setPagination ? (
             <Paginator
               page={pagination.page}
               limit={pagination.limit}
@@ -51,6 +51,8 @@ const CarModels: React.FC<ICars> = ({
               setPagination={setPagination}
             />
           )
+          :
+          null
         }
       </div>
   );

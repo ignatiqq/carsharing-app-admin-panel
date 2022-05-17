@@ -42,7 +42,7 @@ const RateTypesTable: React.FC<IRateTypesTable> = ({
         data &&
         pagination &&
         count &&
-        setPagination && (
+        setPagination ? (
           <Paginator
             page={pagination.page}
             limit={pagination.limit}
@@ -50,6 +50,8 @@ const RateTypesTable: React.FC<IRateTypesTable> = ({
             setPagination={setPagination}
           />
         )
+        :
+        null
       }
     </div>
   );

@@ -42,7 +42,7 @@ const CitiesTable: React.FC<ICitiesTable> = ({
         data &&
         pagination &&
         count &&
-        setPagination && (
+        setPagination ? (
           <Paginator
             page={pagination.page}
             limit={pagination.limit}
@@ -50,6 +50,8 @@ const CitiesTable: React.FC<ICitiesTable> = ({
             setPagination={setPagination}
           />
         )
+        :
+        null
       }
     </div>
   );
