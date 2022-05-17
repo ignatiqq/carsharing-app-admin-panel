@@ -44,8 +44,8 @@ const withRateTypesLogic = (Component: React.FC<IRateTypesTable>) => () => {
         if(rateTypesData?.data) {
             return rateTypesData.data.data.map(item => {
                 return {
-                    name: <div className={styles.customTableCell}>{item?.name ? item.name : "Название"}</div>,
-                    unit: <div className={styles.customTableCell}>{item?.unit ? item.unit : "Длительность"}</div>
+                    name: <div className={styles.customTableCell}>{item?.name ? item.name : "Название не указано"}</div>,
+                    unit: <div className={styles.customTableCell}>{item?.unit ? item.unit : "Длительность не указана"}</div>
                 }
             })
         }

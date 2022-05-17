@@ -42,9 +42,9 @@ const withPointsTableLogic = (Component: React.FC<IPointsTable>) => () => {
         if(pointsData?.data) {
             return pointsData.data.data.map(item => {
                 return {
-                    city: item?.cityId ? item.cityId.name : "Город",
-                    address: item.address ? item.address : "Адрес",
-                    name: item.name ? item.name: "Место",
+                    city: item?.cityId ? item.cityId.name : "Город не указан",
+                    address: item.address ? item.address : "Адрес не указан",
+                    name: item.name ? item.name: "Место не указан",
                 }
             })
         }

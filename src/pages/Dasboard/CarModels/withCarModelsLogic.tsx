@@ -72,13 +72,13 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
                     ,
                     number: 
                         <span className={styles.tableData__number}>
-                            { item.number ? carNumberFormatter(item.number) : "Номер"}
+                            { item.number ? carNumberFormatter(item.number) : "Номер не указан"}
                         </span>,
-                    category: item?.categoryId ? item.categoryId.name : "Категория",
+                    category: item?.categoryId ? item.categoryId.name : "Категория не указана",
                     price: `${item.priceMin}₽ - ${item.priceMax}₽`,
                     description: 
                     <div className={styles.tableData__description}>
-                        {item.description ? item.description : "Описание"}
+                        {item.description ? item.description : "Описание не указано"}
                     </div>
                 }
             })

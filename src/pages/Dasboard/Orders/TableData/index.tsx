@@ -46,15 +46,15 @@ export function orderMappedData(data :IOrderDataInfo | null): OrderTableMappedDa
                 <div>
                   <div>
                     <span className={styles.bold}>
-                      {item?.carId?.name ? item.carId.name : 'Авто'}
+                      {item?.carId?.name ? item.carId.name : 'Авто не указан'}
                     </span>{' '}
                     <span className={classNames(styles.light, styles.mappedData_gray)}>в </span>
                     <span className={styles.bold}>
-                      {item.cityId?.name ? item.cityId?.name : ' Город'}
+                      {item.cityId?.name ? item.cityId?.name : ' Город не указан'}
                     </span>
                     <span className={styles.light}>, </span>
                     <span className={styles.mappedData_gray}>
-                      {item.pointId?.name ? item.pointId.name : 'Место'}
+                      {item.pointId?.name ? item.pointId.name : 'Место не указан'}
                     </span>
                   </div>
                   {item.dateFrom && item.dateTo && (
