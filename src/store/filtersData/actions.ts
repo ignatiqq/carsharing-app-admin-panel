@@ -1,6 +1,7 @@
 import { createAction } from "@reduxjs/toolkit";
 
 import type { 
+    ICarCategoriesData,
     ICarData,
     ICurrentCity,
     ICurrentPoint,
@@ -20,6 +21,9 @@ import {
     GET_POINTS_DATA,
     GET_CARS_DATA,
     GET_FILTERS_DATA,
+    SET_CAR_CATEGORIES_DATA,
+    SET_CAR_CATEGORIES_REQUEST_LOADING,
+    SET_CAR_CATEGORIES_REQUEST_ERROR
 } from "./constants";
 import { IQueryFilter } from "store/tableData/types";
 
@@ -39,3 +43,7 @@ export const getCarsData = createAction<IQueryFilter>(GET_CARS_DATA);
 export const setCarsData = createAction<Array<ICarData>>(SET_CARS_DATA);
 export const setCarsRequestLoading = createAction<boolean>(SET_CARS_REQUEST_LOADING);
 export const setCarsRequestError = createAction<string>(SET_CARS_REQUEST_ERROR);
+
+export const setCarCategoriesData = createAction<Array<ICarCategoriesData>>(SET_CAR_CATEGORIES_DATA);
+export const setCarCategoriesRequestLoading = createAction<boolean>(SET_CAR_CATEGORIES_REQUEST_LOADING);
+export const setCarCategoriesRequestError = createAction<string>(SET_CAR_CATEGORIES_REQUEST_ERROR);

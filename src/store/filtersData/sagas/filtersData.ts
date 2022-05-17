@@ -5,6 +5,9 @@ import errorKeys from "constants/errorKeys";
 import filterData from "api/routes/filterData";
 import { 
     getFiltersData, 
+    setCarCategoriesData, 
+    setCarCategoriesRequestError, 
+    setCarCategoriesRequestLoading, 
     setCarsData, 
     setCarsRequestError, 
     setCarsRequestLoading,
@@ -15,6 +18,26 @@ import {
     setPointsRequestError,
     setPointsRequestLoading
 } from "../actions";
+
+function* getCarCategoriesHandler() {
+    try {
+
+        yield put(setCarCategoriesRequestLoading(true));
+
+        const response: AxiosResponse = yield call(filterData.getCarCategories);
+
+        if(response?.status < 300) {
+            yield put(setCarCategoriesData(response.data.data))
+        } else {
+            throw new Error(errorKeys.requestError);
+        }
+    
+    } catch (error: any) {
+        yield put(setCarCategoriesRequestError(error.message));
+    } finally {
+        yield put(setCarCategoriesRequestLoading(false));
+    }
+}
 
 function* getCarsDataHandler() {
     try {
@@ -79,7 +102,8 @@ function* getFiltersDataHandler() {
         yield all([
             call(getCarsDataHandler),
             call(getCitiesDataHandler),
-            call(getPointsDataHandler)
+            call(getPointsDataHandler),
+            call(getCarCategoriesHandler)
         ])
 
     } catch (error) {

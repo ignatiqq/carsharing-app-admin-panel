@@ -61,8 +61,24 @@ export interface ICarData {
     updatedAt: number
 }
 
+export interface ICarCategoriesData {
+    updatedAt: number,
+    createdAt: number,
+    name: string,
+    description: string,
+    id: string
+}
+
+export interface IAllCarCategories {
+    data: Array<ICarCategoriesData> | null,
+    count: number | null,
+    isLoading: boolean,
+    error: string | null
+}
+
 export interface IFiltersData {
     city: IAllCities,
     point: IAllPoints,
     car: IAllCars,
+    carCategories: IAllCarCategories
 }

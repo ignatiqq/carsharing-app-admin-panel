@@ -54,7 +54,7 @@ export function orderMappedData(data :IOrderDataInfo | null): OrderTableMappedDa
                     </span>
                     <span className={styles.light}>, </span>
                     <span className={styles.mappedData_gray}>
-                      {item.pointId?.name ? item.pointId.name : 'Место не указан'}
+                      {item.pointId?.name ? item.pointId.name : 'Место не указано'}
                     </span>
                   </div>
                   {item.dateFrom && item.dateTo && (

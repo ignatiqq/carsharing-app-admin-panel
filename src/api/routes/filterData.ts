@@ -9,6 +9,9 @@ const filterData = {
     },
     getCars: () => {
         return getRequest(`/db/car`);
+    },
+    getCarCategories: () => {
+        return getRequest(`/db/category`);
     }
 }   
 

@@ -19,8 +19,6 @@ function* getTablePointsDataHandler(action: AnyAction) {
         
         const response: AxiosResponse<IPointDataInfo> = yield call(tableData.points, action.payload)
 
-        console.log(response)
-
         if (response?.status < 300) {
             yield put(setTablePointsData({
                 data: response.data.data, 
