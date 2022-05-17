@@ -6,7 +6,26 @@ export interface ITableData {
     order: IOrderTableData,
     cars: ICarsTableData,
     cities: ICityTableData,
-    points: IPointTableData
+    points: IPointTableData,
+    rateTypes: IRateTypeTableData
+}
+
+export interface IRateTypeTableData {
+    data: IRateTypeDataInfo | null,
+    pagination: IPagination,
+    isLoading: boolean,
+    error: string | null
+}
+
+export interface IRateTypeDataInfo {
+    data: Array<IRateTypeInfoItem>,
+    count: number
+}
+
+interface IRateTypeInfoItem {
+    name: string,
+    unit: string,
+    id: string
 }
 
 export interface IPointTableData {

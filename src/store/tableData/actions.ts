@@ -20,10 +20,15 @@ import {
     SET_TABLE_POINT_DATA_LOADING,
     SET_TABLE_POINT_REQUEST_ERROR,
     SET_TABLE_POINT_PAGINATION,
-    GET_TABLE_POINT_DATA
+    GET_TABLE_POINT_DATA,
+    SET_TABLE_RATETYPES_DATA,
+    SET_TABLE_RATETYPES_DATA_LOADING,
+    SET_TABLE_RATETYPES_REQUEST_ERROR,
+    SET_TABLE_RATETYPES_PAGINATION,
+    GET_TABLE_RATETYPES_DATA
 } from "./constants";
 import type { IPagination } from "types/requests";
-import type { ICityDataInfo, IOrderDataInfo, IPointDataInfo, IQueryFilter } from "./types";
+import type { ICityDataInfo, IOrderDataInfo, IPointDataInfo, IQueryFilter, IRateTypeDataInfo } from "./types";
 import { ICarData } from "store/filtersData/types";
 
 
@@ -51,3 +56,9 @@ export const setTablePointsDataLoading = createAction<boolean>(SET_TABLE_POINT_D
 export const setTablePointsRequestError = createAction<string>(SET_TABLE_POINT_REQUEST_ERROR);
 export const setTablePointsPagination = createAction<IPagination>(SET_TABLE_POINT_PAGINATION);
 export const getTablePointsData = createAction(GET_TABLE_POINT_DATA);
+
+export const setTableRateTypesData = createAction<IRateTypeDataInfo>(SET_TABLE_RATETYPES_DATA);
+export const setTableRateTypesDataLoading = createAction<boolean>(SET_TABLE_RATETYPES_DATA_LOADING);
+export const setTableRateTypesRequestError = createAction<string>(SET_TABLE_RATETYPES_REQUEST_ERROR);
+export const setTableRateTypesPagination = createAction<IPagination>(SET_TABLE_RATETYPES_PAGINATION);
+export const getTableRateTypesData = createAction<IPagination>(GET_TABLE_RATETYPES_DATA);

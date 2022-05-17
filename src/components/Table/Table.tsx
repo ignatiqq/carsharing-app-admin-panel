@@ -39,7 +39,7 @@ const Table: React.FC<ITable> = ({
             <Loader />
           </div>
         ) : error ? (
-          <div className={classNames(styles.talbe__wrapper_error, 'error-text')}>{error}</div>
+          <div className={classNames(styles.table__wrapper_error, 'error-text')}>{error}</div>
         ) : data && data?.length <= 0 ? (
           <div className={styles.table__wrapper_notfound}>
             <NothingFound />

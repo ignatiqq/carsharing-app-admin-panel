@@ -17,10 +17,14 @@ import {
     setTablePointsData,
     setTablePointsDataLoading,
     setTablePointsRequestError,
-    setTablePointsPagination
+    setTablePointsPagination,
+    setTableRateTypesData,
+    setTableRateTypesDataLoading,
+    setTableRateTypesRequestError,
+    setTableRateTypesPagination
 } from "./actions";
 import type { IPagination } from "types/requests";
-import type { ICityDataInfo, IOrderDataInfo, IPointDataInfo, ITableData } from "./types";
+import type { ICityDataInfo, IOrderDataInfo, IPointDataInfo, IRateTypeDataInfo, ITableData } from "./types";
 import { ICarData } from "store/filtersData/types";
 
 const initialState: ITableData = {
@@ -55,6 +59,15 @@ const initialState: ITableData = {
         error: null
     },
     points: {
+        data: null,
+        pagination: {
+            page: 1,
+            limit: 10
+        },
+        isLoading: false,
+        error: null
+    },
+    rateTypes: {
         data: null,
         pagination: {
             page: 1,
@@ -116,6 +129,8 @@ const tableData = createReducer(initialState, (builder) => {
             state.cities.pagination = action.payload
         })
 
+        // Points
+
         .addCase(setTablePointsData, (state, action: PayloadAction<IPointDataInfo>) => {
             state.points.data = action.payload
         })
@@ -127,6 +142,21 @@ const tableData = createReducer(initialState, (builder) => {
         })
         .addCase(setTablePointsPagination, (state, action: PayloadAction<IPagination>) => {
             state.points.pagination = action.payload
+        })
+
+        // rate
+
+        .addCase(setTableRateTypesData, (state, action: PayloadAction<IRateTypeDataInfo>) => {
+            state.rateTypes.data = action.payload
+        })
+        .addCase(setTableRateTypesDataLoading, (state, action: PayloadAction<boolean>) => {
+            state.rateTypes.isLoading = action.payload
+        })
+        .addCase(setTableRateTypesRequestError, (state, action: PayloadAction<string>) => {
+            state.rateTypes.error = action.payload
+        })
+        .addCase(setTableRateTypesPagination, (state, action: PayloadAction<IPagination>) => {
+            state.rateTypes.pagination = action.payload
         })
 })
 
