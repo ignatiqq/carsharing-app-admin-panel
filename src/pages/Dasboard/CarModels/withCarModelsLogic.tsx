@@ -1,12 +1,15 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import CarPlaceholder from "assets/images/CarPlaceholder.png";
 import { useAppSelector, useAppDispatch } from 'store';
 import type { IPagination } from 'types/requests';
 import type { ICars } from './CarModels';
-import { setTableCarsData, setTableCarsPagination } from "store/tableData/actions";
+import type { ICarTableFilters } from 'store/tableData/types';
+import { getTableCarsData, setTableCarsPagination, setTableCarsFilter } from "store/tableData/actions";
+import { getRequestGetParams } from 'utils/DataMapHelper';
 import { carNumberFormatter } from 'utils/carNumber';
 import styles from "./CarModels.module.scss";
+import { ICarData } from 'store/filtersData/types';
 
 export type CarsTableMappedData = Array<ICarTableMappedItem> | null;
 
@@ -37,28 +40,72 @@ const head = [
 ];
 
 const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
+    const [preparedFilters, setPreparedFilters] = useState<ICarTableFilters>({
+        categoryId:  ""
+    });
+
     const dispatch = useAppDispatch();
 
-    const { cars, carsData } = useAppSelector(({filtersData, tableData}) => ({
-        cars: filtersData.car,
+
+    const { carsData } = useAppSelector(({tableData}) => ({
         carsData: tableData.cars
     }))
 
     useEffect(() => {
-        if(cars && cars.data) {
-            dispatch(setTableCarsData(cars.data.slice(
-                (carsData.pagination.page - 1) * carsData.pagination.limit, carsData.pagination.page * carsData.pagination.limit)
-            ));
+        if(carsData.pagination.page && carsData.pagination.limit) {
+            const params = getRequestGetParams(carsData.filters);
+
+            dispatch(getTableCarsData({
+                page: carsData.pagination.page, 
+                limit: carsData.pagination.limit,
+                ...params
+            }));
         }
-    }, [cars, carsData.pagination, dispatch])
+    }, [carsData.pagination, dispatch])
+
+    // ///////////////////////////////////////////////////
+
+     useEffect(() => {
+        if(carsData.filters) {
+            const filterValues: ICarTableFilters = {categoryId:  ""};
+
+            Object.entries(carsData.filters).forEach(([key, value]) => {
+                filterValues[key as keyof ICarTableFilters] = value
+            })
+            setPreparedFilters(filterValues);
+        }
+     }, [carsData.filters])
+
+
+    const setCarCategorySelected = useCallback((data: ICarData) => {
+        setPreparedFilters((prev) => {
+            return {
+                ...prev,
+                categoryId: data.id
+            }
+        })
+    }, [])
+  
+    const applyCarsFilters = useCallback(() => {
+        dispatch(setTableCarsFilter(preparedFilters.categoryId));
+    }, [preparedFilters, dispatch])
+
+    const resetOrderFilters = useCallback(() => {
+        setPreparedFilters({
+            categoryId: ""
+        })
+        dispatch(setTableCarsFilter(""));
+    }, [dispatch])
+
+    // ///////////////////////////////////////////////////
 
     const setPagination = useCallback((data: IPagination) => {
         dispatch(setTableCarsPagination(data));
     }, [])
 
     const mappedData: CarsTableMappedData = useMemo(() => {
-        if(carsData.data) {
-            return carsData.data.map(item => {
+        if(carsData && carsData.data) {
+            return carsData.data.data.map(item => {
                 return {
                     photo: item.thumbnail.path 
                     ? 
@@ -88,12 +135,12 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
 
     return (
         <Component
-            isLoading={cars.isLoading}
-            error={cars.error}
+            isLoading={carsData.isLoading}
+            error={carsData.error}
             data={mappedData}
             pagination={carsData.pagination}
             setPagination={setPagination}
-            count={cars?.count}
+            count={carsData?.data && carsData.data.count}
             head={head}
         />
     )

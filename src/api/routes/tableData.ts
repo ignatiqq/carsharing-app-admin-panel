@@ -31,6 +31,12 @@ const tableData = {
         const getParams = params ? paramsToString(params) : "";
 
         return getRequest(`/db/rateType?${getParams}`)
+    },
+
+    cars: (params: IQueryFilter) => {
+        const getParams = params ? paramsToString(params) : "";
+        
+        return getRequest(`/db/car?${getParams}`)
     }
 
 }

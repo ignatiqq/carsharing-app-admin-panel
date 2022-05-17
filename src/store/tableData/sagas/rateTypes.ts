@@ -31,7 +31,7 @@ function* getTableRateTypesDataHandler(action: AnyAction) {
         }
 
     } catch (error: any) {
-        yield put(setTableRateTypesRequestError(error.message));
+        yield put(setTableRateTypesRequestError(`Произошла ошибка про получении данных о тарифах ${error.message}`));
     } finally {
         yield put(setTableRateTypesDataLoading(false));
     }

@@ -8,8 +8,6 @@ import {
     setOrderCityFilter,
     setOrderCarFilter,
     setOrderPointFilter,
-    setTableCarsData,
-    setTableCarsPagination,
     setTableCitiesData,
     setTableCitiesDataLoading,
     setTableCitiesRequestError,
@@ -21,11 +19,22 @@ import {
     setTableRateTypesData,
     setTableRateTypesDataLoading,
     setTableRateTypesRequestError,
-    setTableRateTypesPagination
+    setTableRateTypesPagination,
+    setTableCarsData,
+    setTableCarsPagination,
+    setTableCarsDataLoading,
+    setTableCarsRequestError,
+    setTableCarsFilter
 } from "./actions";
 import type { IPagination } from "types/requests";
-import type { ICityDataInfo, IOrderDataInfo, IPointDataInfo, IRateTypeDataInfo, ITableData } from "./types";
-import { ICarData } from "store/filtersData/types";
+import type { 
+    ICityDataInfo, 
+    IOrderDataInfo, 
+    IPointDataInfo, 
+    IRateTypeDataInfo, 
+    ITableData, 
+    ICarsDataInfo 
+} from "./types";
 
 const initialState: ITableData = {
     order: {
@@ -47,7 +56,12 @@ const initialState: ITableData = {
         pagination: {
             page: 1,
             limit: 3
-        }
+        },
+        filters: {
+            categoryId: ""
+        },
+        isLoading: false,
+        error: null
     },
     cities: {
         data: null,
@@ -107,11 +121,20 @@ const tableData = createReducer(initialState, (builder) => {
 
         // Cars
 
-        .addCase(setTableCarsData, (state, action: PayloadAction<Array<ICarData>>) => {
+        .addCase(setTableCarsData, (state, action: PayloadAction<ICarsDataInfo>) => {
             state.cars.data = action.payload;
+        })
+        .addCase(setTableCarsDataLoading, (state, action: PayloadAction<boolean>) => {
+            state.cars.isLoading = action.payload
+        })
+        .addCase(setTableCarsRequestError, (state, action: PayloadAction<string>) => {
+            state.cars.error = action.payload
         })
         .addCase(setTableCarsPagination, (state, action: PayloadAction<IPagination>) => {
             state.cars.pagination = action.payload
+        })
+        .addCase(setTableCarsFilter, (state, action: PayloadAction<string>) => {
+            state.cars.filters.categoryId = action.payload
         })
 
         // Cities

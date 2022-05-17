@@ -29,7 +29,7 @@ function* getTableCitiesDataHandler(action: AnyAction) {
         }
 
     } catch (error: any) {
-        yield put(setTableCitiesRequestError(error.message));
+        yield put(setTableCitiesRequestError(`Произошла ошибка про получении данных о городах ${error.message}`));
     } finally {
         yield put(setTableCitiesDataLoading(false));
     }

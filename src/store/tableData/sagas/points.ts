@@ -29,7 +29,7 @@ function* getTablePointsDataHandler(action: AnyAction) {
         }
 
     } catch (error: any) {
-        yield put(setTablePointsRequestError(error.message));
+        yield put(setTablePointsRequestError(`Произошла ошибка про получении данных о точках ${error.message}`));
     } finally {
         yield put(setTablePointsDataLoading(false));
     }

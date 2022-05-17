@@ -60,9 +60,21 @@ export interface IOrderTableData {
     error: string | null
 }
 
+export interface ICarsDataInfo {
+    data: Array<ICarData>,
+    count: number
+}
+
 export interface ICarsTableData {
-    data: Array<ICarData> | null,
-    pagination: IPagination
+    data: ICarsDataInfo | null,
+    pagination: IPagination,
+    filters: ICarTableFilters,
+    isLoading: boolean,
+    error: string | null
+}
+
+export interface ICarTableFilters {
+    categoryId: string
 }
 
 export interface IOrderData {

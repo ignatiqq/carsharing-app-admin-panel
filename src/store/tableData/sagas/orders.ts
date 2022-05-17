@@ -29,7 +29,7 @@ function* getOrdersHandler(action: AnyAction) {
         }
 
     } catch (error: any) {
-        yield put(setOrderDataError(error.message));
+        yield put(setOrderDataError(`Произошла ошибка про получении данных о заказах ${error.message}`));
     } finally {
         yield put(setOrderDataLoading(false));
     }
