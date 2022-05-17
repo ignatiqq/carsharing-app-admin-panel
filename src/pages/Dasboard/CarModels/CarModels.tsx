@@ -2,10 +2,14 @@ import React from 'react';
 
 import withCarModelsLogic from "./withCarModelsLogic";
 import { Table, Loader, Paginator, Select, SelectWrapper } from "components";
+import { selectDataHolder } from '../Dashboard';
+import { getSelectedDataById } from 'utils/DataMapHelper';
 import styles from "./CarModels.module.scss";
 import { IPagination } from 'types/requests';
 import type { ITableHead } from 'components/Table/Table';
 import type { CarsTableMappedData } from './withCarModelsLogic';
+import type { ICarsTableData, ICarTableFilters } from 'store/tableData/types';
+import { IAllCarCategories, ICarCategoriesData } from 'store/filtersData/types';
 
 export interface ICars {
   data: CarsTableMappedData | null,
@@ -14,7 +18,13 @@ export interface ICars {
   pagination: IPagination,
   setPagination: (data: IPagination) => void,
   count: number | null,
-  head: ITableHead
+  head: ITableHead,
+  filters: ICarTableFilters,
+  carsData: ICarsTableData,
+  carCategories: IAllCarCategories,
+  setCarCategorySelected: (data: ICarCategoriesData) => void,
+  applyCarsFilters: () => void,
+  resetCarsFilters: () => void
 }
 
 const CarModels: React.FC<ICars> = ({
@@ -24,53 +34,41 @@ const CarModels: React.FC<ICars> = ({
   pagination,
   setPagination,
   count,
-  head
+  head,
+  filters,
+  carsData,
+  carCategories,
+  setCarCategorySelected,
+  applyCarsFilters,
+  resetCarsFilters
 }) => {
 
-  // const CarModelsTableHeader =
-  //   (
-  //     <>
-  //       <div className={styles.CarModelTable__header}>
-  //         <div>Список моделей</div>
-  //         <div className={styles.CarModelTable__header__countWrapper}><span>Всего: </span> {count ? count : <Loader />}</div>
-  //       </div>
-  //       <SelectWrapper
-  //       onReset={resetOrderFilters}
-  //       onApply={applyOrderFilters}
-  //       wrapperClassname={styles.filters}
-  //     >
-  //     <div className={styles.filters__items}>
-  //         <Select
-  //           options={points.data}
-  //           selected={points.data && getSelectedDataById(points.data, filters.pointId)}
-  //           customLabel="name"
-  //           customValue="id"
-  //           clickHandler={setPointsSelected}
-  //           dataHolder={selectDataHolder(points)}
-  //           searchPlaceholder={"Точки"}
-  //         />
-  //         <Select
-  //           options={cities.data}
-  //           selected={cities.data && getSelectedDataById(cities.data, filters.cityId)}
-  //           customLabel="name"
-  //           customValue="id"
-  //           clickHandler={setCitiesSelected}
-  //           dataHolder={selectDataHolder(cities)}
-  //           searchPlaceholder={"Города"}
-  //         />
-  //         <Select
-  //           options={cars.data}
-  //           selected={cars.data && getSelectedDataById(cars.data, filters.carId)}
-  //           customLabel="name"
-  //           customValue="id"
-  //           clickHandler={setCarsSelected}
-  //           dataHolder={selectDataHolder(cars)}
-  //           searchPlaceholder={"Марки"}
-  //         />
-  //       </div>
-  //   </SelectWrapper>
-  //     </>
-  //   );
+    const CarModelsTableHeader = (
+      <>
+        <div className={styles.CarModelTable__header}>
+          <div>Список моделей</div>
+          <div className={styles.CarModelTable__header__countWrapper}>
+            <span>Всего: </span> {count ? count : <Loader />}
+          </div>
+        </div>
+        <SelectWrapper
+          onReset={resetCarsFilters}
+          onApply={applyCarsFilters}
+          wrapperClassname={styles.filters}>
+          <div className={styles.filters__items}>
+            <Select
+              options={carCategories.data}
+              selected={carCategories.data && getSelectedDataById(carCategories.data, filters.categoryId)}
+              customLabel="name"
+              customValue="id"
+              clickHandler={setCarCategorySelected}
+              dataHolder={selectDataHolder(carsData)}
+              searchPlaceholder={'Категория'}
+            />
+          </div>
+        </SelectWrapper>
+      </>
+    );
 
     const Pagintation = (
       <div className={styles.pagination}>
@@ -99,7 +97,7 @@ const CarModels: React.FC<ICars> = ({
         isLoading={isLoading}
         error={error}
         head={head}
-        // customHead={CarModelsTableHeader}
+        customHead={CarModelsTableHeader}
         className={styles.customTableStyles}
       />
       {Pagintation}

@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import { Button } from "components";
 import styles from "./SelectWrapper.module.scss";
@@ -17,7 +18,7 @@ const SelectWrapper: React.FC<ISelectWrapper> = ({
     wrapperClassname
 }) => {
   return (
-      <div className={wrapperClassname}>
+      <div className={classNames(styles.wrapper, wrapperClassname)}>
         {children}
         <div className={styles.buttonsWrapper}>
           <Button 

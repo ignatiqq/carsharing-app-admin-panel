@@ -22,7 +22,7 @@
         border: 1px solid transparent;
         cursor: pointer;
 
-        @media(max-width: 740px) {
+        @media(max-width: 900px) {
             display: block;
         }
     }
@@ -114,7 +114,7 @@
         }
     }
 
-    @media(min-width: 740px) {
+    @media(min-width: 900px) {
         max-width: 285px;
         width: 100%;
     }

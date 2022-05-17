@@ -9,7 +9,7 @@ import { getTableCarsData, setTableCarsPagination, setTableCarsFilter } from "st
 import { getRequestGetParams } from 'utils/DataMapHelper';
 import { carNumberFormatter } from 'utils/carNumber';
 import styles from "./CarModels.module.scss";
-import { ICarData } from 'store/filtersData/types';
+import { ICarCategoriesData } from 'store/filtersData/types';
 
 export type CarsTableMappedData = Array<ICarTableMappedItem> | null;
 
@@ -47,8 +47,9 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
     const dispatch = useAppDispatch();
 
 
-    const { carsData } = useAppSelector(({tableData}) => ({
-        carsData: tableData.cars
+    const { carsData, carCategories } = useAppSelector(({tableData, filtersData}) => ({
+        carsData: tableData.cars,
+        carCategories: filtersData.carCategories
     }))
 
     useEffect(() => {
@@ -60,10 +61,9 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
                 limit: carsData.pagination.limit,
                 ...params
             }));
+            
         }
-    }, [carsData.pagination, dispatch])
-
-    // ///////////////////////////////////////////////////
+    }, [carsData.pagination, carsData.filters, dispatch])
 
      useEffect(() => {
         if(carsData.filters) {
@@ -77,7 +77,7 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
      }, [carsData.filters])
 
 
-    const setCarCategorySelected = useCallback((data: ICarData) => {
+    const setCarCategorySelected = useCallback((data: ICarCategoriesData) => {
         setPreparedFilters((prev) => {
             return {
                 ...prev,
@@ -90,18 +90,16 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
         dispatch(setTableCarsFilter(preparedFilters.categoryId));
     }, [preparedFilters, dispatch])
 
-    const resetOrderFilters = useCallback(() => {
+    const resetCarsFilters = useCallback(() => {
         setPreparedFilters({
             categoryId: ""
         })
         dispatch(setTableCarsFilter(""));
     }, [dispatch])
 
-    // ///////////////////////////////////////////////////
-
     const setPagination = useCallback((data: IPagination) => {
         dispatch(setTableCarsPagination(data));
-    }, [])
+    }, [dispatch])
 
     const mappedData: CarsTableMappedData = useMemo(() => {
         if(carsData && carsData.data) {
@@ -138,10 +136,16 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
             isLoading={carsData.isLoading}
             error={carsData.error}
             data={mappedData}
+            carsData={carsData}
+            carCategories={carCategories}
             pagination={carsData.pagination}
             setPagination={setPagination}
             count={carsData?.data && carsData.data.count}
             head={head}
+            filters={preparedFilters}
+            setCarCategorySelected={setCarCategorySelected}
+            applyCarsFilters={applyCarsFilters}
+            resetCarsFilters={resetCarsFilters}
         />
     )
 }

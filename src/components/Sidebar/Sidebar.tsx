@@ -24,14 +24,12 @@ const Sidebar: React.FC<ISidebar> = ({
       <aside className={classNames(styles.sidebar, {
         [styles.sidebar_opened]: sidebarExtended
       })}>
-        {
-          <button 
-            onClick={closeSidebarHanlder}
-            className={styles.sidebar__button_close}
-          >
-            <CloseIcon width="30px" stroke="#818ea3" fill="#818ea3" alt="open menu" />
-          </button>
-        }
+        <button 
+          onClick={closeSidebarHanlder}
+          className={styles.sidebar__button_close}
+        >
+          <CloseIcon width="30px" stroke="#818ea3" fill="#818ea3" alt="open menu" />
+        </button>
         <div className={styles.sidebar__logo__wrapper}>
           <Logo className={styles.sidebar__logo__item} />
         </div>
