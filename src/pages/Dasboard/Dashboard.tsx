@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import withDashboardLogic from './withDashboardLogic';
-import { Sidebar, Header, Loader } from 'components';
+import { Sidebar, Header, Loader, Footer } from 'components';
 import styles from "./Dashboard.module.scss";
 
 export function selectDataHolder<T>(data: {isLoading: boolean, error: string | null, data: T}) {
@@ -29,21 +29,24 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <div className={styles.dashboard}>
+    <main className={styles.dashboard}>
         <Sidebar
           closeSidebarHanlder={closeSidebarHanlder}
           sidebarExtended={sidebarExtended}
         />
-        <div className={styles.dashboard__contentWrapper}>
-          <Header
-            openSidebarHanlder={openSidebarHanlder}
-            sidebarExtended={sidebarExtended}
-          />
-          <div className={styles.dashboard__outlet}>
-            <Outlet />
+        <div className={styles.dashboard__wrapper}>
+          <div className={styles.dashboard__contentWrapper}>
+            <Header
+              openSidebarHanlder={openSidebarHanlder}
+              sidebarExtended={sidebarExtended}
+            />
+            <div className={styles.dashboard__outlet}>
+              <Outlet />
+            </div>
           </div>
-        </div>
-    </div>
+          <Footer />
+        </div>    
+    </main>
 
   )
 }

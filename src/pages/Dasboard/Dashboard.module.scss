@@ -8,6 +8,13 @@
         padding: 28px;
     }
 
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+    }
+
     &__contentWrapper {
         display: flex;
         flex-direction: column;

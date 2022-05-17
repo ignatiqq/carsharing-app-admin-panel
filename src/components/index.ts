@@ -15,3 +15,4 @@ export { default as Checkbox } from "./Dumb/Checkbox/Checkbox";
 export { default as Paginator } from "./Paginator/Paginator";
 export { default as NothingFound } from "./Phrases/NothingFound/NothingFound";
 export { default as SelectWrapper } from "./SelectWrapper/SelectWrapper";
+export { default as Footer } from "./Footer/Footer";
