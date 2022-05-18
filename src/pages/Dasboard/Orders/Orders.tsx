@@ -5,7 +5,6 @@ import {
   Table, 
   TablePagination, 
   SelectWrapper,
-  Button,
   TableHead
 } from 'components';
 import type { IAllCars, IAllCities, IAllPoints, ICurrentCity, ICurrentPoint } from 'store/filtersData/types';
@@ -55,7 +54,7 @@ const Orders: React.FC<IOrderPageProps> = ({
 }) => {
 
     const OrdersTableHeader = (
-    <TableHead dataLength={data && data?.length} count={count}>
+    <TableHead count={count}>
       <SelectWrapper
           onReset={resetOrderFilters}
           onApply={applyOrderFilters}
@@ -96,6 +95,7 @@ const Orders: React.FC<IOrderPageProps> = ({
 const Pagintation = (
   <>
       <TablePagination 
+        dataLength={data && data?.length}
         count={count} 
         pagination={pagination} 
         isLoading={isLoading}  

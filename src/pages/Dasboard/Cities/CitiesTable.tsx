@@ -3,8 +3,7 @@ import React from 'react';
 import type { IPagination } from 'types/requests';
 import type { CitiesTableMappedData } from './withCitiesLogic';
 import withCitiesLogic from './withCitiesLogic';
-import { Table, TablePagination, Button, TableHead } from 'components';
-import styles from "./CitiesTable.module.scss";
+import { Table, TablePagination, TableHead } from 'components';
 import { ITableHead } from 'components/Table/Table/Table';
 
 export interface ICitiesTable {
@@ -27,11 +26,12 @@ const CitiesTable: React.FC<ICitiesTable> = ({
   head
 }) => {
 
-  const CitiesTableHeader = <TableHead dataLength={data && data?.length} count={count} />
+  const CitiesTableHeader = <TableHead count={count} />
 
   const Pagintation = (
     <>
         <TablePagination 
+          dataLength={data && data?.length}
           count={count} 
           pagination={pagination} 
           isLoading={isLoading}  

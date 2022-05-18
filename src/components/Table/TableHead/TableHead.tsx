@@ -4,18 +4,17 @@ import { Loader } from "components";
 import styles from "./TableHead.module.scss";
 
 interface ICustomTableHead {
-  dataLength: number | null,
   children?: React.ReactElement,
   count: number | null
 }
 
-const TableHead: React.FC<ICustomTableHead> = ({ dataLength, children, count }) => {
+const TableHead: React.FC<ICustomTableHead> = ({ children, count }) => {
   return (
       <>
         <div className={styles.header}>
           <div>Список моделей</div>
           <div className={styles.header__countWrapper}>
-            <span>Всего: </span> {count && dataLength ? count : count && !dataLength ? 0 : <Loader />}
+            <span>Всего: </span> {count ? count : <Loader />}
           </div>
         </div>
         {children && children}

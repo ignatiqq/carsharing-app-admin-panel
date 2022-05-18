@@ -3,9 +3,8 @@ import React from 'react'
 import type { IPagination } from 'types/requests';
 import type { PointsTableMappedData } from './withPointsTableLogic';
 import withPointsTableLogic from './withPointsTableLogic';
-import { Table, Button, TableHead, TablePagination } from 'components';
+import { Table, TableHead, TablePagination } from 'components';
 import type { ITableHead } from 'components/Table/Table/Table';
-import styles from "./PointsTable.module.scss";
 
 export interface IPointsTable {
   isLoading: boolean,
@@ -27,11 +26,12 @@ const PointsTable: React.FC<IPointsTable> = ({
   head
 }) => {
 
-  const customHead = <TableHead dataLength={data && data?.length} count={count} />
+  const customHead = <TableHead count={count} />
 
   const Pagintation = (
     <>
         <TablePagination 
+          dataLength={data && data?.length}
           count={count} 
           pagination={pagination} 
           isLoading={isLoading}  

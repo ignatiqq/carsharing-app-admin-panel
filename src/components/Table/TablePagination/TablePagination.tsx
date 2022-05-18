@@ -5,6 +5,7 @@ import styles from "./TablePagination.module.scss";
 import type { IPagination } from 'types/requests';
 
 interface ITablePagination {
+  dataLength: number | null,
   count: number | null,
   setPagination: (data: IPagination) => void,
   pagination: IPagination,
@@ -12,6 +13,7 @@ interface ITablePagination {
 }
 
 const TablePagination: React.FC<ITablePagination> = ({
+  dataLength,
   count,
   setPagination,
   pagination,
@@ -19,7 +21,7 @@ const TablePagination: React.FC<ITablePagination> = ({
 }) => {
   return (
     <div className={styles.pagination}>
-      {count ?
+      {count && dataLength ?
         <Paginator
           page={pagination.page}
           limit={pagination.limit}

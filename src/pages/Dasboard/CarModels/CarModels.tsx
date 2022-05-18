@@ -44,7 +44,7 @@ const CarModels: React.FC<ICars> = ({
 }) => {
 
     const CarModelsTableHeader = (
-      <TableHead dataLength={data && data?.length} count={count}>
+      <TableHead count={count}>
         <SelectWrapper
           onReset={resetCarsFilters}
           onApply={applyCarsFilters}
@@ -67,6 +67,7 @@ const CarModels: React.FC<ICars> = ({
     const Pagintation = (
       <>
           <TablePagination 
+            dataLength={data && data?.length}
             count={count} 
             pagination={pagination} 
             isLoading={isLoading}  
