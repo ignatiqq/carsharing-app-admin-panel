@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import isEqual from 'lodash.isequal';
 
 import { useAppDispatch, useAppSelector } from 'store';
 import { 
@@ -65,54 +66,58 @@ const withOrderLogic = (Component: React.FC<IOrderPageProps>) => () => {
      }, [orders.filters])
 
 
-    const setPointsSelected = useCallback((data: ICurrentPoint) => {
+    const setPointsSelected = (data: ICurrentPoint) => {
         setPreparedFilters((prev) => {
             return {
                 ...prev,
                 pointId: data.id
             }
         })
-    }, [dispatch])
+    }
   
-    const setCitiesSelected = useCallback((data: ICurrentCity) => {
+    const setCitiesSelected = (data: ICurrentCity) => {
         setPreparedFilters((prev) => {
             return {
                 ...prev,
                 cityId: data.id
             }
         })
-    }, [dispatch])
+    }
 
-    const setCarsSelected = useCallback((data: ICarData) => {
+    const setCarsSelected = (data: ICarData) => {
         setPreparedFilters((prev) => {
             return {
                 ...prev,
                 carId: data.id
             }
         })
-    }, [dispatch])
+    }
 
   
-    const applyOrderFilters = useCallback(() => {
-        dispatch(setOrderCarFilter(preparedFilters.carId));
-        dispatch(setOrderCityFilter(preparedFilters.cityId));
-        dispatch(setOrderPointFilter(preparedFilters.pointId));
-    }, [preparedFilters, dispatch])
+    const applyOrderFilters = () => {
+        if(!isEqual(orders.filters, preparedFilters)) {
+            dispatch(setOrderPagination({...pagination, page: 1}));
+            dispatch(setOrderCarFilter(preparedFilters.carId));
+            dispatch(setOrderCityFilter(preparedFilters.cityId));
+            dispatch(setOrderPointFilter(preparedFilters.pointId));
+        }
+    }
 
-    const resetOrderFilters = useCallback(() => {
+    const resetOrderFilters = () => {
         setPreparedFilters({
             pointId:  "",
             cityId: "",
             carId: ""
         })
+        dispatch(setOrderPagination({...pagination, page: 1}));
         dispatch(setOrderCarFilter(""));
         dispatch(setOrderCityFilter(""));
         dispatch(setOrderPointFilter(""));
-    }, [dispatch])
+    }
 
-    const setPagination = useCallback((pagination: IPagination) => {
+    const setPagination = (pagination: IPagination) => {
       dispatch(setOrderPagination(pagination));
-    }, [dispatch])
+    }
 
     const mappedData: OrderTableMappedData = useMemo(() => orderMappedData(orders.data), [orders.data])
 

@@ -30,8 +30,8 @@ html {
 body {
     background: var(--body-background);
     font-family: 'Roboto', 'Helvetica', sans-serif;
+    text-rendering:geometricPrecision;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     margin: 0;
     color: var(--text-gray);
 }
@@ -63,6 +63,6 @@ a {
 input,
 input::placeholder,
 button {
-  font-family: 'Helvetica';
+  font-family: 'Roboto', 'Helvetica', sans-serif;
 }
   

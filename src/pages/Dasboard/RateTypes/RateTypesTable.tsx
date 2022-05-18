@@ -6,6 +6,7 @@ import type { RateTypesTableMappedData } from "./withRateTypesLogic";
 import type { IPagination } from 'types/requests';
 import { ITableHead } from 'components/Table/Table';
 import styles from "./RateTypesTable.module.scss";
+import classNames from 'classnames';
 
 export interface IRateTypesTable {
   data: RateTypesTableMappedData,
@@ -39,22 +40,18 @@ const RateTypesTable: React.FC<IRateTypesTable> = ({
   const Pagintation = (
     <div className={styles.pagination}>
       {
-        isLoading ?
-        <Loader />
-        :
         data &&
         pagination &&
         count &&
-        setPagination ? (
+        setPagination && (
           <Paginator
             page={pagination.page}
             limit={pagination.limit}
             count={count}
             setPagination={setPagination}
+            className={isLoading ? styles.paginationDisabled : ""}
           />
         )
-        :
-        null
       }
     </div>
   );

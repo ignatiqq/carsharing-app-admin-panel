@@ -39,25 +39,21 @@ const CitiesTable: React.FC<ICitiesTable> = ({
   const Pagintation = (
     <div className={styles.pagination}>
       {
-        isLoading ?
-        <Loader />
-        :
         data &&
         pagination &&
         count &&
-        setPagination ? (
+        setPagination && (
           <Paginator
             page={pagination.page}
             limit={pagination.limit}
             count={count}
             setPagination={setPagination}
+            className={isLoading ? styles.paginationDisabled : ""}
           />
         )
-        :
-        null
       }
     </div>
-);
+  );
 
   return (
     <>

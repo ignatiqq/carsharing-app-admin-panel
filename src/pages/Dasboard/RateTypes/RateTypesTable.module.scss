@@ -21,3 +21,8 @@
     padding: 15px 5px;
     max-height: 50px;
 }
+
+.paginationDisabled {
+    pointer-events: none;
+    opacity: 0.4;
+}

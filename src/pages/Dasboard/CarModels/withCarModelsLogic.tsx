@@ -10,6 +10,7 @@ import { getRequestGetParams } from 'utils/DataMapHelper';
 import { carNumberFormatter } from 'utils/carNumber';
 import styles from "./CarModels.module.scss";
 import { ICarCategoriesData } from 'store/filtersData/types';
+import isEqual from 'lodash.isequal';
 
 export type CarsTableMappedData = Array<ICarTableMappedItem> | null;
 
@@ -46,7 +47,6 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
 
     const dispatch = useAppDispatch();
 
-
     const { carsData, carCategories } = useAppSelector(({tableData, filtersData}) => ({
         carsData: tableData.cars,
         carCategories: filtersData.carCategories
@@ -77,30 +77,33 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
      }, [carsData.filters])
 
 
-    const setCarCategorySelected = useCallback((data: ICarCategoriesData) => {
+    const setCarCategorySelected = (data: ICarCategoriesData) => {
         setPreparedFilters((prev) => {
             return {
                 ...prev,
                 categoryId: data.id
             }
         })
-    }, [])
+    }
   
-    const applyCarsFilters = useCallback(() => {
-        dispatch(setTableCarsPagination({...carsData.pagination, page: 1}));
-        dispatch(setTableCarsFilter(preparedFilters.categoryId));
-    }, [preparedFilters, dispatch, carsData.pagination])
+    const applyCarsFilters = () => {
+        if(!isEqual(carsData.filters, preparedFilters)) {
+            dispatch(setTableCarsPagination({...carsData.pagination, page: 1}));
+            dispatch(setTableCarsFilter(preparedFilters.categoryId));
+        }
+    }
 
-    const resetCarsFilters = useCallback(() => {
+    const resetCarsFilters = () => {
         setPreparedFilters({
             categoryId: ""
         })
-        applyCarsFilters();
-    }, [applyCarsFilters])
+        dispatch(setTableCarsPagination({...carsData.pagination, page: 1}));
+        dispatch(setTableCarsFilter(""));
+    }
 
-    const setPagination = useCallback((data: IPagination) => {
+    const setPagination = (data: IPagination) => {
         dispatch(setTableCarsPagination(data));
-    }, [dispatch])
+    }
 
     const mappedData: CarsTableMappedData = useMemo(() => {
         if(carsData && carsData.data) {

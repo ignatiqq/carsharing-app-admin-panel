@@ -11,7 +11,8 @@ interface IPaginator {
     page: number,
     pageRange?: number,
     position?: "left" | "right" | "center",
-    setPagination: (data: IPagination) => void
+    setPagination: (data: IPagination) => void,
+    className?: string
 }
 
 const Paginator: React.FC<IPaginator> = React.memo(({
@@ -20,7 +21,8 @@ const Paginator: React.FC<IPaginator> = React.memo(({
   page,
   pageRange, 
   position = "center", 
-  setPagination 
+  setPagination,
+  className
 }) => {
     const [paginationPages] = usePagination(count, limit, page, pageRange);
     
@@ -59,7 +61,7 @@ const Paginator: React.FC<IPaginator> = React.memo(({
 
     return (
       <div
-        className={classNames(styles.paginator, {
+        className={classNames(styles.paginator, className, {
             [styles.paginator__center]: position === "center",
             [styles.paginator__start]: position === "left",
             [styles.paginator__rigth]: position === 'right'

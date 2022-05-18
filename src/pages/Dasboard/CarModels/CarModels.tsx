@@ -73,39 +73,35 @@ const CarModels: React.FC<ICars> = ({
     const Pagintation = (
       <div className={styles.pagination}>
         {
-          isLoading ?
-          <Loader />
-          :
           data &&
           pagination &&
           count &&
-          setPagination ? (
+          setPagination && (
             <Paginator
               page={pagination.page}
               limit={pagination.limit}
               count={count}
               setPagination={setPagination}
+              className={isLoading ? styles.paginationDisabled : ""}
             />
           )
-          :
-          null
         }
       </div>
-  );
+    );
 
-  return (
-    <>
-      <Table 
-        data={data}
-        isLoading={isLoading}
-        error={error}
-        head={head}
-        customHead={CarModelsTableHeader}
-        className={styles.customTableStyles}
-      />
-      {Pagintation}
-    </>
-  )
+    return (
+      <>
+        <Table 
+          data={data}
+          isLoading={isLoading}
+          error={error}
+          head={head}
+          customHead={CarModelsTableHeader}
+          className={styles.customTableStyles}
+        />
+        {Pagintation}
+      </>
+    )
 }
 
 export default withCarModelsLogic(CarModels);

@@ -105,3 +105,8 @@
 .orderTable {
     min-width: 1000px;
 }
+
+.paginationDisabled {
+    pointer-events: none;
+    opacity: 0.4;
+}

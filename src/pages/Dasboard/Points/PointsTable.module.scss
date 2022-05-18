@@ -16,3 +16,8 @@
         display: flex;
     }
 }
+
+.paginationDisabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
