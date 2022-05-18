@@ -39,6 +39,9 @@ const PointsTable: React.FC<IPointsTable> = ({
   const Pagintation = (
     <div className={styles.pagination}>
       {
+        isLoading ?
+        <Loader />
+        :
         data &&
         pagination &&
         count &&
@@ -54,7 +57,7 @@ const PointsTable: React.FC<IPointsTable> = ({
         null
       }
     </div>
-);
+  );
 
   return (
     <>

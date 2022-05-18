@@ -4,7 +4,8 @@ import {
   Select, 
   Table, 
   Paginator, 
-  SelectWrapper
+  SelectWrapper,
+  Loader
 } from 'components';
 import type { IAllCars, IAllCities, IAllPoints, ICurrentCity, ICurrentPoint } from 'store/filtersData/types';
 import type { ICarData } from 'store/filtersData/types';
@@ -93,6 +94,9 @@ const Orders: React.FC<IOrderPageProps> = ({
     const Pagintation = (
       <div className={styles.pagination}>
         {
+          isLoading ?
+          <Loader />
+          :
           data &&
           pagination &&
           count &&
@@ -108,7 +112,7 @@ const Orders: React.FC<IOrderPageProps> = ({
           null
         }
       </div>
-  );
+    );
     
     return (
       <>

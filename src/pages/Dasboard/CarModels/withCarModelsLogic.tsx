@@ -87,15 +87,16 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
     }, [])
   
     const applyCarsFilters = useCallback(() => {
+        dispatch(setTableCarsPagination({...carsData.pagination, page: 1}));
         dispatch(setTableCarsFilter(preparedFilters.categoryId));
-    }, [preparedFilters, dispatch])
+    }, [preparedFilters, dispatch, carsData.pagination])
 
     const resetCarsFilters = useCallback(() => {
         setPreparedFilters({
             categoryId: ""
         })
-        dispatch(setTableCarsFilter(""));
-    }, [dispatch])
+        applyCarsFilters();
+    }, [applyCarsFilters])
 
     const setPagination = useCallback((data: IPagination) => {
         dispatch(setTableCarsPagination(data));

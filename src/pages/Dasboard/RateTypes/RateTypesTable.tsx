@@ -39,6 +39,9 @@ const RateTypesTable: React.FC<IRateTypesTable> = ({
   const Pagintation = (
     <div className={styles.pagination}>
       {
+        isLoading ?
+        <Loader />
+        :
         data &&
         pagination &&
         count &&

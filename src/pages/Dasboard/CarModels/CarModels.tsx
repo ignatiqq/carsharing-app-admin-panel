@@ -73,6 +73,9 @@ const CarModels: React.FC<ICars> = ({
     const Pagintation = (
       <div className={styles.pagination}>
         {
+          isLoading ?
+          <Loader />
+          :
           data &&
           pagination &&
           count &&

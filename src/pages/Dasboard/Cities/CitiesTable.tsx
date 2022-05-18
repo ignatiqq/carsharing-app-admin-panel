@@ -39,6 +39,9 @@ const CitiesTable: React.FC<ICitiesTable> = ({
   const Pagintation = (
     <div className={styles.pagination}>
       {
+        isLoading ?
+        <Loader />
+        :
         data &&
         pagination &&
         count &&
@@ -54,7 +57,7 @@ const CitiesTable: React.FC<ICitiesTable> = ({
         null
       }
     </div>
-  );
+);
 
   return (
     <>
