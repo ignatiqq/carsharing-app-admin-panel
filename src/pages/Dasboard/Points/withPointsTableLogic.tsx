@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'store';
-import { getTablePointsData } from 'store/tableData/actions';
+import { getTablePointsData, setTablePointsPagination } from 'store/tableData/actions';
 import { IPointsTable } from './PointsTable';
+import type { IPagination } from 'types/requests';
 
 export type PointsTableMappedData = Array<IPointTableMappedItem> | null;
 
@@ -51,6 +52,10 @@ const withPointsTableLogic = (Component: React.FC<IPointsTable>) => () => {
         return null;
     }, [pointsData.data])
 
+    const setPagination = (pagination: IPagination) => {
+        dispatch(setTablePointsPagination(pagination));
+      }
+
     return (
         <Component
             isLoading={pointsData.isLoading}
@@ -58,6 +63,8 @@ const withPointsTableLogic = (Component: React.FC<IPointsTable>) => () => {
             data={mappedData}
             count={pointsData?.data && pointsData.data.count}
             head={head}
+            pagination={pointsData.pagination}
+            setPagination={setPagination}
         />
     )
 }

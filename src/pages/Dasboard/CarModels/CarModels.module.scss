@@ -5,34 +5,12 @@
 
 .CarModelTable {
 
-    &__header {
-        font-weight: bold;
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-
-        &__countWrapper {
-            display: flex;
-
-            span {
-                margin-right: 5px;
-            }
-        }
-    }
-
     &__loader {
         margin-left: 10px;
         align-items: flex-start;
         width: 12px;
     }
 
-}
-
-.pagination {
-    border-top: 1px solid #E0E2E8;
-    padding: 20px 10px;
-    background: #fff;
-    border-radius: 0px 0px 9px 9px;
 }
 
 .tableData {
@@ -96,9 +74,4 @@
     &:last-child {
         margin-bottom: 0;
     }
-}
-
-.paginationDisabled {
-    pointer-events: none;
-    opacity: 0.4;
 }

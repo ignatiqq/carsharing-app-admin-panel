@@ -3,9 +3,9 @@ import React from 'react';
 import type { IPagination } from 'types/requests';
 import type { CitiesTableMappedData } from './withCitiesLogic';
 import withCitiesLogic from './withCitiesLogic';
-import { Table, Loader, Paginator } from 'components';
+import { Table, TablePagination, Button, TableHead } from 'components';
 import styles from "./CitiesTable.module.scss";
-import { ITableHead } from 'components/Table/Table';
+import { ITableHead } from 'components/Table/Table/Table';
 
 export interface ICitiesTable {
   isLoading: boolean,
@@ -27,32 +27,17 @@ const CitiesTable: React.FC<ICitiesTable> = ({
   head
 }) => {
 
-  const CitiesTableHeader = (
-      <div className={styles.CitiesTable__header}>
-        <div>Список городов</div>
-        <div className={styles.CitiesTable__header__countWrapper}>
-          <span>Всего: </span> {count ? count : <Loader />}
-        </div>
-      </div>
-  );
+  const CitiesTableHeader = <TableHead dataLength={data && data?.length} count={count} />
 
   const Pagintation = (
-    <div className={styles.pagination}>
-      {
-        data &&
-        pagination &&
-        count &&
-        setPagination && (
-          <Paginator
-            page={pagination.page}
-            limit={pagination.limit}
-            count={count}
-            setPagination={setPagination}
-            className={isLoading ? styles.paginationDisabled : ""}
-          />
-        )
-      }
-    </div>
+    <>
+        <TablePagination 
+          count={count} 
+          pagination={pagination} 
+          isLoading={isLoading}  
+          setPagination={setPagination}
+        />
+    </>
   );
 
   return (

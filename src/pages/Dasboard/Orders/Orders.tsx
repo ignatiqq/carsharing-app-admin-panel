@@ -3,9 +3,10 @@ import { memo } from 'react';
 import { 
   Select, 
   Table, 
-  Paginator, 
+  TablePagination, 
   SelectWrapper,
-  Loader
+  Button,
+  TableHead
 } from 'components';
 import type { IAllCars, IAllCities, IAllPoints, ICurrentCity, ICurrentPoint } from 'store/filtersData/types';
 import type { ICarData } from 'store/filtersData/types';
@@ -54,7 +55,8 @@ const Orders: React.FC<IOrderPageProps> = ({
 }) => {
 
     const OrdersTableHeader = (
-        <SelectWrapper
+    <TableHead dataLength={data && data?.length} count={count}>
+      <SelectWrapper
           onReset={resetOrderFilters}
           onApply={applyOrderFilters}
           wrapperClassname={styles.filters}
@@ -89,26 +91,18 @@ const Orders: React.FC<IOrderPageProps> = ({
             />
           </div>
       </SelectWrapper>
-    );
+    </TableHead>)
 
-    const Pagintation = (
-      <div className={styles.pagination}>
-        {
-          data &&
-          pagination &&
-          count &&
-          setPagination && (
-            <Paginator
-              page={pagination.page}
-              limit={pagination.limit}
-              count={count}
-              setPagination={setPagination}
-              className={isLoading ? styles.paginationDisabled : ""}
-            />
-          )
-        }
-      </div>
-    );
+const Pagintation = (
+  <>
+      <TablePagination 
+        count={count} 
+        pagination={pagination} 
+        isLoading={isLoading}  
+        setPagination={setPagination}
+      />
+  </>
+);
     
     return (
       <>
