@@ -19,6 +19,7 @@ const TablePagination: React.FC<ITablePagination> = ({
   pagination,
   isLoading
 }) => {
+  
   return (
     <div className={styles.pagination}>
       {count && dataLength ?
@@ -29,7 +30,7 @@ const TablePagination: React.FC<ITablePagination> = ({
           setPagination={setPagination}
           className={isLoading ? styles.pagination_disabled : ""}
         />
-        : !isLoading &&
+        : (count && !isLoading && count > pagination.limit) ?
         <div className={styles.goBack}>
           <Button
             apperance='default'
@@ -37,6 +38,8 @@ const TablePagination: React.FC<ITablePagination> = ({
             onClick={() => setPagination({...pagination, page: 1})}
           >В начало</Button>
         </div>
+        :
+        null
       }
     </div>
   )
