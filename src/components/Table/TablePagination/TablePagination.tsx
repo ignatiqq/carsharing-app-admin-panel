@@ -13,7 +13,6 @@ interface ITablePagination {
 }
 
 const TablePagination: React.FC<ITablePagination> = ({
-  dataLength,
   count,
   setPagination,
   pagination,
@@ -22,7 +21,7 @@ const TablePagination: React.FC<ITablePagination> = ({
   
   return (
     <div className={styles.pagination}>
-      {count && dataLength ?
+      {count &&
         <Paginator
           page={pagination.page}
           limit={pagination.limit}
@@ -30,16 +29,6 @@ const TablePagination: React.FC<ITablePagination> = ({
           setPagination={setPagination}
           className={isLoading ? styles.pagination_disabled : ""}
         />
-        : (count && !isLoading && count > pagination.limit) ?
-        <div className={styles.goBack}>
-          <Button
-            apperance='default'
-            className={styles.goBack__utton}
-            onClick={() => setPagination({...pagination, page: 1})}
-          >В начало</Button>
-        </div>
-        :
-        null
       }
     </div>
   )
