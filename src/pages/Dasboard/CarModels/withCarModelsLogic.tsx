@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import CarPlaceholder from "assets/images/CarPlaceholder.png";
 import { useAppSelector, useAppDispatch } from 'store';
@@ -11,6 +12,9 @@ import { carNumberFormatter } from 'utils/carNumber';
 import styles from "./CarModels.module.scss";
 import { ICarCategoriesData } from 'store/filtersData/types';
 import isEqual from 'lodash.isequal';
+import { getDashboardChangeLink } from 'utils/getDashboardType';
+
+import dasboardStyles from "pages/Dasboard/Dashboard.module.scss";
 
 export type CarsTableMappedData = Array<ICarTableMappedItem> | null;
 
@@ -19,7 +23,8 @@ interface ICarTableMappedItem {
     number: React.ReactElement,
     category: string,
     price: string,
-    description: React.ReactElement
+    description: React.ReactElement,
+    action: React.ReactElement
 }
 
 const head = [
@@ -37,6 +42,9 @@ const head = [
     },
     {
         name: "Описание"
+    },
+    {
+        name: "Изменить"
     }
 ];
 
@@ -46,6 +54,8 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
     });
 
     const dispatch = useAppDispatch();
+
+    const location = useLocation();
 
     const { carsData, carCategories } = useAppSelector(({tableData, filtersData}) => ({
         carsData: tableData.cars,
@@ -128,7 +138,11 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
                     description: 
                     <div className={styles.tableData__description}>
                         {item.description ? item.description : "Описание не указано"}
-                    </div>
+                    </div>,
+                    action: 
+                        <Link to={getDashboardChangeLink(location.pathname, item.id)} className={dasboardStyles.changeButton}>
+                            Изменить
+                        </Link>
                 }
             })
         }

@@ -37,6 +37,10 @@ const tableData = {
         const getParams = params ? paramsToString(params) : "";
         
         return getRequest(`/db/car?${getParams}`)
+    },
+
+    carById: (id: string) => {
+        return getRequest(`/db/car/${id}`)
     }
 
 }

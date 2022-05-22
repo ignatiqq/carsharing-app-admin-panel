@@ -10,7 +10,8 @@ import {
     getTableCitiesDataWatcher,
     getTablePointsDataWatcher,
     getTableRateTypesDataWatcher,
-    getTableCarsDataWatcher
+    getTableCarsDataWatcher,
+    getTableCarByIdWatcher
 } from "./tableData/sagas";
 import { 
     getFiltersDataWatcher 
@@ -26,6 +27,7 @@ export default function *rootSaga() {
         getTableCitiesDataWatcher(),
         getTablePointsDataWatcher(),
         getTableRateTypesDataWatcher(),
-        getTableCarsDataWatcher()
+        getTableCarsDataWatcher(),
+        getTableCarByIdWatcher()
     ])
 }

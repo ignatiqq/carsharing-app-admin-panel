@@ -9,8 +9,8 @@ import {
     setTablePointsRequestError,
     setTablePointsDataLoading,
     getTablePointsData
-} from "../actions";
-import { IPointDataInfo } from "../types";
+} from "../../actions";
+import { IPointDataInfo } from "../../types";
 
 
 function* getTablePointsDataHandler(action: AnyAction) {

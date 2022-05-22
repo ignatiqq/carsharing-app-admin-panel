@@ -9,8 +9,8 @@ import {
     setOrderData,
     setOrderDataError,
     setOrderDataLoading
-} from "../actions";
-import { IOrderDataInfo } from "../types";
+} from "../../actions";
+import { IOrderDataInfo } from "../../types";
 
 
 function* getOrdersHandler(action: AnyAction) {

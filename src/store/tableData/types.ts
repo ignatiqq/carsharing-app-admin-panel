@@ -67,6 +67,11 @@ export interface ICarsDataInfo {
 
 export interface ICarsTableData {
     data: ICarsDataInfo | null,
+    toChange: {
+        data: ICarData | null,
+        isLoading: boolean,
+        error: string | null
+    }
     pagination: IPagination,
     filters: ICarTableFilters,
     isLoading: boolean,
@@ -115,4 +120,9 @@ export interface IQueryFilter {
     limit?: number,
     sort?: string,
     [key: string]: string | number | undefined
+}
+
+export interface ICarRequestResponse {
+    fileds: object,
+    data: ICarData
 }

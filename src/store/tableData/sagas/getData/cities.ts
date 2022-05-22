@@ -9,8 +9,8 @@ import {
     setTableCitiesRequestError,
     setTableCitiesDataLoading,
     getTableCitiesData
-} from "../actions";
-import { ICityDataInfo } from "../types";
+} from "../../actions";
+import { ICityDataInfo } from "../../types";
 
 
 function* getTableCitiesDataHandler(action: AnyAction) {

@@ -9,8 +9,8 @@ import {
     setTableRateTypesDataLoading,
     setTableRateTypesRequestError,
     getTableRateTypesData
-} from "../actions";
-import { IRateTypeDataInfo } from "../types";
+} from "../../actions";
+import { IRateTypeDataInfo } from "../../types";
 
 
 function* getTableRateTypesDataHandler(action: AnyAction) {
@@ -18,8 +18,6 @@ function* getTableRateTypesDataHandler(action: AnyAction) {
         yield put(setTableRateTypesDataLoading(true));
         
         const response: AxiosResponse<IRateTypeDataInfo> = yield call(tableData.rateTypes, action.payload)
-
-        console.log(response)
 
         if (response?.status < 300) {
             yield put(setTableRateTypesData({
