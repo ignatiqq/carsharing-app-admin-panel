@@ -104,8 +104,7 @@ export function orderMappedData(data :IOrderDataInfo | null): OrderTableMappedDa
                 </div>
               ),
               price: <div>{item.price}₽</div>,
-              settings: <CarComponentButtons />
-
+              settings: <CarComponentButtons />,
             };
         })
     }

@@ -2,6 +2,7 @@
 
     & {
         display: flex;
+        min-height: 100vh;
     }
 
     &__outlet {
@@ -27,13 +28,3 @@
     min-height: 60px;
 }
 
-.changeButton {
-    font-size: 11.5px;
-    font-weight: 400;
-    color: #fff;
-    background: var(--primary-green);
-    padding: 8px 10px;
-    text-align: center;
-    border: 0.5px solid var(--primary-green);
-    border-radius: 4px;
-}

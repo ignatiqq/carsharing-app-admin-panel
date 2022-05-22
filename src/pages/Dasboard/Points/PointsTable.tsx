@@ -5,6 +5,7 @@ import type { PointsTableMappedData } from './withPointsTableLogic';
 import withPointsTableLogic from './withPointsTableLogic';
 import { Table, TableHead, TablePagination } from 'components';
 import type { ITableHead } from 'components/Table/Table/Table';
+import styles from "./PointsTable.module.scss";
 
 export interface IPointsTable {
   isLoading: boolean,
@@ -48,6 +49,7 @@ const PointsTable: React.FC<IPointsTable> = ({
         isLoading={isLoading}
         head={head}
         customHead={customHead}
+        className={styles.customTableStyle}
       />
       {Pagintation}
     </>

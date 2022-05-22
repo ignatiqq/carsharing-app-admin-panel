@@ -5,6 +5,7 @@ import type { CitiesTableMappedData } from './withCitiesLogic';
 import withCitiesLogic from './withCitiesLogic';
 import { Table, TablePagination, TableHead } from 'components';
 import { ITableHead } from 'components/Table/Table/Table';
+import styles from "./CitiesTable.module.scss";
 
 export interface ICitiesTable {
   isLoading: boolean,
@@ -48,6 +49,7 @@ const CitiesTable: React.FC<ICitiesTable> = ({
           error={error}
           customHead={CitiesTableHeader}
           head={head}
+          className={styles.customTableStyle}
       />
       {Pagintation}
     </>

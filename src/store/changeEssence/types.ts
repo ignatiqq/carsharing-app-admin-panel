@@ -1,6 +1,6 @@
 export interface IEssenseOptions {
     change: {
-        data: Array<any> | null,
+        data: {[key: string]: any} | null,
         route: string | null,
         isLoading: boolean,
         error: string | null

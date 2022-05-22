@@ -5,6 +5,7 @@ import withRateTypesLogic from "./withRateTypesLogic";
 import type { RateTypesTableMappedData } from "./withRateTypesLogic";
 import type { IPagination } from 'types/requests';
 import { ITableHead } from 'components/Table/Table/Table';
+import styles from "./RateTypesTable.module.scss";
 
 export interface IRateTypesTable {
   data: RateTypesTableMappedData,
@@ -48,6 +49,7 @@ const RateTypesTable: React.FC<IRateTypesTable> = ({
         error={error}
         isLoading={isLoading}
         customHead={customHead}
+        className={styles.customTableStyle}
       />
       {Pagintation}
     </>

@@ -1,6 +1,5 @@
 export { default as LoginFrom } from "./Forms/LoginForm/LoginForm";
 export { default as ErrorComponent } from "./ErrorComponent/ErrorComponent";
-
 export { default as Input } from "./Dumb/Input/Input";
 export { default as Label } from "./Dumb/Label/Label";
 export { default as Button } from "./Dumb/Button/Button";
@@ -18,3 +17,7 @@ export { default as SelectWrapper } from "./SelectWrapper/SelectWrapper";
 export { default as Footer } from "./Footer/Footer";
 export { default as TableHead } from "./Table/TableHead/TableHead";
 export { default as TablePagination } from "./Table/TablePagination/TablePagination";
+export { default as DashboardChangeLink } from "./Dumb/DashboardChangeLink/DashboardChangeLink";
+export { default as ChangeCarSettings } from "./ChangeComponents/ChangeCar/ChangeCarSettings";
+export { default as ChangeCarWithThumbnail } from "./ChangeComponents/ChangeCar/ChangeCarWithThumbnail";
+export { default as ChangeCar } from "./ChangeComponents/ChangeCar/ChangeCar";

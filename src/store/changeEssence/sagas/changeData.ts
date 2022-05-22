@@ -14,7 +14,7 @@ function* getChangeDataHandler(action: AnyAction) {
         const response: AxiosResponse = yield call(tableData.getChangeDataById, action.payload);
 
         if(response?.status < 300) {
-            yield put(setDataToChange(response.data));
+            yield put(setDataToChange(response.data.data));
         } else {
             throw new Error(errorKeys.requestError);
         }

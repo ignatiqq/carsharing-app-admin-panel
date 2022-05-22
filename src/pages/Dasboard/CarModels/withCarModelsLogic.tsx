@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import CarPlaceholder from "assets/images/CarPlaceholder.png";
 import { useAppSelector, useAppDispatch } from 'store';
@@ -13,8 +13,8 @@ import styles from "./CarModels.module.scss";
 import { ICarCategoriesData } from 'store/filtersData/types';
 import isEqual from 'lodash.isequal';
 import { getDashboardChangeLink } from 'utils/getDashboardType';
+import { DashboardChangeLink } from 'components';
 
-import dasboardStyles from "pages/Dasboard/Dashboard.module.scss";
 
 export type CarsTableMappedData = Array<ICarTableMappedItem> | null;
 
@@ -140,9 +140,9 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
                         {item.description ? item.description : "Описание не указано"}
                     </div>,
                     action: 
-                        <Link to={getDashboardChangeLink(location.pathname, item.id)} className={dasboardStyles.changeButton}>
+                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)}>
                             Изменить
-                        </Link>
+                        </DashboardChangeLink>
                 }
             })
         }

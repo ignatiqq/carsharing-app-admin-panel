@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 
-import { Loader } from 'components';
+import { ChangeCar, Loader } from 'components';
 import styles from "./ChangeEssence.module.scss";
 import { useAppDispatch, useAppSelector } from 'store';
 import { getDataToChange, setDataToChangeRouteName } from 'store/changeEssence/actions';
@@ -32,7 +32,14 @@ const ChangeEssence = () => {
         changeData.isLoading ?
           <Loader />
         : !changeData.error && changeData.data ?
-        <div className={styles.wrapper}>Data</div>
+        <div className={styles.wrapper}>
+          {
+            changeData.route === "car" ?
+            <ChangeCar {...changeData.data} />
+              :
+            "Ne car"
+          }
+        </div>
         :
         <div className={classNames('error-text', styles.requestError)}>{changeData.error}</div>
       }
