@@ -8,27 +8,27 @@ const sidebarLinks = [
     {
         name: "Заказы",
         icon: pen,
-        path: "/dashboard/orders"
+        path: "/dashboard/order"
     },
     {
         name: "Список Авто",
         icon: List,
-        path: "/dashboard/cars"
+        path: "/dashboard/car"
     },
     {
         name: "Список Городов",
         icon: CityIcon,
-        path: "/dashboard/cities"
+        path: "/dashboard/city"
     },
     {
         name: "Список точек",
         icon: PointIcon,
-        path: "/dashboard/points"
+        path: "/dashboard/point"
     },
     {
         name: "Список тарифов",
         icon: RateTypesIcon,
-        path: "/dashboard/rateTypes"
+        path: "/dashboard/rateType"
     }
 ]
 
