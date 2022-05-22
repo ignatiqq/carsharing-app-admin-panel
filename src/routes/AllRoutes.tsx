@@ -43,7 +43,7 @@ const AppRoutes = () => useRoutes([
                 element: <RateTypesTable />
             },
             {
-                path: "/dashboard/:type/change/:id",
+                path: "/dashboard/:route/change/:id",
                 element: <ChangeEssence />
             },
             {

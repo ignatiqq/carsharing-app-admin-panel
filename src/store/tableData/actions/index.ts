@@ -5,10 +5,6 @@ export {
     setTableCarsRequestError,
     setTableCarsFilter,
     getTableCarsData,
-    setTableCarByIdData,
-    setTableCarByIdLoading,
-    setTableCarByIdRequestError,
-    getTableCarByIdData
 } from "./cars";
 
 export { 

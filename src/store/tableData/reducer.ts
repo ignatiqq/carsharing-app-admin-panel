@@ -25,9 +25,6 @@ import {
     setTableCarsDataLoading,
     setTableCarsRequestError,
     setTableCarsFilter,
-    setTableCarByIdData,
-    setTableCarByIdLoading,
-    setTableCarByIdRequestError
 } from "./actions";
 import type { IPagination } from "types/requests";
 import type { 
@@ -38,7 +35,6 @@ import type {
     ITableData, 
     ICarsDataInfo,
 } from "./types";
-import type { ICarData } from "store/filtersData/types";
 
 
 const initialState: ITableData = {
@@ -58,11 +54,6 @@ const initialState: ITableData = {
     },
     cars: {
         data: null,
-        toChange: {
-            data: null,
-            isLoading: false,
-            error: null
-        },
         pagination: {
             page: 1,
             limit: 3
@@ -146,19 +137,6 @@ const tableData = createReducer(initialState, (builder) => {
         .addCase(setTableCarsFilter, (state, action: PayloadAction<string>) => {
             state.cars.filters.categoryId = action.payload
         })
-
-        // Current car
-
-        .addCase(setTableCarByIdData, (state, action: PayloadAction<ICarData>) => {
-            state.cars.toChange.data = action.payload;
-        })
-        .addCase(setTableCarByIdLoading, (state, action: PayloadAction<boolean>) => {
-            state.cars.toChange.isLoading = action.payload;
-        })
-        .addCase(setTableCarByIdRequestError, (state, action: PayloadAction<string>) => {
-            state.cars.toChange.error = action.payload;
-        })
-    
 
         // Cities
 

@@ -1,22 +1,42 @@
-import { getRequest } from 'api/requests/requests';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import classNames from 'classnames';
+
+import { Loader } from 'components';
+import styles from "./ChangeEssence.module.scss";
+import { useAppDispatch, useAppSelector } from 'store';
+import { getDataToChange, setDataToChangeRouteName } from 'store/changeEssence/actions';
 
 const ChangeEssence = () => {
-  
+
   const params = useParams();
+  const dispatch = useAppDispatch();
+
+  const { changeData } = useAppSelector(({essenceOptions}) => ({
+    changeData: essenceOptions.change
+  }))
 
   useEffect(() => {
-    if(params && params.type && params.id) {
-      (async function() {
-        const res = await getRequest(`/db/${params.type}/${params.id}`);
-        console.log(res)
-      })();
+    if(params && params.id && params.route) {
+      dispatch(getDataToChange({
+        id: params.id,
+        route: params.route
+      }));
+      dispatch(setDataToChangeRouteName(params.route));
     }
-  }, [params])
+  }, [params]);
 
   return (
-    <div>ChangeEssence</div>
+    <div>
+      {
+        changeData.isLoading ?
+          <Loader />
+        : !changeData.error && changeData.data ?
+        <div className={styles.wrapper}>Data</div>
+        :
+        <div className={classNames('error-text', styles.requestError)}>{changeData.error}</div>
+      }
+    </div>
   )
 }
 

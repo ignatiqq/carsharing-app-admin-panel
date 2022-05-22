@@ -39,8 +39,8 @@ const tableData = {
         return getRequest(`/db/car?${getParams}`)
     },
 
-    carById: (id: string) => {
-        return getRequest(`/db/car/${id}`)
+    getChangeDataById: ({id, route}: {id: string, route: string}) => {
+        return getRequest(`/db/${route}/${id}`)
     }
 
 }

@@ -3,7 +3,6 @@ import { getOrdersWatcher } from "./getData/orders";
 import { getTablePointsDataWatcher } from "./getData/points";
 import { getTableRateTypesDataWatcher } from "./getData/rateTypes";
 import { getTableCarsDataWatcher } from "./getData/cars";
-import { getTableCarByIdWatcher } from "./getData/cars";
 
 export {
     getTableCitiesDataWatcher,
@@ -11,5 +10,4 @@ export {
     getTablePointsDataWatcher,
     getTableRateTypesDataWatcher,
     getTableCarsDataWatcher,
-    getTableCarByIdWatcher
 }

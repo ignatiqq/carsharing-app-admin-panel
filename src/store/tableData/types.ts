@@ -67,11 +67,6 @@ export interface ICarsDataInfo {
 
 export interface ICarsTableData {
     data: ICarsDataInfo | null,
-    toChange: {
-        data: ICarData | null,
-        isLoading: boolean,
-        error: string | null
-    }
     pagination: IPagination,
     filters: ICarTableFilters,
     isLoading: boolean,

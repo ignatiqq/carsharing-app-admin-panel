@@ -9,11 +9,8 @@ import {
     setTableCarsDataLoading,
     setTableCarsRequestError,
     getTableCarsData,
-    getTableCarByIdData,
-    setTableCarByIdLoading,
-    setTableCarByIdData
 } from "../../actions";
-import { ICarsDataInfo, ICarRequestResponse } from "../../types";
+import { ICarsDataInfo } from "../../types";
 
 
 function* getTableCarsDataHandler(action: AnyAction) {
@@ -40,28 +37,4 @@ function* getTableCarsDataHandler(action: AnyAction) {
 
 export function* getTableCarsDataWatcher() {
     yield takeLatest(getTableCarsData, getTableCarsDataHandler);
-}
-
-function* getTableCarByIdHandler(action: AnyAction) {
-    try {
-        
-        yield put(setTableCarByIdLoading(true));
-
-        const response: AxiosResponse<ICarRequestResponse> = yield call(tableData.carById, action.payload);
-
-        if(response?.status < 300) {
-            yield put(setTableCarByIdData(response.data.data));
-        } else {
-            throw new Error(errorKeys.requestError);
-        }
-
-    } catch (error: any) {
-        yield put(setTableCarsRequestError(`Произошла ошибка про получении данных о машине ${error.message}`));
-    } finally {
-        yield put(setTableCarByIdLoading(false));
-    }
-}
-
-export function* getTableCarByIdWatcher() {
-    yield takeLatest(getTableCarByIdData, getTableCarByIdHandler);
 }
