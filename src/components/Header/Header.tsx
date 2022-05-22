@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Input } from '..';
+import { StandartInput } from '..';
 import UserAvatar from "assets/icons/UserAvatar.svg";
 import { ReactComponent as MenuBtn } from "assets/icons/sidebarOpen.svg";
 import { ReactComponent as SearchIcon } from "assets/icons/Search.svg"; 
@@ -37,7 +37,7 @@ const Header: React.FC<IHeader> = ({
           </button>
           <div className={styles.header__input__wrapper}>
             <SearchIcon />
-            <Input 
+            <StandartInput 
               className={styles.header__input}
               name="header-search"
               value={search}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import useValidate from 'packages/useValidate/useValidate';
 import { validations } from 'constants/Validations/validations';
-import { Input, Label, Button, Loader } from "components";
+import { StandartInput, Label, Button, Loader } from "components";
 
 import styles from "./LoginForm.module.scss";
 import classNames from 'classnames';
@@ -49,7 +49,7 @@ const LoginForm: React.FC<ILoginForm> = ({
         <div className={styles.formItem}>
           <Label className={styles.formLabel}>
             Почта
-            <Input
+            <StandartInput
               className={classNames(styles.formInput, {
                 [styles.formInputInvalid]: errors.username,
               })}
@@ -69,7 +69,7 @@ const LoginForm: React.FC<ILoginForm> = ({
         <div className={styles.formItem}>
           <Label className={styles.formLabel}>
             Пароль
-            <Input
+            <StandartInput
               className={classNames(styles.formInput, {
                 [styles.formInputInvalid]: errors.password,
               })}

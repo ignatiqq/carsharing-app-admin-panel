@@ -1,0 +1,38 @@
+.image_wrapper {
+    max-width: 240px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    img {
+        max-width: 240px;
+        width: 100%;
+    }
+}
+
+.name {
+    color: var(--primary-dark-blue);
+    letter-spacing: -0.6125px;
+    text-align: center;
+    font-size: 24.5px;
+    margin-bottom: 5px;
+}
+
+.category {
+    color: #818EA3;
+    font-size: 12.5px;
+    letter-spacing: -0.3125px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.uploadBtn {
+    cursor: pointer;
+}
+
+.fileInfo {
+    text-align: center;
+    
+    &:nth-child(2n+1) {
+        margin-bottom: 5px;
+    }
+}

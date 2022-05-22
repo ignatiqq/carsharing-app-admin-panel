@@ -1,6 +1,6 @@
 export { default as LoginFrom } from "./Forms/LoginForm/LoginForm";
 export { default as ErrorComponent } from "./ErrorComponent/ErrorComponent";
-export { default as Input } from "./Dumb/Input/Input";
+export { default as StandartInput } from "./Dumb/Inputs/StandartInput/StandartInput";
 export { default as Label } from "./Dumb/Label/Label";
 export { default as Button } from "./Dumb/Button/Button";
 export { default as Loader } from "./Dumb/Loader/Loader";
@@ -21,3 +21,6 @@ export { default as DashboardChangeLink } from "./Dumb/DashboardChangeLink/Dashb
 export { default as ChangeCarSettings } from "./ChangeComponents/ChangeCar/ChangeCarSettings";
 export { default as ChangeCarWithThumbnail } from "./ChangeComponents/ChangeCar/ChangeCarWithThumbnail";
 export { default as ChangeCar } from "./ChangeComponents/ChangeCar/ChangeCar";
+export { default as CarInfoThumbnail } from "./CarInfo/CarInfoThumbnail/CarInfoThumbnail";
+export { default as FileInput } from "./Dumb/Inputs/FileInput/FileInput";
+export { default as DragOver } from "./Dumb/DragOver/DragOver";

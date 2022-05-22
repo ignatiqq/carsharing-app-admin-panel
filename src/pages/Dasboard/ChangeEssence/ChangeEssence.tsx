@@ -6,6 +6,7 @@ import { ChangeCar, Loader } from 'components';
 import styles from "./ChangeEssence.module.scss";
 import { useAppDispatch, useAppSelector } from 'store';
 import { getDataToChange, setDataToChangeRouteName } from 'store/changeEssence/actions';
+import { ICarData } from 'store/filtersData/types';
 
 const ChangeEssence = () => {
 
@@ -35,7 +36,7 @@ const ChangeEssence = () => {
         <div className={styles.wrapper}>
           {
             changeData.route === "car" ?
-            <ChangeCar {...changeData.data} />
+            <ChangeCar {...changeData.data as ICarData} />
               :
             "Ne car"
           }

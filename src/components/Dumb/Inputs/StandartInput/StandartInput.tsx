@@ -1,22 +1,14 @@
-import React, { ChangeEvent, FocusEvent } from 'react';
+import React from 'react';
 import classNames from "classnames";
 
-import styles from "./Input.module.scss";
+import type { IInput } from '../type';
+import styles from "./StandartInput.module.scss";
 
-interface IInput {
-    type?: string,
-    name: string,
-    value: string,
-    disabled?: boolean,
-    placeholder?: string,
-    tabindex?: number,
-    onChange?: (data: ChangeEvent<HTMLInputElement>) => void,
-    onBlur?: (data: FocusEvent<HTMLInputElement>) => void,
-    onFocus?: (data: FocusEvent<HTMLInputElement>) => void
-    className?: string
+interface IStandartInput extends IInput {
+    type?: string
 }
 
-const Input: React.FC<IInput> = ({
+const StandartInput: React.FC<IStandartInput> = ({
     type = "text",
     name,
     value,
@@ -44,4 +36,4 @@ const Input: React.FC<IInput> = ({
   )
 }
 
-export default Input;
+export default StandartInput;

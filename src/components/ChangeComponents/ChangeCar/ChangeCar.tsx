@@ -2,6 +2,7 @@ import React from 'react';
 
 import { ChangeCarWithThumbnail, ChangeCarSettings } from 'components';
 import { ICarData, ICarDataCategoryId, ICardDataThumbnail } from 'store/filtersData/types';
+import styles from "./ChangeCar.module.scss";
 
 interface IChangeCar {
   categoryId: ICarDataCategoryId,
@@ -18,12 +19,18 @@ const ChangeCar: React.FC<ICarData> = ({
   name,
   description,
   number,
-  id
+  id,
+  thumbnail
 }) => {
 
   return (
-    <div>
-      <ChangeCarWithThumbnail />
+    <div className={styles.wrapper}>
+      <ChangeCarWithThumbnail
+        thumbnail={thumbnail}
+        categoryId={categoryId}
+        name={name}
+        description={description}  
+      />
       <ChangeCarSettings
         categoryId={categoryId}
         colors={colors}
