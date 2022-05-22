@@ -3,17 +3,20 @@ import React, { ChangeEvent, useState, DragEvent } from 'react';
 import CarPlaceholder from "assets/images/CarPlaceholder.png";
 import styles from "./CarInfoThumbnail.module.scss";
 import FileInput from 'components/Dumb/Inputs/FileInput/FileInput';
+import classNames from 'classnames';
 
 interface ICarInfoThumbnail {
     image: string,
     name: string,
-    category: string
+    category: string,
+    className?: string
 }
 
 const CarInfoThumbnail: React.FC<ICarInfoThumbnail> = ({
     image,
     name,
-    category
+    category,
+    className
 }) => {
     const [fileInfo, setFileInfo] = useState<File | null>(null);
     const [imageToShow, setImageToShow] = useState<string | null>(null);
@@ -25,10 +28,8 @@ const CarInfoThumbnail: React.FC<ICarInfoThumbnail> = ({
         }
     }
 
-    console.log(fileInfo)
-
     return (
-        <div>
+        <div className={classNames(className, styles.wrapper)}>
             <div className={styles.image_wrapper}>
                 <img 
                     src={imageToShow ? imageToShow : image ? image : CarPlaceholder}

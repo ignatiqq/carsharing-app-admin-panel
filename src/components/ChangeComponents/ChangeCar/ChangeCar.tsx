@@ -1,40 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { ChangeCarWithThumbnail, ChangeCarSettings } from 'components';
-import { ICarData, ICarDataCategoryId, ICardDataThumbnail } from 'store/filtersData/types';
+import { ICarData } from 'store/filtersData/types';
+import { getPercentByDataComplete } from 'utils/essentialDataHelper';
 import styles from "./ChangeCar.module.scss";
 
-interface IChangeCar {
-  categoryId: ICarDataCategoryId,
-  colors: Array<string>,
-  name: string,
-  id: string,
-  thumbnail: ICardDataThumbnail,
-  description: string
-}
+const ChangeCar: React.FC<ICarData> = (props) => {
+  const [percentCompleted, setPercentCompleted] = useState<number>(0);
 
-const ChangeCar: React.FC<ICarData> = ({
-  categoryId,
-  colors,
-  name,
-  description,
-  number,
-  id,
-  thumbnail
-}) => {
+  useEffect(() => {
+    if(props) {
+      setPercentCompleted(getPercentByDataComplete(props));
+    }
+  }, [props])
+
+  console.log(percentCompleted)
 
   return (
     <div className={styles.wrapper}>
       <ChangeCarWithThumbnail
-        thumbnail={thumbnail}
-        categoryId={categoryId}
-        name={name}
-        description={description}  
+        thumbnail={props.thumbnail}
+        categoryId={props.categoryId}
+        name={props.name}
+        description={props.description}  
+        percentCompleted={percentCompleted}
       />
       <ChangeCarSettings
-        categoryId={categoryId}
-        colors={colors}
-        name={name}
+        categoryId={props.categoryId}
+        colors={props.colors}
+        name={props.name}
       />
     </div>
   )

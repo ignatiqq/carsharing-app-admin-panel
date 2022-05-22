@@ -11,10 +11,37 @@
     
 .header { 
 
+    margin-bottom: 40px;
+
     h2 {
         color: var(--primary-dark-blue);
         font-family: "Roboto";
         font-size: 17px;
         font-weight: 500;
     }
+}
+
+.label {
+    
+    & {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        margin: 10px 20px 10px 0px;
+        min-width: 350px;
+    }
+
+    &__text {
+        font-size: 11px;
+        color: var(--primary-black);
+        margin-bottom: 5px;
+    }
+
+}
+
+.settingsWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
