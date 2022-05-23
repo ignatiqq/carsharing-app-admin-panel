@@ -16,7 +16,8 @@ const Select: React.FC<ISelect> = (
     customValue = "value",
     selectClassName,
     dropdownClassName,
-    dataHolder
+    dataHolder,
+    className
   }
   ) => {
 
@@ -34,6 +35,7 @@ const Select: React.FC<ISelect> = (
 
   useEffect(() => {
     if(options) {
+      console.log(options)
       const filterBySearch = (item: IOption) => item[optionLabel as keyof IOption].toLowerCase().includes(optionSearch.toLowerCase());
       setOptionsToShow(options.filter(filterBySearch))
     }
@@ -70,7 +72,7 @@ const Select: React.FC<ISelect> = (
   const inputValue = selectDropdownOpened ? optionSearch : selected ? selected[optionLabel] : optionSearch;
 
   return (
-    <div className={classNames(styles.wrapper, {
+    <div className={classNames(styles.wrapper, className, {
       [styles.selectWrapper__active]: selectDropdownOpened
     })}>
       <label className={styles.inputLabel} htmlFor='search-input'>{label}</label>

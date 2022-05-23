@@ -8,11 +8,11 @@ import styles from "./ChangeCarWithThumbnail.module.scss";
 import classNames from 'classnames';
 
 interface IChangeCarWithThumbnail {
-  thumbnail: ICardDataThumbnail
-  categoryId: ICarDataCategoryId,
-  name: string,
-  description: string,
-  percentCompleted: number 
+  thumbnail?: ICardDataThumbnail 
+  categoryId?: ICarDataCategoryId,
+  name?: string,
+  description?: string,
+  percentCompleted?: number 
 }
 
 const ChangeCarWithThumbnail: React.FC<IChangeCarWithThumbnail> = ({
@@ -26,7 +26,7 @@ const ChangeCarWithThumbnail: React.FC<IChangeCarWithThumbnail> = ({
     <div className={styles.wrapper}>
       <CarInfoThumbnail
         image={thumbnail && thumbnail.path}
-        name={name}
+        name={name && name}
         category={categoryId && categoryId.name}
         className={styles.carInfoThumbnail}
       />

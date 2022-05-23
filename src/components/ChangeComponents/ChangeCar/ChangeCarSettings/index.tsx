@@ -1,42 +1,44 @@
-import StandartInput from 'components/Dumb/Inputs/StandartInput/StandartInput';
 import React, { ChangeEvent, memo, useEffect, useState } from 'react';
 
-import { ICarDataCategoryId } from 'store/filtersData/types';
+import { ReactComponent as PlusIcon } from "assets/icons/plus.svg";
+import {Button, Checkbox, StandartInput, Select} from 'components';
+import { IAllCarCategories, ICarDataCategoryId } from 'store/filtersData/types';
 import styles from "./ChangeCarSettings.module.scss";
 
 interface IChangeCarSettings {
-  categoryId: ICarDataCategoryId
-  colors: Array<string>,
-  name: string
+  categoryId?: ICarDataCategoryId
+  colors?: Array<string>,
+  name?: string,
+  carCategories: IAllCarCategories,
+  changeCarCategoryHandler: (categoryId: ICarDataCategoryId) => void,
+  changeNameHandler: (e: ChangeEvent<HTMLInputElement>) => void,
+  changeCarColorsHandler: (colors: Array<string>) => void
 }
 
 const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
   categoryId,
   colors,
   name,
+  carCategories,
+  changeCarCategoryHandler,
+  changeNameHandler
 }) => {
-
-  const [inputName, setInputName] = useState<string>("");
-  const [inputCategory, setInputCategory] = useState<string>("");
+  const [allColors, setAllColors] = useState<Array<string>>([]);
+  const [colorInput, setColorInput] = useState<string>("");
 
   useEffect(() => {
-    if(categoryId) {
-      setInputCategory(categoryId.name);
+    if(colors && colors.length > 0) {
+      setAllColors(colors);
     }
-    if(name) {
-      setInputName(name);
-    }
-    if(colors) {
+  }, [colors])
 
-    }
-  }, [categoryId, colors, name])
-
-  const changeInputNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputName(e.target.value);
+  const addColorHandler = (color: string) => {
+      setAllColors((prev) => [...prev, color] );
+      setColorInput("");
   }
 
-  const changeInputCategoryHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputCategory(e.target.value);
+  const setColorInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setColorInput(e.target.value);
   }
 
   return (
@@ -51,33 +53,69 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
             </div>
             <StandartInput
               name="model"
-              value={inputName}
+              value={name}
               placeholder='Введите модель автомобиля'
-              onChange={changeInputNameHandler}
+              onChange={changeNameHandler}
             />
           </label>
           <label className={styles.label}>
-            <div className={styles.label__text}>
-              Тип автомобиля
-            </div>
-            <StandartInput
-              name="model"
-              value={inputCategory}
-              placeholder='Введите тип автомобиля'
-              onChange={changeInputCategoryHandler}
-            />
+           { carCategories.data &&
+            <>
+              <div className={styles.label__text}>
+                Тип автомобиля
+              </div>
+              <Select 
+                options={carCategories?.data}
+                selected={categoryId}
+                clickHandler={changeCarCategoryHandler}
+                customLabel="name"
+                customValue="id"
+                className={styles.categorySelect}
+              />
+            </>
+          }
           </label>
           <div>
-            <label className={styles.label}>
-              <div className={styles.label__text}>
-                Доступные цвета
-              </div>
-              <StandartInput
-                name="model"
-                value=""
-                placeholder='Введите цвет'
-              />
-            </label>
+            <div className={styles.label__wrapper}>
+              <label htmlFor='color-input'>
+                <div className={styles.label__text}>
+                  Доступные цвета
+                </div>
+              </label>
+              <div className={styles.label__withButton}>
+                <StandartInput
+                    name="color"
+                    value={colorInput}
+                    onChange={setColorInputHandler}
+                    placeholder='Введите цвет'
+                    id="color-input"
+                    className={styles.fullInput}
+                  />
+                <Button 
+                  onClick={() => addColorHandler(colorInput)}
+                  className={styles.label__button_add}
+                >
+                  <PlusIcon />
+                </Button>
+                </div>    
+            </div>       
+            <div className={styles.colorsWrapper}>
+              {
+                allColors && colors &&
+                allColors.map(item => (
+                  <Checkbox
+                    label={item}
+                    value={item}
+                    id={item}
+                    name={item}
+                    selected={colors?.includes(item)}
+                    onChange={(data) => alert(data)}
+                    customCheckboxStyles={styles.color__checkbox}
+                    customLabelStyles={styles.color__label}
+                  />
+                ))
+              }
+            </div>
           </div> 
         </div>
       </div>

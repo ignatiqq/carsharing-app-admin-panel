@@ -6,9 +6,9 @@ import FileInput from 'components/Dumb/Inputs/FileInput/FileInput';
 import classNames from 'classnames';
 
 interface ICarInfoThumbnail {
-    image: string,
-    name: string,
-    category: string,
+    image?: string,
+    name?: string,
+    category?: string,
     className?: string
 }
 

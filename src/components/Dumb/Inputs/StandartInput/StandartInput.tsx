@@ -5,7 +5,8 @@ import type { IInput } from '../type';
 import styles from "./StandartInput.module.scss";
 
 interface IStandartInput extends IInput {
-    type?: string
+    type?: string,
+    id?: string
 }
 
 const StandartInput: React.FC<IStandartInput> = ({
@@ -18,7 +19,8 @@ const StandartInput: React.FC<IStandartInput> = ({
     onChange,
     onBlur,
     onFocus,
-    className
+    className,
+    id
 }) => {
   return (
     <input 
@@ -32,6 +34,7 @@ const StandartInput: React.FC<IStandartInput> = ({
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
+        id={id}
     />
   )
 }

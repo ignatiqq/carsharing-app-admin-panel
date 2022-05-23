@@ -6,7 +6,7 @@ import styles from "./Progress.module.scss";
 interface IProgressComponent {
     title?: string,
     max?: number,
-    value: number,
+    value?: number,
     className?: string
 }
 
