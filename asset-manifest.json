@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/carsharing-app-admin-panel/static/css/main.80fd4a71.css",
-    "main.js": "/carsharing-app-admin-panel/static/js/main.1d967848.js",
+    "main.css": "/carsharing-app-admin-panel/static/css/main.bb394f15.css",
+    "main.js": "/carsharing-app-admin-panel/static/js/main.42140ab2.js",
     "static/media/Roboto-Medium.ttf": "/carsharing-app-admin-panel/static/media/Roboto-Medium.7429a63c09f79a1760b0.ttf",
     "static/media/Roboto-Regular.ttf": "/carsharing-app-admin-panel/static/media/Roboto-Regular.a8d6ac03c7b96b7acb62.ttf",
     "static/media/Roboto-Bold.ttf": "/carsharing-app-admin-panel/static/media/Roboto-Bold.75371f53f06181df75f1.ttf",
@@ -13,29 +13,29 @@
     "static/media/HelveticaRegular.ttf": "/carsharing-app-admin-panel/static/media/HelveticaRegular.31a272d75aa97b0dcb55.ttf",
     "static/media/HelveticaBold.ttf": "/carsharing-app-admin-panel/static/media/HelveticaBold.d2d4622394c0e88a8c69.ttf",
     "static/media/Logo.svg": "/carsharing-app-admin-panel/static/media/Logo.8b3fa03fd35748590d3ec72e5df1ed14.svg",
-    "static/media/cityIcon.svg": "/carsharing-app-admin-panel/static/media/cityIcon.af1f8860de74f2682c8d23c2972dc370.svg",
+    "static/media/cityIcon.svg": "/carsharing-app-admin-panel/static/media/cityIcon.7e33121bc830349bd9cd5e0ea1dbd04d.svg",
     "static/media/loader.svg": "/carsharing-app-admin-panel/static/media/loader.1552bd60a14877b25f4538fbfa82afb4.svg",
     "index.html": "/carsharing-app-admin-panel/index.html",
-    "static/media/rateTypesIcon.svg": "/carsharing-app-admin-panel/static/media/rateTypesIcon.8b88663a30ea9f77a026fe8332a53ecc.svg",
+    "static/media/rateTypesIcon.svg": "/carsharing-app-admin-panel/static/media/rateTypesIcon.16ec7465d57277fe60b460d5d6cf29dd.svg",
     "static/media/Search.svg": "/carsharing-app-admin-panel/static/media/Search.49419f761fd5e46d3c1235f74a5b7360.svg",
     "static/media/menuBtn.svg": "/carsharing-app-admin-panel/static/media/menuBtn.cb2a5250e71269c54dfe8cf9519769fa.svg",
     "static/media/Notifications.svg": "/carsharing-app-admin-panel/static/media/Notifications.25657f73b5a340dfdde408e3da3cd59b.svg",
     "static/media/pen.svg": "/carsharing-app-admin-panel/static/media/pen.16dfa0fb17d2c01d6a3e1e0c900fc233.svg",
     "static/media/List.svg": "/carsharing-app-admin-panel/static/media/List.e0c5563f839969edc2b4396b50f792c8.svg",
     "static/media/sidebarOpen.svg": "/carsharing-app-admin-panel/static/media/sidebarOpen.ef9d36c55a46fdd59a41d11dee14f5b8.svg",
-    "static/media/selectDropdown.svg": "/carsharing-app-admin-panel/static/media/selectDropdown.551085a20b618db60dfa.svg",
+    "static/media/selectDropdown.svg": "/carsharing-app-admin-panel/static/media/selectDropdown.58280185c79a1d56a0fe.svg",
     "static/media/closeBtn.svg": "/carsharing-app-admin-panel/static/media/closeBtn.dab0387c18c6730310451c56cf49c7a4.svg",
     "static/media/XIcon.svg": "/carsharing-app-admin-panel/static/media/XIcon.ae7d1326756d2e9b1dd96754371850b5.svg",
     "static/media/checkmark.svg": "/carsharing-app-admin-panel/static/media/checkmark.68dbd1f09382f3e53c69.svg",
     "static/media/selectCloseIcon.svg": "/carsharing-app-admin-panel/static/media/selectCloseIcon.01609553fec431d0b9d6.svg",
-    "static/media/pointIcon.svg": "/carsharing-app-admin-panel/static/media/pointIcon.4fff5f9b13781981143bc54d9196cbf7.svg",
+    "static/media/pointIcon.svg": "/carsharing-app-admin-panel/static/media/pointIcon.163c8035c7066b1ee8648d53ac323caa.svg",
     "static/media/checkmarkBtn.svg": "/carsharing-app-admin-panel/static/media/checkmarkBtn.bc28cbc6a37768353813016993ca70f9.svg",
     "static/media/Dropdown.svg": "/carsharing-app-admin-panel/static/media/Dropdown.f0e6061911c7f7b7d84dc4f84e278219.svg",
-    "main.80fd4a71.css.map": "/carsharing-app-admin-panel/static/css/main.80fd4a71.css.map",
-    "main.1d967848.js.map": "/carsharing-app-admin-panel/static/js/main.1d967848.js.map"
+    "main.bb394f15.css.map": "/carsharing-app-admin-panel/static/css/main.bb394f15.css.map",
+    "main.42140ab2.js.map": "/carsharing-app-admin-panel/static/js/main.42140ab2.js.map"
   },
   "entrypoints": [
-    "static/css/main.80fd4a71.css",
-    "static/js/main.1d967848.js"
+    "static/css/main.bb394f15.css",
+    "static/js/main.42140ab2.js"
   ]
 }
