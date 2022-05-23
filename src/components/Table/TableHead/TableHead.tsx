@@ -14,7 +14,7 @@ const TableHead: React.FC<ICustomTableHead> = ({ children, count }) => {
         <div className={styles.header}>
           <div>Список моделей</div>
           <div className={styles.header__countWrapper}>
-            <span>Всего: </span> {count ? count : <Loader />}
+            <span>Всего: </span> {(count === null) ?  <Loader /> : count}
           </div>
         </div>
         {children && children}

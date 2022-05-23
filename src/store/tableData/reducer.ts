@@ -97,6 +97,7 @@ const tableData = createReducer(initialState, (builder) => {
     builder
         .addCase(setOrderData, (state, action: PayloadAction<IOrderDataInfo>) => {
             state.order.data = action.payload
+            state.order.error = null
         })
         .addCase(setOrderDataLoading, (state, action: PayloadAction<boolean>) => {
             state.order.isLoading = action.payload
@@ -123,7 +124,8 @@ const tableData = createReducer(initialState, (builder) => {
         // Cars
 
         .addCase(setTableCarsData, (state, action: PayloadAction<ICarsDataInfo>) => {
-            state.cars.data = action.payload;
+            state.cars.data = action.payload
+            state.cars.error = null
         })
         .addCase(setTableCarsDataLoading, (state, action: PayloadAction<boolean>) => {
             state.cars.isLoading = action.payload
@@ -142,6 +144,7 @@ const tableData = createReducer(initialState, (builder) => {
 
         .addCase(setTableCitiesData, (state, action: PayloadAction<ICityDataInfo>) => {
             state.cities.data = action.payload
+            state.cities.error = null
         })
         .addCase(setTableCitiesDataLoading, (state, action: PayloadAction<boolean>) => {
             state.cities.isLoading = action.payload
@@ -157,6 +160,7 @@ const tableData = createReducer(initialState, (builder) => {
 
         .addCase(setTablePointsData, (state, action: PayloadAction<IPointDataInfo>) => {
             state.points.data = action.payload
+            state.points.error = null
         })
         .addCase(setTablePointsDataLoading, (state, action: PayloadAction<boolean>) => {
             state.points.isLoading = action.payload
@@ -172,6 +176,7 @@ const tableData = createReducer(initialState, (builder) => {
 
         .addCase(setTableRateTypesData, (state, action: PayloadAction<IRateTypeDataInfo>) => {
             state.rateTypes.data = action.payload
+            state.rateTypes.error = null
         })
         .addCase(setTableRateTypesDataLoading, (state, action: PayloadAction<boolean>) => {
             state.rateTypes.isLoading = action.payload

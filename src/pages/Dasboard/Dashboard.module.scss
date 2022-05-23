@@ -4,27 +4,27 @@
         display: flex;
         min-height: 100vh;
     }
-
+  
     &__outlet {
         padding: 28px;
     }
-
+  
     &__wrapper {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
+        min-height: 100vh;
     }
-
+  
     &__contentWrapper {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
-
-}
-
-.loader {
+  
+  }
+  
+  .loader {
     min-height: 60px;
-}
-
+  }
