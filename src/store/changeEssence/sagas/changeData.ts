@@ -3,7 +3,15 @@ import type { AxiosResponse } from "axios";
 import { takeLatest, put, call } from "redux-saga/effects";
 
 import tableData from "api/routes/tableData";
-import { getDataToChange, setDataToChange, setDataToChangeLoading, setDataToChangeRequestError } from "../actions";
+import { 
+    getDataToChange, 
+    setDataToChange, 
+    setDataToChangeLoading, 
+    setDataToChangeRequestError,
+    sendDataToChange,
+    sendChangedEssenseDataLoading,
+    sendChangedEssenseDataRequestError
+} from "../actions";
 import errorKeys from "constants/errorKeys";
 
 function* getChangeDataHandler(action: AnyAction) {
@@ -28,4 +36,28 @@ function* getChangeDataHandler(action: AnyAction) {
 
 export function* getChangeDataWatcher() {
     yield takeLatest(getDataToChange, getChangeDataHandler);
+}
+
+function* sendDataToChangeHandler(action: AnyAction) {
+    try {
+        
+        yield put(sendChangedEssenseDataLoading(true));
+        
+        const response: AxiosResponse = yield call(tableData.putChangeDataById, action.payload)
+
+        if(response?.status < 300) {
+            // alert logic
+        } else {
+            throw new Error(errorKeys.requestError)
+        }
+
+    } catch (error: any) {
+        yield put(sendChangedEssenseDataRequestError(error.message));
+    } finally {
+        yield put(sendChangedEssenseDataLoading(false));
+    }
+}
+
+export function* sendDataToChangeWatcher() {
+    yield takeLatest(sendDataToChange, sendDataToChangeHandler);
 }

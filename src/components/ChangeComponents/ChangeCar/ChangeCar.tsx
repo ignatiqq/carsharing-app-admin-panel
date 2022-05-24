@@ -1,31 +1,62 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 
 import { ChangeCarWithThumbnail, ChangeCarSettings } from 'components';
-import { ICarData, ICarDataCategoryId } from 'store/filtersData/types';
+import { ICarData, ICarDataCategoryId, ICardDataThumbnail } from 'store/filtersData/types';
 import { getPercentByDataComplete } from 'utils/essentialDataHelper';
 import styles from "./ChangeCar.module.scss";
 import { useAppSelector } from 'store';
 
-const ChangeCar: React.FC<ICarData> = (props) => {
+interface IChangeCar extends ICarData {
+  onClick: (data: Partial<ICarData>) => void
+}
+
+const ChangeCar: React.FC<IChangeCar> = ({
+  onClick,
+  thumbnail,
+  categoryId,
+  colors,
+  createdAt,
+  description,
+  id,
+  name,
+  number,
+  priceMax,
+  priceMin,
+  updatedAt
+}) => {
   const [percentCompleted, setPercentCompleted] = useState<number>(0);
   const [dataToChange, setDataToChange] = useState<Partial<ICarData>>({});
+
+  const carData = {
+    thumbnail,
+    categoryId,
+    colors,
+    createdAt,
+    description,
+    id,
+    name,
+    number,
+    priceMax,
+    priceMin,
+    updatedAt
+  }
 
   const { carCategories } = useAppSelector(({ filtersData }) => ({
     carCategories: filtersData.carCategories
   }))
 
   useEffect(() => {
-    if(props && Object.keys(dataToChange).length <= 0) {
-      setDataToChange(props)
+    if(carData && Object.keys(dataToChange).length <= 0) {
+      setDataToChange(carData)
     }
-  }, [props]);
+  }, [carData]);
   
   useEffect(() => {
     if(dataToChange){
       setPercentCompleted(getPercentByDataComplete(dataToChange));
     }
   }, [dataToChange])
-
+  
   const changeNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setDataToChange((prev) => {
       return {
@@ -39,7 +70,11 @@ const ChangeCar: React.FC<ICarData> = (props) => {
     setDataToChange((prev) => {
       return {
         ...prev,
-        categoryId
+        categoryId: {
+          description: categoryId.description,
+          id: categoryId.id,
+          name: categoryId.name
+        }
       }
     })
   }
@@ -62,6 +97,18 @@ const ChangeCar: React.FC<ICarData> = (props) => {
     })
   }
 
+  const changeImageHandler = (data: ICardDataThumbnail) => {
+    setDataToChange((prev) => {
+      return {
+        ...prev,
+        thumbnail: data
+      }
+    })
+  }
+
+  const sendChangedCar = () => {
+    onClick(dataToChange)
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -71,6 +118,7 @@ const ChangeCar: React.FC<ICarData> = (props) => {
         name={dataToChange?.name}
         description={dataToChange?.description}  
         percentCompleted={percentCompleted}
+        changeImageHandler={changeImageHandler}
       />
       <ChangeCarSettings
         categoryId={dataToChange?.categoryId}
@@ -82,6 +130,7 @@ const ChangeCar: React.FC<ICarData> = (props) => {
         changeNameHandler={changeNameHandler}
         changeCarColorsHandler={changeCarColorsHandler}
         changeCarDescriptionHandler={changeCarDescriptionHandler}
+        sendChangedCar={sendChangedCar}
       />
     </div>
   )

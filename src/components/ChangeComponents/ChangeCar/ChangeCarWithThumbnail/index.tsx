@@ -12,7 +12,8 @@ interface IChangeCarWithThumbnail {
   categoryId?: ICarDataCategoryId,
   name?: string,
   description?: string,
-  percentCompleted?: number 
+  percentCompleted?: number,
+  changeImageHandler: (data: ICardDataThumbnail) => void
 }
 
 const ChangeCarWithThumbnail: React.FC<IChangeCarWithThumbnail> = ({
@@ -20,7 +21,8 @@ const ChangeCarWithThumbnail: React.FC<IChangeCarWithThumbnail> = ({
   categoryId,
   name,
   description,
-  percentCompleted
+  percentCompleted,
+  changeImageHandler
 }) => {
   return (
     <div className={styles.wrapper}>
@@ -29,6 +31,7 @@ const ChangeCarWithThumbnail: React.FC<IChangeCarWithThumbnail> = ({
         name={name && name}
         category={categoryId && categoryId.name}
         className={styles.carInfoThumbnail}
+        changeImageHandler={changeImageHandler}
       />
       <Progress
         title="Заполнено"

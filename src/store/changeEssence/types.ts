@@ -3,6 +3,8 @@ export interface IEssenseOptions {
         data: IEssenseData | null,
         route: string | null,
         id: string | null,
+        changeRequestLoading: boolean,
+        changeRequestError: string | null,
         isLoading: boolean,
         error: string | null
     }

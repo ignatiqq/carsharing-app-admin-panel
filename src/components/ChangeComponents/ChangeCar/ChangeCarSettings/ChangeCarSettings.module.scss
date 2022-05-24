@@ -7,11 +7,14 @@
     0px 7px 7px rgba(90, 97, 105, 0.1);
     padding: 20px;
     width: 73%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
     
 .header { 
 
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 
     h2 {
         color: var(--primary-dark-blue);

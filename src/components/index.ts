@@ -11,6 +11,7 @@ export { default as Paginator } from "./Paginator/Paginator";
 export { default as NothingFound } from "./Phrases/NothingFound/NothingFound";
 export { default as SelectWrapper } from "./SelectWrapper/SelectWrapper";
 export { default as CarInfoThumbnail } from "./CarInfo/CarInfoThumbnail/CarInfoThumbnail";
+export { default as EssenseOptionsFooter } from "./EssenseOptionsFooter/EssenseOptionsFooter";
 
 export { default as ChangeCarSettings } from "./ChangeComponents/ChangeCar/ChangeCarSettings";
 export { default as ChangeCarWithThumbnail } from "./ChangeComponents/ChangeCar/ChangeCarWithThumbnail";

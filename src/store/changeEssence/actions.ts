@@ -7,7 +7,9 @@ import {
     GET_DATA_TO_CHANGE,
     SET_DATA_TO_CHANGE_ROUTE_NAME,
     SET_DATA_TO_CHANGE_ESSENSE_ID,
-    SEND_DATA_TO_CHAGE
+    SEND_DATA_TO_CHAGE,
+    SEND_CHANGE_ESSENSE_DATA_LOADING,
+    SEND_CHANGED_ESSENSE_DATA_REQUEST_ERROR
 } from "./constants";
 import { IEssenseData, IGetDataToChangeOptions } from "./types";
 
@@ -18,3 +20,5 @@ export const getDataToChange = createAction<IGetDataToChangeOptions>(GET_DATA_TO
 export const setDataToChangeRouteName = createAction<string>(SET_DATA_TO_CHANGE_ROUTE_NAME);
 export const setDataToChangeEssenseId = createAction<string>(SET_DATA_TO_CHANGE_ESSENSE_ID);
 export const sendDataToChange = createAction<IEssenseData>(SEND_DATA_TO_CHAGE);
+export const sendChangedEssenseDataLoading = createAction<boolean>(SEND_CHANGE_ESSENSE_DATA_LOADING);
+export const sendChangedEssenseDataRequestError = createAction<string>(SEND_CHANGED_ESSENSE_DATA_REQUEST_ERROR);

@@ -13,7 +13,10 @@ import {
     getTableCarsDataWatcher,
 } from "./tableData/sagas";
 import { getFiltersDataWatcher } from "./filtersData/sagas/filtersData";
-import { getChangeDataWatcher } from "./changeEssence/sagas/changeData";
+import { 
+    getChangeDataWatcher,
+    sendDataToChangeWatcher 
+} from "./changeEssence/sagas/changeData";
 
 export default function *rootSaga() {
     yield all([
@@ -26,6 +29,7 @@ export default function *rootSaga() {
         getTablePointsDataWatcher(),
         getTableRateTypesDataWatcher(),
         getTableCarsDataWatcher(),
-        getChangeDataWatcher()
+        getChangeDataWatcher(),
+        sendDataToChangeWatcher()
     ])
 }
