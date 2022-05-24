@@ -15,5 +15,6 @@ export interface ISelect {
     dropdownClassName?: number,
     selectClassName?: string,
     dataHolder?: React.ReactElement | null,
-    className?: string
+    className?: string,
+    id?: string
 }

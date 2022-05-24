@@ -15,11 +15,16 @@ const ChangeCar: React.FC<ICarData> = (props) => {
   }))
 
   useEffect(() => {
-    if(props) {
-      setPercentCompleted(getPercentByDataComplete(props));
+    if(props && Object.keys(dataToChange).length <= 0) {
       setDataToChange(props)
     }
   }, [props]);
+  
+  useEffect(() => {
+    if(dataToChange){
+      setPercentCompleted(getPercentByDataComplete(dataToChange));
+    }
+  }, [dataToChange])
 
   const changeNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setDataToChange((prev) => {
@@ -48,6 +53,16 @@ const ChangeCar: React.FC<ICarData> = (props) => {
     })
   }
 
+  const changeCarDescriptionHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setDataToChange((prev) => {
+      return {
+        ...prev,
+        description: e.target.value
+      }
+    })
+  }
+
+
   return (
     <div className={styles.wrapper}>
       <ChangeCarWithThumbnail
@@ -62,9 +77,11 @@ const ChangeCar: React.FC<ICarData> = (props) => {
         colors={dataToChange?.colors}
         name={dataToChange?.name}
         carCategories={carCategories}
+        description={dataToChange?.description}
         changeCarCategoryHandler={changeCarCategoryHandler}
         changeNameHandler={changeNameHandler}
         changeCarColorsHandler={changeCarColorsHandler}
+        changeCarDescriptionHandler={changeCarDescriptionHandler}
       />
     </div>
   )

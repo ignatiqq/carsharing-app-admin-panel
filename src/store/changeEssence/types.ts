@@ -1,7 +1,8 @@
 export interface IEssenseOptions {
     change: {
-        data: {[key: string]: any} | null,
+        data: IEssenseData | null,
         route: string | null,
+        id: string | null,
         isLoading: boolean,
         error: string | null
     }
@@ -11,4 +12,8 @@ export interface IEssenseOptions {
 export interface IGetDataToChangeOptions {
     id: string,
     route: string
+}
+
+export interface IEssenseData {
+    [key: string]: any
 }

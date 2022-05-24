@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { ChangeCar, Loader } from 'components';
 import styles from "./ChangeEssence.module.scss";
 import { useAppDispatch, useAppSelector } from 'store';
-import { getDataToChange, setDataToChangeRouteName } from 'store/changeEssence/actions';
+import { getDataToChange, setDataToChangeEssenseId, setDataToChangeRouteName } from 'store/changeEssence/actions';
 import { ICarData } from 'store/filtersData/types';
 
 const ChangeEssence = () => {
@@ -24,8 +24,13 @@ const ChangeEssence = () => {
         route: params.route
       }));
       dispatch(setDataToChangeRouteName(params.route));
+      dispatch(setDataToChangeEssenseId(params.id));
     }
   }, [params]);
+
+  const changeEssenseHandler = <T extends {}>(data: T) => {
+    dispatch(sendDataToChange(data));
+  }
 
   return (
     <div>

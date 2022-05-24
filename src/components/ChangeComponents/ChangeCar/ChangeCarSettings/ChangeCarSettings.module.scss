@@ -22,40 +22,31 @@
 }
 
 .label {
-    
+
     & {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        margin: 10px 20px 10px 0px;
-        min-width: 350px;
-    }
-
-    &__wrapper {
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        flex-direction: column;
+        min-width: 500px;
+        max-width: 500px;
         width: 100%;
-        min-width: 350px;
-
-        label {
-            width: 100%;
-        }
+        display: flex;
+        flex-direction: column;
     }
 
     &__text {
         font-size: 11px;
         color: var(--primary-black);
-        margin-bottom: 5px;
         text-align: left;
         width: 100%;
+        margin-bottom: 10px;
     }
 
     &__withButton {
         display: flex;
-        width: 100%;
+        justify-content: flex-start;
+        align-items: flex-end;
         margin: 10px 0px;
+        min-width: 500px;
+        max-width: 500px;
+        width: 100%;
     }
 
     &__button {
@@ -70,6 +61,7 @@
             color: var(--gray-border);
             padding: 5px;
             margin-left: 10px;
+            min-height: 34px;
         }
 
     }
@@ -80,9 +72,14 @@
     width: 100%;
 }
 
+.inputCustomWrapper {
+    max-width: 500px;
+    width: 100%;
+}
+
 .settingsWrapper {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     flex-wrap: wrap;
 }

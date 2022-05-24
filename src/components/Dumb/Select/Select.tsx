@@ -17,7 +17,8 @@ const Select: React.FC<ISelect> = (
     selectClassName,
     dropdownClassName,
     dataHolder,
-    className
+    className,
+    id
   }
   ) => {
 
@@ -35,7 +36,6 @@ const Select: React.FC<ISelect> = (
 
   useEffect(() => {
     if(options) {
-      console.log(options)
       const filterBySearch = (item: IOption) => item[optionLabel as keyof IOption].toLowerCase().includes(optionSearch.toLowerCase());
       setOptionsToShow(options.filter(filterBySearch))
     }
@@ -86,6 +86,7 @@ const Select: React.FC<ISelect> = (
           className={classNames(styles.input, selectClassName)}
           onFocus={openSelectDropdownHandler}
           onBlur={closeSelectDropdownHandler}
+          id={id}
         />
         <div className={classNames(styles.optionWrapper, dropdownClassName, {
           [styles.optionWrapperOpen]: selectDropdownOpened
