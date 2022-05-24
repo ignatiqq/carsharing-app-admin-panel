@@ -1,4 +1,5 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { ChangeCarWithThumbnail, ChangeCarSettings } from 'components';
 import { ICarData, ICarDataCategoryId, ICardDataThumbnail } from 'store/filtersData/types';
@@ -7,11 +8,12 @@ import styles from "./ChangeCar.module.scss";
 import { useAppSelector } from 'store';
 
 interface IChangeCar extends ICarData {
-  onClick: (data: Partial<ICarData>) => void
+  onChangeHandler: (data: Partial<ICarData>) => void,
+  onDeleteHandler: () => void
 }
 
 const ChangeCar: React.FC<IChangeCar> = ({
-  onClick,
+  onChangeHandler,
   thumbnail,
   categoryId,
   colors,
@@ -22,7 +24,8 @@ const ChangeCar: React.FC<IChangeCar> = ({
   number,
   priceMax,
   priceMin,
-  updatedAt
+  updatedAt,
+  onDeleteHandler
 }) => {
   const [percentCompleted, setPercentCompleted] = useState<number>(0);
   const [dataToChange, setDataToChange] = useState<Partial<ICarData>>({});
@@ -44,6 +47,8 @@ const ChangeCar: React.FC<IChangeCar> = ({
   const { carCategories } = useAppSelector(({ filtersData }) => ({
     carCategories: filtersData.carCategories
   }))
+
+  const navigation = useNavigate();
 
   useEffect(() => {
     if(carData && Object.keys(dataToChange).length <= 0) {
@@ -107,7 +112,11 @@ const ChangeCar: React.FC<IChangeCar> = ({
   }
 
   const sendChangedCar = () => {
-    onClick(dataToChange)
+    onChangeHandler(dataToChange)
+  }
+
+  const goBackHandler = () => {
+    navigation(-1)
   }
 
   return (
@@ -131,6 +140,8 @@ const ChangeCar: React.FC<IChangeCar> = ({
         changeCarColorsHandler={changeCarColorsHandler}
         changeCarDescriptionHandler={changeCarDescriptionHandler}
         sendChangedCar={sendChangedCar}
+        goBackHandler={goBackHandler}
+        onDeleteHandler={onDeleteHandler}
       />
     </div>
   )

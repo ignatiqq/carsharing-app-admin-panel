@@ -16,7 +16,9 @@ interface IChangeCarSettings {
   changeNameHandler: (e: ChangeEvent<HTMLInputElement>) => void,
   changeCarColorsHandler: (colors: Array<string>) => void,
   changeCarDescriptionHandler: (e: ChangeEvent<HTMLInputElement>) => void,
-  sendChangedCar: () => void
+  sendChangedCar: () => void,
+  goBackHandler: () => void,
+  onDeleteHandler: () => void
 }
 
 const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
@@ -29,7 +31,9 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
   changeCarColorsHandler,
   changeCarDescriptionHandler,
   sendChangedCar,
-  description
+  description,
+  goBackHandler,
+  onDeleteHandler
 }) => {
   const [allColors, setAllColors] = useState<Array<string>>([]);
   const [colorInput, setColorInput] = useState<string>("");
@@ -148,6 +152,8 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
         </div>
         <EssenseOptionsFooter 
           onApply={sendChangedCar}
+          onCancel={goBackHandler}
+          onDelete={onDeleteHandler}
         />
       </div>
   )

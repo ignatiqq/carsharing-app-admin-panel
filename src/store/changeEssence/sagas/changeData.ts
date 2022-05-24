@@ -10,7 +10,8 @@ import {
     setDataToChangeRequestError,
     sendDataToChange,
     sendChangedEssenseDataLoading,
-    sendChangedEssenseDataRequestError
+    sendChangedEssenseDataRequestError,
+    deleteDataToChange
 } from "../actions";
 import errorKeys from "constants/errorKeys";
 
@@ -43,7 +44,7 @@ function* sendDataToChangeHandler(action: AnyAction) {
         
         yield put(sendChangedEssenseDataLoading(true));
         
-        const response: AxiosResponse = yield call(tableData.putChangeDataById, action.payload)
+        const response: AxiosResponse = yield call(tableData.putChangeDataById, action.payload);
 
         if(response?.status < 300) {
             // alert logic
@@ -60,4 +61,28 @@ function* sendDataToChangeHandler(action: AnyAction) {
 
 export function* sendDataToChangeWatcher() {
     yield takeLatest(sendDataToChange, sendDataToChangeHandler);
+}
+
+function* deleteDataToChangeHandler(action: AnyAction) {
+    try {
+        
+        yield put(sendChangedEssenseDataLoading(true));
+
+        const response: AxiosResponse = yield call(tableData.deleteChandeDataById, action.payload);
+
+        if(response.status < 300) {
+            // alert logic 
+        } else {
+            throw new Error(errorKeys.requestError)
+        }
+
+    } catch (error: any) {
+        yield put(sendChangedEssenseDataRequestError(error.message));
+    } finally {
+        yield put(sendChangedEssenseDataLoading(false));
+    }
+}
+
+export function* deleteDataToChangeWatcher() {
+    yield takeLatest(deleteDataToChange, deleteDataToChangeHandler);
 }

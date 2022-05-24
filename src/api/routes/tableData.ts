@@ -1,4 +1,4 @@
-import { getRequest, putRequest } from "api/requests/requests";
+import { getRequest, putRequest, deleteRequest } from "api/requests/requests";
 import type { IEssenseData } from "store/changeEssence/types";
 import type { IQueryFilter } from "store/tableData/types";
 import { paramsToString } from "utils/requestHelper";
@@ -58,6 +58,14 @@ const tableData = {
                 authorization: true
             }
         }, data);
+    },
+
+    deleteChandeDataById: ({id, route}: IEssenseChangeData) => {
+        return deleteRequest(`/db/${route}/${id}`, {
+            headers: {
+                authorization: true
+            }
+        })
     }
 
 }

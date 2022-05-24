@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { ChangeCar, Loader } from 'components';
 import styles from "./ChangeEssence.module.scss";
 import { useAppDispatch, useAppSelector } from 'store';
-import { getDataToChange, sendDataToChange, setDataToChangeEssenseId, setDataToChangeRouteName } from 'store/changeEssence/actions';
+import { deleteDataToChange, getDataToChange, sendDataToChange, setDataToChangeEssenseId, setDataToChangeRouteName } from 'store/changeEssence/actions';
 import { ICarData } from 'store/filtersData/types';
 
 const ChangeEssence = () => {
@@ -29,12 +29,20 @@ const ChangeEssence = () => {
   }, [params]);
 
   const changeEssenseHandler = <T extends {}>(data: T) => {
-    console.log(data);
     dispatch(sendDataToChange({
       id: changeData.id,
       route: changeData.route,
       data: data
     }));
+  }
+
+  const deleteEssengeHandler = () => {
+    if(changeData.id && changeData.route) {
+      dispatch(deleteDataToChange({
+        id: changeData.id,
+        route: changeData.route
+      }))
+    }
   }
 
   return (
@@ -47,7 +55,8 @@ const ChangeEssence = () => {
           {
             changeData.route === "car" ?
             <ChangeCar 
-              onClick={changeEssenseHandler}
+              onChangeHandler={changeEssenseHandler}
+              onDeleteHandler={deleteEssengeHandler}
               {...changeData.data as ICarData} 
             />
               :

@@ -27,3 +27,12 @@ export const putRequest = <T>(url: string, config?: IConfig, body?: T) => {
         headers: config?.headers
     })
 }
+
+export const deleteRequest = <T>(url: string, config?: IConfig, body?: T) => {
+    return makeRequest({
+        url,
+        method: "DELETE",
+        body,
+        headers: config?.headers
+    })
+}

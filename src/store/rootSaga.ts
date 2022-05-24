@@ -15,7 +15,8 @@ import {
 import { getFiltersDataWatcher } from "./filtersData/sagas/filtersData";
 import { 
     getChangeDataWatcher,
-    sendDataToChangeWatcher 
+    sendDataToChangeWatcher,
+    deleteDataToChangeWatcher
 } from "./changeEssence/sagas/changeData";
 
 export default function *rootSaga() {
@@ -30,6 +31,7 @@ export default function *rootSaga() {
         getTableRateTypesDataWatcher(),
         getTableCarsDataWatcher(),
         getChangeDataWatcher(),
-        sendDataToChangeWatcher()
+        sendDataToChangeWatcher(),
+        deleteDataToChangeWatcher()
     ])
 }
