@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { ReactComponent as NotificationsIcon } from "assets/icons/Notifications.svg";
-import styles from "./Notifications.module.scss";
+import styles from "./PermanentNotifications.module.scss";
 
-const Notifications = () => {
+const PermanentNotifications = () => {
   return (
     <button className={styles.button}>
         <NotificationsIcon />
@@ -11,4 +11,4 @@ const Notifications = () => {
   )
 }
 
-export default Notifications
+export default PermanentNotifications;

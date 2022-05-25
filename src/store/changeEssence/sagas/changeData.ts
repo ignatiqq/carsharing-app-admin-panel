@@ -14,6 +14,9 @@ import {
     deleteDataToChange
 } from "../actions";
 import errorKeys from "constants/errorKeys";
+import { addTemporaryNotification } from "store/notifications/actions";
+import { temporaryNotificationsFactory } from "utils/notificationsFactory";
+import { failedTemporaryChangeEssense, successTemporaryChangeEssense } from "constants/notifications/temporary";
 
 function* getChangeDataHandler(action: AnyAction) {
     try {
@@ -47,12 +50,13 @@ function* sendDataToChangeHandler(action: AnyAction) {
         const response: AxiosResponse = yield call(tableData.putChangeDataById, action.payload);
 
         if(response?.status < 300) {
-            // alert logic
+            yield put(addTemporaryNotification(temporaryNotificationsFactory(successTemporaryChangeEssense)))
         } else {
             throw new Error(errorKeys.requestError)
         }
 
     } catch (error: any) {
+        yield put(addTemporaryNotification(temporaryNotificationsFactory(failedTemporaryChangeEssense)))
         yield put(sendChangedEssenseDataRequestError(error.message));
     } finally {
         yield put(sendChangedEssenseDataLoading(false));

@@ -2,8 +2,9 @@ import React, { useCallback } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import withDashboardLogic from './withDashboardLogic';
-import { Sidebar, Header, Loader, Footer } from 'components';
+import { Sidebar, Header, Loader, Footer, TemporaryNotificationWrapper } from 'components';
 import styles from "./Dashboard.module.scss";
+import { useAppSelector } from 'store';
 
 export function selectDataHolder<T>(data: {isLoading: boolean, error: string | null, data: T}) {
   if(data.isLoading) {
@@ -19,6 +20,10 @@ export function selectDataHolder<T>(data: {isLoading: boolean, error: string | n
 
 const Dashboard = () => {
   const [sidebarExtended, setSidebarExtended] = React.useState(false);
+
+  const { temporaryNotifications } = useAppSelector(({notifications}) => ({
+    temporaryNotifications: notifications.temporary.data
+  }))
 
   const openSidebarHanlder = useCallback(() => {
     setSidebarExtended(true)
@@ -39,6 +44,9 @@ const Dashboard = () => {
             <Header
               openSidebarHanlder={openSidebarHanlder}
               sidebarExtended={sidebarExtended}
+            />
+            <TemporaryNotificationWrapper 
+              data={temporaryNotifications}
             />
             <div className={styles.dashboard__outlet}>
               <Outlet />

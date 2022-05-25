@@ -5,7 +5,7 @@ export { default as Sidebar } from "./Sidebar/Sidebar";
 export { default as Header } from "./Header/Header";
 export { default as Footer } from "./Footer/Footer";
 
-export { default as Notifications } from "./Notifications/Notifications";
+export { default as PermanentNotifications } from "./Notifications/PermanentNotification/PermanentNotifications";
 export { default as SettingsMenu } from "./SettingsMenu/SettingsMenu";
 export { default as Paginator } from "./Paginator/Paginator";
 export { default as NothingFound } from "./Phrases/NothingFound/NothingFound";
@@ -34,3 +34,6 @@ export { default as DragOver } from "./Dumb/DragOver/DragOver";
 export { default as Progress } from "./Dumb/Progress/Progress";
 export { default as Portal } from "./Dumb/Portal/Portal";
 export { default as ModalStandart } from "./Modals/ModalStandart/ModalStandart";
+
+export { default as TemporaryNotification } from "./Notifications/TemporaryNotifications/TemporaryNotification";
+export { default as TemporaryNotificationWrapper } from "./Notifications/TemporaryNotifications/Wrapper/TemporaryNotificationWrapper";

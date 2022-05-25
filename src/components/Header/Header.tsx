@@ -4,7 +4,7 @@ import { StandartInput } from '..';
 import UserAvatar from "assets/icons/UserAvatar.svg";
 import { ReactComponent as MenuBtn } from "assets/icons/sidebarOpen.svg";
 import { ReactComponent as SearchIcon } from "assets/icons/Search.svg"; 
-import { Notifications, SettingsMenu } from "..";
+import { PermanentNotifications, SettingsMenu } from "..";
 import styles from "./Header.module.scss";
 import classNames from 'classnames';
 
@@ -48,7 +48,7 @@ const Header: React.FC<IHeader> = ({
         </div>     
         <div className={styles.header__options}>
           <div className={styles.header__notificationsWrapper}>
-            <Notifications />
+            <PermanentNotifications />
           </div>
           <div className={styles.header__settingsmenuWrapper}>
             <SettingsMenu 
