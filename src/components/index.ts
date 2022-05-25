@@ -32,3 +32,5 @@ export { default as DashboardChangeLink } from "./Dumb/DashboardChangeLink/Dashb
 export { default as FileInput } from "./Dumb/Inputs/FileInput/FileInput";
 export { default as DragOver } from "./Dumb/DragOver/DragOver";
 export { default as Progress } from "./Dumb/Progress/Progress";
+export { default as Portal } from "./Dumb/Portal/Portal";
+export { default as ModalStandart } from "./Modals/ModalStandart/ModalStandart";
