@@ -46,6 +46,7 @@ const Dashboard = () => {
               sidebarExtended={sidebarExtended}
             />
             <TemporaryNotificationWrapper 
+              className={styles.dashboard__notificationsWrapper}
               data={temporaryNotifications}
             />
             <div className={styles.dashboard__outlet}>

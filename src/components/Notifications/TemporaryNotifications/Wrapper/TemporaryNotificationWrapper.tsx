@@ -1,5 +1,5 @@
+import Portal from 'components/Dumb/Portal/Portal';
 import React, { useEffect } from 'react';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { useAppDispatch } from 'store';
 import { removeTemporaryNotification } from 'store/notifications/actions';
 
@@ -8,11 +8,13 @@ import TemporaryNotification from '../TemporaryNotification';
 import "./wrapperAnimation.scss";
 
 interface ITemporaryNotificationWrapper {
-  data: ITemporaryNotification[]
+  data: ITemporaryNotification[],
+  className?: string
 }
 
 const TemporaryNotificationWrapper: React.FC<ITemporaryNotificationWrapper> = ({
-  data
+  data,
+  className
 }) => {
 
   const dispatch = useAppDispatch();
@@ -34,21 +36,17 @@ const TemporaryNotificationWrapper: React.FC<ITemporaryNotificationWrapper> = ({
   }
 
   return (
-    <TransitionGroup>
-      {
-        data.map(item => (
-          <CSSTransition key={item.id} timeout={1000} className="notfication-animate">
-            <TemporaryNotification 
-              onClick={deleteNotificationHandler}
-              id={item.id}
-              type={item.type}
-              value={item.value}
-            />
-          </CSSTransition>
-        ))
-      }
-    </TransitionGroup>
-  )
+    <div className={className}>
+      {data.map((item) => (
+        <TemporaryNotification
+          onClick={deleteNotificationHandler}
+          id={item.id}
+          type={item.type}
+          value={item.value}
+        />
+      ))}
+    </div>
+  );
 
 }
 

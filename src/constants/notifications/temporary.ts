@@ -1,14 +1,23 @@
-import { ITemporaryNotification } from "store/notifications/types";
-import { v4 as uuidv4 } from "uuid";
-
-export const successTemporaryChangeEssense: ITemporaryNotification = {
-    id: uuidv4(),
+export const successTemporaryChangeEssense = (id: string) => ({
+    id: id,
     type: "success",
     value: "Успех! Машина сохранена"
-}
+})
 
-export const failedTemporaryChangeEssense: ITemporaryNotification = {
-    id: uuidv4(),
+export const failedTemporaryChangeEssense = (id: string) => ({
+    id: id,
     type: "failed",
     value: "Ошибка! Машина не сохранена, попробуйте позже"
-}
+})
+
+export const successTemporaryDeleteEssense = (id: string) => ({
+    id: id,
+    type: "success",
+    value: "Успех! Машина успешно удалена"
+})
+
+export const failedTemporaryDeleteEssense = (id: string) => ({
+    id: id,
+    type: "failed",
+    value: "Ошибка! Машина не удалилась, попробуйте позже"
+})

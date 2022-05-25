@@ -1,4 +1,5 @@
 import { AnyAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 import type { AxiosResponse } from "axios";
 import { takeLatest, put, call } from "redux-saga/effects";
 
@@ -16,7 +17,13 @@ import {
 import errorKeys from "constants/errorKeys";
 import { addTemporaryNotification } from "store/notifications/actions";
 import { temporaryNotificationsFactory } from "utils/notificationsFactory";
-import { failedTemporaryChangeEssense, successTemporaryChangeEssense } from "constants/notifications/temporary";
+import { 
+    failedTemporaryChangeEssense, 
+    successTemporaryChangeEssense,
+    successTemporaryDeleteEssense,
+    failedTemporaryDeleteEssense
+} from "constants/notifications/temporary";
+import { ITemporaryNotification } from "store/notifications/types";
 
 function* getChangeDataHandler(action: AnyAction) {
     try {
@@ -50,13 +57,13 @@ function* sendDataToChangeHandler(action: AnyAction) {
         const response: AxiosResponse = yield call(tableData.putChangeDataById, action.payload);
 
         if(response?.status < 300) {
-            yield put(addTemporaryNotification(temporaryNotificationsFactory(successTemporaryChangeEssense)))
+            yield put(addTemporaryNotification(temporaryNotificationsFactory(successTemporaryChangeEssense(uuidv4()) as ITemporaryNotification)))
         } else {
             throw new Error(errorKeys.requestError)
         }
 
     } catch (error: any) {
-        yield put(addTemporaryNotification(temporaryNotificationsFactory(failedTemporaryChangeEssense)))
+        yield put(addTemporaryNotification(temporaryNotificationsFactory(failedTemporaryChangeEssense(uuidv4()) as ITemporaryNotification)))
         yield put(sendChangedEssenseDataRequestError(error.message));
     } finally {
         yield put(sendChangedEssenseDataLoading(false));
@@ -75,12 +82,13 @@ function* deleteDataToChangeHandler(action: AnyAction) {
         const response: AxiosResponse = yield call(tableData.deleteChandeDataById, action.payload);
 
         if(response.status < 300) {
-            // alert logic 
+            yield put(addTemporaryNotification(temporaryNotificationsFactory(successTemporaryDeleteEssense(uuidv4()) as ITemporaryNotification)))
         } else {
             throw new Error(errorKeys.requestError)
         }
 
     } catch (error: any) {
+        yield put(addTemporaryNotification(temporaryNotificationsFactory(failedTemporaryDeleteEssense(uuidv4()) as ITemporaryNotification)))
         yield put(sendChangedEssenseDataRequestError(error.message));
     } finally {
         yield put(sendChangedEssenseDataLoading(false));

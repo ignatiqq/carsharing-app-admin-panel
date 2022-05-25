@@ -7,6 +7,10 @@
   
     &__outlet {
         padding: 28px;
+
+        @media(max-width: 500px) {
+            padding: 28px 10px;
+        }
     }
   
     &__wrapper {
@@ -21,6 +25,18 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+        position: relative;
+    }
+
+    &__notificationsWrapper {
+        position: absolute;
+        width: 100%;
+        top: 75px;
+        z-index: 99;
+
+        @media(max-width: 500px) {
+            top: 125px
+        }
     }
   
   }

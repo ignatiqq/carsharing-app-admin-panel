@@ -63,100 +63,93 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
   }, [allColors])
 
   return (
-      <div className={styles.wrapper}>
-        <div>
-          <div className={styles.header}>
-            <h2>Настройки автомобиля</h2>
-          </div>
-          
-          <div className={styles.settingsWrapper}>
-            <StandartInput
-              label="Модель автомобиля"
-              name="model"
-              value={name}
-              placeholder='Введите модель автомобиля'
-              onChange={changeNameHandler}
-              id="model"
-              wrapperClassname={styles.inputCustomWrapper}
-            />
+    <div className={styles.wrapper}>
+      <div className={styles.wrapper__settings}>
+        <div className={styles.header}>
+          <h2>Настройки автомобиля</h2>
+        </div>
+
+        <div className={styles.settingsWrapper}>
+          <StandartInput
+            label="Модель автомобиля"
+            name="model"
+            value={name}
+            placeholder="Введите модель автомобиля"
+            onChange={changeNameHandler}
+            id="model"
+            wrapperClassname={styles.inputCustomWrapper}
+          />
+          {carCategories.data && (
             <div className={styles.label}>
-            { carCategories.data &&
-              <>
-                <label htmlFor="auto-type" className={styles.label__text}>
-                  Тип автомобиля
-                </label>
-                <Select 
-                  options={carCategories?.data}
-                  selected={categoryId}
-                  clickHandler={changeCarCategoryHandler}
-                  customLabel="name"
-                  customValue="id"
-                  className={styles.categorySelect}
-                  id="auto-type"
-                />
-              </>
-            }
+              <label htmlFor="auto-type" className={styles.label__text}>
+                Тип автомобиля
+              </label>
+              <Select
+                options={carCategories?.data}
+                selected={categoryId}
+                clickHandler={changeCarCategoryHandler}
+                customLabel="name"
+                customValue="id"
+                className={styles.categorySelect}
+                id="auto-type"
+              />
             </div>
+          )}
 
-            <StandartInput
-              label="Описание автомобиля"
-              name="model"
-              value={description}
-              placeholder='Введите описание автомобиля'
-              id="model"
-              onChange={changeCarDescriptionHandler}
-              wrapperClassname={styles.inputCustomWrapper}
-            />
-
-            <div>
-              <div className={styles.label__wrapper}>
-                <div className={styles.label__withButton}>
-                  <StandartInput
-                      name="color"
-                      value={colorInput}
-                      onChange={setColorInputHandler}
-                      placeholder='Введите цвет'
-                      id="color-input"
-                      className={styles.fullInput}
-                      label="Доступные цвета"
-                      wrapperClassname={styles.inputCustomWrapper}
-                    />
-                  <Button 
-                    onClick={() => addColorHandler(colorInput)}
-                    className={styles.label__button_add}
-                  >
-                    <PlusIcon />
-                  </Button>
-                </div>    
-              </div>       
-              <div className={styles.colorsWrapper}>
-                {
-                  allColors && colors &&
-                  allColors.map(item => (
-                    <Checkbox
-                      key={item}
-                      label={item}
-                      value={item}
-                      id={item}
-                      name={item}
-                      selected={colors?.includes(item)}
-                      onChange={deleteColorHandler}
-                      customCheckboxStyles={styles.color__checkbox}
-                      customLabelStyles={styles.color__label}
-                    />
-                  ))
-                }
-              </div>
-            </div> 
+          <StandartInput
+            label="Описание автомобиля"
+            name="model"
+            value={description}
+            placeholder="Введите описание автомобиля"
+            id="model"
+            onChange={changeCarDescriptionHandler}
+            wrapperClassname={styles.inputCustomWrapper}
+          />
+          <div className={styles.colorSettings__wrapper}>
+            <div className={styles.label__withButton}>
+              <StandartInput
+                name="color"
+                value={colorInput}
+                onChange={setColorInputHandler}
+                placeholder="Введите цвет"
+                id="color-input"
+                className={styles.fullInput}
+                label="Доступные цвета"
+                wrapperClassname={styles.colorsCustomWrapper}
+              />
+              <Button
+                onClick={() => addColorHandler(colorInput)}
+                className={styles.label__button_add}>
+                <PlusIcon />
+              </Button>
+            </div>
+            <div className={styles.colorsWrapper}>
+              {allColors &&
+                colors &&
+                allColors.map((item) => (
+                  <Checkbox
+                    key={item}
+                    label={item}
+                    value={item}
+                    id={item}
+                    name={item}
+                    selected={colors?.includes(item)}
+                    onChange={deleteColorHandler}
+                    customCheckboxStyles={styles.color__checkbox}
+                    customLabelStyles={styles.color__label}
+                  />
+                ))}
+            </div>
           </div>
         </div>
-        <EssenseOptionsFooter 
-          onApply={sendChangedCar}
-          onCancel={goBackHandler}
-          onDelete={onDeleteHandler}
-        />
       </div>
-  )
+      <EssenseOptionsFooter
+        onApply={sendChangedCar}
+        onCancel={goBackHandler}
+        onDelete={onDeleteHandler}
+      />
+    </div>
+  );
 }
 
 export default memo(ChangeCarSettings);

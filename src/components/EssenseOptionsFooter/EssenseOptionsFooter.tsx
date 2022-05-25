@@ -17,7 +17,7 @@ const EssenseOptionsFooter = <T,>({
 }: IEssenseOptinsFooter<T>) => {
   return (
     <div className={styles.wrapper}>
-        <div>
+        <div className={styles.wrapper__buttons}>
             <Button
                 onClick={onApply}
                 apperance="default"
