@@ -54,13 +54,11 @@
         display: -webkit-box;
         overflow: hidden;
         -webkit-box-orient: vertical;
+        max-width: 100px;
+        overflow: hidden;
     }
 }
-
-.customTableStyles {
-    min-width: 700px;
-}
-
+      
 .tableWrapper {
     max-height: 350px;
     overflow: auto;

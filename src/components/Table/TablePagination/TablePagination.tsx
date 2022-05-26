@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Paginator, Button } from "components";
+import { Paginator } from "components";
 import styles from "./TablePagination.module.scss";
 import type { IPagination } from 'types/requests';
 
@@ -21,7 +21,7 @@ const TablePagination: React.FC<ITablePagination> = ({
   
   return (
     <div className={styles.pagination}>
-      {count &&
+      {(count && !isLoading && count > pagination.limit) ?
         <Paginator
           page={pagination.page}
           limit={pagination.limit}
@@ -29,6 +29,7 @@ const TablePagination: React.FC<ITablePagination> = ({
           setPagination={setPagination}
           className={isLoading ? styles.pagination_disabled : ""}
         />
+        : null
       }
     </div>
   )
