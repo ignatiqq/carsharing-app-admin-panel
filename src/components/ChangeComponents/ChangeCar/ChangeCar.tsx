@@ -1,48 +1,30 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ChangeCarWithThumbnail, ChangeCarSettings } from 'components';
+import ChangeCarWithThumbnail from './ChangeCarWithThumbnail';
+import ChangeCarSettings from './ChangeCarSettings';
 import { ICarData, ICarDataCategoryId, ICardDataThumbnail } from 'store/filtersData/types';
 import { getPercentByDataComplete } from 'utils/essentialDataHelper';
 import styles from "./ChangeCar.module.scss";
 import { useAppSelector } from 'store';
+import { EssenseActions } from 'store/changeEssence/types';
 
-interface IChangeCar extends ICarData {
+interface IChangeCar {
   onChangeHandler: (data: Partial<ICarData>) => void,
-  onDeleteHandler: () => void
+  onDeleteHandler: () => void,
+  onCreateHandler: (data: ICarData) => void,
+  data: ICarData,
+  action: EssenseActions
 }
 
 const ChangeCar: React.FC<IChangeCar> = ({
   onChangeHandler,
-  thumbnail,
-  categoryId,
-  colors,
-  createdAt,
-  description,
-  id,
-  name,
-  number,
-  priceMax,
-  priceMin,
-  updatedAt,
-  onDeleteHandler
+  onDeleteHandler,
+  onCreateHandler,
+  data
 }) => {
   const [percentCompleted, setPercentCompleted] = useState<number>(0);
   const [dataToChange, setDataToChange] = useState<Partial<ICarData>>({});
-
-  const carData = {
-    thumbnail,
-    categoryId,
-    colors,
-    createdAt,
-    description,
-    id,
-    name,
-    number,
-    priceMax,
-    priceMin,
-    updatedAt
-  }
 
   const { carCategories } = useAppSelector(({ filtersData }) => ({
     carCategories: filtersData.carCategories
@@ -51,10 +33,10 @@ const ChangeCar: React.FC<IChangeCar> = ({
   const navigation = useNavigate();
 
   useEffect(() => {
-    if(carData && Object.keys(dataToChange).length <= 0) {
-      setDataToChange(carData)
+    if(data && Object.keys(dataToChange).length <= 0) {
+      setDataToChange(data)
     }
-  }, [carData]);
+  }, [data]);
   
   useEffect(() => {
     if(dataToChange){

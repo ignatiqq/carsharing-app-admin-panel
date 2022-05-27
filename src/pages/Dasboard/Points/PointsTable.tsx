@@ -50,6 +50,7 @@ const PointsTable: React.FC<IPointsTable> = ({
         head={head}
         customHead={customHead}
         className={styles.customTableStyle}
+        cellStyles={styles.customTableStyle__cell}
       />
       {Pagintation}
     </>

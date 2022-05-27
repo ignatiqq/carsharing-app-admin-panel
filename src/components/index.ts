@@ -13,11 +13,6 @@ export { default as SelectWrapper } from "./SelectWrapper/SelectWrapper";
 export { default as CarInfoThumbnail } from "./CarInfo/CarInfoThumbnail/CarInfoThumbnail";
 export { default as EssenseOptionsFooter } from "./EssenseOptionsFooter/EssenseOptionsFooter";
 
-export { default as ChangeCarSettings } from "./ChangeComponents/ChangeCar/ChangeCarSettings";
-export { default as ChangeCarWithThumbnail } from "./ChangeComponents/ChangeCar/ChangeCarWithThumbnail";
-export { default as ChangeCar } from "./ChangeComponents/ChangeCar/ChangeCar";
-
-
 export { default as Table } from "./Table/Table/Table";
 export { default as TableHead } from "./Table/TableHead/TableHead";
 export { default as TablePagination } from "./Table/TablePagination/TablePagination";

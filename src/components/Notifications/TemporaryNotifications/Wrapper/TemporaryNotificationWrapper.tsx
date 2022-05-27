@@ -21,7 +21,6 @@ const TemporaryNotificationWrapper: React.FC<ITemporaryNotificationWrapper> = ({
 
   useEffect(() => {
     if(data && data[0]) {
-      console.log(data);
       const timeId = setTimeout(() => {
         deleteNotificationHandler({id: data[0].id});
       }, 5000);
@@ -31,7 +30,6 @@ const TemporaryNotificationWrapper: React.FC<ITemporaryNotificationWrapper> = ({
   }, [data])
 
   const deleteNotificationHandler = (id: INotificationId) => {
-    console.log(id)
     dispatch(removeTemporaryNotification(id));
   }
 
@@ -39,6 +37,7 @@ const TemporaryNotificationWrapper: React.FC<ITemporaryNotificationWrapper> = ({
     <div className={className}>
       {data.map((item) => (
         <TemporaryNotification
+          key={item.id}
           onClick={deleteNotificationHandler}
           id={item.id}
           type={item.type}

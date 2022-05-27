@@ -22,7 +22,7 @@ export interface IRateTypeDataInfo {
     count: number
 }
 
-interface IRateTypeInfoItem {
+export interface IRateTypeInfoItem {
     name: string,
     unit: string,
     id: string

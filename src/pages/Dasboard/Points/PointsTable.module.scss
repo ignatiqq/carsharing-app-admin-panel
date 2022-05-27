@@ -13,4 +13,8 @@
 
 .customTableStyle {
     min-width: 550px;
+
+    &__cell {
+        padding: 20px 5px !important;
+    }
 }

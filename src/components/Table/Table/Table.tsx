@@ -11,7 +11,8 @@ interface ITable {
     error?: string | null,
     head?: ITableHead,
     customHead?: React.ReactElement,
-    className?: string
+    className?: string,
+    cellStyles?: string
 }
 
 export type ITableHead = Array<IHead>;
@@ -26,7 +27,8 @@ const Table: React.FC<ITable> = ({
     error,
     head,
     customHead,
-    className
+    className,
+    cellStyles
 }) => {
     return (
       <div
@@ -64,8 +66,10 @@ const Table: React.FC<ITable> = ({
                     {item &&
                       Object.keys(item).map((key) => (
                         <th
+                          className={cellStyles}
                           key={key}
-                          style={{ width: `${head && Math.floor(100 / head?.length)}%` }}>
+                          style={{ width: `${head && Math.floor(100 / head?.length)}%` }}
+                        >
                           {item[key]}
                         </th>
                       ))}

@@ -27,7 +27,7 @@ import { ITemporaryNotification } from "store/notifications/types";
 
 function* getChangeDataHandler(action: AnyAction) {
     try {
-        
+        yield put(setDataToChangeRequestError(null));
         yield put(setDataToChangeLoading(true));
 
         const response: AxiosResponse = yield call(tableData.getChangeDataById, action.payload);
@@ -57,13 +57,20 @@ function* sendDataToChangeHandler(action: AnyAction) {
         const response: AxiosResponse = yield call(tableData.putChangeDataById, action.payload);
 
         if(response?.status < 300) {
-            yield put(addTemporaryNotification(temporaryNotificationsFactory(successTemporaryChangeEssense(uuidv4()) as ITemporaryNotification)))
+            yield put(
+                addTemporaryNotification(
+                    temporaryNotificationsFactory(successTemporaryChangeEssense(uuidv4()) as ITemporaryNotification)
+                )
+            )
         } else {
             throw new Error(errorKeys.requestError)
         }
 
     } catch (error: any) {
-        yield put(addTemporaryNotification(temporaryNotificationsFactory(failedTemporaryChangeEssense(uuidv4()) as ITemporaryNotification)))
+        yield put(
+            addTemporaryNotification(
+                temporaryNotificationsFactory(failedTemporaryChangeEssense(uuidv4()) as ITemporaryNotification))
+            )
         yield put(sendChangedEssenseDataRequestError(error.message));
     } finally {
         yield put(sendChangedEssenseDataLoading(false));
@@ -82,13 +89,19 @@ function* deleteDataToChangeHandler(action: AnyAction) {
         const response: AxiosResponse = yield call(tableData.deleteChandeDataById, action.payload);
 
         if(response.status < 300) {
-            yield put(addTemporaryNotification(temporaryNotificationsFactory(successTemporaryDeleteEssense(uuidv4()) as ITemporaryNotification)))
+            yield put(
+                addTemporaryNotification(
+                    temporaryNotificationsFactory(successTemporaryDeleteEssense(uuidv4()) as ITemporaryNotification)
+            ));
         } else {
             throw new Error(errorKeys.requestError)
         }
 
     } catch (error: any) {
-        yield put(addTemporaryNotification(temporaryNotificationsFactory(failedTemporaryDeleteEssense(uuidv4()) as ITemporaryNotification)))
+        yield put(
+            addTemporaryNotification(
+                temporaryNotificationsFactory(failedTemporaryDeleteEssense(uuidv4()) as ITemporaryNotification))
+            )
         yield put(sendChangedEssenseDataRequestError(error.message));
     } finally {
         yield put(sendChangedEssenseDataLoading(false));

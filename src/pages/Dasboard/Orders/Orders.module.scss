@@ -103,5 +103,17 @@
 }
 
 .orderTable {
-    min-width: 1000px;
+
+    @media(max-width: 900px) {
+        min-width: 1000px;
+    }
+
+}
+
+.orders__select {
+
+    @media(max-width: 990px) {
+        margin-bottom: 10px;
+
+    }
 }

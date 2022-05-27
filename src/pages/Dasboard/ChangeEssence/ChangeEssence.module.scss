@@ -19,3 +19,14 @@
     }
 
 }
+
+.changeEssense {
+    
+    &__title {
+        color: var(--primary-dark-blue);
+        font-size: "Helvetica";
+        font-weight: 400;
+        margin-bottom: 30px;
+    }
+
+}

@@ -69,11 +69,9 @@
                 th {
                     text-align: left;
                     &:first-child {
-                        padding-left: 23px;
+                        padding-left: 15px;
                     }
                 }
-
-
             }
 
         }
@@ -95,9 +93,11 @@
                 th {
                     text-align: left;
                     padding: 0px 5px;
+                    padding: 10px 5px;
+                    min-width: 60px;
                     
                     &:first-child {
-                        padding-left: 20px;
+                        padding-left: 15px !important;
                     }
     
                     &:last-child {

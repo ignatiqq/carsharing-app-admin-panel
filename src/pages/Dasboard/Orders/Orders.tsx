@@ -69,6 +69,7 @@ const Orders: React.FC<IOrderPageProps> = ({
               clickHandler={setPointsSelected}
               dataHolder={selectDataHolder(points)}
               searchPlaceholder={"Точки"}
+              className={styles.orders__select}
             />
             <Select
               options={cities.data}
@@ -78,6 +79,7 @@ const Orders: React.FC<IOrderPageProps> = ({
               clickHandler={setCitiesSelected}
               dataHolder={selectDataHolder(cities)}
               searchPlaceholder={"Города"}
+              className={styles.orders__select}
             />
             <Select
               options={cars.data}
@@ -87,6 +89,7 @@ const Orders: React.FC<IOrderPageProps> = ({
               clickHandler={setCarsSelected}
               dataHolder={selectDataHolder(cars)}
               searchPlaceholder={"Марки"}
+              className={styles.orders__select}
             />
           </div>
       </SelectWrapper>
