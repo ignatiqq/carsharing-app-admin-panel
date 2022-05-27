@@ -1,11 +1,13 @@
 import React, { useState, ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import { EssenseActions } from 'store/changeEssence/types';
 import StandartInput from 'components/Dumb/Inputs/StandartInput/StandartInput';
 import EssenseOptionsFooter from 'components/EssenseOptionsFooter/EssenseOptionsFooter';
 import {  ICurrentCity } from 'store/filtersData/types';
 import styles from "./ChangeCity.module.scss";
+import { essenceValidations } from 'constants/Validations/validations';
+import useValidate from 'packages/useValidate/useValidate';
+import classNames from 'classnames';
 
 interface IChangeCity {
     onChangeHandler: (data: ICurrentCity) => void,
@@ -41,22 +43,38 @@ const ChangeCity: React.FC<IChangeCity> = ({
       navigation(-1)
     }
 
+    const { 
+      handleBlur, 
+      errors,
+      handleSubmit,
+      handleFocus,
+    } = useValidate({
+      formFields: {name: dataToChange.name}, 
+      validations: {name: essenceValidations.name}, 
+      onSubmit: onChangeCity
+    });
+
     return (
       <div className={styles.wrapper}>
         <h2 className={styles.title}>Настройки тарифа</h2>
         <div className={styles.settings__wrapper}>
-          <StandartInput
-            name="city"
-            id={dataToChange?.id}
-            placeholder="Введите название города"
-            label="Название города"
-            onChange={changeCityNameHandler}
-            value={dataToChange?.name}
-            wrapperClassname={styles.settings__customInput}
-          />
+          <div className={styles.inputWrapper}>
+            <StandartInput
+              name="name"
+              id={dataToChange.id}
+              placeholder="Введите название города"
+              label="Название города"
+              onChange={changeCityNameHandler}
+              value={dataToChange.name}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
+              wrapperClassname={styles.settings__customInput}
+            />
+            <div className={classNames('error-text', styles.inputWrapper__error)}>{errors.name}</div>
+          </div>
         </div>
         <EssenseOptionsFooter
-          onApply={onChangeCity}
+          onApply={handleSubmit}
           onDelete={onDeleteCity}
           onCancel={goBackHandler}
         />

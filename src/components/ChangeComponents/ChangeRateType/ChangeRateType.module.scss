@@ -30,7 +30,7 @@
 .settings {
 
     &__customInput{
-        max-width: 700px;
+        max-width: 600px;
     }
 
     &__wrapper {
@@ -39,4 +39,14 @@
         flex-wrap: wrap;
     }
 
+}
+
+.inputWrapper {
+    width: 100%;
+    max-width: 600px;
+
+    &__error {
+        min-height: 13px;
+        margin-top: 5px;
+    }
 }

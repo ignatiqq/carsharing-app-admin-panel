@@ -8,8 +8,6 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
     const [fields, setFields] = useState<Record<keyof T, any>>(formFields || {} as T);
     const [errors, setErrors] = useState<IErrors<T>>({});
 
-    console.log(fields)
-
     const deleteError = (errors: IErrors<T>, key: keyof T) => {
         const newErrors = {...errors};
         delete newErrors[key];
