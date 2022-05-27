@@ -6,13 +6,14 @@ import styles from "./DashboardChangeLink.module.scss";
 
 interface IDashboardChangeLink {
     link: string,
+    children: React.ReactNode
 }
 
-const DashboardChangeLink: React.FC<IDashboardChangeLink> = ({link}) => {
+const DashboardChangeLink: React.FC<IDashboardChangeLink> = ({link, children}) => {
   return (
     <Link to={link} className={styles.changeLink}>
         <MenuBtn />
-        <span>Изменить</span>
+        <span>{children}</span>
     </Link>
   )
 }

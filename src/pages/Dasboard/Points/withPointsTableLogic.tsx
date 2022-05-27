@@ -55,7 +55,9 @@ const withPointsTableLogic = (Component: React.FC<IPointsTable>) => () => {
                     address: item.address ? item.address : "Адрес не указан",
                     name: item.name ? item.name: "Место не указан",
                     action: 
-                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)} />
+                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)}>
+                            Изменить
+                        </DashboardChangeLink>
                 }
             })
         }

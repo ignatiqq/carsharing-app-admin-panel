@@ -3,7 +3,7 @@ import React from 'react';
 import type { IPagination } from 'types/requests';
 import type { CitiesTableMappedData } from './withCitiesLogic';
 import withCitiesLogic from './withCitiesLogic';
-import { Table, TablePagination, TableHead } from 'components';
+import { Table, TablePagination, TableHead, DashboardChangeLink } from 'components';
 import { ITableHead } from 'components/Table/Table/Table';
 import styles from "./CitiesTable.module.scss";
 
@@ -27,7 +27,16 @@ const CitiesTable: React.FC<ICitiesTable> = ({
   head
 }) => {
 
-  const CitiesTableHeader = <TableHead count={count} />
+  const CitiesTableHeader = (
+    <>
+      <TableHead count={count} />
+      <div className={styles.tableHeader__button_create}>
+        <DashboardChangeLink link="/dashboard/city/create">
+          Создать
+        </DashboardChangeLink>
+      </div>
+    </>
+  )
 
   const Pagintation = (
     <>

@@ -1,14 +1,14 @@
-import { validationPatterns } from "./patterns"
+import { authorizationValidationPatterns } from "./patterns"
 
-export const validations = {
+export const authValidations = {
     email: {
       required: {
         value: true,
         message: "Это обязательное поле!"
       },
       pattern: {
-        value: validationPatterns.emailPattern.value,
-        message: validationPatterns.emailPattern.message
+        value: authorizationValidationPatterns.emailPattern.value,
+        message: authorizationValidationPatterns.emailPattern.message
       }
     },
     password: {
@@ -17,8 +17,17 @@ export const validations = {
         message: "Это обязательное поле!"
       },
       pattern: {
-        value: validationPatterns.passwordPattern.value,
-        message: validationPatterns.passwordPattern.message
+        value: authorizationValidationPatterns.passwordPattern.value,
+        message: authorizationValidationPatterns.passwordPattern.message
       }
     }
+}
+
+export const essenceValidations = {
+  name: {
+    required: {
+      value: true,
+      message: "Это обязательное поле!"
+    }
+  }
 }

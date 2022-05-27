@@ -10,17 +10,13 @@ import styles from "./ChangeCity.module.scss";
 interface IChangeCity {
     onChangeHandler: (data: ICurrentCity) => void,
     onDeleteHandler: (data: string) => void,
-    onCreateHandler: (data: ICurrentCity) => void,
     data: ICurrentCity,
-    action: EssenseActions
 }
 
 const ChangeCity: React.FC<IChangeCity> = ({
     onChangeHandler,
     onDeleteHandler,
-    onCreateHandler,
-    data,
-    action
+    data
 }) => {
     const [dataToChange, setDataToChange] = useState<ICurrentCity>(data);
 
@@ -37,11 +33,6 @@ const ChangeCity: React.FC<IChangeCity> = ({
     const onChangeCity = () => {
       onChangeHandler(dataToChange)
     }
-
-    const onCreateCity = () => {
-      onCreateHandler(dataToChange);
-    }
-
     const onDeleteCity = () => {
       onDeleteHandler(dataToChange.id);
     }
@@ -50,13 +41,9 @@ const ChangeCity: React.FC<IChangeCity> = ({
       navigation(-1)
     }
 
-
-    const essenseActionHandler = action === EssenseActions.CHANGE ? onChangeCity : onCreateCity;
-    const essenseFooterActionText = action === EssenseActions.CHANGE ? "Сохранить" : "Создать";
-
     return (
       <div className={styles.wrapper}>
-        <h2 className={styles.title}>Настройки города</h2>
+        <h2 className={styles.title}>Настройки тарифа</h2>
         <div className={styles.settings__wrapper}>
           <StandartInput
             name="city"
@@ -69,10 +56,9 @@ const ChangeCity: React.FC<IChangeCity> = ({
           />
         </div>
         <EssenseOptionsFooter
-          onApply={essenseActionHandler}
+          onApply={onChangeCity}
           onDelete={onDeleteCity}
           onCancel={goBackHandler}
-          applyText={essenseFooterActionText}
         />
       </div>
     );

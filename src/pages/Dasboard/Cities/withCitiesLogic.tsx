@@ -50,7 +50,9 @@ const withCitiesLogic = (Component: React.FC<ICitiesTable>) => () =>{
             return {
                 name: <div className={styles.tableData__name}>{item.name}</div>,
                 action: 
-                  <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)} />
+                  <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)}>
+                    Изменить
+                  </DashboardChangeLink>
             }
         })
       }

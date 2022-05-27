@@ -47,7 +47,7 @@ const AppRoutes = () => useRoutes([
                 element: <ChangeEssence />
             },
             {
-                path: "/dashboard/:route/create/:id",
+                path: "/dashboard/:route/create",
                 element: <ChangeEssence />
             },
             {

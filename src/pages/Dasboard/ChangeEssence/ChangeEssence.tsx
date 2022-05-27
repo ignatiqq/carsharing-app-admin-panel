@@ -1,34 +1,24 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 
 import ChangeEssenceFactory from "./ChangeEssenceFactory";
 import {  Loader, ModalStandart } from 'components';
 import styles from "./ChangeEssence.module.scss";
 import { useAppDispatch, useAppSelector } from 'store';
-import { deleteDataToChange, getDataToChange, sendDataToChange, setDataToChangeAction, setDataToChangeEssenseId, setDataToChangeRouteName } from 'store/changeEssence/actions';
-import { EssenseActions } from 'store/changeEssence/types';
+import { deleteDataToChange, getDataToChange, sendDataToChange, setDataToChangeEssenseId, setDataToChangeRouteName } from 'store/changeEssence/actions';
 
 const ChangeEssence = () => {
 
   const [showData, setShowData] = useState<boolean>(false);
 
   const params = useParams();
-  const location = useLocation();
   const dispatch = useAppDispatch();
 
   const { changeData, changeRequestLoading } = useAppSelector(({essenceOptions}) => ({
     changeData: essenceOptions.change,
     changeRequestLoading: essenceOptions.change.changeRequestLoading,
   }))
-
-  const pageAction = useMemo(() => {
-    const splitedPathname = location.pathname.split("/");
-    const action = splitedPathname[splitedPathname.length - 2];
-    if(Object.values(EssenseActions).includes(action as EssenseActions)) {
-      return action
-    }
-  }, [])
 
   useEffect(() => {
     if(params && params.id && params.route) {
@@ -38,7 +28,6 @@ const ChangeEssence = () => {
       }));
       dispatch(setDataToChangeRouteName(params.route));
       dispatch(setDataToChangeEssenseId(params.id));
-      dispatch(setDataToChangeAction(pageAction as EssenseActions));
     }
   }, [params]);
 
@@ -66,10 +55,6 @@ const ChangeEssence = () => {
       }))
     }
   }
-  
-  const createEssenseHandler = () => {
-
-  }
 
   return (
     <>
@@ -77,15 +62,13 @@ const ChangeEssence = () => {
         {
           changeData.isLoading || !showData ?
             <Loader />
-          : !changeData.error && changeData.data && params.route && changeData.action ?
+          : !changeData.error && changeData.data && params.route ?
           <div className={styles.wrapper}>
             <ChangeEssenceFactory
               route={params.route}
               data={changeData.data}
-              action={changeData.action}
               changeEssenseHandler={changeEssenseHandler}
               deleteEssengeHandler={deleteEssengeHandler}
-              createEssenseHandler={createEssenseHandler}
             />
           </div>
           :

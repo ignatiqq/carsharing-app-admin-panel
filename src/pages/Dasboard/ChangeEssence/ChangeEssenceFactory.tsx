@@ -7,20 +7,16 @@ import { EssenseActions } from 'store/changeEssence/types';
 
 interface IChangeEssenceFactory {
   route: string,
-  action: EssenseActions,
-  data: any,
+  data: any | null,
   deleteEssengeHandler: () => void,
   changeEssenseHandler: (data: any) => void,
-  createEssenseHandler: (data: any) => void
 }
 
 const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
   data,
-  action,
   route,
   deleteEssengeHandler,
   changeEssenseHandler,
-  createEssenseHandler
 }) => {
 
   switch (route) {
@@ -32,8 +28,6 @@ const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
             data={data}
             onChangeHandler={changeEssenseHandler}
             onDeleteHandler={deleteEssengeHandler}
-            onCreateHandler={createEssenseHandler}
-            action={action}
           />
         </>
       )
@@ -48,8 +42,6 @@ const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
             data={data}
             onChangeHandler={changeEssenseHandler}
             onDeleteHandler={deleteEssengeHandler}
-            onCreateHandler={createEssenseHandler}
-            action={action}
           />
         </>
       )

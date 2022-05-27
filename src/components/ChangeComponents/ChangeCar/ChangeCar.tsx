@@ -7,20 +7,16 @@ import { ICarData, ICarDataCategoryId, ICardDataThumbnail } from 'store/filtersD
 import { getPercentByDataComplete } from 'utils/essentialDataHelper';
 import styles from "./ChangeCar.module.scss";
 import { useAppSelector } from 'store';
-import { EssenseActions } from 'store/changeEssence/types';
 
 interface IChangeCar {
   onChangeHandler: (data: Partial<ICarData>) => void,
   onDeleteHandler: () => void,
-  onCreateHandler: (data: ICarData) => void,
   data: ICarData,
-  action: EssenseActions
 }
 
 const ChangeCar: React.FC<IChangeCar> = ({
   onChangeHandler,
   onDeleteHandler,
-  onCreateHandler,
   data
 }) => {
   const [percentCompleted, setPercentCompleted] = useState<number>(0);

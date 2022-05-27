@@ -54,7 +54,9 @@ const withRateTypesLogic = (Component: React.FC<IRateTypesTable>) => () => {
                     name: <div className={styles.customTableCell}>{item?.name ? item.name : "Название не указано"}</div>,
                     unit: <div className={styles.customTableCell}>{item?.unit ? item.unit : "Длительность не указана"}</div>,
                     action: 
-                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)} />
+                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)}>
+                            Изменить
+                        </DashboardChangeLink>
                 }
             })
         }
