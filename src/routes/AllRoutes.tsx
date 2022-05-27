@@ -47,6 +47,10 @@ const AppRoutes = () => useRoutes([
                 element: <ChangeEssence />
             },
             {
+                path: "/dashboard/:route/create/:id",
+                element: <ChangeEssence />
+            },
+            {
                 path: "*",
                 element: <ErrorComponent
                     statusCode={errorPages.notFound.statusCode} 

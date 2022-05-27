@@ -140,9 +140,7 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
                         {item.description ? item.description : "Описание не указано"}
                     </div>,
                     action: 
-                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)}>
-                            Изменить
-                        </DashboardChangeLink>
+                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)} />
                 }
             })
         }
