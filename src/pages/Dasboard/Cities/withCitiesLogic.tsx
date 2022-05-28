@@ -8,6 +8,7 @@ import { getDashboardChangeLink } from 'utils/getDashboardType';
 import type { ICitiesTable } from "./CitiesTable";
 import styles from "./CitiesTable.module.scss";
 import { DashboardChangeLink } from 'components';
+import { EssenseActions } from 'store/changeEssence/types';
 
 export type CitiesTableMappedData = Array<ICitiesTableMappedItem> | null;
 
@@ -50,7 +51,11 @@ const withCitiesLogic = (Component: React.FC<ICitiesTable>) => () =>{
             return {
                 name: <div className={styles.tableData__name}>{item.name}</div>,
                 action: 
-                  <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)}>
+                  <DashboardChangeLink link={getDashboardChangeLink({
+                    pathname: location.pathname, 
+                    action: EssenseActions.CHANGE,  
+                    id: item.id
+                  })}>
                     Изменить
                   </DashboardChangeLink>
             }

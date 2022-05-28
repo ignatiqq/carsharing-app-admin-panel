@@ -3,9 +3,11 @@ import React from 'react'
 import type { IPagination } from 'types/requests';
 import type { PointsTableMappedData } from './withPointsTableLogic';
 import withPointsTableLogic from './withPointsTableLogic';
-import { Table, TableHead, TablePagination } from 'components';
+import { DashboardChangeLink, Table, TableHead, TablePagination } from 'components';
 import type { ITableHead } from 'components/Table/Table/Table';
 import styles from "./PointsTable.module.scss";
+import { getDashboardChangeLink } from 'utils/getDashboardType';
+import { EssenseActions } from 'store/changeEssence/types';
 
 export interface IPointsTable {
   isLoading: boolean,
@@ -27,7 +29,20 @@ const PointsTable: React.FC<IPointsTable> = ({
   head
 }) => {
 
-  const customHead = <TableHead count={count} />
+  const customHead = (
+    <>
+      <TableHead count={count} />
+      <div className={styles.tableHeader__button_create}>
+        <DashboardChangeLink
+          link={getDashboardChangeLink({
+            pathname: window.location.pathname,
+            action: EssenseActions.CREATE,
+          })}>
+          Создать
+        </DashboardChangeLink>
+      </div>
+    </>
+  );
 
   const Pagintation = (
     <>

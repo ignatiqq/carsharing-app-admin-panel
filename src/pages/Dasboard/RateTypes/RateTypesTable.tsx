@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { Table, TablePagination, TableHead } from 'components';
+import { Table, TablePagination, TableHead, DashboardChangeLink } from 'components';
 import withRateTypesLogic from "./withRateTypesLogic";
 import type { RateTypesTableMappedData } from "./withRateTypesLogic";
 import type { IPagination } from 'types/requests';
 import { ITableHead } from 'components/Table/Table/Table';
 import styles from "./RateTypesTable.module.scss";
+import { getDashboardChangeLink } from 'utils/getDashboardType';
+import { EssenseActions } from 'store/changeEssence/types';
 
 export interface IRateTypesTable {
   data: RateTypesTableMappedData,
@@ -27,7 +29,19 @@ const RateTypesTable: React.FC<IRateTypesTable> = ({
   setPagination
 }) => {
 
-  const customHead = <TableHead count={count} />
+  const customHead = (
+    <>
+      <TableHead count={count} />
+      <div className={styles.tableHeader__button_create}>
+        <DashboardChangeLink link={getDashboardChangeLink({
+              pathname: window.location.pathname, 
+              action: EssenseActions.CREATE,
+          })}>
+          Создать
+        </DashboardChangeLink>
+      </div>
+    </>
+  )
 
   const Pagintation = (
     <>

@@ -14,6 +14,7 @@ import { ICarCategoriesData } from 'store/filtersData/types';
 import isEqual from 'lodash.isequal';
 import { getDashboardChangeLink } from 'utils/getDashboardType';
 import { DashboardChangeLink } from 'components';
+import { EssenseActions } from 'store/changeEssence/types';
 
 
 export type CarsTableMappedData = Array<ICarTableMappedItem> | null;
@@ -140,7 +141,11 @@ const withCarModelsLogic = (Component: React.FC<ICars>) => () => {
                         {item.description ? item.description : "Описание не указано"}
                     </div>,
                     action: 
-                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)}>
+                        <DashboardChangeLink link={getDashboardChangeLink({
+                            pathname: location.pathname, 
+                            action: EssenseActions.CHANGE,  
+                            id: item.id
+                        })}>
                             Изменить
                         </DashboardChangeLink>
                 }

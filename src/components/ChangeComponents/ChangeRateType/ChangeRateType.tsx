@@ -8,18 +8,21 @@ import styles from "./ChangeRateType.module.scss";
 import EssenseOptionsFooter from 'components/EssenseOptionsFooter/EssenseOptionsFooter';
 import { essenceValidations } from 'constants/Validations/validations';
 import useValidate from 'packages/useValidate/useValidate';
+import { EssenseActions } from 'store/changeEssence/types';
 
 interface IChangeCity {
-    onChangeHandler: (data: IRateTypeInfoItem) => void,
+  submitEssenceHandler: (data: IRateTypeInfoItem) => void,
     onDeleteHandler: () => void,
-    data: IRateTypeInfoItem
+    data: IRateTypeInfoItem,
+    action: EssenseActions
 }
 
 
 const ChangeRateType: React.FC<IChangeCity> = ({
-    onChangeHandler,
+    submitEssenceHandler,
     onDeleteHandler,
-    data
+    data,
+    action
 }) => {
 
     const [dataToChange, setDataToChange] = useState<IRateTypeInfoItem>(data);
@@ -27,25 +30,27 @@ const ChangeRateType: React.FC<IChangeCity> = ({
     const navigation = useNavigate();
 
     const changeUnitHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setDataToChange((prev) => {
-          return {
-            ...prev,
-            unit: e.target.value
-          }
-        })
+      handleChange(e);
+      setDataToChange((prev) => {
+        return {
+          ...prev,
+          unit: e.target.value
+        }
+      })
     }
 
     const changeNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setDataToChange((prev) => {
-          return {
-            ...prev,
-            name: e.target.value
-          }
-        })
+      handleChange(e);
+      setDataToChange((prev) => {
+        return {
+          ...prev,
+          name: e.target.value
+        }
+      })
     }
 
-    const onChangeRateType = () => {
-      onChangeHandler(dataToChange);
+    const onSubmitRateType = () => {
+      submitEssenceHandler(dataToChange);
     }
 
     const onDeleteRateType = () => {
@@ -61,11 +66,14 @@ const ChangeRateType: React.FC<IChangeCity> = ({
       errors,
       handleSubmit,
       handleFocus,
+      handleChange
     } = useValidate({
       formFields: {name: dataToChange.name, unit: dataToChange.name}, 
       validations: {name: essenceValidations.name, unit: essenceValidations.name}, 
-      onSubmit: onChangeRateType
+      onSubmit: onSubmitRateType
     });
+
+    const essenseFooterText = action === EssenseActions.CHANGE ? "Сохранить" : "Создать";
 
     return (
       <div className={styles.wrapper}>
@@ -104,6 +112,7 @@ const ChangeRateType: React.FC<IChangeCity> = ({
             onApply={handleSubmit}
             onDelete={onDeleteRateType}
             onCancel={onGoBack}
+            applyText={essenseFooterText}
           />
       </div>
     )

@@ -8,6 +8,7 @@ import styles from "./RateTypesTable.module.scss";
 import { DashboardChangeLink } from 'components';
 import { getDashboardChangeLink } from 'utils/getDashboardType';
 import { useLocation } from 'react-router-dom';
+import { EssenseActions } from 'store/changeEssence/types';
 
 export type RateTypesTableMappedData = Array<IRatyTypesTableMappedItem> | null;
 
@@ -54,7 +55,11 @@ const withRateTypesLogic = (Component: React.FC<IRateTypesTable>) => () => {
                     name: <div className={styles.customTableCell}>{item?.name ? item.name : "Название не указано"}</div>,
                     unit: <div className={styles.customTableCell}>{item?.unit ? item.unit : "Длительность не указана"}</div>,
                     action: 
-                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)}>
+                        <DashboardChangeLink link={getDashboardChangeLink({
+                            pathname: location.pathname, 
+                            action: EssenseActions.CHANGE,  
+                            id: item.id
+                        })}>
                             Изменить
                         </DashboardChangeLink>
                 }

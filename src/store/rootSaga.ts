@@ -16,8 +16,9 @@ import { getFiltersDataWatcher } from "./filtersData/sagas/filtersData";
 import { 
     getChangeDataWatcher,
     sendDataToChangeWatcher,
-    deleteDataToChangeWatcher
-} from "./changeEssence/sagas/changeData";
+    deleteDataToChangeWatcher,
+    createEssenceDataWatcher
+} from "./changeEssence/sagas/actionCRUD";
 
 export default function *rootSaga() {
     yield all([
@@ -32,6 +33,7 @@ export default function *rootSaga() {
         getTableCarsDataWatcher(),
         getChangeDataWatcher(),
         sendDataToChangeWatcher(),
-        deleteDataToChangeWatcher()
+        deleteDataToChangeWatcher(),
+        createEssenceDataWatcher()
     ])
 }

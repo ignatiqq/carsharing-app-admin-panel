@@ -9,13 +9,13 @@ import styles from "./ChangeCar.module.scss";
 import { useAppSelector } from 'store';
 
 interface IChangeCar {
-  onChangeHandler: (data: Partial<ICarData>) => void,
+  submitHandler: (data: Partial<ICarData>) => void,
   onDeleteHandler: () => void,
   data: ICarData,
 }
 
 const ChangeCar: React.FC<IChangeCar> = ({
-  onChangeHandler,
+  submitHandler,
   onDeleteHandler,
   data
 }) => {
@@ -90,7 +90,7 @@ const ChangeCar: React.FC<IChangeCar> = ({
   }
 
   const sendChangedCar = () => {
-    onChangeHandler(dataToChange)
+    submitHandler(dataToChange)
   }
 
   const goBackHandler = () => {

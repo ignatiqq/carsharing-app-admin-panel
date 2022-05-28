@@ -4,26 +4,37 @@ import classNames from 'classnames';
 
 import {StandartInput,EssenseOptionsFooter} from 'components';
 import styles from "./ChangePoint.module.scss";
-import { ICurrentPoint } from 'store/filtersData/types';
+import { ICurrentCity, ICurrentPoint } from 'store/filtersData/types';
 import { essenceValidations } from 'constants/Validations/validations';
 import useValidate from 'packages/useValidate/useValidate';
+import { EssenseActions } from 'store/changeEssence/types';
+import Select from 'components/Dumb/Select/Select';
+import { useAppSelector } from 'store';
+import Loader from 'components/Dumb/Loader/Loader';
 
 interface IChangePoint {
-    onChangeHandler: (data: Partial<ICurrentPoint>) => void,
+    submitEssenceHandler: (data: Partial<ICurrentPoint>) => void,
     onDeleteHandler: () => void,
-    data: ICurrentPoint
+    data: ICurrentPoint,
+    action: EssenseActions
 }
 
 const ChangePoint: React.FC<IChangePoint> = ({
     data,
-    onChangeHandler,
-    onDeleteHandler
+    submitEssenceHandler,
+    onDeleteHandler,
+    action
 }) => {
     const [dataToChange, setDataToChange] = useState<ICurrentPoint>(data);
 
     const navigation = useNavigate();
 
+    const { allCities } = useAppSelector(({filtersData}) => ({
+      allCities: filtersData.city.data
+    }))
+
     const changePointAddressHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      handleChange(e);
         setDataToChange((prev) => {
           return {
             ...prev,
@@ -33,6 +44,7 @@ const ChangePoint: React.FC<IChangePoint> = ({
     }
 
     const changePointNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      handleChange(e);
         setDataToChange((prev) => {
           return {
             ...prev,
@@ -41,12 +53,21 @@ const ChangePoint: React.FC<IChangePoint> = ({
         })
     }
 
+    const changeCityIdHandler = (data: ICurrentCity) => {
+      setDataToChange((prev) => {
+        return {
+          ...prev,
+          cityId: data
+        }
+      })
+    }
+
     const onDeletePoint = () => {
       onDeleteHandler();
     }
 
-    const onChangePoint = () =>{ 
-      onChangeHandler(dataToChange);
+    const onSubmitPointHandler = () =>{ 
+      submitEssenceHandler(dataToChange);
     }
 
     const goBackHandler = () => {
@@ -58,11 +79,14 @@ const ChangePoint: React.FC<IChangePoint> = ({
       errors,
       handleSubmit,
       handleFocus,
+      handleChange
     } = useValidate({
       formFields: {name: dataToChange.name, address: dataToChange.address}, 
       validations: {name: essenceValidations.name, address: essenceValidations.name}, 
-      onSubmit: onChangePoint
+      onSubmit: onSubmitPointHandler
     });
+
+    const essenseFooterText = action === EssenseActions.CHANGE ? "Сохранить" : "Создать";
 
     return (
       <div className={styles.wrapper}>
@@ -96,11 +120,24 @@ const ChangePoint: React.FC<IChangePoint> = ({
             />
             <div className={classNames('error-text', styles.inputWrapper__error)}>{errors.name}</div>
           </div>
+          <div className={styles.inputWrapper}>
+            <label htmlFor="select-cityid" className={styles.label}>Выберите город</label> 
+            <Select 
+              id="select-cityid"
+              options={allCities}
+              selected={dataToChange.cityId}
+              clickHandler={changeCityIdHandler}
+              customLabel="name"
+              customValue="id"
+              dataHolder={<Loader />}
+            />
+          </div>
         </div>
         <EssenseOptionsFooter
           onApply={handleSubmit}
           onDelete={onDeletePoint}
           onCancel={goBackHandler}
+          applyText={essenseFooterText}
         />
       </div>
     );

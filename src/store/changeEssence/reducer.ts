@@ -6,8 +6,8 @@ import {
     setDataToChangeRequestError,
     setDataToChangeRouteName,
     setDataToChangeEssenseId,
-    sendChangedEssenseDataLoading,
-    sendChangedEssenseDataRequestError,
+    actionEssenseDataLoading,
+    actionEssenseDataRequestError,
     setDataToChangeAction
 } from "./actions"; 
 import type { EssenseActions, IEssenseData, IEssenseOptions } from "./types";
@@ -18,11 +18,11 @@ const initialState: IEssenseOptions = {
         route: null,
         id: null,
         action: null,
-        changeRequestLoading: false,
-        changeRequestError: null,
+        actionLoading: false,
+        actionRequestError: null,
         isLoading: false,
         error: null
-    }
+    },
 }
 
 const essenceOptions = createReducer(initialState, (builder) => {
@@ -46,11 +46,11 @@ const essenceOptions = createReducer(initialState, (builder) => {
         .addCase(setDataToChangeEssenseId, (state, action: PayloadAction<string>) => {
             state.change.id = action.payload
         })
-        .addCase(sendChangedEssenseDataLoading, (state, action: PayloadAction<boolean>) => {
-            state.change.changeRequestLoading = action.payload
+        .addCase(actionEssenseDataLoading, (state, action: PayloadAction<boolean>) => {
+            state.change.actionLoading = action.payload
         })
-        .addCase(sendChangedEssenseDataRequestError, (state, action: PayloadAction<string>) => {
-            state.change.changeRequestError = action.payload
+        .addCase(actionEssenseDataRequestError, (state, action: PayloadAction<string>) => {
+            state.change.actionRequestError = action.payload
         })
 })
 

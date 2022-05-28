@@ -10,20 +10,25 @@ import {
     setDataToChangeLoading, 
     setDataToChangeRequestError,
     sendDataToChange,
-    sendChangedEssenseDataLoading,
-    sendChangedEssenseDataRequestError,
-    deleteDataToChange
+    actionEssenseDataRequestError,
+    actionEssenseDataLoading,
+    deleteDataToChange,
+    createEssenceData,
 } from "../actions";
 import errorKeys from "constants/errorKeys";
 import { addTemporaryNotification } from "store/notifications/actions";
 import { temporaryNotificationsFactory } from "utils/notificationsFactory";
 import { 
-    failedTemporaryChangeEssense, 
-    successTemporaryChangeEssense,
-    successTemporaryDeleteEssense,
-    failedTemporaryDeleteEssense
+    failedChangeEssense, 
+    successChangeEssense,
+    successDeleteEssense,
+    failedDeleteEssense,
+    failedCreateEssense,
+    successCreateEssense
 } from "constants/notifications/temporary";
 import { ITemporaryNotification } from "store/notifications/types";
+
+// GET
 
 function* getChangeDataHandler(action: AnyAction) {
     try {
@@ -49,17 +54,19 @@ export function* getChangeDataWatcher() {
     yield takeLatest(getDataToChange, getChangeDataHandler);
 }
 
+// CHANGE
+
 function* sendDataToChangeHandler(action: AnyAction) {
     try {
         
-        yield put(sendChangedEssenseDataLoading(true));
-        
+        yield put(actionEssenseDataLoading(true));
+
         const response: AxiosResponse = yield call(tableData.putChangeDataById, action.payload);
 
         if(response?.status < 300) {
             yield put(
                 addTemporaryNotification(
-                    temporaryNotificationsFactory(successTemporaryChangeEssense(uuidv4()) as ITemporaryNotification)
+                    temporaryNotificationsFactory(successChangeEssense(uuidv4()) as ITemporaryNotification)
                 )
             )
         } else {
@@ -69,11 +76,11 @@ function* sendDataToChangeHandler(action: AnyAction) {
     } catch (error: any) {
         yield put(
             addTemporaryNotification(
-                temporaryNotificationsFactory(failedTemporaryChangeEssense(uuidv4()) as ITemporaryNotification))
+                temporaryNotificationsFactory(failedChangeEssense(uuidv4()) as ITemporaryNotification))
             )
-        yield put(sendChangedEssenseDataRequestError(error.message));
+        yield put(actionEssenseDataRequestError(error.message));
     } finally {
-        yield put(sendChangedEssenseDataLoading(false));
+        yield put(actionEssenseDataLoading(false));
     }
 }
 
@@ -81,17 +88,19 @@ export function* sendDataToChangeWatcher() {
     yield takeLatest(sendDataToChange, sendDataToChangeHandler);
 }
 
+// DELETE
+
 function* deleteDataToChangeHandler(action: AnyAction) {
     try {
         
-        yield put(sendChangedEssenseDataLoading(true));
+        yield put(actionEssenseDataLoading(true));
 
-        const response: AxiosResponse = yield call(tableData.deleteChandeDataById, action.payload);
+        const response: AxiosResponse = yield call(tableData.deleteChangeDataById, action.payload);
 
         if(response.status < 300) {
             yield put(
                 addTemporaryNotification(
-                    temporaryNotificationsFactory(successTemporaryDeleteEssense(uuidv4()) as ITemporaryNotification)
+                    temporaryNotificationsFactory(successDeleteEssense(uuidv4()) as ITemporaryNotification)
             ));
         } else {
             throw new Error(errorKeys.requestError)
@@ -100,14 +109,46 @@ function* deleteDataToChangeHandler(action: AnyAction) {
     } catch (error: any) {
         yield put(
             addTemporaryNotification(
-                temporaryNotificationsFactory(failedTemporaryDeleteEssense(uuidv4()) as ITemporaryNotification))
+                temporaryNotificationsFactory(failedDeleteEssense(uuidv4()) as ITemporaryNotification))
             )
-        yield put(sendChangedEssenseDataRequestError(error.message));
+        yield put(actionEssenseDataRequestError(error.message));
     } finally {
-        yield put(sendChangedEssenseDataLoading(false));
+        yield put(actionEssenseDataLoading(false));
     }
 }
 
 export function* deleteDataToChangeWatcher() {
     yield takeLatest(deleteDataToChange, deleteDataToChangeHandler);
+}
+
+// CREATE
+
+function* createEssenceDataHandler(action: AnyAction) {
+    try {
+        
+        yield put(actionEssenseDataLoading(true));
+
+        const response: AxiosResponse = yield call(tableData.createEssenseData, action.payload);
+
+        if(response.status < 300) {
+            yield put(
+                addTemporaryNotification(
+                    temporaryNotificationsFactory(successCreateEssense(uuidv4()) as ITemporaryNotification)
+            ));
+        } else {
+            throw new Error(errorKeys.requestError)
+        }
+        
+    } catch (error) {
+        yield put(
+            addTemporaryNotification(
+                temporaryNotificationsFactory(failedCreateEssense(uuidv4()) as ITemporaryNotification))
+            )
+    } finally {
+        yield put(actionEssenseDataLoading(false));
+    }
+}
+
+export function* createEssenceDataWatcher() {
+    yield takeLatest(createEssenceData, createEssenceDataHandler)
 }

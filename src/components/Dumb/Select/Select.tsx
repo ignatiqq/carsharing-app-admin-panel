@@ -92,7 +92,7 @@ const Select: React.FC<ISelect> = (
           [styles.optionWrapperOpen]: selectDropdownOpened
         })}>
           {
-            dataHolder ? 
+            dataHolder && !optionsToShow ? 
             dataHolder :
             optionsToShow && optionsToShow.length > 0 ?
             optionsToShow.map((item) => (  

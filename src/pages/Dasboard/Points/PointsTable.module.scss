@@ -18,3 +18,18 @@
         padding: 20px 5px !important;
     }
 }
+
+
+.tableHeader {
+
+    &__button {
+
+        &_create {
+            display: flex;
+            justify-content: end;
+            margin-top: 15px;
+        }
+
+    }
+
+}

@@ -9,11 +9,12 @@ export interface IEssenseOptions {
         route: string | null,
         id: string | null,
         action: EssenseActions | null,
-        changeRequestLoading: boolean,
-        changeRequestError: string | null,
+        actionLoading: boolean,
+        actionRequestError: string | null,
         isLoading: boolean,
-        error: string | null
-    }
+        error: string | null,
+
+    },
 }
 
 

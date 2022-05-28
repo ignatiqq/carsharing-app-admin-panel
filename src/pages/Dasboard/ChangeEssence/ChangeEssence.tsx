@@ -1,12 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
+import { v4 as uuidv4 } from "uuid";
 
 import ChangeEssenceFactory from "./ChangeEssenceFactory";
 import {  Loader, ModalStandart } from 'components';
 import styles from "./ChangeEssence.module.scss";
 import { useAppDispatch, useAppSelector } from 'store';
-import { deleteDataToChange, getDataToChange, sendDataToChange, setDataToChangeEssenseId, setDataToChangeRouteName } from 'store/changeEssence/actions';
+import { 
+  deleteDataToChange, 
+  getDataToChange, 
+  sendDataToChange, 
+  setDataToChangeAction, 
+  setDataToChangeEssenseId, 
+  setDataToChangeRouteName,
+  createEssenceData
+} from 'store/changeEssence/actions';
+import { EssenseActions } from 'store/changeEssence/types';
 
 const ChangeEssence = () => {
 
@@ -15,19 +25,23 @@ const ChangeEssence = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
 
-  const { changeData, changeRequestLoading } = useAppSelector(({essenceOptions}) => ({
+  const { changeData, actionLoading } = useAppSelector(({essenceOptions}) => ({
     changeData: essenceOptions.change,
-    changeRequestLoading: essenceOptions.change.changeRequestLoading,
+    actionLoading: essenceOptions.change.actionLoading,
   }))
 
   useEffect(() => {
-    if(params && params.id && params.route) {
+    if(params.action === EssenseActions.CHANGE && params.id && params.route) {
       dispatch(getDataToChange({
         id: params.id,
         route: params.route
       }));
       dispatch(setDataToChangeRouteName(params.route));
       dispatch(setDataToChangeEssenseId(params.id));
+      dispatch(setDataToChangeAction(params.action as EssenseActions));
+    } else if(params.action === EssenseActions.CREATE && params.route) {
+        dispatch(setDataToChangeRouteName(params.route));
+        dispatch(setDataToChangeAction(params.action as EssenseActions));
     }
   }, [params]);
 
@@ -56,19 +70,31 @@ const ChangeEssence = () => {
     }
   }
 
+  const createEssenceHandler = <T extends {}>(data: T) => {
+    dispatch(createEssenceData({
+      data: {
+        ...data,
+        id: uuidv4(),
+      },
+      route: changeData.route
+    }))
+  }
+
   return (
     <>
       <div>
         {
           changeData.isLoading || !showData ?
             <Loader />
-          : !changeData.error && changeData.data && params.route ?
+          : !changeData.error && params.route && changeData.action ?
           <div className={styles.wrapper}>
             <ChangeEssenceFactory
               route={params.route}
               data={changeData.data}
+              action={changeData.action}
               changeEssenseHandler={changeEssenseHandler}
               deleteEssengeHandler={deleteEssengeHandler}
+              createEssenceHandler={createEssenceHandler}
             />
           </div>
           :
@@ -76,8 +102,8 @@ const ChangeEssence = () => {
         }
       </div>
       {
-        changeRequestLoading &&
-        <ModalStandart isOpen={changeRequestLoading}>
+        actionLoading &&
+        <ModalStandart isOpen={actionLoading}>
           <div className={styles.Modal__loaderWrapper}>
             <Loader />
           </div>

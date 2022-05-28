@@ -41,6 +41,7 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
         const key = e.target.name;
         if(fields.hasOwnProperty(key)) {
             const value = e.target.value;
+
             const validationErrors = handleValidate(key as keyof T, value);
             setErrors((prev) => {
                 return {
@@ -95,7 +96,7 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
 
             for(const key in fields) {
                 const value = fields[key];
-
+                
                 const elementErrors = handleValidate(key, value);
                 errors = {...errors, ...elementErrors}
             }

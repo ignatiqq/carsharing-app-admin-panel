@@ -1,4 +1,4 @@
-import { getRequest, putRequest, deleteRequest } from "api/requests/requests";
+import { getRequest, putRequest, deleteRequest, postRequest } from "api/requests/requests";
 import type { IEssenseData } from "store/changeEssence/types";
 import type { IQueryFilter } from "store/tableData/types";
 import { paramsToString } from "utils/requestHelper";
@@ -26,25 +26,21 @@ const tableData = {
 
     cities: (params: IQueryFilter) => {
         const getParams = paramsToString(params);
-
         return getRequest(`/db/city?${getParams}`)
     },
 
     points: (params: IQueryFilter) => {
         const getParams = params ? paramsToString(params) : "";
-
         return getRequest(`/db/point?${getParams}`)
     },
 
     rateTypes: (params: IQueryFilter) => {
         const getParams = params ? paramsToString(params) : "";
-
         return getRequest(`/db/rateType?${getParams}`)
     },
 
     cars: (params: IQueryFilter) => {
-        const getParams = params ? paramsToString(params) : "";
-        
+        const getParams = params ? paramsToString(params) : "";  
         return getRequest(`/db/car?${getParams}`)
     },
 
@@ -52,7 +48,7 @@ const tableData = {
         return getRequest(`/db/${route}/${id}`)
     },
 
-    putChangeDataById: ({id, route, data }: IEssenseChangePostData) => {
+    putChangeDataById: ({id, route, data}: IEssenseChangePostData) => {
         return putRequest(`/db/${route}/${id}`, {
             headers: {
                 authorization: true
@@ -60,12 +56,20 @@ const tableData = {
         }, data);
     },
 
-    deleteChandeDataById: ({id, route}: IEssenseChangeData) => {
+    deleteChangeDataById: ({id, route}: IEssenseChangeData) => {
         return deleteRequest(`/db/${route}/${id}`, {
             headers: {
                 authorization: true
             }
         })
+    },
+ 
+    createEssenseData: ({route, data}: IEssenseChangePostData) => {
+        return postRequest(`/db/${route}`, {
+            headers: {
+                authorization: true
+            }
+        }, data)
     }
 
 }

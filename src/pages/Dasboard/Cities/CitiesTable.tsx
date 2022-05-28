@@ -6,6 +6,8 @@ import withCitiesLogic from './withCitiesLogic';
 import { Table, TablePagination, TableHead, DashboardChangeLink } from 'components';
 import { ITableHead } from 'components/Table/Table/Table';
 import styles from "./CitiesTable.module.scss";
+import { getDashboardChangeLink } from 'utils/getDashboardType';
+import { EssenseActions } from 'store/changeEssence/types';
 
 export interface ICitiesTable {
   isLoading: boolean,
@@ -31,7 +33,10 @@ const CitiesTable: React.FC<ICitiesTable> = ({
     <>
       <TableHead count={count} />
       <div className={styles.tableHeader__button_create}>
-        <DashboardChangeLink link="/dashboard/city/create">
+        <DashboardChangeLink link={getDashboardChangeLink({
+              pathname: window.location.pathname, 
+              action: EssenseActions.CREATE,
+          })}>
           Создать
         </DashboardChangeLink>
       </div>

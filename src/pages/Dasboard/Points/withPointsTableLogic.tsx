@@ -7,6 +7,7 @@ import { IPointsTable } from './PointsTable';
 import type { IPagination } from 'types/requests';
 import { DashboardChangeLink } from 'components';
 import { getDashboardChangeLink } from 'utils/getDashboardType';
+import { EssenseActions } from 'store/changeEssence/types';
 
 
 export type PointsTableMappedData = Array<IPointTableMappedItem> | null;
@@ -55,7 +56,11 @@ const withPointsTableLogic = (Component: React.FC<IPointsTable>) => () => {
                     address: item.address ? item.address : "Адрес не указан",
                     name: item.name ? item.name: "Место не указан",
                     action: 
-                        <DashboardChangeLink link={getDashboardChangeLink(location.pathname, item.id)}>
+                        <DashboardChangeLink link={getDashboardChangeLink({
+                            pathname: location.pathname, 
+                            action: EssenseActions.CHANGE,  
+                            id: item.id
+                        })}>
                             Изменить
                         </DashboardChangeLink>
                 }

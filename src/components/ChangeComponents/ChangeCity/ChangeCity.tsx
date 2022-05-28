@@ -8,32 +8,27 @@ import styles from "./ChangeCity.module.scss";
 import { essenceValidations } from 'constants/Validations/validations';
 import useValidate from 'packages/useValidate/useValidate';
 import classNames from 'classnames';
+import { EssenseActions } from 'store/changeEssence/types';
 
 interface IChangeCity {
-    onChangeHandler: (data: ICurrentCity) => void,
-    onDeleteHandler: (data: string) => void,
-    data: ICurrentCity,
+  submitEssenceHandler: (data: ICurrentCity) => void,
+  onDeleteHandler: (data: string) => void,
+  data: ICurrentCity,
+  action: EssenseActions
 }
 
 const ChangeCity: React.FC<IChangeCity> = ({
-    onChangeHandler,
+    submitEssenceHandler,
     onDeleteHandler,
-    data
+    data,
+    action
 }) => {
     const [dataToChange, setDataToChange] = useState<ICurrentCity>(data);
 
     const navigation = useNavigate();
 
-    const changeCityNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      const prev = {...dataToChange};
-        setDataToChange({
-          ...prev,
-          name: e.target.value
-        })
-    }
-
-    const onChangeCity = () => {
-      onChangeHandler(dataToChange)
+    const onSubmitCityHandler = () => {
+      submitEssenceHandler(dataToChange)
     }
     const onDeleteCity = () => {
       onDeleteHandler(dataToChange.id);
@@ -48,11 +43,23 @@ const ChangeCity: React.FC<IChangeCity> = ({
       errors,
       handleSubmit,
       handleFocus,
+      handleChange
     } = useValidate({
       formFields: {name: dataToChange.name}, 
       validations: {name: essenceValidations.name}, 
-      onSubmit: onChangeCity
+      onSubmit: onSubmitCityHandler
     });
+
+    const changeCityNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      handleChange(e);
+      const prev = { ...dataToChange };
+      setDataToChange({
+        ...prev,
+        name: e.target.value,
+      });
+    }
+ 
+    const essenseFooterText = action === EssenseActions.CHANGE ? "Сохранить" : "Создать";
 
     return (
       <div className={styles.wrapper}>
@@ -61,11 +68,11 @@ const ChangeCity: React.FC<IChangeCity> = ({
           <div className={styles.inputWrapper}>
             <StandartInput
               name="name"
-              id={dataToChange.id}
+              id={dataToChange?.id}
               placeholder="Введите название города"
               label="Название города"
               onChange={changeCityNameHandler}
-              value={dataToChange.name}
+              value={dataToChange?.name}
               onBlur={handleBlur}
               onFocus={handleFocus}
               wrapperClassname={styles.settings__customInput}
@@ -77,6 +84,7 @@ const ChangeCity: React.FC<IChangeCity> = ({
           onApply={handleSubmit}
           onDelete={onDeleteCity}
           onCancel={goBackHandler}
+          applyText={essenseFooterText}
         />
       </div>
     );
