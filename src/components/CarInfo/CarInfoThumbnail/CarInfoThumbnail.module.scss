@@ -48,3 +48,10 @@
     }
 
 }
+
+.inputWrapper {
+    &__error {
+        min-height: 13px;
+        margin-top: 5px;
+    }
+}

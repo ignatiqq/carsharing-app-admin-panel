@@ -54,13 +54,12 @@ const Orders: React.FC<IOrderPageProps> = ({
 }) => {
 
     const OrdersTableHeader = (
-    <TableHead count={count}>
-      <SelectWrapper
+      <TableHead count={count}>
+        <SelectWrapper
           onReset={resetOrderFilters}
           onApply={applyOrderFilters}
-          wrapperClassname={styles.filters}
-        >
-        <div className={styles.filters__items}>
+          wrapperClassname={styles.filters}>
+          <div className={styles.filters__items}>
             <Select
               options={points.data}
               selected={points.data && getSelectedDataById(points.data, filters.pointId)}
@@ -68,7 +67,7 @@ const Orders: React.FC<IOrderPageProps> = ({
               customValue="id"
               clickHandler={setPointsSelected}
               dataHolder={selectDataHolder(points)}
-              searchPlaceholder={"Точки"}
+              searchPlaceholder={'Точки'}
               className={styles.orders__select}
             />
             <Select
@@ -78,7 +77,7 @@ const Orders: React.FC<IOrderPageProps> = ({
               customValue="id"
               clickHandler={setCitiesSelected}
               dataHolder={selectDataHolder(cities)}
-              searchPlaceholder={"Города"}
+              searchPlaceholder={'Города'}
               className={styles.orders__select}
             />
             <Select
@@ -88,12 +87,13 @@ const Orders: React.FC<IOrderPageProps> = ({
               customValue="id"
               clickHandler={setCarsSelected}
               dataHolder={selectDataHolder(cars)}
-              searchPlaceholder={"Марки"}
+              searchPlaceholder={'Марки'}
               className={styles.orders__select}
             />
           </div>
-      </SelectWrapper>
-    </TableHead>)
+        </SelectWrapper>
+      </TableHead>
+    );
 
 const Pagintation = (
   <>

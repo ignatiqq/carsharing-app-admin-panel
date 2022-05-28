@@ -2,7 +2,7 @@ import { ChangeEvent, FocusEvent } from "react"
 
 export interface IInput {
     name: string,
-    value?: string,
+    value?: string | number,
     disabled?: boolean,
     placeholder?: string,
     onChange?: (data: ChangeEvent<HTMLInputElement>) => void,

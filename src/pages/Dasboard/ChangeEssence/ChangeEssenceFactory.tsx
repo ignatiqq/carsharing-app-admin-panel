@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from "uuid";
-
 import { ChangeCar, ChangeCity, ChangePoint, ChangeRateType } from 'components/ChangeComponents';
 import { IChangeRoutes } from "./types";
 import styles from "./ChangeEssence.module.scss";
@@ -27,13 +25,28 @@ const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
 
   switch (route) {
     case IChangeRoutes.CAR: {
+      const emptyData = {
+        priceMax: 0,
+        priceMin: 0,
+        name: "",
+        thumbnail: {
+          path: ""
+        },
+        description: "",
+        categoryId: {},
+        number: "",
+        tank: 0,
+        colors: [],
+        id: ""
+      }
       return (
         <>
           <h1 className={styles.changeEssense__title}>Карточка автомобиля</h1>
           <ChangeCar
-            data={data}
-            submitHandler={changeEssenseHandler}
+            data={action === EssenseActions.CHANGE ? data : emptyData}
+            submitHandler={handlerByAction}
             onDeleteHandler={deleteEssengeHandler}
+            action={action}
           />
         </>
       )

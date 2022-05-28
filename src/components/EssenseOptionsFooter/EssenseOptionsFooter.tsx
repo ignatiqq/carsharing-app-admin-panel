@@ -6,14 +6,14 @@ interface IEssenseOptinsFooter<T> {
     onApply?: (data: T) => void,
     onCancel?: (data: T) => void,
     onDelete?: (data: T) => void,
-    applyText?: string
+    applyText?: string,
 }
 
 const EssenseOptionsFooter = <T,>({
     onApply,
     onCancel,
     onDelete,
-    applyText
+    applyText,
 }: IEssenseOptinsFooter<T>) => {
   return (
     <div className={styles.wrapper}>

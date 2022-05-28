@@ -12,6 +12,7 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
         const newErrors = {...errors};
         delete newErrors[key];
         setErrors(newErrors);
+        return newErrors;
     }
 
     const requiredValid = (validationKey: IValidations<T>[keyof T], value: string) => {
@@ -63,7 +64,7 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
                     [key]: validationKey.required?.message
                 }
             } else if(validateErrors[key]) {
-                deleteError(validateErrors, key)
+                return deleteError(validateErrors, key)
             }
             if(!validationKey?.pattern?.value) {
                 return validateErrors;

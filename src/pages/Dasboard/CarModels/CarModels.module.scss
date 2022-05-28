@@ -72,3 +72,17 @@
         margin-bottom: 0;
     }
 }
+
+.tableHeader {
+
+    &__button {
+
+        &_create {
+            display: flex;
+            justify-content: end;
+            margin-top: 15px;
+        }
+
+    }
+
+}

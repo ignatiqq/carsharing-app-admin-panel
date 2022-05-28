@@ -2,47 +2,42 @@ import React, { ChangeEvent, memo, useEffect, useState } from 'react';
 
 import { ReactComponent as PlusIcon } from "assets/icons/plus.svg";
 import {Button, Checkbox, StandartInput, Select} from 'components';
-import { IAllCarCategories, ICarDataCategoryId } from 'store/filtersData/types';
+import { IAllCarCategories, ICarData, ICarDataCategoryId } from 'store/filtersData/types';
 import styles from "./ChangeCarSettings.module.scss";
 import EssenseOptionsFooter from 'components/EssenseOptionsFooter/EssenseOptionsFooter';
+import classNames from 'classnames';
 
 interface IChangeCarSettings {
-  categoryId?: ICarDataCategoryId
-  colors?: Array<string>,
-  name?: string,
+  dataToChange: ICarData,
   carCategories: IAllCarCategories,
-  description?: string,
   changeCarCategoryHandler: (categoryId: ICarDataCategoryId) => void,
-  changeNameHandler: (e: ChangeEvent<HTMLInputElement>) => void,
   changeCarColorsHandler: (colors: Array<string>) => void,
-  changeCarDescriptionHandler: (e: ChangeEvent<HTMLInputElement>) => void,
-  sendChangedCar: () => void,
+  changeByKeyHandler: (data: ChangeEvent<HTMLInputElement>) => void,
+  onSubmitCarHandler: () => void,
   goBackHandler: () => void,
-  onDeleteHandler: () => void
+  onDeleteHandler: () => void,
+  validation: {[key: string]: any}
 }
 
 const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
-  categoryId,
-  colors,
-  name,
+  dataToChange,
   carCategories,
   changeCarCategoryHandler,
-  changeNameHandler,
   changeCarColorsHandler,
-  changeCarDescriptionHandler,
-  sendChangedCar,
-  description,
+  changeByKeyHandler,
+  onSubmitCarHandler,
   goBackHandler,
-  onDeleteHandler
+  onDeleteHandler,
+  validation
 }) => {
   const [allColors, setAllColors] = useState<Array<string>>([]);
   const [colorInput, setColorInput] = useState<string>("");
 
   useEffect(() => {
-    if(colors && colors.length > 0) {
-      setAllColors(colors);
+    if(dataToChange.colors && dataToChange.colors.length > 0) {
+      setAllColors(dataToChange.colors);
     }
-  }, [colors])
+  }, [dataToChange.colors])
 
   const addColorHandler = (color: string) => {
       setAllColors((prev) => [...prev, color] );
@@ -57,6 +52,11 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
     const filteredColors = allColors.filter(item => item !== data);
     setAllColors(filteredColors);
   }
+  
+  const changeByKeyWithValidation = (e: ChangeEvent<HTMLInputElement>) => {
+    validation.handleChange(e);
+    changeByKeyHandler(e);
+  }
 
   useEffect(() => {
     changeCarColorsHandler(allColors);
@@ -68,17 +68,23 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
         <div className={styles.header}>
           <h2>Настройки автомобиля</h2>
         </div>
-
         <div className={styles.settingsWrapper}>
-          <StandartInput
-            label="Модель автомобиля"
-            name="model"
-            value={name}
-            placeholder="Введите модель автомобиля"
-            onChange={changeNameHandler}
-            id="model"
-            wrapperClassname={styles.inputCustomWrapper}
-          />
+          <div className={styles.settingsWrapper__inputWrapper}>
+            <StandartInput
+              label="Модель автомобиля"
+              name="name"
+              value={dataToChange.name}
+              placeholder="Введите модель автомобиля"
+              onChange={changeByKeyWithValidation}
+              id="name"
+              onBlur={validation.handleBlur}
+              onFocus={validation.handleFocus}
+              wrapperClassname={styles.inputCustomWrapper}
+            />
+            <div className={classNames('error-text', styles.inputWrapper__error)}>
+              {validation.errors.name}
+            </div>
+          </div>
           {carCategories.data && (
             <div className={styles.label}>
               <label htmlFor="auto-type" className={styles.label__text}>
@@ -86,7 +92,7 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
               </label>
               <Select
                 options={carCategories?.data}
-                selected={categoryId}
+                selected={dataToChange.categoryId}
                 clickHandler={changeCarCategoryHandler}
                 customLabel="name"
                 customValue="id"
@@ -95,16 +101,89 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
               />
             </div>
           )}
-
-          <StandartInput
-            label="Описание автомобиля"
-            name="model"
-            value={description}
-            placeholder="Введите описание автомобиля"
-            id="model"
-            onChange={changeCarDescriptionHandler}
-            wrapperClassname={styles.inputCustomWrapper}
-          />
+          <div className={styles.settingsWrapper__inputWrapper}>
+            <StandartInput
+              label="Описание автомобиля"
+              name="description"
+              value={dataToChange.description}
+              placeholder="Введите описание автомобиля"
+              id="description"
+              onChange={changeByKeyWithValidation}
+              onBlur={validation.handleBlur}
+              onFocus={validation.handleFocus}
+              wrapperClassname={styles.inputCustomWrapper}
+            />
+            <div className={classNames('error-text', styles.inputWrapper__error)}>
+              {validation.errors.description}
+            </div>
+          </div>
+          <div className={styles.settingsWrapper__inputWrapper}>
+            <StandartInput
+              label="Минимальная цена"
+              name="priceMin"
+              type='number'
+              value={dataToChange.priceMin}
+              placeholder="Введите минимальную цену"
+              id="priceMin"
+              onChange={changeByKeyWithValidation}
+              onBlur={validation.handleBlur}
+              onFocus={validation.handleFocus}
+              wrapperClassname={styles.inputCustomWrapper}
+            />
+            <div className={classNames('error-text', styles.inputWrapper__error)}>
+              {validation.errors.priceMin}
+            </div>
+          </div>
+          <div className={styles.settingsWrapper__inputWrapper}>
+            <StandartInput
+              label="Максимальная цена"
+              name="priceMax"
+              type="number"
+              value={dataToChange.priceMax}
+              placeholder="Введите максимальную цену"
+              id="priceMax"
+              onChange={changeByKeyWithValidation}
+              onBlur={validation.handleBlur}
+              onFocus={validation.handleFocus}
+              wrapperClassname={styles.inputCustomWrapper}
+            />
+            <div className={classNames('error-text', styles.inputWrapper__error)}>
+              {validation.errors.priceMax}
+            </div>
+          </div>
+          <div className={styles.settingsWrapper__inputWrapper}>
+            <StandartInput
+              label="Номер автомобиля"
+              name="number"
+              value={dataToChange.number}
+              placeholder="Введите номер автомобиля"
+              id="number"
+              onChange={changeByKeyWithValidation}
+              onBlur={validation.handleBlur}
+              onFocus={validation.handleFocus}
+              wrapperClassname={styles.inputCustomWrapper}
+            />
+            <div className={classNames('error-text', styles.inputWrapper__error)}>
+              {validation.errors.number}
+            </div>
+          </div>
+          <div className={styles.settingsWrapper__inputWrapper}>
+            <StandartInput
+              label="Количество топлива"
+              name="tank"
+              type="number"
+              value={dataToChange.tank}
+              placeholder="Введите количество топлива"
+              id="tank"
+              onChange={changeByKeyWithValidation}
+              onBlur={validation.handleBlur}
+              onFocus={validation.handleFocus}
+              wrapperClassname={styles.inputCustomWrapper}
+            />
+            <div className={classNames('error-text', styles.inputWrapper__error)}>
+              {validation.errors.tank}
+            </div>
+          </div>
           <div className={styles.colorSettings__wrapper}>
             <div className={styles.label__withButton}>
               <StandartInput
@@ -125,7 +204,7 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
             </div>
             <div className={styles.colorsWrapper}>
               {allColors &&
-                colors &&
+                dataToChange.colors &&
                 allColors.map((item) => (
                   <Checkbox
                     key={item}
@@ -133,7 +212,7 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
                     value={item}
                     id={item}
                     name={item}
-                    selected={colors?.includes(item)}
+                    selected={dataToChange.colors?.includes(item)}
                     onChange={deleteColorHandler}
                     customCheckboxStyles={styles.color__checkbox}
                     customLabelStyles={styles.color__label}
@@ -144,7 +223,7 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
         </div>
       </div>
       <EssenseOptionsFooter
-        onApply={sendChangedCar}
+        onApply={validation.handleSubmit}
         onCancel={goBackHandler}
         onDelete={onDeleteHandler}
       />

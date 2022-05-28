@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, DragEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import CarPlaceholder from "assets/images/CarPlaceholder.png";
 import styles from "./CarInfoThumbnail.module.scss";
@@ -12,7 +12,8 @@ interface ICarInfoThumbnail {
     name?: string,
     category?: string,
     className?: string,
-    changeImageHandler: (data: ICardDataThumbnail) => void
+    changeImageHandler: (data: ICardDataThumbnail) => void,
+    validation: {[key: string]: any}
 }
 
 const accessMimeTypes = ["image/jpeg","image/png","image/gif"]
@@ -22,6 +23,7 @@ const CarInfoThumbnail: React.FC<ICarInfoThumbnail> = ({
     name,
     category,
     className,
+    validation,
     changeImageHandler
 }) => {
     const [fileInfo, setFileInfo] = useState<File | null>(null);
@@ -34,6 +36,7 @@ const CarInfoThumbnail: React.FC<ICarInfoThumbnail> = ({
             setUploadFileError(null);
 
             if(accessMimeTypes.includes(file.type)) {
+                validation.handleChange(e);
                 setImageToShow(URL.createObjectURL(file));
                 setFileInfo(file);
                 const fileUrl = await base64Helper.fileToBase64(file) as string;
@@ -79,11 +82,14 @@ const CarInfoThumbnail: React.FC<ICarInfoThumbnail> = ({
                 }
                 <div className={styles.fileInput__wrapper}>
                     <FileInput
-                            name="car-change-upload"
-                            className={styles.uploadBtn}
-                            onChange={fileChangeHandler}
+                        name="path"
+                        className={styles.uploadBtn}
+                        onChange={fileChangeHandler}
+                        onBlur={validation.handleBlur}
+                        onFocus={validation.handleFocus}
                     />
                 </div> 
+                <div className={classNames('error-text', styles.inputWrapper__error)}>{validation.errors.path}</div>
             </div>
         </div>
     )

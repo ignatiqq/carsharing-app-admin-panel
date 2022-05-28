@@ -31,5 +31,5 @@ export const successCreateEssense = (id: string) => ({
 export const failedCreateEssense = (id: string) => ({
     id: id,
     type: "failed",
-    value: `Ошибка! Сущность не создалсь, попробуйте позже`
+    value: `Ошибка! Сущность не создалась, попробуйте позже`
 })

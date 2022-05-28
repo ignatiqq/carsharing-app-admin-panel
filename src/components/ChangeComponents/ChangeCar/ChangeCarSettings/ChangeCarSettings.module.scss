@@ -98,6 +98,11 @@
     align-items: baseline;
     justify-content: space-between;
     flex-wrap: wrap;
+
+    &__inputWrapper {
+        width: 100%;
+        max-width: 500px;
+    }
 }
 
 .categorySelect {
@@ -154,4 +159,14 @@
         max-width: 500px;
     }
 
+}
+
+.inputWrapper {
+    width: 100%;
+    max-width: 600px;
+
+    &__error {
+        min-height: 13px;
+        margin: 5px 0px;
+    }
 }

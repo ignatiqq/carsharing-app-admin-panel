@@ -1,4 +1,4 @@
-import { authorizationValidationPatterns } from "./patterns"
+import { authorizationValidationPatterns, essenseChangeValidations } from "./patterns"
 
 export const authValidations = {
     email: {
@@ -7,8 +7,7 @@ export const authValidations = {
         message: "Это обязательное поле!"
       },
       pattern: {
-        value: authorizationValidationPatterns.emailPattern.value,
-        message: authorizationValidationPatterns.emailPattern.message
+        ...authorizationValidationPatterns.emailPattern
       }
     },
     password: {
@@ -17,8 +16,7 @@ export const authValidations = {
         message: "Это обязательное поле!"
       },
       pattern: {
-        value: authorizationValidationPatterns.passwordPattern.value,
-        message: authorizationValidationPatterns.passwordPattern.message
+        ...authorizationValidationPatterns.passwordPattern,
       }
     }
 }
@@ -28,6 +26,42 @@ export const essenceValidations = {
     required: {
       value: true,
       message: "Это обязательное поле!"
+    }
+  },
+  number: {
+    required: {
+      value: true,
+      message: "Это обязательное поле!"
+    },
+    pattern: {
+      ...essenseChangeValidations.number,
+    }
+  },
+  price: {
+    required: {
+      value: true,
+      message: "Это обязательное поле!"
+    },
+    pattern: {
+      ...essenseChangeValidations.price
+    }
+  },
+  description: {
+    required: {
+      value: true,
+      message: "Это обязательное поле!"
+    },
+    pattern: {
+      ...essenseChangeValidations.description
+    }
+  },
+  tank: {
+    required: {
+      value: true,
+      message: "Это обязательное поле!"
+    },
+    pattern: {
+      ...essenseChangeValidations.tank
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { DragEvent, useState } from 'react';
+import React, { ChangeEvent, DragEvent, useState } from 'react';
 import classNames from 'classnames';
 
 import { IInput } from "../type";
@@ -8,7 +8,9 @@ import styles from "./FileInput.module.scss";
 interface IFileInput extends IInput {
   onDragEnter?: (e: DragEvent<HTMLInputElement>) => void,
   onDragOver?: (e: DragEvent<HTMLInputElement>) => void,
-  onDrop?: (e: DragEvent<HTMLInputElement>) => void
+  onDrop?: (e: DragEvent<HTMLInputElement>) => void,
+  onBlur?: (e: ChangeEvent<HTMLInputElement>) => void,
+  onFocus?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 const FileInput: React.FC<IFileInput> = ({
@@ -18,7 +20,9 @@ const FileInput: React.FC<IFileInput> = ({
     onChange,
     onDragEnter,
     onDragOver,
-    onDrop
+    onDrop,
+    onBlur,
+    onFocus
 }) => {
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
 
@@ -51,6 +55,8 @@ const FileInput: React.FC<IFileInput> = ({
           onDragLeave={dragLeaveHandler}
           onDragOver={onDragOver ? onDragOver : dragOverHandler}
           onDrop={dragDropHandler}
+          onBlur={onBlur}
+          onFocus={onFocus}
       />
       <div className={styles.CustomInputWrapper}>
         {

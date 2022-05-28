@@ -7,32 +7,30 @@ import { ICarData, ICarDataCategoryId, ICardDataThumbnail } from 'store/filtersD
 import { getPercentByDataComplete } from 'utils/essentialDataHelper';
 import styles from "./ChangeCar.module.scss";
 import { useAppSelector } from 'store';
+import { EssenseActions } from 'store/changeEssence/types';
+import { essenceValidations } from 'constants/Validations/validations';
+import useValidate from 'packages/useValidate/useValidate';
 
 interface IChangeCar {
-  submitHandler: (data: Partial<ICarData>) => void,
+  submitHandler: (data: ICarData) => void,
   onDeleteHandler: () => void,
   data: ICarData,
+  action: EssenseActions
 }
 
 const ChangeCar: React.FC<IChangeCar> = ({
   submitHandler,
   onDeleteHandler,
-  data
+  data,
 }) => {
   const [percentCompleted, setPercentCompleted] = useState<number>(0);
-  const [dataToChange, setDataToChange] = useState<Partial<ICarData>>({});
+  const [dataToChange, setDataToChange] = useState<ICarData>(data);
 
   const { carCategories } = useAppSelector(({ filtersData }) => ({
     carCategories: filtersData.carCategories
   }))
 
   const navigation = useNavigate();
-
-  useEffect(() => {
-    if(data && Object.keys(dataToChange).length <= 0) {
-      setDataToChange(data)
-    }
-  }, [data]);
   
   useEffect(() => {
     if(dataToChange){
@@ -40,11 +38,11 @@ const ChangeCar: React.FC<IChangeCar> = ({
     }
   }, [dataToChange])
   
-  const changeNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const changeByKeyHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setDataToChange((prev) => {
       return {
         ...prev,
-        name: e.target.value 
+        [e.target.name]: e.target.value
       }
     })
   }
@@ -71,15 +69,6 @@ const ChangeCar: React.FC<IChangeCar> = ({
     })
   }
 
-  const changeCarDescriptionHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setDataToChange((prev) => {
-      return {
-        ...prev,
-        description: e.target.value
-      }
-    })
-  }
-
   const changeImageHandler = (data: ICardDataThumbnail) => {
     setDataToChange((prev) => {
       return {
@@ -89,7 +78,7 @@ const ChangeCar: React.FC<IChangeCar> = ({
     })
   }
 
-  const sendChangedCar = () => {
+  const onSubmitCarHandler = () => {
     submitHandler(dataToChange)
   }
 
@@ -97,29 +86,49 @@ const ChangeCar: React.FC<IChangeCar> = ({
     navigation(-1)
   }
 
+  const validation = useValidate({
+    formFields: {
+      name: dataToChange.name,
+      number: dataToChange.number,
+      priceMax: dataToChange.priceMax,
+      priceMin: dataToChange.priceMin,
+      description: dataToChange.description,
+      tank: dataToChange.tank,
+      path: dataToChange.thumbnail.path,
+    }, 
+    validations: {
+      name: essenceValidations.name,
+      number: essenceValidations.number,
+      priceMax: essenceValidations.price,
+      priceMin: essenceValidations.price,
+      description: essenceValidations.description,
+      tank: essenceValidations.tank,
+      path: essenceValidations.name
+    }, 
+    onSubmit: onSubmitCarHandler
+  });
+
   return (
     <div className={styles.wrapper}>
       <ChangeCarWithThumbnail
-        thumbnail={dataToChange?.thumbnail}
-        categoryId={dataToChange?.categoryId}
-        name={dataToChange?.name}
-        description={dataToChange?.description}  
+        thumbnail={dataToChange.thumbnail}
+        categoryId={dataToChange.categoryId}
+        name={dataToChange.name}
+        description={dataToChange.description}  
         percentCompleted={percentCompleted}
         changeImageHandler={changeImageHandler}
+        validation={validation}
       />
       <ChangeCarSettings
-        categoryId={dataToChange?.categoryId}
-        colors={dataToChange?.colors}
-        name={dataToChange?.name}
+        dataToChange={dataToChange}
         carCategories={carCategories}
-        description={dataToChange?.description}
         changeCarCategoryHandler={changeCarCategoryHandler}
-        changeNameHandler={changeNameHandler}
         changeCarColorsHandler={changeCarColorsHandler}
-        changeCarDescriptionHandler={changeCarDescriptionHandler}
-        sendChangedCar={sendChangedCar}
+        changeByKeyHandler={changeByKeyHandler}
+        onSubmitCarHandler={onSubmitCarHandler}
         goBackHandler={goBackHandler}
         onDeleteHandler={onDeleteHandler}
+        validation={validation}
       />
     </div>
   )
