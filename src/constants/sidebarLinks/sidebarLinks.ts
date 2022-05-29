@@ -3,6 +3,7 @@ import List from "assets/icons/List.svg";
 import CityIcon from "assets/icons/cityIcon.svg";
 import PointIcon from "assets/icons/pointIcon.svg";
 import RateTypesIcon from "assets/icons/rateTypesIcon.svg";
+import OrdersIcon from "assets/icons/orders.svg";
 
 const sidebarLinks = [
     {
@@ -12,7 +13,7 @@ const sidebarLinks = [
     },
     {
         name: "Заказы",
-        icon: pen,
+        icon: OrdersIcon,
         path: "/dashboard/order"
     },
     {
