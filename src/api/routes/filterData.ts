@@ -12,6 +12,9 @@ const filterData = {
     },
     getCarCategories: () => {
         return getRequest(`/db/category`);
+    },
+    getOrderStatuses: () => {
+        return getRequest(`/db/orderStatus`);
     }
 }   
 

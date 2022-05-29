@@ -84,5 +84,22 @@ export interface IFiltersData {
     city: IAllCities,
     point: IAllPoints,
     car: IAllCars,
-    carCategories: IAllCarCategories
+    carCategories: IAllCarCategories,
+    orderStatus: IAllOrderStatus
+}
+
+export interface IAllOrderStatus {
+    data: IOrderStatusData | null,
+    isLoading: boolean,
+    error: string | null
+}
+
+export interface IOrderStatusData {
+    data: Array<IOrderStatusItem>,
+    count: number
+}
+
+export interface IOrderStatusItem {
+    name: string,
+    id: string
 }

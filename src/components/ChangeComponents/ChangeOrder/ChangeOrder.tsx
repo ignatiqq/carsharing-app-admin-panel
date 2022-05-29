@@ -11,6 +11,7 @@ import useValidate from 'packages/useValidate/useValidate';
 import { formatDate } from 'utils/dateFormatter';
 import { useAppSelector } from 'store';
 import Select from 'components/Dumb/Select/Select';
+import { ICurrentPoint, IOrderStatusItem } from 'store/filtersData/types';
 
 interface IChangeOrder {
     submitEssenceHandler: (data: IOrderData) => void,
@@ -27,12 +28,31 @@ const ChangeOrder: React.FC<IChangeOrder> = ({
 
     const [dataToChange, setDataToChange] = useState<IOrderData>(data);
 
-    const { cities, points } = useAppSelector(({filtersData}) => ({
+    const { cities, points, orderStatuses } = useAppSelector(({filtersData}) => ({
         cities: filtersData.city.data,
-        points: filtersData.point.data
+        points: filtersData.point.data,
+        orderStatuses: filtersData.orderStatus.data
     }))
 
     const navigation = useNavigate();
+
+    const changeOrderStatusHandler = (data: IOrderStatusItem) => {
+      setDataToChange((prev) => {
+        return {
+          ...prev,
+          orderStatusId: data
+        }
+      })
+    }
+
+    const changePointHandler = (data: ICurrentPoint) => {
+      setDataToChange((prev) => {
+        return {
+          ...prev,
+          pointId: data
+        }
+      })
+    }
 
     const changeByKeyHandler = (e: ChangeEvent<HTMLInputElement>) => {
         handleChange(e);
@@ -42,7 +62,20 @@ const ChangeOrder: React.FC<IChangeOrder> = ({
             [e.target.name]: e.target.value
           }
         })
-      }
+    }
+
+    const changeCarNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      handleChange(e);
+      setDataToChange((prev: any) => {
+        return {
+          ...prev,
+          carId: {
+            ...prev.carId,
+            name: e.target.value
+          }
+        }
+      })
+    }
 
     const onSubmitOrder = () => {
       submitEssenceHandler(dataToChange);
@@ -62,7 +95,6 @@ const ChangeOrder: React.FC<IChangeOrder> = ({
       handleSubmit,
       handleFocus,
       handleChange,
-      fields
     } = useValidate({
       formFields: {
           color: dataToChange.color, 
@@ -79,14 +111,28 @@ const ChangeOrder: React.FC<IChangeOrder> = ({
       onSubmit: onSubmitOrder
     });
 
-    console.log(fields, errors)
-
     const dateFormat = "yyyy-MM-dd\'T\'HH:mm";
 
     return (
       <div className={styles.wrapper}>
-        <h2 className={styles.title}>Настройки тарифа</h2>
+        <h2 className={styles.title}>Настройки заказа</h2>
         <div className={styles.settings__wrapper}>
+          <div className={styles.inputWrapper}>
+            <StandartInput
+              name="name"
+              id={dataToChange.id}
+              placeholder="Введите марку автомобиля"
+              label="Марка"
+              onChange={changeCarNameHandler}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
+              value={dataToChange.carId?.name}
+              wrapperClassname={styles.settings__customInput}
+            />
+            <div className={classNames('error-text', styles.inputWrapper__error)}>
+              {errors.color}
+            </div>
+          </div>
           <div className={styles.inputWrapper}>
             <StandartInput
               name="color"
@@ -186,8 +232,24 @@ const ChangeOrder: React.FC<IChangeOrder> = ({
                 id="point"
                 options={points}
                 selected={dataToChange.pointId}
-                clickHandler={(data) => console.log(data)}
+                clickHandler={changePointHandler}
                 customLabel="address"
+                customValue="id"
+                dataHolder={<Loader />}
+              />
+            </div>
+          </div>
+          <div className={styles.inputWrapper}>
+            <div className={styles.label}>
+              <label htmlFor="city" className={styles.label__text}>
+                Выберите статус заказа
+              </label>
+              <Select
+                id="orderStatus"
+                options={orderStatuses && orderStatuses?.data}
+                selected={dataToChange.orderStatusId}
+                clickHandler={changeOrderStatusHandler}
+                customLabel="name"
                 customValue="id"
                 dataHolder={<Loader />}
               />

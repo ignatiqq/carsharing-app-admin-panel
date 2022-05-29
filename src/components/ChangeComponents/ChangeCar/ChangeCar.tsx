@@ -95,7 +95,7 @@ const ChangeCar: React.FC<IChangeCar> = ({
       priceMin: dataToChange.priceMin,
       description: dataToChange.description,
       tank: dataToChange.tank,
-      path: dataToChange.thumbnail.path,
+      path: dataToChange.thumbnail?.path,
     }, 
     validations: {
       name: essenceValidations.name,

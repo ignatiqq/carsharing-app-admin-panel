@@ -5,6 +5,7 @@ import type {
     ICarData,
     ICurrentCity,
     ICurrentPoint,
+    IOrderStatusData,
 } from "./types";
 
 import {
@@ -23,7 +24,11 @@ import {
     GET_FILTERS_DATA,
     SET_CAR_CATEGORIES_DATA,
     SET_CAR_CATEGORIES_REQUEST_LOADING,
-    SET_CAR_CATEGORIES_REQUEST_ERROR
+    SET_CAR_CATEGORIES_REQUEST_ERROR,
+    SET_ORDER_STATUS_DATA,
+    SET_ORDER_STATUS_REQUEST_LOADING,
+    SET_ORDER_STATUS_REQUEST_ERROR,
+    GET_ORDER_STATUS_DATA
 } from "./constants";
 import { IQueryFilter } from "store/tableData/types";
 
@@ -47,3 +52,8 @@ export const setCarsRequestError = createAction<string>(SET_CARS_REQUEST_ERROR);
 export const setCarCategoriesData = createAction<Array<ICarCategoriesData>>(SET_CAR_CATEGORIES_DATA);
 export const setCarCategoriesRequestLoading = createAction<boolean>(SET_CAR_CATEGORIES_REQUEST_LOADING);
 export const setCarCategoriesRequestError = createAction<string>(SET_CAR_CATEGORIES_REQUEST_ERROR);
+
+export const setOrderStatusData = createAction<IOrderStatusData>(SET_ORDER_STATUS_DATA);
+export const setOrderStatusRequestLoading = createAction<boolean>(SET_ORDER_STATUS_REQUEST_LOADING);
+export const setOrderStatusRequestError = createAction<string>(SET_ORDER_STATUS_REQUEST_ERROR);
+export const getOrderStatusData = createAction(GET_ORDER_STATUS_DATA);

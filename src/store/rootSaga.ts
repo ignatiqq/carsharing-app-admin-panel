@@ -34,6 +34,6 @@ export default function *rootSaga() {
         getChangeDataWatcher(),
         sendDataToChangeWatcher(),
         deleteDataToChangeWatcher(),
-        createEssenceDataWatcher()
+        createEssenceDataWatcher(),
     ])
 }

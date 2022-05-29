@@ -79,7 +79,7 @@ export interface ICarTableFilters {
 
 export interface IOrderData {
     id: string,
-    orderStatusId: string | null,
+    orderStatusId: IOrderObject | null,
     cityId: IOrderObject | null,
     pointId: IOrderObject | null,
     carId: ICarData | null,

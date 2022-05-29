@@ -1,4 +1,4 @@
-import { all, call, takeLatest, put } from "redux-saga/effects";
+import { all, call, takeLatest, put, fork } from "redux-saga/effects";
 import { AxiosResponse } from "axios";
 
 import errorKeys from "constants/errorKeys";
@@ -14,10 +14,14 @@ import {
     setCitiesData,
     setCitiesRequestError,
     setCitiesRequestLoading,
+    setOrderStatusData,
+    setOrderStatusRequestError,
+    setOrderStatusRequestLoading,
     setPointsData,
     setPointsRequestError,
     setPointsRequestLoading
 } from "../actions";
+import { IOrderStatusData } from "../types";
 
 function* getCarCategoriesHandler() {
     try {
@@ -96,14 +100,38 @@ function* getPointsDataHandler() {
     }
 }
 
+function*  getOrderStatusHandler() {
+    try {
+        
+        yield put(setOrderStatusRequestLoading(true));
+
+        const response: AxiosResponse<IOrderStatusData> = yield call(filterData.getOrderStatuses);
+
+        if(response.status < 300) {
+            yield put(setOrderStatusData({
+                data: response.data.data,
+                count: response.data.count
+            }));
+        } else {
+            throw new Error(errorKeys.requestError);
+        }
+
+    } catch (error: any) {
+        yield put(setOrderStatusRequestError(error.message));
+    } finally {
+        yield put(setOrderStatusRequestLoading(false));
+    }
+}
+
 function* getFiltersDataHandler() {
     try {
 
         yield all([
-            call(getCarsDataHandler),
-            call(getCitiesDataHandler),
-            call(getPointsDataHandler),
-            call(getCarCategoriesHandler)
+            fork(getCarsDataHandler),
+            fork(getCitiesDataHandler),
+            fork(getPointsDataHandler),
+            fork(getCarCategoriesHandler),
+            fork(getOrderStatusHandler)
         ])
 
     } catch (error) {
