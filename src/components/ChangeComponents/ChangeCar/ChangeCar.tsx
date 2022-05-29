@@ -39,10 +39,11 @@ const ChangeCar: React.FC<IChangeCar> = ({
   }, [dataToChange])
   
   const changeByKeyHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setDataToChange((prev) => {
+    const isChangebleDataNumber = !isNaN(parseInt(e.target.value));
+     setDataToChange((prev) => {
       return {
         ...prev,
-        [e.target.name]: e.target.value
+        [e.target.name]: isChangebleDataNumber ? parseInt(e.target.value) : e.target.value
       }
     })
   }

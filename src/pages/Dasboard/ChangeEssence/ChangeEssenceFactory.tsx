@@ -1,4 +1,4 @@
-import { ChangeCar, ChangeCity, ChangePoint, ChangeRateType } from 'components/ChangeComponents';
+import { ChangeCar, ChangeCity, ChangeOrder, ChangePoint, ChangeRateType } from 'components/ChangeComponents';
 import { IChangeRoutes } from "./types";
 import styles from "./ChangeEssence.module.scss";
 import { EssenseActions } from 'store/changeEssence/types';
@@ -115,6 +115,21 @@ const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
       )
     }
       break;
+
+    case IChangeRoutes.ORDER: {
+      return (
+        <>
+          <h1 className={styles.changeEssense__title}>Карточка заказа</h1>
+          <ChangeOrder 
+            data={data}
+            submitEssenceHandler={handlerByAction}
+            onDeleteHandler={deleteEssengeHandler}
+          />
+        </>
+      )
+    }
+      break;
+    
 
     default:
       break;

@@ -1,9 +1,8 @@
 import React from 'react';
-import { ICarDataCategoryId, ICardDataThumbnail } from 'store/filtersData/types';
 
+import { ICarDataCategoryId, ICardDataThumbnail } from 'store/filtersData/types';
 import { Progress } from 'components';
 import CarInfoThumbnail from 'components/CarInfo/CarInfoThumbnail/CarInfoThumbnail';
-
 import styles from "./ChangeCarWithThumbnail.module.scss";
 import classNames from 'classnames';
 

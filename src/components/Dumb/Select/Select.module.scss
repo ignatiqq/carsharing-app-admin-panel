@@ -9,7 +9,7 @@
       content: url("../../../assets/icons/selectDropdown.svg");
       position: absolute;
       top: 14%;
-      right: 5%;
+      right: 2.5%;
     }
 
     &__active &::after {
@@ -17,7 +17,7 @@
       content: url("../../../assets/icons/selectCloseIcon.svg");
       position: absolute;
       top: 14%;
-      right: 5%;
+      right: 2.5%;
     }
 
   }
@@ -25,7 +25,6 @@
   .wrapper {
     display: flex;
     align-items: center;
-    margin-right: 10px;
   
     @media (min-width: 640px) {
       justify-content: end;

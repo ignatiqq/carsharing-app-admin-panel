@@ -6,6 +6,11 @@ import RateTypesIcon from "assets/icons/rateTypesIcon.svg";
 
 const sidebarLinks = [
     {
+        name: "Карточка автомобиля",
+        icon: pen,
+        path: "/dashboard/car/create"
+    },
+    {
         name: "Заказы",
         icon: pen,
         path: "/dashboard/order"

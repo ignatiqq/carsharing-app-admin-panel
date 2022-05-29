@@ -15,8 +15,8 @@ const useValidate = <T extends Record<keyof T, any> = {}>({ formFields, validati
         return newErrors;
     }
 
-    const requiredValid = (validationKey: IValidations<T>[keyof T], value: string) => {
-        return validationKey?.required?.value ? value.length > 0 : true;
+    const requiredValid = (validationKey: IValidations<T>[keyof T], value: string | number) => {
+        return validationKey?.required?.value ? value.toString().length > 0 : true;
     }
 
     const patternValidate = (validationKey: IValidations<T>[keyof T], pattern: IValidationPattern, value: string) => {

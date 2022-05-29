@@ -1,11 +1,13 @@
 import classNames from "classnames";
 
 import styles from "../Orders.module.scss";
-import CarComponentButtons from "./Buttons/CarComponentButtons";
 import CarPlaceholder from "assets/images/CarPlaceholder.png";
 import { formatDate } from 'utils/dateFormatter';
 import type { IOrderDataInfo } from "store/tableData/types";
 import type { OrderTableMappedData } from "../withOrderLogic";
+import { DashboardChangeLink } from "components";
+import { getDashboardChangeLink } from "utils/getDashboardType";
+import { EssenseActions } from "store/changeEssence/types";
 
 export const head = [
     {
@@ -104,7 +106,15 @@ export function orderMappedData(data :IOrderDataInfo | null): OrderTableMappedDa
                 </div>
               ),
               price: <div>{item.price}₽</div>,
-              settings: <CarComponentButtons />,
+              settings: (
+                <DashboardChangeLink link={getDashboardChangeLink({
+                  pathname: window.location.pathname, 
+                  action: EssenseActions.CHANGE,  
+                  id: item.id
+              })}>
+                  Изменить
+              </DashboardChangeLink>
+              ),
             };
         })
     }
