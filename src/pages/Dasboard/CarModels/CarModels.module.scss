@@ -1,0 +1,75 @@
+.tableContentStyles {
+    max-height: 700px !important;
+    height: 100%;
+}
+
+.CarModelTable {
+
+    &__loader {
+        margin-left: 10px;
+        align-items: flex-start;
+        width: 12px;
+    }
+
+}
+
+.tableData {
+    &__image {
+        max-width: 140px;
+        min-width: 140px;
+        width: 100%;
+        padding: 10px 0px;
+
+        &_wrapper {
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__number {
+        border: 1px solid var(--gray-dark);
+        font-weight: normal;
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: 15px;
+        white-space: nowrap;
+
+        @media(max-width: 1130px) {
+            font-size: 13px;
+        }
+    }
+
+    &__description {
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        text-align: center;
+        display: flex;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        max-width: 100px;
+        overflow: hidden;
+    }
+}
+      
+.tableWrapper {
+    max-height: 350px;
+    overflow: auto;
+}
+
+.additionally {
+    display: flex;
+    align-items: center;
+    margin-bottom: 7px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

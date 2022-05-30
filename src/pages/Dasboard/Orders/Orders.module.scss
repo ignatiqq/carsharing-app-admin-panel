@@ -1,0 +1,111 @@
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+
+    &__items {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.mappedData {
+
+    &{
+        font-size: 15px;
+        font-size: "Roboto";
+    }
+
+    &_gray {
+        color: #889098;
+    }
+
+
+    &__carImage {
+        max-width: 140px;
+
+        &_wrapper {
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__date {
+        color: #889098;
+        margin: 5px 0px;
+        font-weight: 400;
+    }
+
+    &__color {
+        color: #889098;
+        font-weight: 400;
+    }
+
+    &__additionally {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+}
+
+.light {
+    font-weight: 400;
+}
+
+.pagination {
+    border-top: 1px solid #E0E2E8;
+    padding: 20px 10px;
+    background: #fff;
+    border-radius: 0px 0px 9px 9px;
+}
+
+.rectangle {
+    min-width: 15px;
+    min-height: 15px;
+    border: 0.5px solid #BECAD6;
+    border-radius: 2px;
+    position: relative;
+    margin-right: 8px;
+    font-weight: 400;
+
+    &__active {
+        & {
+            border-color: var(--primary-green);;
+        }
+        &::before {
+            content: url("../../../assets/icons/checkmark.svg");
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    }
+}
+
+
+.additionally {
+    font-weight: 400;
+    color: var(--gray-dark);
+    display: flex;
+    align-items: center;
+    margin: 2px 0px;
+
+    &_active {
+        color: var(--primary-black);
+    }
+}
+
+.orderTable {
+
+    @media(max-width: 900px) {
+        min-width: 1000px;
+    }
+    
+}

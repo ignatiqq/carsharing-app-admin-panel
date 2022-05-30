@@ -1,0 +1,66 @@
+.form {
+
+    &Item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &Label {
+        display: flex;
+        flex-direction: column;
+        font-family: "Helvetica";
+    }
+
+    &Input {
+        max-width: 330px;
+        width: 100%;
+        margin: 8.5px 0px;
+        font-family: "Helvetica";
+
+        &::placeholder {
+            & {
+                font-family: "Helvetica";
+            }
+        }
+
+        &Invalid {
+            border-color: var(--primary-red) !important;
+        }
+
+    }
+
+    &Error {
+        margin-bottom: 4px;
+        min-height: 13px;
+    }
+
+    &Footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        &Btn {
+            min-width: 110px;
+        }
+
+        &Link {
+            color: var(--primary-blue);
+            font-size: 11px;
+            text-decoration: none;
+        }
+
+        &Loading {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &Error {
+        margin-bottom: 4px;
+    }
+}
+
+.loader {
+    width: 30px;
+}

@@ -1,0 +1,16 @@
+.customHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: bold;
+
+    &__countWrapper {
+        display: flex;
+    }
+}
+
+.customTableCell {
+    padding: 15px 5px;
+    max-height: 50px;
+}

@@ -1,0 +1,24 @@
+.error {
+
+    & {
+        text-align: center;
+    }
+
+    &__statusCode {
+        color: #CACEDB;
+        font-weight: 500;
+        font-size: 75px;
+        font-family: 'Roboto';
+    }
+
+    &__title {
+        color: var(--primary-dark-blue);
+        font-size: 50px;
+    }
+
+    &__description {
+        color: #818EA3;
+        font-size: 20px;
+        margin-bottom: 35px;
+    }
+}
