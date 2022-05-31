@@ -54,7 +54,7 @@ const Orders: React.FC<IOrderPageProps> = ({
 }) => {
 
     const OrdersTableHeader = (
-      <TableHead count={count}>
+      <TableHead isLoading={isLoading} count={count}>
         <SelectWrapper
           onReset={resetOrderFilters}
           onApply={applyOrderFilters}

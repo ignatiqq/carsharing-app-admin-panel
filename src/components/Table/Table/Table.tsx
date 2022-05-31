@@ -36,48 +36,59 @@ const Table: React.FC<ITable> = ({
           [styles.table__wrapper_fullheight]: isLoading || error,
         })}>
         <div className={styles.table__customHead}>{customHead && customHead}</div>
-        {isLoading ? (
-          <div className={styles.table__wrapper_loading}>
-            <Loader />
-          </div>
-        ) : error ? (
-          <div className={classNames(styles.table__wrapper_error, 'error-text')}>{error}</div>
-        ) : data && data?.length <= 0 ? (
-          <div className={styles.table__wrapper_notfound}>
-            <NothingFound />
-          </div>
-        ) : (
-          <table className={classNames(styles.table, className)}>
-            <thead className={styles.table__header}>
-              {head && (
-                <tr>
-                  {head.map((item) => (
-                    <th key={item.name} className={styles.table__header_th}>
-                      {item.name}
-                    </th>
-                  ))}
-                </tr>
-              )}
-            </thead>
-            <tbody className={styles.table__content}>
-              {data &&
-                data.map((item, i) => (
-                  <tr key={i}>
-                    {item &&
-                      Object.keys(item).map((key) => (
-                        <th
-                          className={cellStyles}
-                          key={key}
-                          style={{ width: `${head && Math.floor(100 / head?.length)}%` }}
-                        >
-                          {item[key]}
-                        </th>
-                      ))}
+        {
+          isLoading && !data && (
+            <div className={styles.table__wrapper_loading}>
+              <Loader />
+            </div>
+          )
+        }
+        {
+          error && (
+            <div className={classNames(styles.table__wrapper_error, 'error-text')}>{error}</div>
+          )
+        }
+        {
+          data && data?.length <= 0 && (
+            <div className={styles.table__wrapper_notfound}>
+              <NothingFound />
+            </div>
+          )
+        }
+        {
+          data && data?.length > 0 && (
+            <table className={classNames(styles.table, className)}>
+              <thead className={styles.table__header}>
+                {head && (
+                  <tr>
+                    {head.map((item) => (
+                      <th key={item.name} className={styles.table__header_th}>
+                        {item.name}
+                      </th>
+                    ))}
                   </tr>
-                ))}
-            </tbody>
-          </table>
-        )}
+                )}
+              </thead>
+              <tbody className={styles.table__content}>
+                {data &&
+                  data.map((item, i) => (
+                    <tr key={i}>
+                      {item &&
+                        Object.keys(item).map((key) => (
+                          <th
+                            className={cellStyles}
+                            key={key}
+                            style={{ width: `${head && Math.floor(100 / head?.length)}%` }}
+                          >
+                            {item[key]}
+                          </th>
+                        ))}
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          )
+        }
       </div>
     );
 }

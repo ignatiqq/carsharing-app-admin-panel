@@ -220,6 +220,7 @@ const ChangeOrder: React.FC<IChangeOrder> = ({
                 customLabel="name"
                 customValue="id"
                 dataHolder={<Loader />}
+                searchPlaceholder="Город"
               />
             </div>
           </div>
@@ -236,6 +237,7 @@ const ChangeOrder: React.FC<IChangeOrder> = ({
                 customLabel="address"
                 customValue="id"
                 dataHolder={<Loader />}
+                searchPlaceholder="Точка"
               />
             </div>
           </div>
@@ -252,6 +254,7 @@ const ChangeOrder: React.FC<IChangeOrder> = ({
                 customLabel="name"
                 customValue="id"
                 dataHolder={<Loader />}
+                searchPlaceholder="Статус заказа"
               />
             </div>
           </div>

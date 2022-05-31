@@ -31,7 +31,7 @@ const CitiesTable: React.FC<ICitiesTable> = ({
 
   const CitiesTableHeader = (
     <>
-      <TableHead count={count} />
+      <TableHead isLoading={isLoading} count={count} />
       <div className={styles.tableHeader__button_create}>
         <DashboardChangeLink link={getDashboardChangeLink({
               pathname: window.location.pathname, 

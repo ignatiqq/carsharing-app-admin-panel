@@ -46,7 +46,7 @@ const CarModels: React.FC<ICars> = ({
 }) => {
 
     const CarModelsTableHeader = (
-      <TableHead count={count}>
+      <TableHead isLoading={isLoading} count={count}>
         <>
           <SelectWrapper
             onReset={resetCarsFilters}

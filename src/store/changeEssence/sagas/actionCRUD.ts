@@ -47,6 +47,10 @@ function* getChangeDataHandler(action: AnyAction) {
         yield put(setDataToChangeRequestError(`${error.message}`))
     } finally {
         yield put(setDataToChangeLoading(false));
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 }
 
@@ -81,6 +85,10 @@ function* sendDataToChangeHandler(action: AnyAction) {
         yield put(actionEssenseDataRequestError(error.message));
     } finally {
         yield put(actionEssenseDataLoading(false));
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 }
 
@@ -114,6 +122,10 @@ function* deleteDataToChangeHandler(action: AnyAction) {
         yield put(actionEssenseDataRequestError(error.message));
     } finally {
         yield put(actionEssenseDataLoading(false));
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 }
 
@@ -146,6 +158,10 @@ function* createEssenceDataHandler(action: AnyAction) {
             )
     } finally {
         yield put(actionEssenseDataLoading(false));
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
     }
 }
 

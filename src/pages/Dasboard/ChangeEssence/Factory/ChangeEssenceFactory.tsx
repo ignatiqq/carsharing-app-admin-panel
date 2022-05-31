@@ -1,7 +1,7 @@
 import { ChangeCar, ChangeCity, ChangeOrder, ChangePoint, ChangeRateType } from 'components/ChangeComponents';
-import { IChangeRoutes } from "./types";
-import styles from "./ChangeEssence.module.scss";
+import { IChangeRoutes } from "../types";
 import { EssenseActions } from 'store/changeEssence/types';
+import ChangeComponentWrapper from './ChangeComponentWrapper';
 
 interface IChangeEssenceFactory {
   route: string,
@@ -40,15 +40,14 @@ const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
         id: ""
       }
       return (
-        <>
-          <h1 className={styles.changeEssense__title}>Карточка автомобиля</h1>
+        <ChangeComponentWrapper title="Карточка автомобиля">
           <ChangeCar
             data={action === EssenseActions.CHANGE ? data : emptyData}
             submitHandler={handlerByAction}
             onDeleteHandler={deleteEssengeHandler}
             action={action}
           />
-        </>
+        </ChangeComponentWrapper>
       )
     }
       break;
@@ -59,15 +58,14 @@ const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
         id: ""
       };
       return (
-        <>
-          <h1 className={styles.changeEssense__title}>Карточка города</h1>
+        <ChangeComponentWrapper title="Карточка города">
           <ChangeCity
             data={action === EssenseActions.CHANGE ? data : emptyData}
             submitEssenceHandler={handlerByAction}
             onDeleteHandler={deleteEssengeHandler}
             action={action}
           />
-        </>
+        </ChangeComponentWrapper>
       )
     }
       break;
@@ -83,15 +81,14 @@ const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
         id: ""
       }
       return (
-        <>
-          <h1 className={styles.changeEssense__title}>Карточка точки</h1>
+        <ChangeComponentWrapper title='Карточка точки'>
           <ChangePoint
             data={action === EssenseActions.CHANGE ? data : emptyData}
             submitEssenceHandler={handlerByAction}
             onDeleteHandler={deleteEssengeHandler}
             action={action}
           />
-        </>
+        </ChangeComponentWrapper>
       )
     }
       break;
@@ -103,29 +100,27 @@ const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
         id: ""
       }
       return (
-        <>
-          <h1 className={styles.changeEssense__title}>Карточка тарифа</h1>
+        <ChangeComponentWrapper title='Карточка точки'>
           <ChangeRateType
             data={action === EssenseActions.CHANGE ? data : emptyData}
             submitEssenceHandler={handlerByAction}
             onDeleteHandler={deleteEssengeHandler}
             action={action}
           />
-        </>
+        </ChangeComponentWrapper>
       )
     }
       break;
 
     case IChangeRoutes.ORDER: {
       return (
-        <>
-          <h1 className={styles.changeEssense__title}>Карточка заказа</h1>
+        <ChangeComponentWrapper title="Карточка заказа">
           <ChangeOrder 
             data={data}
             submitEssenceHandler={handlerByAction}
             onDeleteHandler={deleteEssengeHandler}
           />
-        </>
+        </ChangeComponentWrapper>
       )
     }
       break;

@@ -9,7 +9,6 @@ import { essenceValidations } from 'constants/Validations/validations';
 import useValidate from 'packages/useValidate/useValidate';
 import classNames from 'classnames';
 import { EssenseActions } from 'store/changeEssence/types';
-import { isValid } from 'date-fns';
 
 interface IChangeCity {
   submitEssenceHandler: (data: ICurrentCity) => void,
@@ -45,7 +44,6 @@ const ChangeCity: React.FC<IChangeCity> = ({
       handleSubmit,
       handleFocus,
       handleChange,
-      isValid
     } = useValidate({
       formFields: {name: dataToChange.name}, 
       validations: {name: essenceValidations.name}, 

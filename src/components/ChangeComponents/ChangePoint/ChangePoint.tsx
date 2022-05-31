@@ -130,6 +130,7 @@ const ChangePoint: React.FC<IChangePoint> = ({
               customLabel="name"
               customValue="id"
               dataHolder={<Loader />}
+              searchPlaceholder="Город"
             />
           </div>
         </div>

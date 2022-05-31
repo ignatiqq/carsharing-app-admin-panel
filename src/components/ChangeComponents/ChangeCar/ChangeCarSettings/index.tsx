@@ -97,6 +97,7 @@ const ChangeCarSettings: React.FC<IChangeCarSettings> = ({
                 customLabel="name"
                 customValue="id"
                 className={styles.categorySelect}
+                searchPlaceholder="Тип автомобиля"
                 id="auto-type"
               />
             </div>

@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useCallback, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import withDashboardLogic from './withDashboardLogic';
 import { Sidebar, Header, Loader, Footer, TemporaryNotificationWrapper } from 'components';
@@ -11,7 +11,7 @@ export function selectDataHolder<T>(data: {isLoading: boolean, error: string | n
     return <Loader className={styles.loader} />
   }
   if(data.error) {
-    return <div className='error-text'>{data.error}</div>
+    window.location.href = "/error-404";
   }
   if(data.data) {
     return null
@@ -20,6 +20,8 @@ export function selectDataHolder<T>(data: {isLoading: boolean, error: string | n
 
 const Dashboard = () => {
   const [sidebarExtended, setSidebarExtended] = React.useState(false);
+
+  const navigate = useNavigate();
 
   const { temporaryNotifications } = useAppSelector(({notifications}) => ({
     temporaryNotifications: notifications.temporary.data
@@ -31,6 +33,13 @@ const Dashboard = () => {
 
   const closeSidebarHanlder = useCallback(() => {
     setSidebarExtended(false)
+  }, [])
+
+  useEffect(() => {
+    const splitedPathname = window.location.pathname.split("/");
+    if(splitedPathname[splitedPathname.length - 1] === "dashboard") {
+      navigate("/dashboard/order")
+    }
   }, [])
 
   return (

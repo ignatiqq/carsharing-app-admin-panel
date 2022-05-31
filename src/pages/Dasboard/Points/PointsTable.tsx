@@ -31,7 +31,7 @@ const PointsTable: React.FC<IPointsTable> = ({
 
   const customHead = (
     <>
-      <TableHead count={count} />
+      <TableHead isLoading={isLoading} count={count} />
       <div className={styles.tableHeader__button_create}>
         <DashboardChangeLink
           link={getDashboardChangeLink({

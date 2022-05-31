@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
 import { v4 as uuidv4 } from "uuid";
 
-import ChangeEssenceFactory from "./ChangeEssenceFactory";
+import ChangeEssenceFactory from "./Factory/ChangeEssenceFactory";
 import {  Loader, ModalStandart } from 'components';
 import styles from "./ChangeEssence.module.scss";
 import { useAppDispatch, useAppSelector } from 'store';
