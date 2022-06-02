@@ -1,12 +1,15 @@
 import { authorizationValidationPatterns, essenseChangeValidations } from "./patterns";
 
 const isRequiredField = "Это обязательное поле!";
+const requiredTemplate = {
+  value: true,
+  message: isRequiredField
+}
 
 export const authValidations = {
     email: {
       required: {
-        value: true,
-        message: isRequiredField
+        ...requiredTemplate
       },
       pattern: {
         ...authorizationValidationPatterns.emailPattern
@@ -14,8 +17,7 @@ export const authValidations = {
     },
     password: {
       required: {
-        value: true,
-        message: isRequiredField
+        ...requiredTemplate
       },
       pattern: {
         ...authorizationValidationPatterns.passwordPattern,
@@ -26,14 +28,12 @@ export const authValidations = {
 export const essenceValidations = {
   name: {
     required: {
-      value: true,
-      message: isRequiredField
+      ...requiredTemplate
     }
   },
   number: {
     required: {
-      value: true,
-      message: isRequiredField
+      ...requiredTemplate
     },
     pattern: {
       ...essenseChangeValidations.number,
@@ -41,8 +41,7 @@ export const essenceValidations = {
   },
   price: {
     required: {
-      value: true,
-      message: isRequiredField
+      ...requiredTemplate
     },
     pattern: {
       ...essenseChangeValidations.price
@@ -50,8 +49,7 @@ export const essenceValidations = {
   },
   description: {
     required: {
-      value: true,
-      message: isRequiredField
+      ...requiredTemplate
     },
     pattern: {
       ...essenseChangeValidations.description
@@ -59,8 +57,7 @@ export const essenceValidations = {
   },
   tank: {
     required: {
-      value: true,
-      message: isRequiredField
+      ...requiredTemplate
     },
     pattern: {
       ...essenseChangeValidations.tank

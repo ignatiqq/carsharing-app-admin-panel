@@ -12,7 +12,8 @@ import {
     SEND_CHANGED_ESSENSE_DATA_REQUEST_ERROR,
     DELETE_DATA_TO_CHANGE,
     SET_DATA_TO_CHANGE_ACTION,
-    CREATE_ESSENCE_DATA
+    CREATE_ESSENCE_DATA,
+    CLEAR_CHANGE_ESSENSE_DATA
 } from "./constants";
 import { EssenseActions, IEssenseData, IGetDataToChangeOptions } from "./types";
 
@@ -28,3 +29,4 @@ export const actionEssenseDataLoading = createAction<boolean>(SEND_CHANGE_ESSENS
 export const actionEssenseDataRequestError = createAction<string>(SEND_CHANGED_ESSENSE_DATA_REQUEST_ERROR);
 export const setDataToChangeAction = createAction<EssenseActions>(SET_DATA_TO_CHANGE_ACTION);
 export const createEssenceData = createAction<IEssenseData>(CREATE_ESSENCE_DATA);
+export const clearChangeEssenseData = createAction(CLEAR_CHANGE_ESSENSE_DATA);

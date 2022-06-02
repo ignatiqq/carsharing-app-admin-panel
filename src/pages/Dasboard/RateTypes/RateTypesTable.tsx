@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Table, TablePagination, TableHead, DashboardChangeLink } from 'components';
+import { Table, TablePagination, TableHead, DashboardChangeLink, ErrorComponent } from 'components';
 import withRateTypesLogic from "./withRateTypesLogic";
 import type { RateTypesTableMappedData } from "./withRateTypesLogic";
 import type { IPagination } from 'types/requests';
@@ -54,6 +54,16 @@ const RateTypesTable: React.FC<IRateTypesTable> = ({
         />
     </>
   );
+
+  if(error) {
+    return (
+    <ErrorComponent
+      title="Что то пошло не так" 
+      description='Попробуйте перезагрузить страницу'
+    />
+    )
+  }
+
 
   return (
     <>

@@ -3,7 +3,7 @@ import React from 'react';
 import type { IPagination } from 'types/requests';
 import type { CitiesTableMappedData } from './withCitiesLogic';
 import withCitiesLogic from './withCitiesLogic';
-import { Table, TablePagination, TableHead, DashboardChangeLink } from 'components';
+import { Table, TablePagination, TableHead, DashboardChangeLink, ErrorComponent } from 'components';
 import { ITableHead } from 'components/Table/Table/Table';
 import styles from "./CitiesTable.module.scss";
 import { getDashboardChangeLink } from 'utils/getDashboardType';
@@ -54,6 +54,15 @@ const CitiesTable: React.FC<ICitiesTable> = ({
         />
     </>
   );
+
+  if(error) {
+    return (
+    <ErrorComponent
+      title="Что то пошло не так" 
+      description='Попробуйте перезагрузить страницу'
+    />
+    )
+  }
 
   return (
     <>

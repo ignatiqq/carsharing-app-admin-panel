@@ -10,6 +10,8 @@ import { useAppSelector } from 'store';
 import { EssenseActions } from 'store/changeEssence/types';
 import { essenceValidations } from 'constants/Validations/validations';
 import useValidate from 'packages/useValidate/useValidate';
+import { changeCarEmptyData } from "constants/changeEssense";
+import Loader from 'components/Dumb/Loader/Loader';
 
 interface IChangeCar {
   submitHandler: (data: ICarData) => void,
@@ -24,7 +26,7 @@ const ChangeCar: React.FC<IChangeCar> = ({
   data,
 }) => {
   const [percentCompleted, setPercentCompleted] = useState<number>(0);
-  const [dataToChange, setDataToChange] = useState<ICarData>(data);
+  const [dataToChange, setDataToChange] = useState<ICarData>({...changeCarEmptyData});
 
   const { carCategories } = useAppSelector(({ filtersData }) => ({
     carCategories: filtersData.carCategories
@@ -32,6 +34,14 @@ const ChangeCar: React.FC<IChangeCar> = ({
 
   const navigation = useNavigate();
   
+  useEffect(() => {
+    if(data === null) {
+      setDataToChange({...changeCarEmptyData})
+    } else {
+      setDataToChange(data)
+    }
+  }, [data])
+
   useEffect(() => {
     if(dataToChange){
       setPercentCompleted(getPercentByDataComplete(dataToChange));

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import withCarModelsLogic from "./withCarModelsLogic";
-import { Table, TablePagination, Select, SelectWrapper, Button, TableHead, DashboardChangeLink} from "components";
+import { Table, TablePagination, Select, SelectWrapper, Button, TableHead, DashboardChangeLink, ErrorComponent} from "components";
 import { selectDataHolder } from '../Dashboard';
 import { getSelectedDataById } from 'utils/DataMapHelper';
 import styles from "./CarModels.module.scss";
@@ -90,6 +90,15 @@ const CarModels: React.FC<ICars> = ({
           />
       </>
     );
+
+    if(error) {
+      return (
+      <ErrorComponent
+        title="Что то пошло не так" 
+        description='Попробуйте перезагрузить страницу'
+      />
+      )
+    }
 
     return (
       <>

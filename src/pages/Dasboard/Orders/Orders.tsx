@@ -5,7 +5,8 @@ import {
   Table, 
   TablePagination, 
   SelectWrapper,
-  TableHead
+  TableHead,
+  ErrorComponent
 } from 'components';
 import type { IAllCars, IAllCities, IAllPoints, ICurrentCity, ICurrentPoint } from 'store/filtersData/types';
 import type { ICarData } from 'store/filtersData/types';
@@ -95,17 +96,26 @@ const Orders: React.FC<IOrderPageProps> = ({
       </TableHead>
     );
 
-const Pagintation = (
-  <>
-      <TablePagination 
-        dataLength={data && data?.length}
-        count={count} 
-        pagination={pagination} 
-        isLoading={isLoading}  
-        setPagination={setPagination}
+    const Pagintation = (
+      <>
+          <TablePagination 
+            dataLength={data && data?.length}
+            count={count} 
+            pagination={pagination} 
+            isLoading={isLoading}  
+            setPagination={setPagination}
+          />
+      </>
+    );
+
+    if(error) {
+      return (
+      <ErrorComponent
+        title="Что то пошло не так" 
+        description='Попробуйте перезагрузить страницу'
       />
-  </>
-);
+      )
+    }
     
     return (
       <>

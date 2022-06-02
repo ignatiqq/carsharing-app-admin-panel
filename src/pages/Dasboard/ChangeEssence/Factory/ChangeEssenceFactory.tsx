@@ -25,24 +25,10 @@ const ChangeEssenceFactory: React.FC<IChangeEssenceFactory> = ({
 
   switch (route) {
     case IChangeRoutes.CAR: {
-      const emptyData = {
-        priceMax: 0,
-        priceMin: 0,
-        name: "",
-        thumbnail: {
-          path: ""
-        },
-        description: "",
-        categoryId: {},
-        number: "",
-        tank: 0,
-        colors: [],
-        id: ""
-      }
       return (
         <ChangeComponentWrapper title="Карточка автомобиля">
           <ChangeCar
-            data={action === EssenseActions.CHANGE ? data : emptyData}
+            data={data}
             submitHandler={handlerByAction}
             onDeleteHandler={deleteEssengeHandler}
             action={action}

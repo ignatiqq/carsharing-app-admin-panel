@@ -40,16 +40,16 @@ export interface IAllCars {
 export interface ICarData {
     categoryId: ICarDataCategoryId,
     colors: Array<string>,
-    createdAt: number,
+    createdAt?: number,
     description: string,
     id: string,
     name: string,
     number: string,
     priceMax: number,
     priceMin: number,
-    tank: 55,
+    tank: number,
     thumbnail: ICardDataThumbnail,
-    updatedAt: number
+    updatedAt?: number
 }
 
 export interface ICarDataCategoryId {

@@ -14,7 +14,8 @@ import {
   setDataToChangeAction, 
   setDataToChangeEssenseId, 
   setDataToChangeRouteName,
-  createEssenceData
+  createEssenceData,
+  clearChangeEssenseData
 } from 'store/changeEssence/actions';
 import { EssenseActions } from 'store/changeEssence/types';
 
@@ -42,6 +43,7 @@ const ChangeEssence = () => {
     } else if(params.action === EssenseActions.CREATE && params.route) {
         dispatch(setDataToChangeRouteName(params.route));
         dispatch(setDataToChangeAction(params.action as EssenseActions));
+        dispatch(clearChangeEssenseData());
     }
   }, [params]);
 

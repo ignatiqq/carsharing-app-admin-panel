@@ -11,7 +11,7 @@ export function selectDataHolder<T>(data: {isLoading: boolean, error: string | n
     return <Loader className={styles.loader} />
   }
   if(data.error) {
-    window.location.href = "/error-404";
+    return <div className='error-text'>{data.error}</div>
   }
   if(data.data) {
     return null

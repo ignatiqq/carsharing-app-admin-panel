@@ -3,7 +3,7 @@ import React from 'react'
 import type { IPagination } from 'types/requests';
 import type { PointsTableMappedData } from './withPointsTableLogic';
 import withPointsTableLogic from './withPointsTableLogic';
-import { DashboardChangeLink, Table, TableHead, TablePagination } from 'components';
+import { DashboardChangeLink, Table, TableHead, TablePagination, ErrorComponent } from 'components';
 import type { ITableHead } from 'components/Table/Table/Table';
 import styles from "./PointsTable.module.scss";
 import { getDashboardChangeLink } from 'utils/getDashboardType';
@@ -55,6 +55,15 @@ const PointsTable: React.FC<IPointsTable> = ({
         />
     </>
   );
+
+  if(error) {
+    return (
+    <ErrorComponent
+      title="Что то пошло не так" 
+      description='Попробуйте перезагрузить страницу'
+    />
+    )
+  }
 
   return (
     <>

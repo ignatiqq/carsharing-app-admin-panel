@@ -14,7 +14,9 @@
     }
 
     &__wrapper {
-        
+
+        max-height: 550px;
+        display: block;
         overflow: auto;
         border-radius: 9px;
         min-height: 350px;

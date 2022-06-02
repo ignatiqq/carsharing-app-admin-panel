@@ -8,7 +8,8 @@ import {
     setDataToChangeEssenseId,
     actionEssenseDataLoading,
     actionEssenseDataRequestError,
-    setDataToChangeAction
+    setDataToChangeAction,
+    clearChangeEssenseData
 } from "./actions"; 
 import type { EssenseActions, IEssenseData, IEssenseOptions } from "./types";
 
@@ -51,6 +52,9 @@ const essenceOptions = createReducer(initialState, (builder) => {
         })
         .addCase(actionEssenseDataRequestError, (state, action: PayloadAction<string>) => {
             state.change.actionRequestError = action.payload
+        })
+        .addCase(clearChangeEssenseData, (state, action) => {
+            state.change.data = null
         })
 })
 
