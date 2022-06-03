@@ -22,7 +22,7 @@ export type CarsTableMappedData = Array<ICarTableMappedItem> | null;
 interface ICarTableMappedItem {
     photo: React.ReactElement,
     number: React.ReactElement,
-    category: string,
+    category?: string,
     price: string,
     description: React.ReactElement,
     action: React.ReactElement

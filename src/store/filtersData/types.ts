@@ -38,7 +38,7 @@ export interface IAllCars {
 }
 
 export interface ICarData {
-    categoryId: ICarDataCategoryId,
+    categoryId: Partial<ICarDataCategoryId>,
     colors: Array<string>,
     createdAt?: number,
     description: string,

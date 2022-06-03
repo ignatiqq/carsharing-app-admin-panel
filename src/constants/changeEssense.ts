@@ -9,11 +9,7 @@ export const changeCarEmptyData = {
       mimetype: ""
     },
     description: "",
-    categoryId: {
-        name: "",
-        id: "",
-        description: ""
-    },
+    categoryId: {},
     number: "",
     tank: 0,
     colors: [],

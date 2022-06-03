@@ -8,7 +8,7 @@ import classNames from 'classnames';
 
 interface IChangeCarWithThumbnail {
   thumbnail?: ICardDataThumbnail 
-  categoryId?: ICarDataCategoryId,
+  categoryId?: Partial<ICarDataCategoryId>,
   name?: string,
   description?: string,
   percentCompleted?: number,
@@ -25,7 +25,7 @@ const ChangeCarWithThumbnail: React.FC<IChangeCarWithThumbnail> = ({
   validation,
   changeImageHandler
 }) => {
-  return (
+  return (  
     <div className={styles.wrapper}>
       <CarInfoThumbnail
         image={thumbnail && thumbnail.path}
