@@ -15,7 +15,7 @@
 
     &__wrapper {
 
-        max-height: 550px;
+        max-height: 580px;
         display: block;
         overflow: auto;
         border-radius: 9px;
@@ -23,11 +23,15 @@
         background: #fff;
 
         @media(max-height: 800px) {
-            max-height: 400px;
+            max-height: 480px;
         }
 
         @media(max-height: 700px) {
-            max-height: 300px;
+            max-height: 400px;
+        }
+        
+        @media(max-width: 500px) {
+            max-height: 600px;
         }
 
         &_fullheight {
