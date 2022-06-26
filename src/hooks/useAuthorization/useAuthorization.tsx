@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Cookies from "js-cookie";
 
 import timesHelper from 'utils/times';
 import cookieKeys from 'constants/storageKeys/cookies';
 import { useAppSelector, useAppDispatch } from 'store';
 import type { IUserLoginData } from 'api/routes/auth';
-import { loginUser } from 'store/auth/actions';
+import { loginUser, logoutUser, refreshUser } from 'store/auth/actions';
 
 const useAuthorization = () => {
-    const [isAuth, setAuth] = useState(false);
-
     const dispatch = useAppDispatch();
 
     const { accessToken, refreshToken, expiresIn } = useAppSelector(({auth}) => ({
@@ -20,7 +18,6 @@ const useAuthorization = () => {
 
     React.useEffect(() => {
         if(accessToken && refreshToken && expiresIn) {
-            setAuth(true);
 
             const refreshTokenFromCookies = Cookies.get(cookieKeys.refresh_token);
             const accessTokenFromCookies = Cookies.get(cookieKeys.access_token);
@@ -39,9 +36,24 @@ const useAuthorization = () => {
         dispatch(loginUser({...data}));
     }
 
+    const refreshHandler = () => {
+        const secret = Cookies.get("auth_token");
+        const refreshToken = Cookies.get("refresh_token");
+        if(secret && refreshToken)
+        dispatch(refreshUser({
+            refreshToken: refreshToken,
+            secret: secret
+        }));
+    }
+
+    const logoutHandler = () => {
+        dispatch(logoutUser());
+    }
+
     return {
         loginHandler,
-        isAuth
+        refreshHandler,
+        logoutHandler
     }
 }
 

@@ -1,0 +1,123 @@
+.selectWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+
+    &::after {
+      content: url("../../../assets/icons/selectDropdown.svg");
+      position: absolute;
+      top: 14%;
+      right: 2.5%;
+    }
+
+    &__active &::after {
+      cursor: pointer;
+      content: url("../../../assets/icons/selectCloseIcon.svg");
+      position: absolute;
+      top: 14%;
+      right: 2.5%;
+    }
+
+  }
+  
+  .wrapper {
+    display: flex;
+    align-items: center;
+  
+    @media (min-width: 640px) {
+      justify-content: end;
+    }
+  }
+  
+  .inputLabel {
+    color: var(--primary-black);
+    text-align: right;
+  }
+  
+  .input {
+    border: none;
+    border: 1px solid var(--gray-border);
+    border-radius: 4px;
+    background: transparent;
+    padding: 10px 10px;
+    width: 100%;
+    outline: none;
+    font-size: 11px;
+    position: relative;
+  
+    &::placeholder {
+      color: #868E96;
+    }
+
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      width: 8px;
+      height: 8px;
+      margin-right: 6px;
+      margin-bottom: 2px;
+      cursor: pointer;
+    }
+  }
+  
+  .option {
+    width: 100%;
+    z-index: 999;
+    background: white;
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    text-align: start;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  
+    &Active {
+      color: var(--primary-green);
+    }
+  
+    &:hover {
+      color: var(--primary-green);
+    }
+  }
+  
+  .optionWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    position: absolute;
+    font-size: 14px;
+    top: 30px;
+    z-index: 100;
+    overflow: auto;
+    background: #fff;
+    border: 1px solid var(--gray-dark);
+    border-radius: 2px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  
+    &::-webkit-scrollbar {
+      border-left: 1px solid var(--gray-dark);
+      max-width: 5px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: var(--gray-dark);
+      border: 0.1px solid var(--gray-dark);
+      border-radius: 999px;
+    }
+  
+    &Open {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+  
+  .notFound {
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center;
+  }

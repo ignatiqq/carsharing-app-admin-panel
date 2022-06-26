@@ -1,4 +1,5 @@
 import axios, { AxiosPromise } from "axios";
+import Cookies from "js-cookie";
 
 interface IMaketRequestParams<T> {
     url: string,
@@ -10,7 +11,7 @@ interface IMaketRequestParams<T> {
 function makeRequest<T>({url, method, body, headers}: IMaketRequestParams<T>): AxiosPromise<T> {
 
     if(headers?.authorization) {
-        headers.authorization = "hello";
+        headers.authorization = `Bearer ${Cookies.get("access_token")}`;
     }
 
     return axios({

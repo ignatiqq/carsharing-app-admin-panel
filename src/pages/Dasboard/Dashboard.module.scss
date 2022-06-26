@@ -1,0 +1,46 @@
+.dashboard {
+
+    & {
+        display: flex;
+        min-height: 100vh;
+    }
+  
+    &__outlet {
+        padding: 22px;
+
+        @media(max-width: 500px) {
+            padding: 22px 10px;
+        }
+    }
+  
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 100vh;
+    }
+  
+    &__contentWrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        position: relative;
+    }
+
+    &__notificationsWrapper {
+        position: absolute;
+        width: 100%;
+        top: 75px;
+        z-index: 99;
+
+        @media(max-width: 500px) {
+            top: 125px
+        }
+    }
+  
+  }
+  
+  .loader {
+    min-height: 60px;
+  }

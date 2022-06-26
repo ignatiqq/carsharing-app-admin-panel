@@ -20,7 +20,7 @@ const withLoginLogic = (Component: React.FC<ILogin>) => () => {
         if(access_token) {
             navigate("/dashboard");
         }
-    }, [access_token, navigate])
+    }, [access_token, navigate]);
 
     const authorizationHandler = useCallback((data: IUserLogin) => {
         loginHandler(data);

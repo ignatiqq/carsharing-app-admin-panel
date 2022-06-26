@@ -1,0 +1,35 @@
+.customHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: bold;
+
+    &__countWrapper {
+        display: flex;
+    }
+}
+
+.customTableCell {
+    padding: 15px 5px;
+    max-height: 50px;
+}
+
+.customTableStyle {
+    min-width: 550px;
+}
+
+
+.tableHeader {
+
+    &__button {
+
+        &_create {
+            display: flex;
+            justify-content: end;
+            margin-top: 10px;
+        }
+
+    }
+
+}

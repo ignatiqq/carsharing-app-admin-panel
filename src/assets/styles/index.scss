@@ -11,6 +11,8 @@
   --text-gray: #495057;
   --gray-dark: #999999;
   --gray-light: #eeeeee;
+  --gray-border: #BECAD6;
+  --gray-dark-50: #5A6169;
 }
 
 html {
@@ -29,8 +31,8 @@ html {
 body {
     background: var(--body-background);
     font-family: 'Roboto', 'Helvetica', sans-serif;
+    text-rendering:geometricPrecision;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     margin: 0;
     color: var(--text-gray);
 }

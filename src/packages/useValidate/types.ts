@@ -7,7 +7,7 @@ interface IValidation {
 }
 
 export interface IValidationPattern {
-    value: string | ((value: string) => boolean),
+    value: string | ((value: any) => boolean),
     message: string
 }
 

@@ -8,5 +8,6 @@ export interface ITokenInfo {
 export interface IAuth {
     data: ITokenInfo | null,
     isLoading: boolean,
+    requestLoaded: boolean,
     error: string | null
 }

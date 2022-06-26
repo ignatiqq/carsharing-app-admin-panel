@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttonsWrapper {
+    display: flex;
+
+    button {
+        &:first-child {
+            margin-right: 15px;
+        }
+    }
+}

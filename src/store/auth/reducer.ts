@@ -4,12 +4,15 @@ import type { IAuth, ITokenInfo } from "./types";
 import { 
     setUserLoginData, 
     setUserLoginLoading, 
-    setUserLoginError 
+    setUserLoginError,
+    authorizationUserRequestLoaded,
+    clearUserAuthData
 } from "./actions";
 
 const initialState: IAuth = {
     data: null,
     isLoading: false,
+    requestLoaded: false,
     error: null
 }
 
@@ -23,6 +26,12 @@ const auth = createReducer(initialState, (builder) => {
         })
         .addCase(setUserLoginError, (state, action: PayloadAction<string | null>) => {
             state.error = action.payload
+        })
+        .addCase(authorizationUserRequestLoaded, (state, action: PayloadAction<boolean>) => {
+            state.requestLoaded = action.payload
+        })
+        .addCase(clearUserAuthData, (state, action) => {
+            state.data = null
         })
 })
 

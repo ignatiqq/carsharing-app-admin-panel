@@ -1,0 +1,53 @@
+.headerCityCount_loading {
+    align-items: flex-start;
+}
+
+.CitiesTable {
+
+    & {
+        font-weight: bold;
+    }
+
+    &__header {
+        & {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            font-weight: bold;
+        }
+
+        &__countWrapper {
+            display: flex;
+    
+            span {
+                margin-right: 5px;
+            }
+        }
+    }       
+
+}
+
+.tableData{
+    &__name {
+        padding: 15px 0px;
+    }
+}
+
+.customTableStyle {
+    min-width: 550px;
+}
+
+.tableHeader {
+
+    &__button {
+
+        &_create {
+            display: flex;
+            justify-content: end;
+            margin-top: 10px;
+        }
+
+    }
+
+}
