@@ -5,16 +5,17 @@ import styles from "./TableHead.module.scss";
 
 interface ICustomTableHead {
   children?: React.ReactElement,
-  count: number | null
+  count: number | null,
+  isLoading: boolean
 }
 
-const TableHead: React.FC<ICustomTableHead> = ({ children, count }) => {
+const TableHead: React.FC<ICustomTableHead> = ({ children, count, isLoading }) => {
   return (
       <>
         <div className={styles.header}>
           <div>Список моделей</div>
           <div className={styles.header__countWrapper}>
-            <span>Всего: </span> {(count === null) ?  <Loader /> : count}
+            <span>Всего: </span> {isLoading ? <Loader /> : (count !== null) && count}
           </div>
         </div>
         {children && children}

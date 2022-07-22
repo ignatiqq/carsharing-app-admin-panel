@@ -22,7 +22,7 @@ export interface IRateTypeDataInfo {
     count: number
 }
 
-interface IRateTypeInfoItem {
+export interface IRateTypeInfoItem {
     name: string,
     unit: string,
     id: string
@@ -79,7 +79,7 @@ export interface ICarTableFilters {
 
 export interface IOrderData {
     id: string,
-    orderStatusId: string | null,
+    orderStatusId: IOrderObject | null,
     cityId: IOrderObject | null,
     pointId: IOrderObject | null,
     carId: ICarData | null,
@@ -115,4 +115,9 @@ export interface IQueryFilter {
     limit?: number,
     sort?: string,
     [key: string]: string | number | undefined
+}
+
+export interface ICarRequestResponse {
+    fileds: object,
+    data: ICarData
 }

@@ -7,6 +7,10 @@
     &__items {
         display: flex;
         flex-wrap: wrap;
+
+        div {
+            margin-right: 10px;
+        }
     }
 }
 
@@ -107,5 +111,13 @@
     @media(max-width: 900px) {
         min-width: 1000px;
     }
-    
+
+}
+
+.orders__select {
+
+    @media(max-width: 990px) {
+        margin-bottom: 10px;
+
+    }
 }

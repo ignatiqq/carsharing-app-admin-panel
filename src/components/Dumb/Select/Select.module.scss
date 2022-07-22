@@ -3,12 +3,13 @@
     flex-direction: column;
     align-items: flex-start;
     position: relative;
+    width: 100%;
 
     &::after {
       content: url("../../../assets/icons/selectDropdown.svg");
       position: absolute;
       top: 14%;
-      right: 10%;
+      right: 2.5%;
     }
 
     &__active &::after {
@@ -16,7 +17,7 @@
       content: url("../../../assets/icons/selectCloseIcon.svg");
       position: absolute;
       top: 14%;
-      right: 10%;
+      right: 2.5%;
     }
 
   }
@@ -24,8 +25,6 @@
   .wrapper {
     display: flex;
     align-items: center;
-    margin: 10px 0px;
-    margin-right: 10px;
   
     @media (min-width: 640px) {
       justify-content: end;
@@ -42,14 +41,13 @@
     border: 1px solid var(--gray-border);
     border-radius: 4px;
     background: transparent;
-    padding: 10px 15px;
+    padding: 10px 10px;
     width: 100%;
     outline: none;
     font-size: 11px;
     position: relative;
   
     &::placeholder {
-      font-size: 14px;
       color: #868E96;
     }
 

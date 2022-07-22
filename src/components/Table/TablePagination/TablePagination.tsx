@@ -13,6 +13,7 @@ interface ITablePagination {
 }
 
 const TablePagination: React.FC<ITablePagination> = ({
+  dataLength,
   count,
   setPagination,
   pagination,
@@ -29,7 +30,8 @@ const TablePagination: React.FC<ITablePagination> = ({
           setPagination={setPagination}
           className={isLoading ? styles.pagination_disabled : ""}
         />
-        : null
+        :
+        null
       }
     </div>
   )

@@ -1,0 +1,32 @@
+.requestError {
+    text-align: center;
+    font-size: 14px;
+}
+
+.wrapper {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.Modal {
+
+    &__loaderWrapper {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+.changeEssense {
+    
+    &__title {
+        color: var(--primary-dark-blue);
+        font-size: "Helvetica";
+        font-weight: 400;
+        margin-bottom: 30px;
+    }
+
+}

@@ -5,7 +5,8 @@ import {
   Table, 
   TablePagination, 
   SelectWrapper,
-  TableHead
+  TableHead,
+  ErrorComponent
 } from 'components';
 import type { IAllCars, IAllCities, IAllPoints, ICurrentCity, ICurrentPoint } from 'store/filtersData/types';
 import type { ICarData } from 'store/filtersData/types';
@@ -54,13 +55,12 @@ const Orders: React.FC<IOrderPageProps> = ({
 }) => {
 
     const OrdersTableHeader = (
-    <TableHead count={count}>
-      <SelectWrapper
+      <TableHead isLoading={isLoading} count={count}>
+        <SelectWrapper
           onReset={resetOrderFilters}
           onApply={applyOrderFilters}
-          wrapperClassname={styles.filters}
-        >
-        <div className={styles.filters__items}>
+          wrapperClassname={styles.filters}>
+          <div className={styles.filters__items}>
             <Select
               options={points.data}
               selected={points.data && getSelectedDataById(points.data, filters.pointId)}
@@ -68,7 +68,8 @@ const Orders: React.FC<IOrderPageProps> = ({
               customValue="id"
               clickHandler={setPointsSelected}
               dataHolder={selectDataHolder(points)}
-              searchPlaceholder={"Точки"}
+              searchPlaceholder={'Точки'}
+              className={styles.orders__select}
             />
             <Select
               options={cities.data}
@@ -77,7 +78,8 @@ const Orders: React.FC<IOrderPageProps> = ({
               customValue="id"
               clickHandler={setCitiesSelected}
               dataHolder={selectDataHolder(cities)}
-              searchPlaceholder={"Города"}
+              searchPlaceholder={'Города'}
+              className={styles.orders__select}
             />
             <Select
               options={cars.data}
@@ -86,23 +88,34 @@ const Orders: React.FC<IOrderPageProps> = ({
               customValue="id"
               clickHandler={setCarsSelected}
               dataHolder={selectDataHolder(cars)}
-              searchPlaceholder={"Марки"}
+              searchPlaceholder={'Марки'}
+              className={styles.orders__select}
             />
           </div>
-      </SelectWrapper>
-    </TableHead>)
+        </SelectWrapper>
+      </TableHead>
+    );
 
-const Pagintation = (
-  <>
-      <TablePagination 
-        dataLength={data && data?.length}
-        count={count} 
-        pagination={pagination} 
-        isLoading={isLoading}  
-        setPagination={setPagination}
+    const Pagintation = (
+      <>
+          <TablePagination 
+            dataLength={data && data?.length}
+            count={count} 
+            pagination={pagination} 
+            isLoading={isLoading}  
+            setPagination={setPagination}
+          />
+      </>
+    );
+
+    if(error) {
+      return (
+      <ErrorComponent
+        title="Что то пошло не так" 
+        description='Попробуйте перезагрузить страницу'
       />
-  </>
-);
+      )
+    }
     
     return (
       <>

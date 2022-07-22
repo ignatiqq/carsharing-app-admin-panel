@@ -10,11 +10,15 @@ import {
     getTableCitiesDataWatcher,
     getTablePointsDataWatcher,
     getTableRateTypesDataWatcher,
-    getTableCarsDataWatcher
+    getTableCarsDataWatcher,
 } from "./tableData/sagas";
+import { getFiltersDataWatcher } from "./filtersData/sagas/filtersData";
 import { 
-    getFiltersDataWatcher 
-} from "./filtersData/sagas/filtersData";
+    getChangeDataWatcher,
+    sendDataToChangeWatcher,
+    deleteDataToChangeWatcher,
+    createEssenceDataWatcher
+} from "./changeEssence/sagas/actionCRUD";
 
 export default function *rootSaga() {
     yield all([
@@ -26,6 +30,10 @@ export default function *rootSaga() {
         getTableCitiesDataWatcher(),
         getTablePointsDataWatcher(),
         getTableRateTypesDataWatcher(),
-        getTableCarsDataWatcher()
+        getTableCarsDataWatcher(),
+        getChangeDataWatcher(),
+        sendDataToChangeWatcher(),
+        deleteDataToChangeWatcher(),
+        createEssenceDataWatcher(),
     ])
 }

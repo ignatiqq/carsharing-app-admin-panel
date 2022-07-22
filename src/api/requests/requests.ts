@@ -10,10 +10,28 @@ export const getRequest = (url: string, config?: IConfig) => {
     });
 } 
 
-export const postRequest = (url: string, config?: IConfig, body?: string) => {
+export const postRequest = <T>(url: string, config?: IConfig, body?: T) => {
     return makeRequest({
         url,
         method: "POST",
+        body,
+        headers: config?.headers
+    })
+}
+
+export const putRequest = <T>(url: string, config?: IConfig, body?: T) => {
+    return makeRequest({
+        url,
+        method: "PUT",
+        body,
+        headers: config?.headers
+    })
+}
+
+export const deleteRequest = <T>(url: string, config?: IConfig, body?: T) => {
+    return makeRequest({
+        url,
+        method: "DELETE",
         body,
         headers: config?.headers
     })

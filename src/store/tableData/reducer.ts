@@ -24,7 +24,7 @@ import {
     setTableCarsPagination,
     setTableCarsDataLoading,
     setTableCarsRequestError,
-    setTableCarsFilter
+    setTableCarsFilter,
 } from "./actions";
 import type { IPagination } from "types/requests";
 import type { 
@@ -33,8 +33,9 @@ import type {
     IPointDataInfo, 
     IRateTypeDataInfo, 
     ITableData, 
-    ICarsDataInfo 
+    ICarsDataInfo,
 } from "./types";
+
 
 const initialState: ITableData = {
     order: {

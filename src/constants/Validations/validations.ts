@@ -1,24 +1,66 @@
-import { validationPatterns } from "./patterns"
+import { authorizationValidationPatterns, essenseChangeValidations } from "./patterns";
 
-export const validations = {
+const isRequiredField = "Это обязательное поле!";
+const requiredTemplate = {
+  value: true,
+  message: isRequiredField
+}
+
+export const authValidations = {
     email: {
       required: {
-        value: true,
-        message: "Это обязательное поле!"
+        ...requiredTemplate
       },
       pattern: {
-        value: validationPatterns.emailPattern.value,
-        message: validationPatterns.emailPattern.message
+        ...authorizationValidationPatterns.emailPattern
       }
     },
     password: {
       required: {
-        value: true,
-        message: "Это обязательное поле!"
+        ...requiredTemplate
       },
       pattern: {
-        value: validationPatterns.passwordPattern.value,
-        message: validationPatterns.passwordPattern.message
+        ...authorizationValidationPatterns.passwordPattern,
       }
     }
+}
+
+export const essenceValidations = {
+  name: {
+    required: {
+      ...requiredTemplate
+    }
+  },
+  number: {
+    required: {
+      ...requiredTemplate
+    },
+    pattern: {
+      ...essenseChangeValidations.number,
+    }
+  },
+  price: {
+    required: {
+      ...requiredTemplate
+    },
+    pattern: {
+      ...essenseChangeValidations.price
+    }
+  },
+  description: {
+    required: {
+      ...requiredTemplate
+    },
+    pattern: {
+      ...essenseChangeValidations.description
+    }
+  },
+  tank: {
+    required: {
+      ...requiredTemplate
+    },
+    pattern: {
+      ...essenseChangeValidations.tank
+    }
+  }
 }

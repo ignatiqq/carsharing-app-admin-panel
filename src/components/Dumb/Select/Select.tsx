@@ -16,7 +16,9 @@ const Select: React.FC<ISelect> = (
     customValue = "value",
     selectClassName,
     dropdownClassName,
-    dataHolder
+    dataHolder,
+    className,
+    id
   }
   ) => {
 
@@ -70,7 +72,7 @@ const Select: React.FC<ISelect> = (
   const inputValue = selectDropdownOpened ? optionSearch : selected ? selected[optionLabel] : optionSearch;
 
   return (
-    <div className={classNames(styles.wrapper, {
+    <div className={classNames(styles.wrapper, className, {
       [styles.selectWrapper__active]: selectDropdownOpened
     })}>
       <label className={styles.inputLabel} htmlFor='search-input'>{label}</label>
@@ -84,12 +86,13 @@ const Select: React.FC<ISelect> = (
           className={classNames(styles.input, selectClassName)}
           onFocus={openSelectDropdownHandler}
           onBlur={closeSelectDropdownHandler}
+          id={id}
         />
         <div className={classNames(styles.optionWrapper, dropdownClassName, {
           [styles.optionWrapperOpen]: selectDropdownOpened
         })}>
           {
-            dataHolder ? 
+            dataHolder && !optionsToShow ? 
             dataHolder :
             optionsToShow && optionsToShow.length > 0 ?
             optionsToShow.map((item) => (  

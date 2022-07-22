@@ -14,5 +14,7 @@ export interface ISelect {
     customValue?: string,
     dropdownClassName?: number,
     selectClassName?: string,
-    dataHolder?: React.ReactElement | null
+    dataHolder?: React.ReactElement | null,
+    className?: string,
+    id?: string
 }

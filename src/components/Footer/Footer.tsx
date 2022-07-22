@@ -10,7 +10,7 @@ const Footer = () => {
             <Link to="/dashboard/orders">
                 Главная страница
             </Link>
-            <Link to="/helloworld">
+            <Link to="/dashboard/error-page">
                 Error page
             </Link>
         </div>

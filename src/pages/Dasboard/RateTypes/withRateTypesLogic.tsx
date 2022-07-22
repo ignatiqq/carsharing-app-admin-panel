@@ -5,6 +5,10 @@ import { getTableRateTypesData, setTableRateTypesPagination } from 'store/tableD
 import { IRateTypesTable } from './RateTypesTable';
 import type { IPagination } from 'types/requests';
 import styles from "./RateTypesTable.module.scss";
+import { DashboardChangeLink } from 'components';
+import { getDashboardChangeLink } from 'utils/getDashboardType';
+import { useLocation } from 'react-router-dom';
+import { EssenseActions } from 'store/changeEssence/types';
 
 export type RateTypesTableMappedData = Array<IRatyTypesTableMappedItem> | null;
 
@@ -19,12 +23,16 @@ const head = [
     },
     {
         name: "Длительность"
+    },
+    {
+        name: "Изменить"
     }
 ]
 
 const withRateTypesLogic = (Component: React.FC<IRateTypesTable>) => () => {
 
     const dispatch = useAppDispatch();
+    const location = useLocation();
 
     const { rateTypesData } = useAppSelector(({tableData}) => ({
         rateTypesData: tableData.rateTypes
@@ -45,7 +53,15 @@ const withRateTypesLogic = (Component: React.FC<IRateTypesTable>) => () => {
             return rateTypesData.data.data.map(item => {
                 return {
                     name: <div className={styles.customTableCell}>{item?.name ? item.name : "Название не указано"}</div>,
-                    unit: <div className={styles.customTableCell}>{item?.unit ? item.unit : "Длительность не указана"}</div>
+                    unit: <div className={styles.customTableCell}>{item?.unit ? item.unit : "Длительность не указана"}</div>,
+                    action: 
+                        <DashboardChangeLink link={getDashboardChangeLink({
+                            pathname: location.pathname, 
+                            action: EssenseActions.CHANGE,  
+                            id: item.id
+                        })}>
+                            Изменить
+                        </DashboardChangeLink>
                 }
             })
         }

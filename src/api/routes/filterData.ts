@@ -1,18 +1,11 @@
 import { getRequest } from "api/requests/requests"
 
 const filterData = {
-    getCities: () => {
-        return getRequest(`/db/city`);
-    },
-    getPoints: () => {
-        return getRequest(`/db/point`);
-    },
-    getCars: () => {
-        return getRequest(`/db/car`);
-    },
-    getCarCategories: () => {
-        return getRequest(`/db/category`);
-    }
+    getCities: () => getRequest(`/db/city`),
+    getPoints: () => getRequest(`/db/point`),
+    getCars: () => getRequest(`/db/car`),
+    getCarCategories: () => getRequest(`/db/category`),
+    getOrderStatuses: () => getRequest(`/db/orderStatus`)
 }   
 
 export default filterData;

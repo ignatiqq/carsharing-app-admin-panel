@@ -38,27 +38,31 @@ export interface IAllCars {
 }
 
 export interface ICarData {
-    categoryId: {
-        name: string,
-        description: string,
-        id: string
-    },
+    categoryId: Partial<ICarDataCategoryId>,
     colors: Array<string>,
-    createdAt: number,
+    createdAt?: number,
     description: string,
     id: string,
     name: string,
     number: string,
     priceMax: number,
     priceMin: number,
-    tank: 55,
-    thumbnail: {
-        size: number,
-        path: string,
-        originalname: string,
-        mimetype: string
-    },
-    updatedAt: number
+    tank: number,
+    thumbnail: ICardDataThumbnail,
+    updatedAt?: number
+}
+
+export interface ICarDataCategoryId {
+    name: string,
+    description: string,
+    id: string
+}
+
+export interface ICardDataThumbnail {
+    size: number,
+    path: string,
+    originalname: string,
+    mimetype: string
 }
 
 export interface ICarCategoriesData {
@@ -80,5 +84,22 @@ export interface IFiltersData {
     city: IAllCities,
     point: IAllPoints,
     car: IAllCars,
-    carCategories: IAllCarCategories
+    carCategories: IAllCarCategories,
+    orderStatus: IAllOrderStatus
+}
+
+export interface IAllOrderStatus {
+    data: IOrderStatusData | null,
+    isLoading: boolean,
+    error: string | null
+}
+
+export interface IOrderStatusData {
+    data: Array<IOrderStatusItem>,
+    count: number
+}
+
+export interface IOrderStatusItem {
+    name: string,
+    id: string
 }

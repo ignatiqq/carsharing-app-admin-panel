@@ -1,0 +1,22 @@
+.input {
+    border: .5px solid #BECAD6;
+    color: var(--primary-dark-black);
+    font-family: 'Helvetica', sans-serif;
+    padding: 10px 10px;
+    border-radius: 3px;
+    font-size: 11px;
+}
+
+.label {
+    font-size: 11px;
+    color: var(--primary-black);
+    margin-bottom: 10px;
+    text-align: left;
+    width: 100%;    
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

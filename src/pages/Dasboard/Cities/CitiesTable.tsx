@@ -3,8 +3,11 @@ import React from 'react';
 import type { IPagination } from 'types/requests';
 import type { CitiesTableMappedData } from './withCitiesLogic';
 import withCitiesLogic from './withCitiesLogic';
-import { Table, TablePagination, TableHead } from 'components';
+import { Table, TablePagination, TableHead, DashboardChangeLink, ErrorComponent } from 'components';
 import { ITableHead } from 'components/Table/Table/Table';
+import styles from "./CitiesTable.module.scss";
+import { getDashboardChangeLink } from 'utils/getDashboardType';
+import { EssenseActions } from 'store/changeEssence/types';
 
 export interface ICitiesTable {
   isLoading: boolean,
@@ -26,7 +29,19 @@ const CitiesTable: React.FC<ICitiesTable> = ({
   head
 }) => {
 
-  const CitiesTableHeader = <TableHead count={count} />
+  const CitiesTableHeader = (
+    <>
+      <TableHead isLoading={isLoading} count={count} />
+      <div className={styles.tableHeader__button_create}>
+        <DashboardChangeLink link={getDashboardChangeLink({
+              pathname: window.location.pathname, 
+              action: EssenseActions.CREATE,
+          })}>
+          Создать
+        </DashboardChangeLink>
+      </div>
+    </>
+  )
 
   const Pagintation = (
     <>
@@ -40,6 +55,15 @@ const CitiesTable: React.FC<ICitiesTable> = ({
     </>
   );
 
+  if(error) {
+    return (
+    <ErrorComponent
+      title="Что то пошло не так" 
+      description='Попробуйте перезагрузить страницу'
+    />
+    )
+  }
+
   return (
     <>
       <Table
@@ -48,6 +72,7 @@ const CitiesTable: React.FC<ICitiesTable> = ({
           error={error}
           customHead={CitiesTableHeader}
           head={head}
+          className={styles.customTableStyle}
       />
       {Pagintation}
     </>

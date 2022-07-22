@@ -1,0 +1,47 @@
+.wrapper {
+    
+    & {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px 50px;
+    }
+
+    &_success {
+
+        & {
+            background: var(--primary-green);
+        }
+
+        .text::before {
+            background-image: url("../../../assets/icons/checkmark-white.svg");
+            background-position: bottom;
+            background-size: 13px 10px;
+            display: inline-block;
+            width: 13px; 
+            height: 10px;
+            content:"";
+            margin-right: 10px;
+        }
+    }
+
+    &_failed {
+        background: var(--primary-red);
+    }
+
+}
+
+.text {
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: -0.325px;
+}
+
+.button {
+
+    &_delete{ 
+        border: none;
+    }
+
+}

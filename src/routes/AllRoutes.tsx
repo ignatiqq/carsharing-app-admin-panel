@@ -11,7 +11,8 @@ import {
     CarModels,
     Cities,
     PointsTable,
-    RateTypesTable
+    RateTypesTable,
+    ChangeEssence
 } from "pages";
 
 const AppRoutes = () => useRoutes([
@@ -22,24 +23,32 @@ const AppRoutes = () => useRoutes([
             <PrivateRoute Component={Dashboard} />,
         children: [
             {
-                path: "/dashboard/orders", 
+                path: "/dashboard/order", 
                 element: <Orders />
             },
             {
-                path: "/dashboard/cars",
+                path: "/dashboard/car",
                 element: <CarModels />  
             },
             {
-                path: "/dashboard/cities",
+                path: "/dashboard/city",
                 element: <Cities />
             },
             {
-                path: "/dashboard/points",
+                path: "/dashboard/point",
                 element: <PointsTable />
             },
             {
-                path: "/dashboard/rateTypes",
+                path: "/dashboard/rateType",
                 element: <RateTypesTable />
+            },
+            {
+                path: "/dashboard/:route/:action/:id",
+                element: <ChangeEssence />
+            },
+            {
+                path: "/dashboard/:route/:action",
+                element: <ChangeEssence />
             },
             {
                 path: "*",

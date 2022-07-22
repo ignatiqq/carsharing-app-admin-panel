@@ -5,7 +5,8 @@ import type {
     ICarData,
     ICurrentPoint,
     ICurrentCity,
-    ICarCategoriesData
+    ICarCategoriesData,
+    IOrderStatusData
 } from "./types";
 import {
     setCitiesData,
@@ -19,7 +20,10 @@ import {
     setCarsRequestError,
     setCarCategoriesData,
     setCarCategoriesRequestLoading,
-    setCarCategoriesRequestError
+    setCarCategoriesRequestError,
+    setOrderStatusData,
+    setOrderStatusRequestLoading,
+    setOrderStatusRequestError
 } from "./actions"
 
 const initialState: IFiltersData = {
@@ -44,6 +48,11 @@ const initialState: IFiltersData = {
     carCategories: {
         data: null,
         count: null,
+        isLoading: false,
+        error: null
+    },
+    orderStatus: {
+        data: null,
         isLoading: false,
         error: null
     }
@@ -93,6 +102,16 @@ const filtersData = createReducer(initialState, (builder) => {
         })
         .addCase(setCarCategoriesRequestError, (state, action: PayloadAction<string>) => {
             state.carCategories.error = action.payload
+        })
+
+        .addCase(setOrderStatusData, (state, action: PayloadAction<IOrderStatusData>) => {
+            state.orderStatus.data = action.payload
+        })
+        .addCase(setOrderStatusRequestLoading, (state, action: PayloadAction<boolean>) => {
+            state.orderStatus.isLoading = action.payload
+        })
+        .addCase(setOrderStatusRequestError, (state, action: PayloadAction<string>) => {
+            state.orderStatus.error = action.payload
         })
 })
 

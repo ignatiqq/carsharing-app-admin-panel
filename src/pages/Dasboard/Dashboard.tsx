@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useCallback, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import withDashboardLogic from './withDashboardLogic';
-import { Sidebar, Header, Loader, Footer } from 'components';
+import { Sidebar, Header, Loader, Footer, TemporaryNotificationWrapper } from 'components';
 import styles from "./Dashboard.module.scss";
+import { useAppSelector } from 'store';
 
 export function selectDataHolder<T>(data: {isLoading: boolean, error: string | null, data: T}) {
   if(data.isLoading) {
@@ -20,12 +21,25 @@ export function selectDataHolder<T>(data: {isLoading: boolean, error: string | n
 const Dashboard = () => {
   const [sidebarExtended, setSidebarExtended] = React.useState(false);
 
+  const navigate = useNavigate();
+
+  const { temporaryNotifications } = useAppSelector(({notifications}) => ({
+    temporaryNotifications: notifications.temporary.data
+  }))
+
   const openSidebarHanlder = useCallback(() => {
     setSidebarExtended(true)
   }, [])
 
   const closeSidebarHanlder = useCallback(() => {
     setSidebarExtended(false)
+  }, [])
+
+  useEffect(() => {
+    const splitedPathname = window.location.pathname.split("/");
+    if(splitedPathname[splitedPathname.length - 1] === "dashboard") {
+      navigate("/dashboard/order")
+    }
   }, [])
 
   return (
@@ -39,6 +53,10 @@ const Dashboard = () => {
             <Header
               openSidebarHanlder={openSidebarHanlder}
               sidebarExtended={sidebarExtended}
+            />
+            <TemporaryNotificationWrapper 
+              className={styles.dashboard__notificationsWrapper}
+              data={temporaryNotifications}
             />
             <div className={styles.dashboard__outlet}>
               <Outlet />

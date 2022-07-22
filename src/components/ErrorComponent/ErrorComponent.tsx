@@ -1,28 +1,42 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+import { Button } from "components";
 
 import styles from "./ErrorComponent.module.scss";
 
 interface IErrorPage {
-  statusCode: number,
+  statusCode?: number,
   title: string,
   description: string,
   fallbackUrl?: string
 }
 
 const ErrorPage: React.FC<IErrorPage> = ({
-  statusCode,
+  statusCode = 500,
   title,
   description,
   fallbackUrl = "/"
 }) => {
+
+  const navigate = useNavigate();
+
+  const goBackHandler = () => {
+    return navigate(-1);
+  }
+
   return (
     <div className={styles.error}>
       <div>
         <h1 className={styles.error__statusCode}>{statusCode}</h1>
         <h2 className={styles.error__title}>{title}</h2>
         <p className={styles.error__description}>{description}</p>
-        <Link className='link-btn-filled' to={fallbackUrl}>Назад</Link>
+        <Button 
+          onClick={goBackHandler}
+          apperance="default"
+        >
+          Назад
+        </Button>
       </div>
     </div>
   )
